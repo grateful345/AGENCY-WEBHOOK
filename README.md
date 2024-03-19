@@ -1,5 +1,27 @@
 # AGENCY-WEBHOOK
+evt_1OvyoVGF83d3fsgWW9GjCrme
 
+{
+  "object": {
+    "id": "file_1OvyoVGF83d3fsgWJ2y8LUzQ",
+    "object": "file",
+    "created": 1710839911,
+    "expires_at": null,
+    "filename": "Untitled_20240318.csv",
+    "links": {
+      "object": "list",
+      "data": [],
+      "has_more": false,
+      "url": "/v1/file_links?file=file_1OvyoVGF83d3fsgWJ2y8LUzQ"
+    },
+    "purpose": "sigma_scheduled_query",
+    "size": 64,
+    "title": "Untitled for 2024-03-18",
+    "type": "csv",
+    "url": "https://files.stripe.com/v1/files/file_1OvyoVGF83d3fsgWJ2y8LUzQ/contents"
+  },
+  "previous_attributes": null
+}
 Download
 #! /usr/bin/env python3.6
 # Python 3.6 or newer required.
