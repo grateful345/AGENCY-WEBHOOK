@@ -1405,6 +1405,17 @@ index 1efe598..1e08c57 100644
 +
 +# If you are testing your webhook locally with the Stripe CLI you
 +# can find the endpoint's secret by running `stripe listen`
+
+$ stripe listen
+
+> Ready! Your webhook signing secret is whsec_abcdefg1234567
+2022-01-28 09:47:46   --> customer.created [evt_abc123]
+2022-01-28 09:48:22   --> charge.succeeded [evt_def456]
+2022-01-28 09:48:58   --> charge.succeeded [evt_ghi789]
+
+stripe listen --forward-to http://localhost:4242
+
+stripe listen --events=payment_intent.succeeded
 +# Otherwise, find your endpoint's secret in your webhook settings in the Developer Dashboard
 +endpoint_secret = 'whsec_...'
 +
@@ -1525,3 +1536,45 @@ index 1efe598..1e08c57 100644
 +   # Process webhook data in `request.body`  return HttpResponse(status=200)
 + # Set your secret key. Remember to switch to your live secret key in production.
 + # See your keys here: https://dashboard.stripe.com/apikeys
+stripe trigger invoice.payment_succeeded
+
+Setting up fixture for: customer
+Setting up fixture for: invoiceitem
+Setting up fixture for: invoice
+Setting up fixture for: invoice_pay
+Trigger succeeded! Check dashboard for event details.
+
+stripe trigger --help
+
+Supported events:
+  balance.available
+  charge.captured
+  charge.dispute.created
+  charge.failed
+  charge.refunded
+  charge.succeeded
+...
+{
+  "object": {
+    "id": "file_1OvyoVGF83d3fsgWJ2y8LUzQ",
+    "object": "file",
+    "created": 1710839911,
+    "expires_at": null,
+    "filename": "Untitled_20240318.csv",
+    "links": {
+      "object": "list",
+      "data": [],
+      "has_more": false,
+      "url": "/v1/file_links?file=file_1OvyoVGF83d3fsgWJ2y8LUzQ"
+    },
+    "purpose": "sigma_scheduled_query",
+    "size": 64,
+    "title": "Untitled for 2024-03-18",
+    "type": "csv",
+    "url": "https://files.stripe.com/v1/files/file_1OvyoVGF83d3fsgWJ2y8LUzQ/contents"
+  },
+  "previous_attributes": null
+}
+
+
+
