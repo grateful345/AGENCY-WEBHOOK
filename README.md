@@ -120,6 +120,7 @@ stripe trigger payment_intent.succeeded
 Run in the Stripe Shell
 Server
 Congratulations!
+
 Stripe-Signature:
 t=1492774577,
 v1=5257a869e7ecebeda32affa62cdca3fa51cad7e77a0e56ff536d0ce8e108d8bd,
@@ -167,7 +168,8 @@ endpoint_secret = 'whsec_...'
 @csrf_exempt
 def my_webhook_view(request):
   payload = request.body
-  sig_header = request.META['t=1492774577,
+  sig_header = request.META['Stripe-Signature:
+t=1492774577,
 v1=5257a869e7ecebeda32affa62cdca3fa51cad7e77a0e56ff536d0ce8e108d8bd,
 v0=6ffbb59b2300aae63f272406069a9788598b792a944a07aba816edb039989a39']
   event = None
@@ -265,7 +267,8 @@ endpoint_secret = 'whsec_...'
 @csrf_exempt
 def my_webhook_view(request):
   payload = request.body
-  sig_header = request.META['t=1492774577,
+  sig_header = request.META['Stripe-Signature:
+t=1492774577,
 v1=5257a869e7ecebeda32affa62cdca3fa51cad7e77a0e56ff536d0ce8e108d8bd,
 v0=6ffbb59b2300aae63f272406069a9788598b792a944a07aba816edb039989a39']
   event = None
@@ -533,7 +536,8 @@ endpoint_secret = 'whsec_...'
 @csrf_exempt
 def my_webhook_view(request):
   payload = request.body
-  sig_header = request.META['t=1492774577,
+  sig_header = request.META['Stripe-Signature:
+t=1492774577,
 v1=5257a869e7ecebeda32affa62cdca3fa51cad7e77a0e56ff536d0ce8e108d8bd,
 v0=6ffbb59b2300aae63f272406069a9788598b792a944a07aba816edb039989a39']
   event = None
@@ -631,7 +635,8 @@ endpoint_secret = 'whsec_...'
 @csrf_exempt
 def my_webhook_view(request):
   payload = request.body
-  sig_header = request.META['t=1492774577,
+  sig_header = request.META['Stripe-Signature:
+t=1492774577,
 v1=5257a869e7ecebeda32affa62cdca3fa51cad7e77a0e56ff536d0ce8e108d8bd,
 v0=6ffbb59b2300aae63f272406069a9788598b792a944a07aba816edb039989a39']
   event = None
@@ -912,7 +917,8 @@ endpoint_secret = 'whsec_...'
 @csrf_exempt
 def my_webhook_view(request):
   payload = request.body
-  sig_header = request.META['t=1492774577,
+  sig_header = request.META['Stripe-Signature:
+t=1492774577,
 v1=5257a869e7ecebeda32affa62cdca3fa51cad7e77a0e56ff536d0ce8e108d8bd,
 v0=6ffbb59b2300aae63f272406069a9788598b792a944a07aba816edb039989a39']
   event = None
@@ -1010,7 +1016,8 @@ endpoint_secret = 'whsec_...'
 @csrf_exempt
 def my_webhook_view(request):
   payload = request.body
-  sig_header = request.META['t=1492774577,
+  sig_header = request.META['Stripe-Signature:
+t=1492774577,
 v1=5257a869e7ecebeda32affa62cdca3fa51cad7e77a0e56ff536d0ce8e108d8bd,
 v0=6ffbb59b2300aae63f272406069a9788598b792a944a07aba816edb039989a39']
   event = None
