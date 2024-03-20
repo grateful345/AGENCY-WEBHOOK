@@ -7,12 +7,12 @@ helm upgrade --install --namespace actions-runner-system --create-namespace \
              --wait actions-runner-controller actions-runner-controller/actions-runner-controller
 $ kubectl create secret generic controller-manager \
     -n actions-runner-system \
-    --from-literal=github_app_id=${APP_ID} \
-    --from-literal=github_app_installation_id=${INSTALLATION_ID} \
-    --from-file=github_app_private_key=${PRIVATE_KEY_FILE_PATH}
+    --from-literal=github_app_id=${BHAHZGCJZK3BEVS7IRGZMKDF6USLO /   GitHub Runner tokens / BHAHZGDHHICG3LFF53OICRLF6UR24} \
+    --from-literal=github_app_installation_id=${BHAHZGCJZK3BEVS7IRGZMKDF6USLO /  GitHub Runner tokens / BHAHZGDHHICG3LFF53OICRLF6UR24} \
+    --from-file=github_app_private_key=${BHAHZGCJZK3BEVS7IRGZMKDF6USLO / GitHub Runner tokens / BHAHZGDHHICG3LFF53OICRLF6UR24}
       kubectl create secret generic controller-manager \
     -n actions-runner-system \
-    --from-literal=github_token=${GITHUB_TOKEN}
+    --from-literal=github_token=${BHAHZGCJZK3BEVS7IRGZMKDF6USLO /  GitHub Runner tokens / BHAHZGDHHICG3LFF53OICRLF6UR24}
     $ kubectl create secret tls actions-runner-controller-serving-cert \
   -n actions-runner-system \
   --cert=path/to/cert/file \
