@@ -12,7 +12,8 @@ $ kubectl create secret generic controller-manager \
     --from-file=github_app_private_key=${PRIVATE_KEY_FILE_PATH}
       kubectl create secret generic controller-manager \
     -n actions-runner-system \
-    --from-literal=github_token=${GITHUB_TOKEN}
+    --from-literal=github_token=${BHAHZGCJZK3BEVS7IRGZMKDF6USLO /  GitHub Runner tokens :
+    / BHAHZGDHHICG3LFF53OICRLF6UR24}
     $ kubectl create secret tls actions-runner-controller-serving-cert \
   -n actions-runner-system \
   --cert=path/to/cert/file \
