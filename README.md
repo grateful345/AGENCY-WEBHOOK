@@ -1,4 +1,1643 @@
 # AGENCY-WEBHOOK
+
+, 19 Mar 2024 21:04:59 -0500
+Subject: [PATCH] Update README.md
+
+LLBF3JGZDX3P5PMEXLND6TS6FCWO6 token
+---
+ README.md | 1613 ++++++++++++++++++++++++++++++++++++++++++++++++++++-
+ 1 file changed, 1612 insertions(+), 1 deletion(-)
+
+diff --git a/README.md b/README.md
+index 5cf0455..edbc112 100644
+--- a/README.md
++++ b/README.md
+@@ -1,4 +1,1128 @@
+ # AGENCY-WEBHOOK
++curl -L \
++  -X POST \
++  -H "Accept: application/vnd.github+json" \
++  -H "Authorization: Bearer <LLBF3JGZDX3P5PMEXLND6TS6FCWO6>" \
++  -H "X-GitHub-Api-Version: 2022-11-28" \
++  https://api.github.com/repos/OWNER/REPO/actions/runners/registration-token
++./config.sh --url https://github.com/octo-org --token TOKEN
++{
++  "token": "LLBF3JGZDX3P5PMEXLND6TS6FCWO6",
++  "expires_at": "2020-01-22T12:13:35.123-08:00"
++}curl -L \
++  -X POST \
++  -H "Accept: application/vnd.github+json" \
++  -H "Authorization: Bearer <LLBF3JGZDX3P5PMEXLND6TS6FCWO6>" \
++  -H "X-GitHub-Api-Version: 2022-11-28" \
++  https://api.github.com/repos/OWNER/REPO/actions/runners/generate-jitconfig \
++  -d '{"name":"New runner","runner_group_id":1,"labels":["self-hosted","X64","macOS","no-gpu"],"work_folder":"_work"}'
++  
++curl -L \
++  -H "Accept: application/vnd.github+json" \
++  -H "Authorization: Bearer <LLBF3JGZDX3P5PMEXLND6TS6FCWO6>" \
++  -H "X-GitHub-Api-Version: 2022-11-28" \
++  https://api.github.com/orgs/ORG/actions/runners
++curl -L \
++  -H "Accept: application/vnd.github+json" \
++  -H "Authorization: Bearer <LLBF3JGZDX3P5PMEXLND6TS6FCWO6>" \
++  -H "X-GitHub-Api-Version: 2022-11-28" \
++  https://api.github.com/orgs/ORG/actions/runners/downloads
++curl -L \
++  -X POST \
++  -H "Accept: application/vnd.github+json" \
++  -H "Authorization: Bearer <LLBF3JGZDX3P5PMEXLND6TS6FCWO6>" \
++  -H "X-GitHub-Api-Version: 2022-11-28" \
++  https://api.github.com/orgs/ORG/actions/runners/generate-jitconfig \
++  -d '{"name":"New runner","runner_group_id":1,"labels":["self-hosted","X64","macOS","no-gpu"],"work_folder":"_work"}'
++curl -L \
++  -X POST \
++  -H "Accept: application/vnd.github+json" \
++  -H "Authorization: Bearer <LLBF3JGZDX3P5PMEXLND6TS6FCWO6>" \
++  -H "X-GitHub-Api-Version: 2022-11-28" \
++  https://api.github.com/orgs/ORG/actions/runners/registration-token
++{
++  "token": "LLBF3JGZDX3P5PMEXLND6TS6FCWO6",
++  "expires_at": "2020-01-22T12:13:35.123-08:00"
++}
++curl -L \
++  -H "Accept: application/vnd.github+json" \
++  -H "Authorization: Bearer <LLBF3JGZDX3P5PMEXLND6TS6FCWO6>" \
++  -H "X-GitHub-Api-Version: 2022-11-28" \
++  https://api.github.com/orgs/ORG/actions/runners/RUNNER_ID
++
++  curl -L \
++  -H "Accept: application/vnd.github+json" \
++  -H "Authorization: Bearer <LLBF3JGZDX3P5PMEXLND6TS6FCWO6>" \
++  -H "X-GitHub-Api-Version: 2022-11-28" \
++  https://api.github.com/orgs/ORG/actions/runners/RUNNER_ID/labels
++curl -L \
++  -X POST \
++  -H "Accept: application/vnd.github+json" \
++  -H "Authorization: Bearer <LLBF3JGZDX3P5PMEXLND6TS6FCWO6>" \
++  -H "X-GitHub-Api-Version: 2022-11-28" \
++  https://api.github.com/orgs/ORG/actions/runners/RUNNER_ID/labels \
++  -d '{"labels":["gpu","accelerated"]}'
++  curl -L \
++  -X PUT \
++  -H "Accept: application/vnd.github+json" \
++  -H "Authorization: Bearer <LLBF3JGZDX3P5PMEXLND6TS6FCWO6>" \
++  -H "X-GitHub-Api-Version: 2022-11-28" \
++  https://api.github.com/orgs/ORG/actions/runners/RUNNER_ID/labels \
++  -d '{"labels":["gpu","accelerated"]}'
++curl -L \
++  -H "Accept: application/vnd.github+json" \
++  -H "Authorization: Bearer <LLBF3JGZDX3P5PMEXLND6TS6FCWO6-TOKEN>" \
++  -H "X-GitHub-Api-Version: 2022-11-28" \
++  https://api.github.com/repos/OWNER/REPO/actions/runners
++curl -L \
++  -H "Accept: application/vnd.github+json" \
++  -H "Authorization: Bearer <LLBF3JGZDX3P5PMEXLND6TS6FCWO6>" \
++  -H "X-GitHub-Api-Version: 2022-11-28" \
++  https://api.github.com/repos/OWNER/REPO/actions/runners/downloads
++
++  curl -L \
++  -H "Accept: application/vnd.github+json" \
++  -H "Authorization: Bearer <LLBF3JGZDX3P5PMEXLND6TS6FCWO6>" \
++  -H "X-GitHub-Api-Version: 2022-11-28" \
++  https://api.github.com/repos/OWNER/REPO/actions/runners/RUNNER_ID
++  curl -L \
++  -H "Accept: application/vnd.github+json" \
++  -H "Authorization: Bearer <LLBF3JGZDX3P5PMEXLND6TS6FCWO6>" \
++  -H "X-GitHub-Api-Version: 2022-11-28" \
++  https://api.github.com/repos/OWNER/REPO/actions/runners/RUNNER_ID/labels
++  curl -L \
++  -X POST \
++  -H "Accept: application/vnd.github+json" \
++  -H "Authorization: Bearer <LLBF3JGZDX3P5PMEXLND6TS6FCWO6>" \
++  -H "X-GitHub-Api-Version: 2022-11-28" \
++  https://api.github.com/repos/OWNER/REPO/actions/runners/RUNNER_ID/labels \
++  -d '{"labels":["gpu","accelerated"]}'
++  
++  curl -L \
++  -X PUT \
++  -H "Accept: application/vnd.github+json" \
++  -H "Authorization: Bearer <LLBF3JGZDX3P5PMEXLND6TS6FCWO6>" \
++  -H "X-GitHub-Api-Version: 2022-11-28" \
++  https://api.github.com/repos/OWNER/REPO/actions/runners/RUNNER_ID/labels \
++  -d '{"labels":["gpu","accelerated"]}'
++  
++  [
++  {
++    "os": "osx",
++    "architecture": "x64",
++    "download_url": "https://github.com/actions/runner/releases/download/v2.164.0/actions-runner-osx-x64-2.164.0.tar.gz",
++    "filename": "actions-runner-osx-x64-2.164.0.tar.gz"
++  },
++  {
++    "os": "linux",
++    "architecture": "x64",
++    "download_url": "https://github.com/actions/runner/releases/download/v2.164.0/actions-runner-linux-x64-2.164.0.tar.gz",
++    "filename": "actions-runner-linux-x64-2.164.0.tar.gz"
++  },
++  {
++    "os": "linux",
++    "architecture": "arm",
++    "download_url": "https://github.com/actions/runner/releases/download/v2.164.0/actions-runner-linux-arm-2.164.0.tar.gz",
++    "filename": "actions-runner-linux-arm-2.164.0.tar.gz"
++  },
++  {
++    "os": "win",
++    "architecture": "x64",
++    "download_url": "https://github.com/actions/runner/releases/download/v2.164.0/actions-runner-win-x64-2.164.0.zip",
++    "filename": "actions-runner-win-x64-2.164.0.zip"
++  },
++  {
++    "os": "linux",
++    "architecture": "arm64",
++    "download_url": "https://github.com/actions/runner/releases/download/v2.164.0/actions-runner-linux-arm64-2.164.0.tar.gz",
++    "filename": "actions-runner-linux-arm64-2.164.0.tar.gz"
++  }
++]  
++  "title": "Authentication Token",
++  "description": "Authentication Token",
++  "type": "object",
++  "properties": {
++    "token": {
++      "description": "The token used for authentication",
++      "type": "string",
++      "examples": [
++        "v1.1f699f1069f60xxx"
++      ]
++    },
++    "expires_at": {
++      "description": "The time this token expires",
++      "type": "string",
++      "format": "date-time",
++      "examples": [
++        "2016-07-11T22:14:10Z"
++      ]
++    },
++    "permissions": {
++      "type": "object",
++      "examples": [
++        {
++          "issues": "read",
++          "deployments": "write"
++        }
++      ]
++    },
++    "repositories": {
++      "description": "The repositories this token has access to",
++      "type": "array",
++      "items": {
++        "title": "Repository",
++        "description": "A repository on GitHub.",
++        "type": "object",
++        "properties": {
++          "id": {
++            "description": "Unique identifier of the repository",
++            "type": "integer",
++            "examples": [
++              42
++            ]
++          },
++          "node_id": {
++            "type": "string",
++            "examples": [
++              "MDEwOlJlcG9zaXRvcnkxMjk2MjY5"
++            ]
++          },
++          "name": {
++            "description": "The name of the repository.",
++            "type": "string",
++            "examples": [
++              "Team Environment"
++            ]
++          },
++          "full_name": {
++            "type": "string",
++            "examples": [
++              "octocat/Hello-World"
++            ]
++          },
++          "license": {
++            "anyOf": [
++              {
++                "type": "null"
++              },
++              {
++                "title": "License Simple",
++                "description": "License Simple",
++                "type": "object",
++                "properties": {
++                  "key": {
++                    "type": "string",
++                    "examples": [
++                      "mit"
++                    ]
++                  },
++                  "name": {
++                    "type": "string",
++                    "examples": [
++                      "MIT License"
++                    ]
++                  },
++                  "url": {
++                    "type": [
++                      "string",
++                      "null"
++                    ],
++                    "format": "uri",
++                    "examples": [
++                      "https://api.github.com/licenses/mit"
++                    ]
++                  },
++                  "spdx_id": {
++                    "type": [
++                      "string",
++                      "null"
++                    ],
++                    "examples": [
++                      "MIT"
++                    ]
++                  },
++                  "node_id": {
++                    "type": "string",
++                    "examples": [
++                      "MDc6TGljZW5zZW1pdA=="
++                    ]
++                  },
++                  "html_url": {
++                    "type": "string",
++                    "format": "uri"
++                  }
++                },
++                "required": [
++                  "key",
++                  "name",
++                  "url",
++                  "spdx_id",
++                  "node_id"
++                ]
++              }
++            ]
++          },
++          "forks": {
++            "type": "integer"
++          },
++          "permissions": {
++            "type": "object",
++            "properties": {
++              "admin": {
++                "type": "boolean"
++              },
++              "pull": {
++                "type": "boolean"
++              },
++              "triage": {
++                "type": "boolean"
++              },
++              "push": {
++                "type": "boolean"
++              },
++              "maintain": {
++                "type": "boolean"
++              }
++            },
++            "required": [
++              "admin",
++              "pull",
++              "push"
++            ]
++          },
++          "owner": {
++            "title": "Simple User",
++            "description": "A GitHub user.",
++            "type": "object",
++            "properties": {
++              "name": {
++                "type": [
++                  "string",
++                  "null"
++                ]
++              },
++              "email": {
++                "type": [
++                  "string",
++                  "null"
++                ]
++              },
++              "login": {
++                "type": "string",
++                "examples": [
++                  "octocat"
++                ]
++              },
++              "id": {
++                "type": "integer",
++                "examples": [
++                  1
++                ]
++              },
++              "node_id": {
++                "type": "string",
++                "examples": [
++                  "MDQ6VXNlcjE="
++                ]
++              },
++              "avatar_url": {
++                "type": "string",
++                "format": "uri",
++                "examples": [
++                  "https://github.com/images/error/octocat_happy.gif"
++                ]
++              },
++              "gravatar_id": {
++                "type": [
++                  "string",
++                  "null"
++                ],
++                "examples": [
++                  "41d064eb2195891e12d0413f63227ea7"
++                ]
++              },
++              "url": {
++                "type": "string",
++                "format": "uri",
++                "examples": [
++                  "https://api.github.com/users/octocat"
++                ]
++              },
++              "html_url": {
++                "type": "string",
++                "format": "uri",
++                "examples": [
++                  "https://github.com/octocat"
++                ]
++              },
++              "followers_url": {
++                "type": "string",
++                "format": "uri",
++                "examples": [
++                  "https://api.github.com/users/octocat/followers"
++                ]
++              },
++              "following_url": {
++                "type": "string",
++                "examples": [
++                  "https://api.github.com/users/octocat/following{/other_user}"
++                ]
++              },
++              "gists_url": {
++                "type": "string",
++                "examples": [
++                  "https://api.github.com/users/octocat/gists{/gist_id}"
++                ]
++              },
++              "starred_url": {
++                "type": "string",
++                "examples": [
++                  "https://api.github.com/users/octocat/starred{/owner}{/repo}"
++                ]
++              },
++              "subscriptions_url": {
++                "type": "string",
++                "format": "uri",
++                "examples": [
++                  "https://api.github.com/users/octocat/subscriptions"
++                ]
++              },
++              "organizations_url": {
++                "type": "string",
++                "format": "uri",
++                "examples": [
++                  "https://api.github.com/users/octocat/orgs"
++                ]
++              },
++              "repos_url": {
++                "type": "string",
++                "format": "uri",
++                "examples": [
++                  "https://api.github.com/users/octocat/repos"
++                ]
++              },
++              "events_url": {
++                "type": "string",
++                "examples": [
++                  "https://api.github.com/users/octocat/events{/privacy}"
++                ]
++              },
++              "received_events_url": {
++                "type": "string",
++                "format": "uri",
++                "examples": [
++                  "https://api.github.com/users/octocat/received_events"
++                ]
++              },
++              "type": {
++                "type": "string",
++                "examples": [
++                  "User"
++                ]
++              },
++              "site_admin": {
++                "type": "boolean"
++              },
++              "starred_at": {
++                "type": "string",
++                "examples": [
++                  "\"2020-07-09T00:17:55Z\""
++                ]
++              }
++            },
++            "required": [
++              "avatar_url",
++              "events_url",
++              "followers_url",
++              "following_url",
++              "gists_url",
++              "gravatar_id",
++              "html_url",
++              "id",
++              "node_id",
++              "login",
++              "organizations_url",
++              "received_events_url",
++              "repos_url",
++              "site_admin",
++              "starred_url",
++              "subscriptions_url",
++              "type",
++              "url"
++            ]
++          },
++          "private": {
++            "description": "Whether the repository is private or public.",
++            "default": false,
++            "type": "boolean"
++          },
++          "html_url": {
++            "type": "string",
++            "format": "uri",
++            "examples": [
++              "https://github.com/octocat/Hello-World"
++            ]
++          },
++          "description": {
++            "type": [
++              "string",
++              "null"
++            ],
++            "examples": [
++              "This your first repo!"
++            ]
++          },
++          "fork": {
++            "type": "boolean"
++          },
++          "url": {
++            "type": "string",
++            "format": "uri",
++            "examples": [
++              "https://api.github.com/repos/octocat/Hello-World"
++            ]
++          },
++          "archive_url": {
++            "type": "string",
++            "examples": [
++              "http://api.github.com/repos/octocat/Hello-World/{archive_format}{/ref}"
++            ]
++          },
++          "assignees_url": {
++            "type": "string",
++            "examples": [
++              "http://api.github.com/repos/octocat/Hello-World/assignees{/user}"
++            ]
++          },
++          "blobs_url": {
++            "type": "string",
++            "examples": [
++              "http://api.github.com/repos/octocat/Hello-World/git/blobs{/sha}"
++            ]
++          },
++          "branches_url": {
++            "type": "string",
++            "examples": [
++              "http://api.github.com/repos/octocat/Hello-World/branches{/branch}"
++            ]
++          },
++          "collaborators_url": {
++            "type": "string",
++            "examples": [
++              "http://api.github.com/repos/octocat/Hello-World/collaborators{/collaborator}"
++            ]
++          },
++          "comments_url": {
++            "type": "string",
++            "examples": [
++              "http://api.github.com/repos/octocat/Hello-World/comments{/number}"
++            ]
++          },
++          "commits_url": {
++            "type": "string",
++            "examples": [
++              "http://api.github.com/repos/octocat/Hello-World/commits{/sha}"
++            ]
++          },
++          "compare_url": {
++            "type": "string",
++            "examples": [
++              "http://api.github.com/repos/octocat/Hello-World/compare/{base}...{head}"
++            ]
++          },
++          "contents_url": {
++            "type": "string",
++            "examples": [
++              "http://api.github.com/repos/octocat/Hello-World/contents/{+path}"
++            ]
++          },
++          "contributors_url": {
++            "type": "string",
++            "format": "uri",
++            "examples": [
++              "http://api.github.com/repos/octocat/Hello-World/contributors"
++            ]
++          },
++          "deployments_url": {
++            "type": "string",
++            "format": "uri",
++            "examples": [
++              "http://api.github.com/repos/octocat/Hello-World/deployments"
++            ]
++          },
++          "downloads_url": {
++            "type": "string",
++            "format": "uri",
++            "examples": [
++              "http://api.github.com/repos/octocat/Hello-World/downloads"
++            ]
++          },
++          "events_url": {
++            "type": "string",
++            "format": "uri",
++            "examples": [
++              "http://api.github.com/repos/octocat/Hello-World/events"
++            ]
++          },
++          "forks_url": {
++            "type": "string",
++            "format": "uri",
++            "examples": [
++              "http://api.github.com/repos/octocat/Hello-World/forks"
++            ]
++          },
++          "git_commits_url": {
++            "type": "string",
++            "examples": [
++              "http://api.github.com/repos/octocat/Hello-World/git/commits{/sha}"
++            ]
++          },
++          "git_refs_url": {
++            "type": "string",
++            "examples": [
++              "http://api.github.com/repos/octocat/Hello-World/git/refs{/sha}"
++            ]
++          },
++          "git_tags_url": {
++            "type": "string",
++            "examples": [
++              "http://api.github.com/repos/octocat/Hello-World/git/tags{/sha}"
++            ]
++          },
++          "git_url": {
++            "type": "string",
++            "examples": [
++              "git:github.com/octocat/Hello-World.git"
++            ]
++          },
++          "issue_comment_url": {
++            "type": "string",
++            "examples": [
++              "http://api.github.com/repos/octocat/Hello-World/issues/comments{/number}"
++            ]
++          },
++          "issue_events_url": {
++            "type": "string",
++            "examples": [
++              "http://api.github.com/repos/octocat/Hello-World/issues/events{/number}"
++            ]
++          },
++          "issues_url": {
++            "type": "string",
++            "examples": [
++              "http://api.github.com/repos/octocat/Hello-World/issues{/number}"
++            ]
++          },
++          "keys_url": {
++            "type": "string",
++            "examples": [
++              "http://api.github.com/repos/octocat/Hello-World/keys{/key_id}"
++            ]
++          },
++          "labels_url": {
++            "type": "string",
++            "examples": [
++              "http://api.github.com/repos/octocat/Hello-World/labels{/name}"
++            ]
++          },
++          "languages_url": {
++            "type": "string",
++            "format": "uri",
++            "examples": [
++              "http://api.github.com/repos/octocat/Hello-World/languages"
++            ]
++          },
++          "merges_url": {
++            "type": "string",
++            "format": "uri",
++            "examples": [
++              "http://api.github.com/repos/octocat/Hello-World/merges"
++            ]
++          },
++          "milestones_url": {
++            "type": "string",
++            "examples": [
++              "http://api.github.com/repos/octocat/Hello-World/milestones{/number}"
++            ]
++          },
++          "notifications_url": {
++            "type": "string",
++            "examples": [
++              "http://api.github.com/repos/octocat/Hello-World/notifications{?since,all,participating}"
++            ]
++          },
++          "pulls_url": {
++            "type": "string",
++            "examples": [
++              "http://api.github.com/repos/octocat/Hello-World/pulls{/number}"
++            ]
++          },
++          "releases_url": {
++            "type": "string",
++            "examples": [
++              "http://api.github.com/repos/octocat/Hello-World/releases{/id}"
++            ]
++          },
++          "ssh_url": {
++            "type": "string",
++            "examples": [
++              "git@github.com:octocat/Hello-World.git"
++            ]
++          },
++          "stargazers_url": {
++            "type": "string",
++            "format": "uri",
++            "examples": [
++              "http://api.github.com/repos/octocat/Hello-World/stargazers"
++            ]
++          },
++          "statuses_url": {
++            "type": "string",
++            "examples": [
++              "http://api.github.com/repos/octocat/Hello-World/statuses/{sha}"
++            ]
++          },
++          "subscribers_url": {
++            "type": "string",
++            "format": "uri",
++            "examples": [
++              "http://api.github.com/repos/octocat/Hello-World/subscribers"
++            ]
++          },
++          "subscription_url": {
++            "type": "string",
++            "format": "uri",
++            "examples": [
++              "http://api.github.com/repos/octocat/Hello-World/subscription"
++            ]
++          },
++          "tags_url": {
++            "type": "string",
++            "format": "uri",
++            "examples": [
++              "http://api.github.com/repos/octocat/Hello-World/tags"
++            ]
++          },
++          "teams_url": {
++            "type": "string",
++            "format": "uri",
++            "examples": [
++              "http://api.github.com/repos/octocat/Hello-World/teams"
++            ]
++          },
++          "trees_url": {
++            "type": "string",
++            "examples": [
++              "http://api.github.com/repos/octocat/Hello-World/git/trees{/sha}"
++            ]
++          },
++          "clone_url": {
++            "type": "string",
++            "examples": [
++              "https://github.com/octocat/Hello-World.git"
++            ]
++          },
++          "mirror_url": {
++            "type": [
++              "string",
++              "null"
++            ],
++            "format": "uri",
++            "examples": [
++              "git:git.example.com/octocat/Hello-World"
++            ]
++          },
++          "hooks_url": {
++            "type": "string",
++            "format": "uri",
++            "examples": [
++              "http://api.github.com/repos/octocat/Hello-World/hooks"
++            ]
++          },
++          "svn_url": {
++            "type": "string",
++            "format": "uri",
++            "examples": [
++              "https://svn.github.com/octocat/Hello-World"
++            ]
++          },
++          "homepage": {
++            "type": [
++              "string",
++              "null"
++            ],
++            "format": "uri",
++            "examples": [
++              "https://github.com"
++            ]
++          },
++          "language": {
++            "type": [
++              "string",
++              "null"
++            ]
++          },
++          "forks_count": {
++            "type": "integer",
++            "examples": [
++              9
++            ]
++          },
++          "stargazers_count": {
++            "type": "integer",
++            "examples": [
++              80
++            ]
++          },
++          "watchers_count": {
++            "type": "integer",
++            "examples": [
++              80
++            ]
++          },
++          "size": {
++            "description": "The size of the repository, in kilobytes. Size is calculated hourly. When a repository is initially created, the size is 0.",
++            "type": "integer",
++            "examples": [
++              108
++            ]
++          },
++          "default_branch": {
++            "description": "The default branch of the repository.",
++            "type": "string",
++            "examples": [
++              "master"
++            ]
++          },
++          "open_issues_count": {
++            "type": "integer",
++            "examples": [
++              0
++            ]
++          },
++          "is_template": {
++            "description": "Whether this repository acts as a template that can be used to generate new repositories.",
++            "default": false,
++            "type": "boolean",
++            "examples": [
++              true
++            ]
++          },
++          "topics": {
++            "type": "array",
++            "items": {
++              "type": "string"
++            }
++          },
++          "has_issues": {
++            "description": "Whether issues are enabled.",
++            "default": true,
++            "type": "boolean",
++            "examples": [
++              true
++            ]
++          },
++          "has_projects": {
++            "description": "Whether projects are enabled.",
++            "default": true,
++            "type": "boolean",
++            "examples": [
++              true
++            ]
++          },
++          "has_wiki": {
++            "description": "Whether the wiki is enabled.",
++            "default": true,
++            "type": "boolean",
++            "examples": [
++              true
++            ]
++          },
++          "has_pages": {
++            "type": "boolean"
++          },
++          "has_downloads": {
++            "description": "Whether downloads are enabled.",
++            "default": true,
++            "type": "boolean",
++            "deprecated": true,
++            "examples": [
++              true
++            ]
++          },
++          "has_discussions": {
++            "description": "Whether discussions are enabled.",
++            "default": false,
++            "type": "boolean",
++            "examples": [
++              true
++            ]
++          },
++          "archived": {
++            "description": "Whether the repository is archived.",
++            "default": false,
++            "type": "boolean"
++          },
++          "disabled": {
++            "type": "boolean",
++            "description": "Returns whether or not this repository disabled."
++          },
++          "visibility": {
++            "description": "The repository visibility: public, private, or internal.",
++            "default": "public",
++            "type": "string"
++          },
++          "pushed_at": {
++            "type": [
++              "string",
++              "null"
++            ],
++            "format": "date-time",
++            "examples": [
++              "2011-01-26T19:06:43Z"
++            ]
++          },
++          "created_at": {
++            "type": [
++              "string",
++              "null"
++            ],
++            "format": "date-time",
++            "examples": [
++              "2011-01-26T19:01:12Z"
++            ]
++          },
++          "updated_at": {
++            "type": [
++              "string",
++              "null"
++            ],
++            "format": "date-time",
++            "examples": [
++              "2011-01-26T19:14:43Z"
++            ]
++          },
++          "allow_rebase_merge": {
++            "description": "Whether to allow rebase merges for pull requests.",
++            "default": true,
++            "type": "boolean",
++            "examples": [
++              true
++            ]
++          },
++          "temp_clone_token": {
++            "type": "string"
++          },
++          "allow_squash_merge": {
++            "description": "Whether to allow squash merges for pull requests.",
++            "default": true,
++            "type": "boolean",
++            "examples": [
++              true
++            ]
++          },
++          "allow_auto_merge": {
++            "description": "Whether to allow Auto-merge to be used on pull requests.",
++            "default": false,
++            "type": "boolean",
++            "examples": [
++              false
++            ]
++          },
++          "delete_branch_on_merge": {
++            "description": "Whether to delete head branches when pull requests are merged",
++            "default": false,
++            "type": "boolean",
++            "examples": [
++              false
++            ]
++          },
++          "allow_update_branch": {
++            "description": "Whether or not a pull request head branch that is behind its base branch can always be updated even if it is not required to be up to date before merging.",
++            "default": false,
++            "type": "boolean",
++            "examples": [
++              false
++            ]
++          },
++          "use_squash_pr_title_as_default": {
++            "type": "boolean",
++            "description": "Whether a squash merge commit can use the pull request title as default. **This property has been deprecated. Please use `squash_merge_commit_title` instead.",
++            "default": false,
++            "deprecated": true
++          },
++          "squash_merge_commit_title": {
++            "type": "string",
++            "enum": [
++              "PR_TITLE",
++              "COMMIT_OR_PR_TITLE"
++            ],
++            "description": "The default value for a squash merge commit title:\n\n- `PR_TITLE` - default to the pull request's title.\n- `COMMIT_OR_PR_TITLE` - default to the commit's title (if only one commit) or the pull request's title (when more than one commit)."
++          },
++          "squash_merge_commit_message": {
++            "type": "string",
++            "enum": [
++              "PR_BODY",
++              "COMMIT_MESSAGES",
++              "BLANK"
++            ],
++            "description": "The default value for a squash merge commit message:\n\n- `PR_BODY` - default to the pull request's body.\n- `COMMIT_MESSAGES` - default to the branch's commit messages.\n- `BLANK` - default to a blank commit message."
++          },
++          "merge_commit_title": {
++            "type": "string",
++            "enum": [
++              "PR_TITLE",
++              "MERGE_MESSAGE"
++            ],
++            "description": "The default value for a merge commit title.\n\n- `PR_TITLE` - default to the pull request's title.\n- `MERGE_MESSAGE` - default to the classic title for a merge message (e.g., Merge pull request #123 from branch-name)."
++          },
++          "merge_commit_message": {
++            "type": "string",
++            "enum": [
++              "PR_BODY",
++              "PR_TITLE",
++              "BLANK"
++            ],
++            "description": "The default value for a merge commit message.\n\n- `PR_TITLE` - default to the pull request's title.\n- `PR_BODY` - default to the pull request's body.\n- `BLANK` - default to a blank commit message."
++          },
++          "allow_merge_commit": {
++            "description": "Whether to allow merge commits for pull requests.",
++            "default": true,
++            "type": "boolean",
++            "examples": [
++              true
++            ]
++          },
++          "allow_forking": {
++            "description": "Whether to allow forking this repo",
++            "type": "boolean"
++          },
++          "web_commit_signoff_required": {
++            "description": "Whether to require contributors to sign off on web-based commits",
++            "default": false,
++            "type": "boolean"
++          },
++          "open_issues": {
++            "type": "integer"
++          },
++          "watchers": {
++            "type": "integer"
++          },
++          "master_branch": {
++            "type": "string"
++          },
++          "starred_at": {
++            "type": "string",
++            "examples": [
++              "\"2020-07-09T00:17:42Z\""
++            ]
++          },
++          "anonymous_access_enabled": {
++            "type": "boolean",
++            "description": "Whether anonymous git access is enabled for this repository"
++          }
++        },
++        "required": [
++          "archive_url",
++          "assignees_url",
++          "blobs_url",
++          "branches_url",
++          "collaborators_url",
++          "comments_url",
++          "commits_url",
++          "compare_url",
++          "contents_url",
++          "contributors_url",
++          "deployments_url",
++          "description",
++          "downloads_url",
++          "events_url",
++          "fork",
++          "forks_url",
++          "full_name",
++          "git_commits_url",
++          "git_refs_url",
++          "git_tags_url",
++          "hooks_url",
++          "html_url",
++          "id",
++          "node_id",
++          "issue_comment_url",
++          "issue_events_url",
++          "issues_url",
++          "keys_url",
++          "labels_url",
++          "languages_url",
++          "merges_url",
++          "milestones_url",
++          "name",
++          "notifications_url",
++          "owner",
++          "private",
++          "pulls_url",
++          "releases_url",
++          "stargazers_url",
++          "statuses_url",
++          "subscribers_url",
++          "subscription_url",
++          "tags_url",
++          "teams_url",
++          "trees_url",
++          "url",
++          "clone_url",
++          "default_branch",
++          "forks",
++          "forks_count",
++          "git_url",
++          "has_downloads",
++          "has_issues",
++          "has_projects",
++          "has_wiki",
++          "has_pages",
++          "homepage",
++          "language",
++          "archived",
++          "disabled",
++          "mirror_url",
++          "open_issues",
++          "open_issues_count",
++          "license",
++          "pushed_at",
++          "size",
++          "ssh_url",
++          "stargazers_count",
++          "svn_url",
++          "watchers",
++          "watchers_count",
++          "created_at",
++          "updated_at"
++        ]
++      }
++    },
++    "single_file": {
++      "type": [
++        "string",
++        "null"
++      ],
++      "examples": [
++        "config.yaml"
++      ]
++    },
++    "repository_selection": {
++      "description": "Describe whether all repositories have been selected or there's a selection involved",
++      "type": "string",
++      "enum": [
++        "all",
++        "selected"
++      ]
++    }
++  },
++  "required": [
++    "token",
++    "expires_at"
++  ]
++}
++
+ # REPLACE "v0.25.2" with the version you wish to deploy
+ kubectl create -f https://github.com/actions/actions-runner-controller/releases/download/v0.25.2/actions-runner-controller.yaml
+ 
+@@ -818,7 +1942,494 @@ spec:
+         # like firecracker and kata. Basically they run containers within dedicated micro vms and so
+         # it's more like you can use `privileged: true` safer with those runtimes.
+         #
+-        # privileged: true      
++        # privileged: true
++
++kind: RunnerDeployment
++spec:
++  template:
++    spec:
++      dockerVolumeMounts:
++        - mountPath: /var/lib/docker
++          name: docker
++      volumeMounts:
++        - mountPath: /tmp
++          name: tmp
++      volumes:
++        - name: docker
++          emptyDir:
++            medium: Memory
++        - name: work # this volume gets automatically used up for the workdir
++          emptyDir:
++            medium: Memory
++        - name: tmp
++          emptyDir:
++            medium: Memory
++      ephemeral: true # recommended to not leak data between builds.
++NVME SSD
++
++In this example we provide NVME backed storage for the workdir, docker sidecar and /tmp within the runner. Here we use a working example on GKE, which will provide the NVME disk at /mnt/disks/ssd0. We will be placing the respective volumes in subdirs here and in order to be able to run multiple runners we will use the pod name as a prefix for subdirectories. Also the disk will fill up over time and disk space will not be freed until the node is removed.
++
++Beware that running these persistent backend volumes leave data behind between 2 different jobs on the workdir and /tmp with ephemeral: false.
++
++kind: RunnerDeployment
++spec:
++  template:
++    spec:
++      env:
++      - name: POD_NAME
++        valueFrom:
++          fieldRef:
++            fieldPath: metadata.name
++      dockerVolumeMounts:
++      - mountPath: /var/lib/docker
++        name: docker
++        subPathExpr: $(POD_NAME)-docker
++      - mountPath: /runner/_work
++        name: work
++        subPathExpr: $(POD_NAME)-work
++      volumeMounts:
++      - mountPath: /runner/_work
++        name: work
++        subPathExpr: $(POD_NAME)-work
++      - mountPath: /tmp
++        name: tmp
++        subPathExpr: $(POD_NAME)-tmp
++      dockerEnv:
++      - name: POD_NAME
++        valueFrom:
++          fieldRef:
++            fieldPath: metadata.name
++      volumes:
++      - hostPath:
++          path: /mnt/disks/ssd0
++        name: docker
++      - hostPath:
++          path: /mnt/disks/ssd0
++        name: work
++      - hostPath:
++          path: /mnt/disks/ssd0
++        name: tmp
++      ephemeral: true # VERY important. otherwise data inside the workdir and /tmp is not cleared between builds
++Docker image layers caching
++
++Note: Ensure that the volume mount is added to the container that is running the Docker daemon.
++docker stores pulled and built image layers in the daemon's (not client) local storage area which is usually at /var/lib/docker.
++
++By leveraging RunnerSet's dynamic PV provisioning feature and your CSI driver, you can let ARC maintain a pool of PVs that are reused across runner pods to retain /var/lib/docker.
++
++Be sure to add the volume mount to the container that is supposed to run the docker daemon.
++
++Be sure to trigger several workflow runs before checking if the cache is effective. ARC requires an Available PV to be reused for the new runner pod, and a PV becomes Available only after some time after the previous runner pod that was using the PV terminated. See the related discussion.
++
++By default, ARC creates a sidecar container named docker within the runner pod for running the docker daemon. In that case, it's where you need the volume mount so that the manifest looks like:
++
++kind: RunnerSet
++metadata:
++  name: example
++spec:
++  template:
++    spec:
++      containers:
++      - name: docker
++        volumeMounts:
++        - name: var-lib-docker
++          mountPath: /var/lib/docker
++  volumeClaimTemplates:
++  - metadata:
++      name: var-lib-docker
++    spec:
++      accessModes:
++      - ReadWriteOnce
++      resources:
++        requests:
++          storage: 10Mi
++      storageClassName: var-lib-docker
++With dockerdWithinRunnerContainer: true, you need to add the volume mount to the runner container.
++
++Go module and build caching
++
++Go is known to cache builds under $HOME/.cache/go-build and downloaded modules under $HOME/pkg/mod. The module cache dir can be customized by setting GOMOD_CACHE so by setting it to somewhere under $HOME/.cache, we can have a single PV to host both build and module cache, which might improve Go module downloading and building time.
++
++Be sure to trigger several workflow runs before checking if the cache is effective. ARC requires an Available PV to be reused for the new runner pod, and a PV becomes Available only after some time after the previous runner pod that was using the PV terminated. See the related discussion.
++
++kind: RunnerSet
++metadata:
++  name: example
++spec:
++  template:
++    spec:
++      containers:
++      - name: runner
++        env:
++        - name: GOMODCACHE
++          value: "/home/runner/.cache/go-mod"
++        volumeMounts:
++        - name: cache
++          mountPath: "/home/runner/.cache"
++  volumeClaimTemplates:
++  - metadata:
++      name: cache
++    spec:
++      accessModes:
++      - ReadWriteOnce
++      resources:
++        requests:
++          storage: 10Mi
++      storageClassName: cache
++PV-backed runner work directory
++
++ARC works by automatically creating runner pods for running actions/runner and running config.sh which you had to ran manually without ARC.
++
++config.sh is the script provided by actions/runner to pre-configure the runner process before being started. One of the options provided by config.sh is --work, which specifies the working directory where the runner runs your workflow jobs in.
++
++The volume and the partition that hosts the work directory should have several or dozens of GBs free space that might be used by your workflow jobs.
++
++By default, ARC uses /runner/_work as work directory, which is powered by Kubernetes's emptyDir. emptyDir is usually backed by a directory created within a host's volume, somewhere under /var/lib/kuberntes/pods. Therefore your host's volume that is backing /var/lib/kubernetes/pods must have enough free space to serve all the concurrent runner pods that might be deployed onto your host at the same time.
++
++So, in case you see a job failure seemingly due to "disk full", it's very likely you need to reconfigure your host to have more free space.
++
++In case you can't rely on host's volume, consider using RunnerSet and backing the work directory with a ephemeral PV.
++
++Kubernetes 1.23 or greater provides the support for generic ephemeral volumes, which is designed to support this exact use-case. It's defined in the Pod spec API so it isn't currently available for RunnerDeployment. RunnerSet is based on Kubernetes' StatefulSet which mostly embeds the Pod spec under spec.template.spec, so there you go.
++
++kind: RunnerSet
++metadata:
++  name: example
++spec:
++  template:
++    spec:
++      containers:
++      - name: runner
++        volumeMounts:
++        - mountPath: /runner/_work
++          name: work
++      - name: docker
++        volumeMounts:
++        - mountPath: /runner/_work
++          name: work
++      volumes:
++      - name: work
++        ephemeral:
++          volumeClaimTemplate:
++            spec:
++              accessModes: [ "ReadWriteOnce" ]
++              storageClassName: "runner-work-dir"
++              resources:
++                requests:
++                  storage: 10Gi
++jobs:
++  release:
++    runs-on: self-hosted
++When you have multiple kinds of self-hosted runners, you can distinguish between them using labels. In order to do so, you can specify one or more labels in your Runner or RunnerDeployment spec.
++
++apiVersion: actions.summerwind.dev/v1alpha1
++kind: RunnerDeployment
++metadata:
++  name: custom-runner
++spec:
++  replicas: 1
++  template:
++    spec:
++      repository: actions/actions-runner-controller
++      labels:
++        - custom-runner
++Once this spec is applied, you can observe the labels for your runner from the repository or organization in the GitHub settings page for the repository or organization. You can now select a specific runner from your workflow by using the label in runs-on:
++
++jobs:
++  release:
++    runs-on: custom-runner
++
++apiVersion: actions.summerwind.dev/v1alpha1
++kind: RunnerDeployment
++metadata:
++  name: custom-runner
++spec:
++  replicas: 1
++  template:
++    spec:
++      group: NewGroup
++GitHub supports custom visibility in a Runner Group to make it available to a specific set of repositories only. By default if no GitHub authentication is included in the webhook server ARC will be assumed that all runner groups to be usable in all repositories. Currently, GitHub does not include the repository runner group membership information in the workflow_job event (or any webhook). To make the ARC "runner group aware" additional GitHub API calls are needed to find out what runner groups are visible to the webhook's repository. This behaviour will impact your rate-limit budget and so the option needs to be explicitly configured by the end user.
++
++This option will be enabled when proper GitHub authentication options (token, app or basic auth) are provided in the webhook server and useRunnerGroupsVisibility is set to true, e.g.
++
++githubWebhookServer:
++  enabled: false
++  replicaCount: 1
++  useRunnerGroupsVisibility: true
++apiVersion: actions.summerwind.dev/v1alpha1
++kind: RunnerDeployment
++metadata:
++  name: custom-runner
++spec:
++  replicas: 1
++  template:
++    spec:
++      group: NewGroup
++GitHub supports custom visibility in a Runner Group to make it available to a specific set of repositories only. By default if no GitHub authentication is included in the webhook server ARC will be assumed that all runner groups to be usable in all repositories. Currently, GitHub does not include the repository runner group membership information in the workflow_job event (or any webhook). To make the ARC "runner group aware" additional GitHub API calls are needed to find out what runner groups are visible to the webhook's repository. This behaviour will impact your rate-limit budget and so the option needs to be explicitly configured by the end user.
++
++This option will be enabled when proper GitHub authentication options (token, app or basic auth) are provided in the webhook server and useRunnerGroupsVisibility is set to true, e.g.
++
++githubWebhookServer:
++  enabled: false
++  replicaCount: 1
++  useRunnerGroupsVisibility: true
++nodeSelector:
++  kubernetes.io/os: linux
++cert-manager has 4 different application within it the main application, the webhook, the cainjector and the startupapicheck. In the parameters or values file you use for the deployment you need to add the nodeSelector property four times, one for each application.
++
++For the actions-runner-controller you only have to use the nodeSelector only for the main deployment, so it only has to be set once.
++
++Once this is set up, you will need to deploy two different RunnerDeployment's, one for Windows and one for Linux. The Linux deployment can use either the default image or a custom one, however, there isn't a default Windows image so for Windows deployments you will have to build your own image.
++
++Below we share an example of the YAML used to create the deployment for each Operating System and a Dockerfile for the Windows deployment.
++
++Windows
++RunnerDeployment
++
++---
++apiVersion: actions.summerwind.dev/v1alpha1
++kind: RunnerDeployment
++metadata:
++  name: k8s-runners-windows
++  namespace: actions-runner-system
++spec:
++  template:
++    spec:
++      image: <repo>/<image>:<windows-tag>
++      dockerdWithinRunnerContainer: true
++      nodeSelector:
++        kubernetes.io/os: windows
++        kubernetes.io/arch: amd64
++      repository: <owner>/<repo>
++      labels:
++        - windows
++        - X64
++Dockerfile
++
++Note that you'd need to patch the below Dockerfile if you need a graceful termination. See https://github.com/actions/actions-runner-controller/pull/1608/files#r917319574 for more information.
++FROM mcr.microsoft.com/windows/servercore:ltsc2019
++
++WORKDIR /actions-runner
++
++SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop';$ProgressPreference='silentlyContinue';"]
++
++RUN Invoke-WebRequest -Uri https://github.com/actions/runner/releases/download/v2.292.0/actions-runner-win-x64-2.292.0.zip -OutFile actions-runner-win-x64-2.292.0.zip
++
++RUN if((Get-FileHash -Path actions-runner-win-x64-2.292.0.zip -Algorithm SHA256).Hash.ToUpper() -ne 'f27dae1413263e43f7416d719e0baf338c8d80a366fed849ecf5fffcec1e941f'.ToUpper()){ throw 'Computed checksum did not match' }
++
++RUN Add-Type -AssemblyName System.IO.Compression.FileSystem ; [System.IO.Compression.ZipFile]::ExtractToDirectory('actions-runner-win-x64-2.292.0.zip', $PWD)
++
++RUN Invoke-WebRequest -Uri 'https://aka.ms/install-powershell.ps1' -OutFile install-powershell.ps1; ./install-powershell.ps1 -AddToPath
++
++RUN powershell Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
++
++RUN powershell choco install git.install --params "'/GitAndUnixToolsOnPath'" -y
++
++RUN powershell choco feature enable -n allowGlobalConfirmation
++
++CMD [ "pwsh", "-c", "./config.cmd --name $env:RUNNER_NAME --url https://github.com/$env:RUNNER_REPO --token $env:RUNNER_TOKEN --labels $env:RUNNER_LABELS --unattended --replace --ephemeral; ./run.cmd"]
++Linux
++RunnerDeployment
++
++---
++apiVersion: actions.summerwind.dev/v1alpha1
++kind: RunnerDeployment
++metadata:
++  name: k8s-runners-linux
++  namespace: actions-runner-system
++spec:
++  template:
++    spec:
++      image: <repo>/<image>:<linux-tag>
++      nodeSelector:
++        kubernetes.io/os: linux
++        kubernetes.io/arch: amd64
++      repository: <owner>:<repo>
++      labels:
++        - linux
++        - X64
++
++kind: Secret
++data:
++  github_app_id: ...
++  github_app_installation_id: ...
++  github_app_private_key: ...
++---
++kind: RunnerDeployment
++metadata:
++  namespace: org1-runners
++spec:
++  template:
++    spec:
++      githubAPICredentialsFrom:
++        secretRef:
++          name: org1-github-app
++---
++kind: HorizontalRunnerAutoscaler
++metadata:
++  namespace: org1-runners
++spec:
++  githubAPICredentialsFrom:
++    secretRef:
++      name: org1-github-app
++apiVersion: actions.summerwind.dev/v1alpha1
++kind: RunnerDeployment
++metadata:
++  name: example-runnerdeployment
++spec:
++  template:
++    spec:
++      env:
++        # Disable various runner entrypoint log levels 
++        - name: LOG_DEBUG_DISABLED
++          value: "true"
++        - name: LOG_NOTICE_DISABLED
++          value: "true"
++        - name: LOG_WARNING_DISABLED
++          value: "true"
++        - name: LOG_ERROR_DISABLED
++          value: "true"
++        - name: LOG_SUCCESS_DISABLED
++          value: "true"
++        # Issues a sleep command at the start of the entrypoint
++        - name: STARTUP_DELAY_IN_SECONDS
++          value: "2"
++        # Specify the duration to wait for the docker daemon to be available
++        # The default duration of 120 seconds is sometimes too short
++        # to reliably wait for the docker daemon to start
++        # See https://github.com/actions/actions-runner-controller/issues/1804
++        - name: WAIT_FOR_DOCKER_SECONDS
++          value: 120
++        # Disables the wait for the docker daemon to be available check
++        - name: DISABLE_WAIT_FOR_DOCKER
++          value: "true"
++        # Disables automatic runner updates
++        # WARNING : Upon a new version of the actions/runner software being released 
++        # GitHub stops allocating jobs to runners on the previous version of the
++        # actions/runner software after 30 days.
++        - name: DISABLE_RUNNER_UPDATE
++          value: "true"
++There are a few advanced envvars also that are available only for dind runners:
++
++apiVersion: actions.summerwind.dev/v1alpha1
++kind: RunnerDeployment
++metadata:
++  name: example-runnerdeployment
++spec:
++  template:
++    spec:
++      dockerdWithinRunnerContainer: true
++      image: summerwind/actions-runner-dind
++      env:
++        # Sets the respective default-address-pools fields within dockerd daemon.json
++        # See https://github.com/actions/actions-runner-controller/pull/1971 for more information.
++        # Also see https://github.com/docker/docs/issues/8663 for the default base/size values in dockerd.
++        - name: DOCKER_DEFAULT_ADDRESS_POOL_BASE
++          value: "172.17.0.0/12"
++        - name: DOCKER_DEFAULT_ADDRESS_POOL_SIZE
++          value: "24"
++More options can be configured by mounting a configmap to the daemon.json location:
++
++rootless: /home/runner/.config/docker/daemon.json
++rootful: /etc/docker/daemon.json
++apiVersion: actions.summerwind.dev/v1alpha1
++kind: RunnerDeployment
++metadata:
++  name: example-runnerdeployment
++spec:
++  template:
++    spec:
++      dockerdWithinRunnerContainer: true
++      image: summerwind/actions-runner-dind(-rootless)
++      volumeMounts:
++        - mountPath: /home/runner/.config/docker/daemon.json
++          name: daemon-config-volume
++          subPath: daemon.json
++      volumes:
++        - name: daemon-config-volume
++          configMap:
++            name: daemon-cm
++            items:
++              - key: daemon.json
++                path: daemon.json
++      securityContext:
++        fsGroup: 1001 # runner user id
++apiVersion: v1
++kind: ConfigMap
++metadata:
++  name: daemon-cm
++data:
++  daemon.json: |
++    {
++      "log-level": "warn",
++      "dns": ["x.x.x.x"]
++    }
++# dindrunnerdeployment.yaml
++apiVersion: actions.summerwind.dev/v1alpha1
++kind: RunnerDeployment
++metadata:
++  name: example-dindrunnerdeploy
++spec:
++  replicas: 1
++  template:
++    spec:
++      image: summerwind/actions-runner-dind
++      dockerdWithinRunnerContainer: true
++      repository: mumoshu/actions-runner-controller-ci
++      env: []
++Runner with rootless DinD
++
++When using the DinD runner, it assumes that the main runner is rootful, which can be problematic in a regulated or more security-conscious environment, such as co-tenanting across enterprise projects. The actions-runner-dind-rootless image runs rootless Docker inside the container as runner user. Note that this user does not have sudo access, so anything requiring admin privileges must be built into the runner's base image (like running apt to install additional software).
++
++Runner with K8s Jobs
++
++When using the default runner, jobs that use a container will run in docker. This necessitates privileged mode, either on the runner pod or the sidecar container
++
++By setting the container mode, you can instead invoke these jobs using a kubernetes implementation while not executing in privileged mode.
++
++The runner will dynamically spin up pods and k8s jobs in the runner's namespace to run the workflow, so a workVolumeClaimTemplate is required for the runner's working directory, and a service account with the appropriate permissions.
++
++There are some limitations to this approach, mainly job containers are required on all workflows.
++
++# runner.yaml
++apiVersion: actions.summerwind.dev/v1alpha1
++kind: Runner
++metadata:
++  name: example-runner
++spec:
++  repository: example/myrepo
++  containerMode: kubernetes
++  serviceAccountName: my-service-account
++  workVolumeClaimTemplate:
++    storageClassName: "my-dynamic-storage-class"
++    accessModes:
++    - ReadWriteOnce
++    resources:
++      requests:
++        storage: 10Gi
++  env: []
++
++metrics:
++  serviceAnnotations: {}
++  serviceMonitor: false
++  serviceMonitorLabels: {}
+++ port: 8080
++  proxy:
+++   enabled: false
++If Prometheus is available inside the cluster, then add some podAnnotations to begin scraping the metrics:
++
++podAnnotations:
+++ prometheus.io/scrape: "true"
+++ prometheus.io/path: /metrics
+++ prometheus.io/port: "8080"
++
++
++
++
++
++
++
++     
+       
+     import ngrok
+
+
 curl -L \
   -X POST \
   -H "Accept: application/vnd.github+json" \
