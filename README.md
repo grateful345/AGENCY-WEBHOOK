@@ -1,6 +1,891 @@
 # AGENCY-WEBHOOK
+https://buy.stripe.com/3cscMY617bed7bWdRh
+
+Secret Key promo
+
+<script async
+  src="https://js.stripe.com/v3/buy-button.js">
+</script>
+
+<stripe-buy-button
+  buy-button-id="buy_btn_1OvZeLGF83d3fsgWAamtMu9r"
+  publishable-key="pk_live_51OR5ePGF83d3fsgW22PwNtYiShCVYIsrzZq2WxlxN2UAaB2qEIu0aUFJzjJxPtNT3rAs0Rvdo9XIVPb7rRMaeo3W00ALk76MVR"
+>
+</stripe-buy-button>
+
+GITHUB runners
+
+${now} - 60)) # Issues 60 seconds in the past
+exp=$
+((${now} + 600)) # Expires 10 minutes in the future
+
+b64enc() { openssl base64 | tr -d '=' | tr '/+' '_-' | tr -d '\n'; }
+
+header_json='{ "typ":"JWT", "alg":"RS256" }'
+
+Header encode
+
+header=$( echo -n "${header_json}" | b64enc )
+
+payload_json='{ "iat":'"${iat}"', "exp":'"${exp}"', "iss":'"${app_id}"' }'
+
+Payload encode
+
+payload=$( echo -n "${payload_json}" | b64enc )
+
+Signature
+
+header_payload="${header}"."${payload}" signature=$( openssl dgst -sha256 -sign <(echo -n "${pem}")
+<(echo -n "${header_payload}") | b64enc )
+
+Create JWT
+
+JWT="${header_payload}"."${signature}" printf '%s\n' "JWT: $JWT" Example: Using PowerShell to generate a JWT
+
+In the following example, replace YOUR_PATH_TO_PEM with the file path where your private key is stored. Replace YOUR_APP_ID with the ID of your app. Make sure to enclose the values for YOUR_PATH_TO_PEM in double quotes.
+
+PowerShell #!/usr/bin/env pwsh
+
+$app_id = YOUR_APP_ID $private_key_path = "YOUR_PATH_TO_PEM"
+
+$header = [Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes((ConvertTo-Json -InputObject @{ alg = "RS256" typ = "JWT" }))).TrimEnd('=').Replace('+', '-').Replace('/', '_');
+
+$payload = [Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes((ConvertTo-Json -InputObject @{ iat = [System.DateTimeOffset]::UtcNow.AddSeconds(-10).ToUnixTimeSeconds()
+exp = [System.DateTimeOffset]::UtcNow.AddMinutes(10).ToUnixTimeSeconds() iss = $app_id
+}))).TrimEnd('=').Replace('+', '-').Replace('/', '_');
+
+$rsa = [System.Security.Cryptography.RSA]::Create() $rsa.ImportFromPem((Get-Content $private_key_path -Raw))
+
+$signature = [Convert]::ToBase64String($rsa.SignData([System.Text.Encoding]::UTF8.GetBytes("$header.$payload"), [System.Security.Cryptography.HashAlgorithmName]::SHA256, [System.Security.Cryptography.RSASignaturePadding]::Pkcs1)).TrimEnd('=').Replace('+', '-').Replace('/', '_') $jwt = "$header.$payload.$signature" Write-Host $jwt
+
+$ git config --global --unset gpg.format Use the gpg --list-secret-keys --keyid-format=long command to list the long form of the GPG keys for which you have both a public and private key. A private key is required for signing commits or tags. Shell gpg --list-secret-keys --keyid-format=long Note: Some GPG installations on Linux may require you to use gpg2 --list-keys --keyid-format LONG to view a list of your existing keys instead. In this case you will also need to configure Git to use gpg2 by running git config --global gpg.program gpg2. From the list of GPG keys, copy the long form of the GPG key ID you'd like to use. In this example, the GPG key ID is 3AA5C34371567BD2: Shell
+
+$ gpg --list-secret-keys --keyid-format=long /Users/hubot/.gnupg/secring.gpg
+
+sec 4096R/3AA5C34371567BD2 2016-03-10 [expires: 2017-03-10] uid Hubot hubot@example.com ssb 4096R/4BB6D45482678BE3 2016-03-10 To set your primary GPG signing key in Git, paste the text below, substituting in the GPG primary key ID you'd like to use. In this example, the GPG key ID is 3AA5C34371567BD2: git config --global user.signingkey 3AA5C34371567BD2 Alternatively, when setting a subkey include the ! suffix. In this example, the GPG subkey ID is 4BB6D45482678BE3: git config --global user.signingkey 4BB6D45482678BE3! Optionally, to configure Git to sign all commits by default, enter the following command: git config --global commit.gpgsign true For more information, see "Signing commits." If you aren't using the GPG suite, run the following command in the zsh shell to add the GPG key to your .zshrc file, if it exists, or your .zprofile file: $ if [ -r ~/.zshrc ]; then echo -e '\nexport GPG_TTY=$(tty)' >> ~/.zshrc;
+else echo -e '\nexport GPG_TTY=$(tty)' >> ~/.zprofile; fi Alternatively, if you use the bash shell, run this command: $ if [ -r ~/.bash_profile ]; then echo -e '\nexport GPG_TTY=$(tty)' >> ~/.bash_profile;
+else echo -e '\nexport GPG_TTY=$(tty)' >> ~/.profile; fi Optionally, to prompt you to enter a PIN or passphrase when required, install pinentry-mac. For example, using Homebrew: brew install pinentry-mac echo "pinentry-program $(which pinentry-mac)" >> ~/.gnupg/gpg-agent.conf killall gpg-agent Telling Git about your SSH key
+
+You can use an existing SSH key to sign commits and tags, or generate a new one specifically for signing. For more information, see "Generating a new SSH key and adding it to the ssh-agent."
+
+Note: SSH signature verification is available in Git 2.34 or later. To update your version of Git, see the Git website. Open Terminal. Configure Git to use SSH to sign commits and tags: git config --global gpg.format ssh To set your SSH signing key in Git, paste the text below, substituting /PATH/TO/.SSH/KEY.PUB with the path to the public key you'd like to use. git config --global user.signingkey /PATH/TO/.SSH/KEY.PUB Telling Git about your X.509 key
+
+You can use smimesign to sign commits and tags using S/MIME.
+
+Note: S/MIME signature verification is available in Git 2.19 or later. To update your version of Git, see the Git website. Install smimesign. Open Terminal. Configure Git to use S/MIME to sign commits and tags. In Git 2.19 or later, use the git config gpg.x509.program and git config gpg.format commands: To use S/MIME to sign for all repositories: git config --global gpg.x509.program smimesign git config --global gpg.format x509 To use S/MIME to sign for a single repository: cd PATH-TO-REPOSITORY git config --local gpg.x509.program smimesign git config --local gpg.format x509 In Git 2.18 or earlier, use the git config gpg.program command: To use S/MIME to sign for all repositories: git config --global gpg.program smimesign To use S/MIME to sign for a single repository: cd PATH-TO-REPOSITORY git config --local gpg.program smimesign If you're using an X.509 key that matches your committer identity, you can begin signing commits and tags. If you're not using an X.509 key that matches your committer identity, list X.509 keys for which you have both a certificate and private key using the smimesign --list-keys command. smimesign --list-keys From the list of X.509 keys, copy the certificate ID of the X.509 key you'd like to use. In this example, the certificate ID is 0ff455a2708394633e4bb2f88002e3cd80cbd76f: $ smimesign --list-keys ID: 0ff455a2708394633e4bb2f88002e3cd80cbd76f S/N: a2dfa7e8c9c4d1616f1009c988bb70f Algorithm: SHA256-RSA Validity: 2017-11-22 00:00:00 +0000 UTC - 2020-11-22 12:00:00 +0000 UTC Issuer: CN=DigiCert SHA2 Assured ID CA,OU=www.digicert.com,O=DigiCert Inc,C=US Subject: CN=Octocat,O=GitHub, Inc.,L=San Francisco,ST=California,C=US Emails: octocat@github.com To set your X.509 signing key in Git, paste the text below, substituting in the certificate ID you copied earlier. To use your X.509 key to sign for all repositories: git config --global user.signingkey 0ff455a2708394633e4bb2f88002e3cd80cbd76f To use your X.509 key to sign for a single repository: cd PATH-TO-REPOSITORY git config --local user.signingkey 0ff455a2708394633e4bb2f88002e3cd80cbd76f $ RoadRunner ReadMe
+
+gh pr checkout 1 brew install gh or Download for Mac View installation instructions → $ gh release create
+
+Create a folder
+
+$ mkdir actions-runner && cd actions-runner
+
+Download the latest runner package
+
+$ curl -o actions-runner-linux-arm64-2.314.1.tar.gz -L https://github.com/actions/runner/releases/download/v2.314.1/actions-runner-linux-arm64-2.314.1.tar.gz
+
+Optional: Validate the hash
+
+$ echo "3d27b1340086115a118e28628a11ae727ecc6b857430c4b1b6cbe64f1f3b6789 actions-runner-linux-arm64-2.314.1.tar.gz" | shasum -a 256 -c
+
+Extract the installer
+
+$ tar xzf ./actions-runner-linux-arm64-2.314.1.tar.gz Configure
+
+Create the runner and start the configuration experience
+
+$ ./config.sh --url https://github.com/grateful345/Wiz-Go-call-sign --token BHAHZGCJZK3BEVS7IRGZMKDF6USLO
+
+Last step, run it!
+
+$ ./run.sh Using your self-hosted runner
+
+Use this YAML in your workflow file for each job
+
+runs-on: self-hosted
+
+Windows.
+
+Create a folder under the drive root
+
+$ mkdir actions-runner; cd actions-runner
+
+Download the latest runner package
+
+$ Invoke-WebRequest -Uri https://github.com/actions/runner/releases/download/v2.314.1/actions-runner-win-arm64-2.314.1.zip -OutFile actions-runner-win-arm64-2.314.1.zip
+
+Optional: Validate the hash
+
+$ if((Get-FileHash -Path actions-runner-win-arm64-2.314.1.zip -Algorithm SHA256).Hash.ToUpper() -ne 'acc807696d1dcad6fb45f6038f884185c54c48127445c365e86d03adb164a9e2'.ToUpper()){ throw 'Computed checksum did not match' }
+
+Extract the installer
+
+$ Add-Type -AssemblyName System.IO.Compression.FileSystem ; [System.IO.Compression.ZipFile]::ExtractToDirectory("$PWD/actions-runner-win-arm64-2.314.1.zip", "$PWD") Configure
+
+Create the runner and start the configuration experience
+
+$ ./config.cmd --url https://github.com/grateful345/Wiz-Go-call-sign --token BHAHZGCJZK3BEVS7IRGZMKDF6USLO
+
+Run it!
+
+$ ./run.cmd Using your self-hosted runner
+
+Use this YAML in your workflow file for each job
+
+runs-on: self-hosted fee957d729b358d84b9d1a8182a2b1dd633689c9 (Fandom $$$ token rare)
+
+Stripe-Signature: t=1492774577, v1=5257a869e7ecebeda32affa62cdca3fa51cad7e77a0e56ff536d0ce8e108d8bd, v0=6ffbb59b2300aae63f272406069a9788598b792a944a07aba816edb039
+
+FamousToday
+
+MIB_agency_file.pdf 3.62 MB
+
+o5 council mainframe Ai — 02/24/2024 12:51 AM README.md
+
+o5 council mainframe Ai — 02/24/2024 12:59 AM Copy "requiredResourceAccess": [ { "resourceAppId": "00000002-0000-0000-c000-000000000000", "resourceAccess": [ { "id": "311a71cc-e848-46a1-bdf8-97ff7156d8e6", "type": "Scope" } ] } ], samlMetadataUrl attribute
+
+o5 council mainframe Ai — 02/24/2024 2:10 AM fcaowns_1MwVKR2eZvKYlo2CGV7Mmt6s [2:11 AM] fetch('https://{{sk_test_4eC39HqLyjWDarjtT1zdp7dc:}}/connection_token', { method: "POST" }); Connection token stripe
+
+Webhook ID data stripe
+
+—header— ‘we_1Oa74JGF83d3fsgWfJ6n3SSa’
+
+Webhook signing data —header— ‘whsec_PwrdbHDsw0GYve1NbZHjacu7g3nUH8Vu’
+
+Item potency Key —header— ‘92281688-5a41-4be2-8e1b-ea48c81eae85’
+
+// This is your Stripe CLI webhook secret for testing your endpoint locally. String endpointSecret = "whsec_da6d6364681be84689d4b526b26fd5a4d339eb3ec4dcdbab9047fd89909a6244";
+
+Stripe charge automation api key 2337b090-a837-11ee-9efa-651583e247bf
+
+access_token":"gho_16C7e42F292c6912E7710c838347Ae178B4a", "scope":"repo,gist", "token_type":"bearer" } Accept: application/xml <token_type>bearer</token_type> repo,gist <access_token>gho_16C7e42F292c6912E7710c838347Ae178B4a</access_token>
+
+o5 council mainframe Ai —
+
+# app.py
+#
+# Use this sample code to handle webhook events in your integration.
+#
+# 1) Paste this code into a new file (app.py)
+#
+# 2) Install dependencies
+#   pip3 install flask
+#   pip3 install stripe
+#
+# 3) Run the server on http://localhost:4242
+#   python3 -m flask run --port=4242
+
+import json
+import os
+import stripe
+
+from flask import Flask, jsonify, request
+
+# The library needs to be configured with your account's secret key.
+# Ensure the key is kept out of any version control system you might be using.
+stripe.api_key = "sk_test_..."
+
+# This is your Stripe CLI webhook secret for testing your endpoint locally.
+endpoint_secret = 'whsec_da6d6364681be84689d4b526b26fd5a4d339eb3ec4dcdbab9047fd89909a6244'
+
+app = Flask(__name__)
+
+@app.route('/webhook', methods=['POST'])
+def webhook():
+    event = None
+    payload = request.data
+    sig_header = request.headers['STRIPE_SIGNATURE']
+
+    try:
+        event = stripe.Webhook.construct_event(
+            payload, sig_header, endpoint_secret
+        )
+    except ValueError as e:
+        # Invalid payload
+        raise e
+    except stripe.error.SignatureVerificationError as e:
+        # Invalid signature
+        raise e
+
+    # Handle the event
+    if event['type'] == 'account.updated':
+      account = event['data']['object']
+    elif event['type'] == 'account.application.authorized':
+      application = event['data']['object']
+    elif event['type'] == 'account.application.deauthorized':
+      application = event['data']['object']
+    elif event['type'] == 'account.external_account.created':
+      external_account = event['data']['object']
+    elif event['type'] == 'account.external_account.deleted':
+      external_account = event['data']['object']
+    elif event['type'] == 'account.external_account.updated':
+      external_account = event['data']['object']
+    elif event['type'] == 'application_fee.created':
+      application_fee = event['data']['object']
+    elif event['type'] == 'application_fee.refunded':
+      application_fee = event['data']['object']
+    elif event['type'] == 'application_fee.refund.updated':
+      refund = event['data']['object']
+    elif event['type'] == 'balance.available':
+      balance = event['data']['object']
+    elif event['type'] == 'billing_portal.configuration.created':
+      configuration = event['data']['object']
+    elif event['type'] == 'billing_portal.configuration.updated':
+      configuration = event['data']['object']
+    elif event['type'] == 'billing_portal.session.created':
+      session = event['data']['object']
+    elif event['type'] == 'capability.updated':
+      capability = event['data']['object']
+    elif event['type'] == 'cash_balance.funds_available':
+      cash_balance = event['data']['object']
+    elif event['type'] == 'charge.captured':
+      charge = event['data']['object']
+    elif event['type'] == 'charge.expired':
+      charge = event['data']['object']
+    elif event['type'] == 'charge.failed':
+      charge = event['data']['object']
+    elif event['type'] == 'charge.pending':
+      charge = event['data']['object']
+    elif event['type'] == 'charge.refunded':
+      charge = event['data']['object']
+    elif event['type'] == 'charge.succeeded':
+      charge = event['data']['object']
+    elif event['type'] == 'charge.updated':
+      charge = event['data']['object']
+    elif event['type'] == 'charge.dispute.closed':
+      dispute = event['data']['object']
+    elif event['type'] == 'charge.dispute.created':
+      dispute = event['data']['object']
+    elif event['type'] == 'charge.dispute.funds_reinstated':
+      dispute = event['data']['object']
+    elif event['type'] == 'charge.dispute.funds_withdrawn':
+      dispute = event['data']['object']
+    elif event['type'] == 'charge.dispute.updated':
+      dispute = event['data']['object']
+    elif event['type'] == 'charge.refund.updated':
+      refund = event['data']['object']
+    elif event['type'] == 'checkout.session.async_payment_failed':
+      session = event['data']['object']
+    elif event['type'] == 'checkout.session.async_payment_succeeded':
+      session = event['data']['object']
+    elif event['type'] == 'checkout.session.completed':
+      session = event['data']['object']
+    elif event['type'] == 'checkout.session.expired':
+      session = event['data']['object']
+    elif event['type'] == 'climate.order.canceled':
+      order = event['data']['object']
+    elif event['type'] == 'climate.order.created':
+      order = event['data']['object']
+    elif event['type'] == 'climate.order.delayed':
+      order = event['data']['object']
+    elif event['type'] == 'climate.order.delivered':
+      order = event['data']['object']
+    elif event['type'] == 'climate.order.product_substituted':
+      order = event['data']['object']
+    elif event['type'] == 'climate.product.created':
+      product = event['data']['object']
+    elif event['type'] == 'climate.product.pricing_updated':
+      product = event['data']['object']
+    elif event['type'] == 'coupon.created':
+      coupon = event['data']['object']
+    elif event['type'] == 'coupon.deleted':
+      coupon = event['data']['object']
+    elif event['type'] == 'coupon.updated':
+      coupon = event['data']['object']
+    elif event['type'] == 'credit_note.created':
+      credit_note = event['data']['object']
+    elif event['type'] == 'credit_note.updated':
+      credit_note = event['data']['object']
+    elif event['type'] == 'credit_note.voided':
+      credit_note = event['data']['object']
+    elif event['type'] == 'customer.created':
+      customer = event['data']['object']
+    elif event['type'] == 'customer.deleted':
+      customer = event['data']['object']
+    elif event['type'] == 'customer.updated':
+      customer = event['data']['object']
+    elif event['type'] == 'customer.discount.created':
+      discount = event['data']['object']
+    elif event['type'] == 'customer.discount.deleted':
+      discount = event['data']['object']
+    elif event['type'] == 'customer.discount.updated':
+      discount = event['data']['object']
+    elif event['type'] == 'customer.source.created':
+      source = event['data']['object']
+    elif event['type'] == 'customer.source.deleted':
+      source = event['data']['object']
+    elif event['type'] == 'customer.source.expiring':
+      source = event['data']['object']
+    elif event['type'] == 'customer.source.updated':
+      source = event['data']['object']
+    elif event['type'] == 'customer.subscription.created':
+      subscription = event['data']['object']
+    elif event['type'] == 'customer.subscription.deleted':
+      subscription = event['data']['object']
+    elif event['type'] == 'customer.subscription.paused':
+      subscription = event['data']['object']
+    elif event['type'] == 'customer.subscription.pending_update_applied':
+      subscription = event['data']['object']
+    elif event['type'] == 'customer.subscription.pending_update_expired':
+      subscription = event['data']['object']
+    elif event['type'] == 'customer.subscription.resumed':
+      subscription = event['data']['object']
+    elif event['type'] == 'customer.subscription.trial_will_end':
+      subscription = event['data']['object']
+    elif event['type'] == 'customer.subscription.updated':
+      subscription = event['data']['object']
+    elif event['type'] == 'customer.tax_id.created':
+      tax_id = event['data']['object']
+    elif event['type'] == 'customer.tax_id.deleted':
+      tax_id = event['data']['object']
+    elif event['type'] == 'customer.tax_id.updated':
+      tax_id = event['data']['object']
+    elif event['type'] == 'customer_cash_balance_transaction.created':
+      customer_cash_balance_transaction = event['data']['object']
+    elif event['type'] == 'file.created':
+      file = event['data']['object']
+    elif event['type'] == 'financial_connections.account.created':
+      account = event['data']['object']
+    elif event['type'] == 'financial_connections.account.deactivated':
+      account = event['data']['object']
+    elif event['type'] == 'financial_connections.account.disconnected':
+      account = event['data']['object']
+    elif event['type'] == 'financial_connections.account.reactivated':
+      account = event['data']['object']
+    elif event['type'] == 'financial_connections.account.refreshed_balance':
+      account = event['data']['object']
+    elif event['type'] == 'financial_connections.account.refreshed_ownership':
+      account = event['data']['object']
+    elif event['type'] == 'financial_connections.account.refreshed_transactions':
+      account = event['data']['object']
+    elif event['type'] == 'identity.verification_session.canceled':
+      verification_session = event['data']['object']
+    elif event['type'] == 'identity.verification_session.created':
+      verification_session = event['data']['object']
+    elif event['type'] == 'identity.verification_session.processing':
+      verification_session = event['data']['object']
+    elif event['type'] == 'identity.verification_session.requires_input':
+      verification_session = event['data']['object']
+    elif event['type'] == 'identity.verification_session.verified':
+      verification_session = event['data']['object']
+    elif event['type'] == 'invoice.created':
+      invoice = event['data']['object']
+    elif event['type'] == 'invoice.deleted':
+      invoice = event['data']['object']
+    elif event['type'] == 'invoice.finalization_failed':
+      invoice = event['data']['object']
+    elif event['type'] == 'invoice.finalized':
+      invoice = event['data']['object']
+    elif event['type'] == 'invoice.marked_uncollectible':
+      invoice = event['data']['object']
+    elif event['type'] == 'invoice.overdue':
+      invoice = event['data']['object']
+    elif event['type'] == 'invoice.paid':
+      invoice = event['data']['object']
+    elif event['type'] == 'invoice.payment_action_required':
+      invoice = event['data']['object']
+    elif event['type'] == 'invoice.payment_failed':
+      invoice = event['data']['object']
+    elif event['type'] == 'invoice.payment_succeeded':
+      invoice = event['data']['object']
+    elif event['type'] == 'invoice.sent':
+      invoice = event['data']['object']
+    elif event['type'] == 'invoice.upcoming':
+      invoice = event['data']['object']
+    elif event['type'] == 'invoice.updated':
+      invoice = event['data']['object']
+    elif event['type'] == 'invoice.voided':
+      invoice = event['data']['object']
+    elif event['type'] == 'invoice.will_be_due':
+      invoice = event['data']['object']
+    elif event['type'] == 'invoiceitem.created':
+      invoiceitem = event['data']['object']
+    elif event['type'] == 'invoiceitem.deleted':
+      invoiceitem = event['data']['object']
+    elif event['type'] == 'issuing_authorization.created':
+      issuing_authorization = event['data']['object']
+    elif event['type'] == 'issuing_authorization.updated':
+      issuing_authorization = event['data']['object']
+    elif event['type'] == 'issuing_card.created':
+      issuing_card = event['data']['object']
+    elif event['type'] == 'issuing_card.updated':
+      issuing_card = event['data']['object']
+    elif event['type'] == 'issuing_cardholder.created':
+      issuing_cardholder = event['data']['object']
+    elif event['type'] == 'issuing_cardholder.updated':
+      issuing_cardholder = event['data']['object']
+    elif event['type'] == 'issuing_dispute.closed':
+      issuing_dispute = event['data']['object']
+    elif event['type'] == 'issuing_dispute.created':
+      issuing_dispute = event['data']['object']
+    elif event['type'] == 'issuing_dispute.funds_reinstated':
+      issuing_dispute = event['data']['object']
+    elif event['type'] == 'issuing_dispute.submitted':
+      issuing_dispute = event['data']['object']
+    elif event['type'] == 'issuing_dispute.updated':
+      issuing_dispute = event['data']['object']
+    elif event['type'] == 'issuing_token.created':
+      issuing_token = event['data']['object']
+    elif event['type'] == 'issuing_token.updated':
+      issuing_token = event['data']['object']
+    elif event['type'] == 'issuing_transaction.created':
+      issuing_transaction = event['data']['object']
+    elif event['type'] == 'issuing_transaction.updated':
+      issuing_transaction = event['data']['object']
+    elif event['type'] == 'mandate.updated':
+      mandate = event['data']['object']
+    elif event['type'] == 'payment_intent.amount_capturable_updated':
+      payment_intent = event['data']['object']
+    elif event['type'] == 'payment_intent.canceled':
+      payment_intent = event['data']['object']
+    elif event['type'] == 'payment_intent.created':
+      payment_intent = event['data']['object']
+    elif event['type'] == 'payment_intent.partially_funded':
+      payment_intent = event['data']['object']
+    elif event['type'] == 'payment_intent.payment_failed':
+      payment_intent = event['data']['object']
+    elif event['type'] == 'payment_intent.processing':
+      payment_intent = event['data']['object']
+    elif event['type'] == 'payment_intent.requires_action':
+      payment_intent = event['data']['object']
+    elif event['type'] == 'payment_intent.succeeded':
+      payment_intent = event['data']['object']
+    elif event['type'] == 'payment_link.created':
+      payment_link = event['data']['object']
+    elif event['type'] == 'payment_link.updated':
+      payment_link = event['data']['object']
+    elif event['type'] == 'payment_method.attached':
+      payment_method = event['data']['object']
+    elif event['type'] == 'payment_method.automatically_updated':
+      payment_method = event['data']['object']
+    elif event['type'] == 'payment_method.detached':
+      payment_method = event['data']['object']
+    elif event['type'] == 'payment_method.updated':
+      payment_method = event['data']['object']
+    elif event['type'] == 'payout.canceled':
+      payout = event['data']['object']
+    elif event['type'] == 'payout.created':
+      payout = event['data']['object']
+    elif event['type'] == 'payout.failed':
+      payout = event['data']['object']
+    elif event['type'] == 'payout.paid':
+      payout = event['data']['object']
+    elif event['type'] == 'payout.reconciliation_completed':
+      payout = event['data']['object']
+    elif event['type'] == 'payout.updated':
+      payout = event['data']['object']
+    elif event['type'] == 'person.created':
+      person = event['data']['object']
+    elif event['type'] == 'person.deleted':
+      person = event['data']['object']
+    elif event['type'] == 'person.updated':
+      person = event['data']['object']
+    elif event['type'] == 'plan.created':
+      plan = event['data']['object']
+    elif event['type'] == 'plan.deleted':
+      plan = event['data']['object']
+    elif event['type'] == 'plan.updated':
+      plan = event['data']['object']
+    elif event['type'] == 'price.created':
+      price = event['data']['object']
+    elif event['type'] == 'price.deleted':
+      price = event['data']['object']
+    elif event['type'] == 'price.updated':
+      price = event['data']['object']
+    elif event['type'] == 'product.created':
+      product = event['data']['object']
+    elif event['type'] == 'product.deleted':
+      product = event['data']['object']
+    elif event['type'] == 'product.updated':
+      product = event['data']['object']
+    elif event['type'] == 'promotion_code.created':
+      promotion_code = event['data']['object']
+    elif event['type'] == 'promotion_code.updated':
+      promotion_code = event['data']['object']
+    elif event['type'] == 'quote.accepted':
+      quote = event['data']['object']
+    elif event['type'] == 'quote.canceled':
+      quote = event['data']['object']
+    elif event['type'] == 'quote.created':
+      quote = event['data']['object']
+    elif event['type'] == 'quote.finalized':
+      quote = event['data']['object']
+    elif event['type'] == 'quote.will_expire':
+      quote = event['data']['object']
+    elif event['type'] == 'radar.early_fraud_warning.created':
+      early_fraud_warning = event['data']['object']
+    elif event['type'] == 'radar.early_fraud_warning.updated':
+      early_fraud_warning = event['data']['object']
+    elif event['type'] == 'refund.created':
+      refund = event['data']['object']
+    elif event['type'] == 'refund.updated':
+      refund = event['data']['object']
+    elif event['type'] == 'reporting.report_run.failed':
+      report_run = event['data']['object']
+    elif event['type'] == 'reporting.report_run.succeeded':
+      report_run = event['data']['object']
+    elif event['type'] == 'review.closed':
+      review = event['data']['object']
+    elif event['type'] == 'review.opened':
+      review = event['data']['object']
+    elif event['type'] == 'setup_intent.canceled':
+      setup_intent = event['data']['object']
+    elif event['type'] == 'setup_intent.created':
+      setup_intent = event['data']['object']
+    elif event['type'] == 'setup_intent.requires_action':
+      setup_intent = event['data']['object']
+    elif event['type'] == 'setup_intent.setup_failed':
+      setup_intent = event['data']['object']
+    elif event['type'] == 'setup_intent.succeeded':
+      setup_intent = event['data']['object']
+    elif event['type'] == 'sigma.scheduled_query_run.created':
+      scheduled_query_run = event['data']['object']
+    elif event['type'] == 'source.canceled':
+      source = event['data']['object']
+    elif event['type'] == 'source.chargeable':
+      source = event['data']['object']
+    elif event['type'] == 'source.failed':
+      source = event['data']['object']
+    elif event['type'] == 'source.mandate_notification':
+      source = event['data']['object']
+    elif event['type'] == 'source.refund_attributes_required':
+      source = event['data']['object']
+    elif event['type'] == 'source.transaction.created':
+      transaction = event['data']['object']
+    elif event['type'] == 'source.transaction.updated':
+      transaction = event['data']['object']
+    elif event['type'] == 'subscription_schedule.aborted':
+      subscription_schedule = event['data']['object']
+    elif event['type'] == 'subscription_schedule.canceled':
+      subscription_schedule = event['data']['object']
+    elif event['type'] == 'subscription_schedule.completed':
+      subscription_schedule = event['data']['object']
+    elif event['type'] == 'subscription_schedule.created':
+      subscription_schedule = event['data']['object']
+    elif event['type'] == 'subscription_schedule.expiring':
+      subscription_schedule = event['data']['object']
+    elif event['type'] == 'subscription_schedule.released':
+      subscription_schedule = event['data']['object']
+    elif event['type'] == 'subscription_schedule.updated':
+      subscription_schedule = event['data']['object']
+    elif event['type'] == 'tax.settings.updated':
+      settings = event['data']['object']
+    elif event['type'] == 'tax_rate.created':
+      tax_rate = event['data']['object']
+    elif event['type'] == 'tax_rate.updated':
+      tax_rate = event['data']['object']
+    elif event['type'] == 'terminal.reader.action_failed':
+      reader = event['data']['object']
+    elif event['type'] == 'terminal.reader.action_succeeded':
+      reader = event['data']['object']
+    elif event['type'] == 'test_helpers.test_clock.advancing':
+      test_clock = event['data']['object']
+    elif event['type'] == 'test_helpers.test_clock.created':
+      test_clock = event['data']['object']
+    elif event['type'] == 'test_helpers.test_clock.deleted':
+      test_clock = event['data']['object']
+    elif event['type'] == 'test_helpers.test_clock.internal_failure':
+      test_clock = event['data']['object']
+    elif event['type'] == 'test_helpers.test_clock.ready':
+      test_clock = event['data']['object']
+    elif event['type'] == 'topup.canceled':
+      topup = event['data']['object']
+    elif event['type'] == 'topup.created':
+      topup = event['data']['object']
+    elif event['type'] == 'topup.failed':
+      topup = event['data']['object']
+    elif event['type'] == 'topup.reversed':
+      topup = event['data']['object']
+    elif event['type'] == 'topup.succeeded':
+      topup = event['data']['object']
+    elif event['type'] == 'transfer.created':
+      transfer = event['data']['object']
+    elif event['type'] == 'transfer.reversed':
+      transfer = event['data']['object']
+    elif event['type'] == 'transfer.updated':
+      transfer = event['data']['object']
+    elif event['type'] == 'treasury.credit_reversal.created':
+      credit_reversal = event['data']['object']
+    elif event['type'] == 'treasury.credit_reversal.posted':
+      credit_reversal = event['data']['object']
+    elif event['type'] == 'treasury.debit_reversal.completed':
+      debit_reversal = event['data']['object']
+    elif event['type'] == 'treasury.debit_reversal.created':
+      debit_reversal = event['data']['object']
+    elif event['type'] == 'treasury.debit_reversal.initial_credit_granted':
+      debit_reversal = event['data']['object']
+    elif event['type'] == 'treasury.financial_account.closed':
+      financial_account = event['data']['object']
+    elif event['type'] == 'treasury.financial_account.created':
+      financial_account = event['data']['object']
+    elif event['type'] == 'treasury.financial_account.features_status_updated':
+      financial_account = event['data']['object']
+    elif event['type'] == 'treasury.inbound_transfer.canceled':
+      inbound_transfer = event['data']['object']
+    elif event['type'] == 'treasury.inbound_transfer.created':
+      inbound_transfer = event['data']['object']
+    elif event['type'] == 'treasury.inbound_transfer.failed':
+      inbound_transfer = event['data']['object']
+    elif event['type'] == 'treasury.inbound_transfer.succeeded':
+      inbound_transfer = event['data']['object']
+    elif event['type'] == 'treasury.outbound_payment.canceled':
+      outbound_payment = event['data']['object']
+    elif event['type'] == 'treasury.outbound_payment.created':
+      outbound_payment = event['data']['object']
+    elif event['type'] == 'treasury.outbound_payment.expected_arrival_date_updated':
+      outbound_payment = event['data']['object']
+    elif event['type'] == 'treasury.outbound_payment.failed':
+      outbound_payment = event['data']['object']
+    elif event['type'] == 'treasury.outbound_payment.posted':
+      outbound_payment = event['data']['object']
+    elif event['type'] == 'treasury.outbound_payment.returned':
+      outbound_payment = event['data']['object']
+    elif event['type'] == 'treasury.outbound_transfer.canceled':
+      outbound_transfer = event['data']['object']
+    elif event['type'] == 'treasury.outbound_transfer.created':
+      outbound_transfer = event['data']['object']
+    elif event['type'] == 'treasury.outbound_transfer.expected_arrival_date_updated':
+      outbound_transfer = event['data']['object']
+    elif event['type'] == 'treasury.outbound_transfer.failed':
+      outbound_transfer = event['data']['object']
+    elif event['type'] == 'treasury.outbound_transfer.posted':
+      outbound_transfer = event['data']['object']
+    elif event['type'] == 'treasury.outbound_transfer.returned':
+      outbound_transfer = event['data']['object']
+    elif event['type'] == 'treasury.received_credit.created':
+      received_credit = event['data']['object']
+    elif event['type'] == 'treasury.received_credit.failed':
+      received_credit = event['data']['object']
+    elif event['type'] == 'treasury.received_credit.succeeded':
+      received_credit = event['data']['object']
+    elif event['type'] == 'treasury.received_debit.created':
+      received_debit = event['data']['object']
+    # ... handle other event types
+    else:
+      print('Unhandled event type {}'.format(event['type']))
+
+    return jsonify(success=True)
+
+https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator?oldid=2862
+
+APKTIDusWyVAxxo7T74FLbHNqxcpPm8106sRDWV8WZnY-m_ TUQ contact key apple
+Run payment id
+po_1OZNhvGF83d3fsgWC9jdBgcQ
+Run bank data 
+
+DJqIeyHlhjb55r0K
+Routing number
+031101279
+ID
+ba_1OR7BGGF83d3fsgWxwDM4lDf
+
+AGENCY WEBHOOK
+
+Download #! /usr/bin/env python3.6
+
+Python 3.6 or newer required.
+
+import json import os import stripe
+
+This is your test secret API key.
+
+stripe.api_key = 'sk_test_51OR5ePGF83d3fsgWlh41IbGHGtqdiPuFhrcWczglEeFJvQxajyQVCQiZYVZz62HOuYL9tA8dxEQ2MRbxbcYsf8OF00CdDfT6Xq'
+
+Replace this endpoint secret with your endpoint's unique secret
+
+If you are testing with the CLI, find the secret by running 'stripe listen'
+
+If you are using an endpoint defined with the API or dashboard, look in your webhook settings
+
+at https://dashboard.stripe.com/webhooks
+
+endpoint_secret = 'whsec_...' from flask import Flask, jsonify, request
+
+app = Flask(name)
+
+@app.route('/webhook', methods=['POST']) def webhook(): event = None payload = request.data
+
+try:
+    event = json.loads(payload)
+except json.decoder.JSONDecodeError as e:
+    print('⚠️  Webhook error while parsing basic request.' + str(e))
+    return jsonify(success=False)
+if endpoint_secret:
+    # Only verify the event if there is an endpoint secret defined
+    # Otherwise use the basic event deserialized with json
+    sig_header = request.headers.get('stripe-signature')
+    try:
+        event = stripe.Webhook.construct_event(
+            payload, sig_header, endpoint_secret
+        )
+    except stripe.error.SignatureVerificationError as e:
+        print('⚠️  Webhook signature verification failed.' + str(e))
+        return jsonify(success=False)
+
+# Handle the event
+if event and event['type'] == 'payment_intent.succeeded':
+    payment_intent = event['data']['object']  # contains a stripe.PaymentIntent
+    print('Payment for {} succeeded'.format(payment_intent['amount']))
+    # Then define and call a method to handle the successful payment intent.
+    # handle_payment_intent_succeeded(payment_intent)
+elif event['type'] == 'payment_method.attached':
+    payment_method = event['data']['object']  # contains a stripe.PaymentMethod
+    # Then define and call a method to handle the successful attachment of a PaymentMethod.
+    # handle_payment_method_attached(payment_method)
+else:
+    # Unexpected event type
+    print('Unhandled event type {}'.format(event['type']))
+
+return jsonify(success=True)
+https://github.com/grateful345/AGENCY-WEBHOOK.git echo "# AGENCY-WEBHOOK" >> README.md git init git add README.md git commit -m "first commit" git branch -M main git remote add origin https://github.com/grateful345/AGENCY-WEBHOOK.git git push -u origin main …or push an existing repository from the command line git remote add origin https://github.com/grateful345/AGENCY-WEBHOOK.git git branch -M main git push -u origin main Install the Stripe Python package Install the Stripe package and import it in your code. Alternatively, if you’re starting from scratch and need a requirements.txt file, download the project files using the link in the code editor.
+
+pip
+
+GitHub Install the package via pip: pip3 install stripe
+
+Server Create a new endpoint
+
+settings A webhook is an endpoint on your server that receives requests from Stripe, notifying you about events that happen on your account such as a customer disputing a charge or a successful recurring payment. Add a new endpoint to your server and make sure it’s publicly accessible so we can send unauthenticated POST requests. Server 2 Handle requests from Stripe Read the event data Stripe sends the event data in the request body. Each event is structured as an Event object with a type, id, and related Stripe resource nested under data. Server Handle the event As soon as you have the event object, check the type to know what kind of event happened. You can use one webhook to handle several different event types at once, or set up individual endpoints for specific events. Server Return a 200 response Build and run your server to test the endpoint at http://localhost:4242/webhook. python3 -m flask run --port=4242
+
+Server Download the CLI Use the Stripe CLI to test your webhook locally. Download the CLI and log in with your Stripe account. Alternatively, use a service like ngrok to make your local endpoint publicly accessible. stripe login
+
+Run in the Stripe Shell Server Forward events to your webhook
+
+settings Set up event forwarding with the CLI to send all Stripe events in testmode to your local webhook endpoint. stripe listen --forward-to localhost:4242/webhook
+
+Run in the Stripe Shell Server Simulate events
+
+settings Use the CLI to simulate specific events that test your webhook application logic by sending a POST request to your webhook endpoint with a mocked Stripe event object. stripe trigger payment_intent.succeeded
+
+Run in the Stripe Shell Server Congratulations! Stripe-Signature: t=1492774577, v1=5257a869e7ecebeda32affa62cdca3fa51cad7e77a0e56ff536d0ce8e108d8bd, v0=6ffbb59b2300aae63f272406069a9788598b792a944a07aba816edb039989a39
+
+You have a basic webhook endpoint ready to accept events from Stripe. Now add the application logic that your business needs to handle the events you care the most about. You can also extend your endpoint with the steps b https:///<webhookhttps://scpf-foundation-roblox.fandom.com/wiki/The_Administrator?oldid=2862-endpoint> README.md | 3 +++ 1 file changed, 3 insertions(+)
+
+diff --git a/README.md b/README.md index 806cda8..9b1de77 100644 --- a/README.md +++ b/README.md @@ -121,3 +121,6 @@ Run in the Stripe Shell Server Congratulations! You have a basic webhook endpoint ready to accept events from Stripe. Now add the application logic that your business needs to handle the events you care the most about. You can also extend your endpoint with the steps b + +https:///webhookhttps://scpf-foundation-roblox.fandom.com/wiki/The_Administrator?oldid=2862-endpoint
+
+Set your secret key. Remember to switch to your live secret key in production.
+
+See your keys here: https://dashboard.stripe.com/apikeys
+
+stripe.api_key = 'sk_test_51OR5ePGF83d3fsgWlh41IbGHGtqdiPuFhrcWczglEeFJvQxajyQVCQiZYVZz62HOuYL9tA8dxEQ2MRbxbcYsf8OF00CdDfT6Xq'
+
+endpoint = stripe.WebhookEndpoint.create( url='https://example.com/my/webhook/endpoint', enabled_events=[ 'payment_intent.payment_failed', 'payment_intent.succeeded', ], )
+
+Set your secret key. Remember to switch to your live secret key in production.
+
+See your keys here: https://dashboard.stripe.com/apikeys
+
+stripe.api_key = 'sk_test_51OR5ePGF83d3fsgWlh41IbGHGtqdiPuFhrcWczglEeFJvQxajyQVCQiZYVZz62HOuYL9tA8dxEQ2MRbxbcYsf8OF00CdDfT6Xq'
+
+from django.http import HttpResponse
+
+If you are testing your webhook locally with the Stripe CLI you
+
+can find the endpoint's secret by running stripe listen
+
+Otherwise, find your endpoint's secret in your webhook settings in the Developer Dashboard
+
+endpoint_secret = 'whsec_...'
+
+Using Django
+
+@csrf_exempt def my_webhook_view(request): payload = request.body sig_header = request.META['t=1492774577, v1=5257a869e7ecebeda32affa62cdca3fa51cad7e77a0e56ff536d0ce8e108d8bd, v0=6ffbb59b2300aae63f272406069a9788598b792a944a07aba816edb039989a39'] event = None
+
+try: event = stripe.Webhook.construct_event( payload, sig_header, endpoint_secret ) except ValueError as e: # Invalid payload print('Error parsing payload: {}'.format(str(e))) return HttpResponse(status=400) except stripe.error.SignatureVerificationError as e: # Invalid signature print('Error verifying webhook signature: {}'.format(str(e))) return HttpResponse(status=400)
+
+Handle the event
+
+if event.type == 'payment_intent.succeeded': payment_intent = event.data.object # contains a stripe.PaymentIntent print('PaymentIntent was successful!') elif event.type == 'payment_method.attached': payment_method = event.data.object # contains a stripe.PaymentMethod print('PaymentMethod was attached to a Customer!')
+
+... handle other event types
+
+else: print('Unhandled event type {}'.format(event.type)) import json
+
+Webhooks are always sent as HTTP POST requests, so ensure
+
+that only POST requests reach your webhook view by
+
+decorating webhook() with require_POST.
+
+To ensure that the webhook view can receive webhooks,
+
+also decorate webhook() with csrf_exempt.
+
+@require_POST @csrf_exempt def webhook(request): import json from django.http import HttpResponse
+
+Using Django
+
+@csrf_exempt def my_webhook_view(request): payload = request.body event = None
+
+try: event = stripe.Event.construct_from( json.loads(payload), stripe.api_key ) except ValueError as e: # Invalid payload return HttpResponse(status=400)
+
+Handle the event
+
+if event.type == 'payment_intent.succeeded': payment_intent = event.data.object # contains a stripe.PaymentIntent # Then define and call a method to handle the successful payment intent. # handle_payment_intent_succeeded(payment_intent) elif event.type == 'payment_method.attached': payment_method = event.data.object # contains a stripe.PaymentMethod # Then define and call a method to handle the successful attachment of a PaymentMethod. # handle_payment_method_attached(payment_method)
+
+... handle other event types
+
+else: print('Unhandled event type {}'.format(event.type))
+
+return HttpResponse(status=200) stripe listen --forward-to localhost:4242/stripe_webhooks stripe listen --events payment_intent.created,customer.created,payment_intent.succeeded,checkout.session.completed,payment_intent.payment_failed
+--forward-to localhost:4242/webhook stripe listen --load-from-webhooks-api --forward-to localhost:5000 Ready! Your webhook signing secret is '{{whsec_ 5V2GHGaht2mGJGNOmesTtTaxuJWFRssS}}' (^C to quit)
+
+stripe trigger payment_intent.succeeded Running fixture for: payment_intent Trigger succeeded! Check dashboard for event details. https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator?oldid=2862)https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator?oldid=2862>/<whsec_ 5V2GHGaht2mGJGNOmesTtTaxuJWFRssS>)
+
+Process webhook data in request.body return HttpResponse(status=200)
+
+Set your secret key. Remember to switch to your live secret key in production.
+
+See your keys here: https://dashboard.stripe.com/apikeys
+
+stripe.api_key = 'sk_test_51OR5ePGF83d3fsgWlh41IbGHGtqdiPuFhrcWczglEeFJvQxajyQVCQiZYVZz62HOuYL9tA8dxEQ2MRbxbcYsf8OF00CdDfT6Xq'
+
+from django.http import HttpResponse
+
+If you are testing your webhook locally with the Stripe CLI you
+
+can find the endpoint's secret by running stripe listen
+
+Otherwise, find your endpoint's secret in your webhook settings in the Developer Dashboard
+
+endpoint_secret = 'whsec_...'
+
+Using Django
+
+@csrf_exempt def my_webhook_view(request): payload = request.body sig_header = request.META['t=1492774577, v1=5257a869e7ecebeda32affa62cdca3fa51cad7e77a0e56ff536d0ce8e108d8bd, v0=6ffbb59b2300aae63f272406069a9788598b792a944a07aba816edb039989a39'] event = None
+
+try: event = stripe.Webhook.construct_event( payload, sig_header, endpoint_secret ) except ValueError as e: # Invalid payload print('Error parsing payload: {}'.format(str(e))) return HttpResponse(status=400) except stripe.error.SignatureVerificationError as e: # Invalid signature print('Error verifying webhook signature: {}'.format(str(e))) return HttpResponse(status=400)
+
+Handle the event
+
+if event.type == 'payment_intent.succeeded': payment_intent = event.data.object # contains a stripe.PaymentIntent print('PaymentIntent was successful!') elif event.type == 'payment_method.attached': payment_method = event.data.object # contains a stripe.PaymentMethod print('PaymentMethod was attached to a Customer!')
+
+... handle other event types
+
+else: print('Unhandled event type {}'.format(event.type))
+
+return HttpResponse(status=200) import json
+
+Webhooks are always sent as HTTP POST requests, so ensure
+
+that only POST requests reach your webhook view by
+
+decorating webhook() with require_POST.
+
+To ensure that the webhook view can receive webhooks,
+
+also decorate webhook() with csrf_exempt.
+
+@require_POST @csrf_exempt def webhook(request): THE EVENT OBJECT { "id": "evt_1NG8Du2eZvKYlo2CUI79vXWy", "object": "event", "api_version": "2019-02-19", "created": 1686089970, "data": { "object": { "id": "seti_1NG8Du2eZvKYlo2C9XMqbR0x", "object": "setup_intent", "application": null, "automatic_payment_methods": null, "cancellation_reason": null, "client_secret": "seti_1NG8Du2eZvKYlo2C9XMqbR0x_secret_O2CdhLwGFh2Aej7bCY7qp8jlIuyR8DJ", "created": 1686089970, "customer": null, "description": null, "flow_directions": null, "last_setup_error": null, "latest_attempt": null, "livemode": false, "mandate": null, "metadata": {}, "next_action": null, "on_behalf_of": null, "payment_method": "pm_1NG8Du2eZvKYlo2CYzzldNr7", "payment_method_options": { "acss_debit": { "currency": "cad", "mandate_options": { "interval_description": "First day of every month", "payment_schedule": "interval", "transaction_type": "personal" }, "verification_method": "automatic" } }, "payment_method_types": [ "acss_debit" ], "single_use_mandate": null, "status": "requires_confirmation", "usage": "off_session" } }, "livemode": false, "pending_webhooks": 0, "request": { "id": null, "idempotency_key": null }, "type": "setup_intent.created"
+
+Process webhook data in request.body
+
+
+
 gh pr checkout 15
+
 rew install gh
+
 gh auth setup-git
 
 gh auth setup-git [flags]
@@ -112,11 +997,11 @@ INSTALLATION_NAME="arc-runner-set"
 NAMESPACE="arc-runners"
 GITHUB_CONFIG_URL="https://github.com/<your_enterprise/org/repo>"
 GITHUB_PAT="<PAT>"
-helm install "${INSTALLATION_NAME}" \
+helm install "${BHAHZGCJZK3BEVS7IRGZMKDF6USLO /  GitHub Runner tokens / BHAHZGDHHICG3LFF53OICRLF6UR24}" \
     --namespace "${AGENCY WEBHOOK}
     --create-namespace \
     --set githubConfigUrl="${GITHUB_CONFIG_URL}" \
-    --set githubConfigSecret.github_token="${GITHUB_PAT}" \
+    --set githubConfigSecret.github_token="${BHAHZGCJZK3BEVS7IRGZMKDF6USLO /  GitHub Runner tokens / BHAHZGDHHICG3LFF53OICRLF6UR24}" \
     oci://ghcr.io/actions/actions-runner-controller-charts/gha-runner-scale-set
 helm list -A
 kubectl get pods -n arc-systems
