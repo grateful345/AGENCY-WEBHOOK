@@ -1,7 +1,15 @@
 # AGENCY-WEBHOOK
+Stripe python gpg key :
 
-, 19 Mar 2024 21:04:59 -0500
-Subject: [PATCH] Update README.md
+gpg --encrypt --recipient 05D02D3D57ABFF46 FILENAME
+
+Key ID: 05D02D3D57ABFF46
+Key type: RSA
+Key size: 2048 bits
+Fingerprint: C330 33E4 B583 FE61 2EDE 877C 05D0 2D3D 57AB FF46
+User ID: Stripe <security@stripe.com>
+
+: [PATCH] Update README.md
 
 LLBF3JGZDX3P5PMEXLND6TS6FCWO6 token
 ---
