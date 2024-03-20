@@ -1,5 +1,225 @@
 # AGENCY-WEBHOOK
 gh pr checkout 15
+rew install gh
+gh auth setup-git
+
+gh auth setup-git [flags]
+This command configures git to use GitHub CLI as a credential helper. For more information on git credential helpers please reference: https://git-scm.com/docs/gitcredentials.
+
+By default, GitHub CLI will be set as the credential helper for all authenticated hosts. If there is no authenticated hosts the command fails with an error.
+
+Alternatively, use the --hostname flag to specify a single host to be configured. If the host is not authenticated with, the command fails with an error.
+
+Options
+
+-f,  --force <--hostname> 
+Force setup even if the host is not known. Must be used in conjunction with --hostname
+-h,  --hostname <string> 
+The hostname to configure git for
+Examples
+
+# Configure git to use GitHub CLI as the credential helper for all authenticated hosts
+$ gh auth setup-git
+
+# Configure git to use GitHub CLI as the credential helper for enterprise.internal host
+$ gh auth setup-git --hostname enterprise.internal
+See also
+
+[gh auth](https://cli.github.com/manual/gh_auth)
+
+sudo ./svc.sh install
+Alternatively, the command takes an optional user argument to install the service as a different user.
+./svc.sh install USERNAME
+[Starting the service](https://docs.github.com/en/actions/creating-actions/metadata-syntax-for-github-actions#starting-the-service)
+
+Start the service with the following command:
+
+sudo ./svc.sh start
+[Checking the status of the service](https://docs.github.com/en/actions/creating-actions/metadata-syntax-for-github-actions#checking-the-status-of-the-service)
+
+Check the status of the service with the following command:
+
+sudo ./svc.sh status
+For more information on viewing the status of your self-hosted runner, see "[Monitoring and troubleshooting self-hosted runners](https://docs.github.com/en/actions/hosting-your-own-runners/managing-self-hosted-runners/monitoring-and-troubleshooting-self-hosted-runners)."
+
+[Stopping the service](https://docs.github.com/en/actions/creating-actions/metadata-syntax-for-github-actions#stopping-the-service)
+
+Stop the service with the following command:
+
+sudo ./svc.sh stop
+[Uninstalling the service](https://docs.github.com/en/actions/creating-actions/metadata-syntax-for-github-actions#uninstalling-the-service)
+
+Stop the service if it is currently running.
+Uninstall the service with the following command:
+sudo ./svc.sh uninstall
+FROM mcr.microsoft.com/dotnet/runtime-deps:6.0 as build
+
+# Replace value with the latest runner release version
+# source: https://github.com/actions/runner/releases
+# ex: 2.303.0
+ARG RUNNER_VERSION=""
+ARG RUNNER_ARCH="x64"
+# Replace value with the latest runner-container-hooks release version
+# source: https://github.com/actions/runner-container-hooks/releases
+# ex: 0.3.1
+ARG RUNNER_CONTAINER_HOOKS_VERSION=""
+
+ENV DEBIAN_FRONTEND=noninteractive
+ENV RUNNER_MANUALLY_TRAP_SIG=1
+ENV ACTIONS_RUNNER_PRINT_LOG_TO_STDOUT=1
+
+RUN apt update -y && apt install curl unzip -y
+
+RUN adduser --disabled-password --gecos "" --uid 1001 runner \
+    && groupadd docker --gid 123 \
+    && usermod -aG sudo runner \
+    && usermod -aG docker runner \
+    && echo "%sudo   ALL=(ALL:ALL) NOPASSWD:ALL" > /etc/sudoers \
+    && echo "Defaults env_keep += \"DEBIAN_FRONTEND\"" >> /etc/sudoers
+
+WORKDIR /home/runner
+
+RUN curl -f -L -o runner.tar.gz https://github.com/actions/runner/releases/download/v${RUNNER_VERSION}/actions-runner-linux-${RUNNER_ARCH}-${RUNNER_VERSION}.tar.gz \
+    && tar xzf ./runner.tar.gz \
+    && rm runner.tar.gz
+
+RUN curl -f -L -o runner-container-hooks.zip https://github.com/actions/runner-container-hooks/releases/download/v${RUNNER_CONTAINER_HOOKS_VERSION}/actions-runner-hooks-k8s-${RUNNER_CONTAINER_HOOKS_VERSION}.zip \
+    && unzip ./runner-container-hooks.zip -d ./k8s \
+    && rm runner-container-hooks.zip
+
+USER runner
+Copyright 2019 Moto Ishizawa
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+Press alt+up to activate
+NAMESPACE="arc-systems"
+helm install arc \
+    --namespace "${AGENCY WEBHOOK}" \
+    --create-namespace \
+    oci://ghcr.io/actions/actions-runner-controller-charts/gha-runner-scale-set-controller
+
+INSTALLATION_NAME="arc-runner-set"
+NAMESPACE="arc-runners"
+GITHUB_CONFIG_URL="https://github.com/<your_enterprise/org/repo>"
+GITHUB_PAT="<PAT>"
+helm install "${INSTALLATION_NAME}" \
+    --namespace "${AGENCY WEBHOOK}
+    --create-namespace \
+    --set githubConfigUrl="${GITHUB_CONFIG_URL}" \
+    --set githubConfigSecret.github_token="${GITHUB_PAT}" \
+    oci://ghcr.io/actions/actions-runner-controller-charts/gha-runner-scale-set
+helm list -A
+kubectl get pods -n arc-systems
+name: Actions Runner Controller Demo
+on:
+  workflow_dispatch:
+
+jobs:
+  Explore-GitHub-Actions:
+    # You need to use the INSTALLATION_NAME from the previous step
+    runs-on: arc-runner-set
+    steps:
+    - run: echo "🎉 This job uses runner scale set runners!"
+
+kubectl get pods -n arc-runners
+name: Run commands on different operating systems
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  Run-npm-on-Ubuntu:
+    name: Run npm on Ubuntu
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '14'
+      - run: npm help
+
+  Run-PSScriptAnalyzer-on-Windows:
+    name: Run PSScriptAnalyzer on Windows
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install PSScriptAnalyzer module
+        shell: pwsh
+        run: |
+          Set-PSRepository PSGallery -InstallationPolicy Trusted
+          Install-Module PSScriptAnalyzer -ErrorAction Stop
+      - name: Get list of rules
+        shell: pwsh
+        run: |
+          Get-ScriptAnalyzerRule
+The following example demonstrates how to install Brew packages and casks as part of a job.
+
+name: Build on macOS
+on: push
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - name: Install GitHub CLI
+        run: |
+          brew update
+          brew install gh
+      - name: Install Microsoft Edge
+        run: |
+          brew update
+          brew install --cask microsoft-edge
+Installing software on Windows runners
+
+The following example demonstrates how to use Chocolatey to install the GitHub CLI as part of a job.
+
+name: Build on Windows
+on: push
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - run: choco install gh
+      - run: gh version
+
+      github.com
+api.github.com
+*.actions.githubusercontent.com
+
+codeload.github.com
+results-receiver.actions.githubusercontent.com
+*.blob.core.windows.net
+objects.githubusercontent.com
+objects-origin.githubusercontent.com
+github-releases.githubusercontent.com
+github-registry-files.githubusercontent.com
+*.actions.githubusercontent.com
+Needed for downloading or publishing packages or containers to GitHub Packages:
+
+Shell
+*.pkg.github.com
+ghcr.io
+Needed for Git Large File Storage
+
+Shell
+github-cloud.githubusercontent.com
+github-cloud.s3.amazonaws.com
+
+
 # AGENCY-WEBHOOK
 API ID  KEY SECRET KEY : 	pst_test_YWNjdF8xTTJKVGtMa2RJd0h1N2l4LE81ZEdIalZ6NlVuMUdjM3c3WkRnN0ZYRHZxRURwTXo_00gNK2DWAV
 cr_2coazssVIEva7q1Fw2nwytLIq2N BOT USER bot_2coayXt1oJzWKxgTYyanAjQ3KPV 
