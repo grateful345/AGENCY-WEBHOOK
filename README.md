@@ -16,6 +16,8 @@ Key size: 2048 bits
 Fingerprint: C330 33E4 B583 FE61 2EDE 877C 05D0 2D3D 57AB FF46
 User ID: Stripe <security@stripe.com>
 
+
+
 curl --location --globoff '{{[base_url](https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator?oldid=2862)}}/user' \
 --data ''
 {
@@ -72,7 +74,7 @@ curl --location --globoff '{{[base_url](https://scpf-foundation-roblox.fandom.co
     "username": "grateful345i@gmail.com",
     "password": "2334"
 }
-curl --location --globoff '{{[base_url](https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator?oldid=2862)}}/user/login' \
+curl --location --globoff '{{[[base_url](https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator?oldid=2862)](https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator?oldid=2862)}}/user/login' \
 --data-raw '{
 
     "username": "joseluis@cloudappi.net",
@@ -95,7 +97,643 @@ curl --location --globoff '{{[base_url](https://scpf-foundation-roblox.fandom.co
         "status": true
     }
 }
+curl --location --globoff '{{[base_url](https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator?oldid=2862)}}/user' \
+--data-raw '{
+   
+   "username":"ul@cloudappi.net",
+   "emailVerified":true,
+   "firstName":"dar",
+   "lastName":"dar",
+   "password": "2334"
+   
+}'
+$ npm install openapi-to-postmanv2
+If you want to use the converter in the CLI, install it globally with NPM:
 
+$ npm i -g openapi-to-postmanv2
+📖 Command Line Interface
+
+The converter can be used as a CLI tool as well. The following command line options are available.
+
+openapi2postmanv2 [options]
+
+Options
+
+-s <source>, --spec <source> Used to specify the OpenAPI specification (file path) which is to be converted
+
+-o <destination>, --output <destination> Used to specify the destination file in which the collection is to be written
+
+-p, --pretty Used to pretty print the collection object while writing to a file
+
+-i, --interface-version Specifies the interface version of the converter to be used. Value can be 'v2' or 'v1'. Default is 'v2'.
+
+-O, --options Used to supply options to the converter, for complete options details see here
+
+-c, --options-config Used to supply options to the converter through config file, for complete options details see here
+
+-t, --test Used to test the collection with an in-built sample specification
+
+-v, --version Specifies the version of the converter
+
+-h, --help Specifies all the options along with a few usage examples on the terminal
+
+Usage
+
+Takes a specification (spec.yaml) as an input and writes to a file (collection.json) with pretty printing and using provided options
+$ openapi2postmanv2 -s spec.yaml -o collection.json -p -O folderStrategy=Tags,includeAuthInfoInExample=false
+Takes a specification (spec.yaml) as an input and writes to a file (collection.json) with pretty printing and using provided options via config file
+$ openapi2postmanv2 -s spec.yaml -o collection.json -p  -c ./examples/cli-options-config.json
+Takes a specification (spec.yaml) as an input and writes to a file (collection.json) with pretty printing and using provided options (Also avoids any "<Error: Too many levels of nesting to fake this schema>" kind of errors present in converted collection)
+$ openapi2postmanv2 -s spec.yaml -o collection.json -p -O folderStrategy=Tags,requestParametersResolution=Example,optimizeConversion=false,stackLimit=50
+$ openapi2postmanv2 -s spec.yaml -o collection.json -p -O folderStrategy=Tags,includeAuthInfoInExample=false
+Takes a specification (spec.yaml) as an input and writes to a file (collection.json) with pretty printing and using provided options via config file
+$ openapi2postmanv2 -s spec.yaml -o collection.json -p  -c ./examples/cli-options-config.json
+Takes a specification (spec.yaml) as an input and writes to a file (collection.json) with pretty printing and using provided options (Also avoids any "<Error: Too many levels of nesting to fake this schema>" kind of errors present in converted collection)
+$ openapi2postmanv2 -s spec.yaml -o collection.json -p -O folderStrategy=Tags,requestParametersResolution=Example,optimizeConversion=false,stackLimit=50
+Testing the converter
+$ openapi2postmanv2 --test
+🛠 Using the converter as a NodeJS module
+
+In order to use the convert in your node application, you need to import the package using require.
+
+var Converter = require('openapi-to-postmanv2')
+The converter provides the following functions:
+
+Convert
+
+The convert function takes in your OpenAPI 3.0, 3.1 and Swagger 2.0 specification ( YAML / JSON ) and converts it to a Postman collection.
+
+Signature: convert (data, options, callback);
+
+data:
+
+{ type: 'file', data: 'filepath' }
+OR
+{ type: 'string', data: '<entire OpenAPI string - JSON or YAML>' }
+OR
+{ type: 'json', data: OpenAPI-JS-object }
+options:
+
+{
+  schemaFaker: true,
+  requestNameSource: 'fallback',
+  indentCharacter: ' '
+}
+/*
+All three properties are optional. Check the options section below for possible values for each option.
+*/
+Note: All possible values of options and their usage can be found over here: OPTIONS.md
+
+callback:
+
+function (err, result) {
+  /*
+  result = {
+    result: true,
+    output: [
+      {
+        type: 'collection',
+        data: {..collection object..}
+      }
+    ]
+  }
+  */
+}
+Options
+
+Check out complete list of options and their usage at OPTIONS.md
+
+ConversionResult
+
+result - Flag responsible for providing a status whether the conversion was successful or not.
+
+reason - Provides the reason for an unsuccessful conversion, defined only if result if false.
+
+output - Contains an array of Postman objects, each one with a type and data. The only type currently supported is collection.
+
+Sample Usage
+
+const fs = require('fs'),
+  Converter = require('openapi-to-postmanv2'),
+  openapiData = fs.readFileSync('sample-spec.yaml', {encoding: 'UTF8'});
+
+Converter.convert({ type: 'string', data: openapiData },
+  {}, (err, conversionResult) => {
+    if (!conversionResult.result) {
+      console.log('Could not convert', conversionResult.reason);
+    }
+    else {
+      console.log('The collection object is: ', conversionResult.output[0].data);
+    }
+  }
+);
+Validate Function
+
+The validate function is meant to ensure that the data that is being passed to the convert function is a valid JSON object or a valid (YAML/JSON) string.
+
+The validate function is synchronous and returns a status object which conforms to the following schema
+
+Validation object schema
+
+{
+  type: 'object',
+  properties: {
+    result: { type: 'boolean'},
+    reason: { type: 'string' }
+  },
+  required: ['result']
+}
+  text/plain; charset=utf-8
+  application/json
+  application/vnd.github+json
+  application/vnd.github.v3+json
+  application/vnd.github.v3.raw+json
+  application/vnd.github.v3.text+json
+  application/vnd.github.v3.html+json
+  application/vnd.github.v3.full+json
+  application/vnd.github.v3.diff
+  application/vnd.github.v3.patch{
+   "field": [ 1, 2, 3 ]
+}{
+  "type": "oauth2",
+  "flows": {
+    "implicit": {
+      "authorizationUrl": "https://example.com/api/oauth/dialog",
+      "scopes": {
+        "write:pets": "modify pets in your account",
+        "read:pets": "read your pets"
+      }
+    },
+    "authorizationCode": {
+      "authorizationUrl": "https://example.com/api/oauth/dialog",
+      "tokenUrl": "https://example.com/api/oauth/token",
+      "scopes": {
+        "write:pets": "modify pets in your account",
+        "read:pets": "read your pets"
+      }
+    }
+  }
+}
+type: oauth2
+flows:
+  implicit:
+    authorizationUrl: https://example.com/api/oauth/dialog
+    scopes:
+      write:pets: modify pets in your account
+      read:pets: read your pets
+  authorizationCode:
+    authorizationUrl: https://example.com/api/oauth/dialog
+    tokenUrl: https://example.com/api/oauth/token
+    scopes:
+      write:pets: modify pets in your account
+      read:pets: read your pets
+{
+  "api_key": []
+}
+api_key: []
+OAuth2 Security Requirement
+
+{
+  "petstore_auth": [
+    "write:pets",
+    "read:pets"
+  ]
+}
+petstore_auth:
+- write:pets
+- read:pets{
+  "get": {
+    "description": "Returns pets based on ID",
+    "summary": "Find pets by ID",
+    "operationId": "getPetsById",
+    "responses": {
+      "200": {
+        "description": "pet response",
+        "content": {
+          "*/*": {
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Pet"
+              }
+            }
+          }
+        }
+      },
+      "default": {
+        "description": "error payload",
+        "content": {
+          "text/html": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorModel"
+            }
+          }
+        }
+      }
+    }
+  },
+  "parameters": [
+    {
+      "name": "id",
+      "in": "path",
+      "description": "ID of pet to use",
+      "required": true,
+      "schema": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "style": "simple"
+    }
+  ]
+}
+get:
+  description: Returns pets based on ID
+  summary: Find pets by ID
+  operationId: getPetsById
+  responses:
+    '200':
+      description: pet response
+      content:
+        '*/*' :
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/Pet'
+    default:
+      description: error payload
+      content:
+        'text/html':
+          schema:
+            $ref: '#/components/schemas/ErrorModel'
+parameters:
+- name: id
+  in: path
+  description: ID of pet to use
+  required: true
+  schema:
+    type: array
+    style: simple
+    items:
+      type: string 
+Operation Object
+
+Describes a single API operation on a path.
+
+Fixed Fields
+
+Field Name	Type	Description
+tags	[string]	A list of tags for API documentation control. Tags can be used for logical grouping of operations by resources or any other qualifier.
+summary	string	A short summary of what the operation does.
+description	string	A verbose explanation of the operation behavior. CommonMark syntax MAY be used for rich text representation.
+externalDocs	External Documentation Object	Additional external documentation for this operation.
+operationId	string	Unique string used to identify the operation. The id MUST be unique among all operations described in the API. The operationId value is case-sensitive. Tools and libraries MAY use the operationId to uniquely identify an operation, therefore, it is RECOMMENDED to follow common programming naming conventions.
+parameters	[Parameter Object | Reference Object]	A list of parameters that are applicable for this operation. If a parameter is already defined at the Path Item, the new definition will override it but can never remove it. The list MUST NOT include duplicated parameters. A unique parameter is defined by a combination of a name and location. The list can use the Reference Object to link to parameters that are defined at the OpenAPI Object's components/parameters.
+requestBody	Request Body Object | Reference Object	The request body applicable for this operation. The requestBody is only supported in HTTP methods where the HTTP 1.1 specification RFC7231 has explicitly defined semantics for request bodies. In other cases where the HTTP spec is vague, requestBody SHALL be ignored by consumers.
+responses	Responses Object	REQUIRED. The list of possible responses as they are returned from executing this operation.
+callbacks	Map[string, Callback Object | Reference Object]	A map of possible out-of band callbacks related to the parent operation. The key is a unique identifier for the Callback Object. Each value in the map is a Callback Object that describes a request that may be initiated by the API provider and the expected responses. The key value used to identify the callback object is an expression, evaluated at runtime, that identifies a URL to use for the callback operation.
+deprecated	boolean	Declares this operation to be deprecated. Consumers SHOULD refrain from usage of the declared operation. Default value is false.
+security	[Security Requirement Object]	A declaration of which security mechanisms can be used for this operation. The list of values includes alternative security requirement objects that can be used. Only one of the security requirement objects need to be satisfied to authorize a request. This definition overrides any declared top-level security. To remove a top-level security declaration, an empty array can be used.
+servers	[Server Object]	An alternative server array to service this operation. If an alternative server object is specified at the Path Item Object or Root level, it will be overridden by this value.
+This object MAY be extended with Specification Extensions.
+
+Operation Object Example
+
+{
+  "tags": [
+    "pet"
+  ],
+  "summary": "Updates a pet in the store with form data",
+  "operationId": "updatePetWithForm",
+  "parameters": [
+    {
+      "name": "petId",
+      "in": "path",
+      "description": "ID of pet that needs to be updated",
+      "required": true,
+      "schema": {
+        "type": "string"
+      }
+    }
+  ],
+  "requestBody": {
+    "content": {
+      "application/x-www-form-urlencoded": {
+        "schema": {
+          "type": "object",
+           "properties": {
+              "name": {
+                "description": "Updated name of the pet",
+                "type": "string"
+              },
+              "status": {
+                "description": "Updated status of the pet",
+                "type": "string"
+             }
+           },
+        "required": ["status"]
+        }
+      }
+    }
+  },
+  "responses": {
+    "200": {
+      "description": "Pet updated.",
+      "content": {
+        "application/json": {},
+        "application/xml": {}
+      }
+    },
+    "405": {
+      "description": "Method Not Allowed",
+      "content": {
+        "application/json": {},
+        "application/xml": {}
+      }
+    }
+  },
+  "security": [
+    {
+      "petstore_auth": [
+        "write:pets",
+        "read:pets"
+      ]
+    }
+  ]
+}
+tags:
+- pet
+summary: Updates a pet in the store with form data
+operationId: updatePetWithForm
+parameters:
+- name: petId
+  in: path
+  description: ID of pet that needs to be updated
+  required: true
+  schema:
+    type: string
+requestBody:
+  content:
+    'application/x-www-form-urlencoded':
+      schema:
+       properties:
+          name:
+            description: Updated name of the pet
+            type: string
+          status:
+            description: Updated status of the pet
+            type: string
+       required:
+         - status
+responses:
+  '200':
+    description: Pet updated.
+    content:
+      'application/json': {}
+      'application/xml': {}
+  '405':
+    description: Method Not Allowed
+    content:
+      'application/json': {}
+      'application/xml': {}
+security:
+- petstore_auth:
+  - write:pets
+  - read:pets
+{
+  "name": "Apache 2.0",
+  "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
+}name: Apache 2.0
+url: https://www.apache.org/licenses/LICENSE-2.0.html{
+  "url": "https://development.gigantic-server.com/v1",
+  "description": "Development server"
+}
+url: https://development.gigantic-server.com/v1
+description: Development server
+The following shows how multiple servers can be described, for example, at the OpenAPI Object's servers:
+
+{
+  "servers": [
+    {
+      "url": "https://development.gigantic-server.com/v1",
+      "description": "Development server"
+    },
+    {
+      "url": "https://staging.gigantic-server.com/v1",
+      "description": "Staging server"
+    },
+    {
+      "url": "https://api.gigantic-server.com/v1",
+      "description": "Production server"
+    }
+  ]
+}
+servers:
+- url: https://development.gigantic-server.com/v1
+  description: Development server
+- url: https://staging.gigantic-server.com/v1
+  description: Staging server
+- url: https://api.gigantic-server.com/v1
+  description: Production server
+The following shows how variables can be used for a server configuration:
+
+{
+  "servers": [
+    {
+      "url": "https://{username}.gigantic-server.com:{port}/{basePath}",
+      "description": "The production API server",
+      "variables": {
+        "username": {
+          "default": "demo",
+          "description": "this value is assigned by the service provider, in this example `gigantic-server.com`"
+        },
+        "port": {
+          "enum": [
+            "8443",
+            "443"
+          ],
+          "default": "8443"
+        },
+        "basePath": {
+          "default": "v2"
+        }
+      }
+    }
+  ]
+}
+servers:
+- url: https://{username}.gigantic-server.com:{port}/{basePath}
+  description: The production API server
+  variables:
+    username:
+      # note! no enum here means it is an open value
+      default: demo
+      description: this value is assigned by the service provider, in this example `gigantic-server.com`
+    port:
+      enum:
+        - '8443'
+        - '443'
+      default: '8443'
+    basePath:
+      # open meaning there is the opportunity to use special base paths as assigned by the provider, default is `v2`
+      default: v2
+EADME
+
+License
+CommonMark
+
+CommonMark is a rationalized version of Markdown syntax, with a spec and BSD-licensed reference implementations in C and JavaScript.
+
+Try it now!
+
+For more details, see https://commonmark.org.
+
+This repository contains the spec itself, along with tools for running tests against the spec, and for creating HTML and PDF versions of the spec.
+
+The reference implementations live in separate repositories:
+
+https://github.com/commonmark/cmark (C)
+https://github.com/commonmark/commonmark.js (JavaScript)
+There is a list of third-party libraries in a dozen different languages here.
+
+Running tests against the spec
+
+The spec contains over 500 embedded examples which serve as conformance tests. To run the tests using an executable $PROG:
+
+python3 test/spec_tests.py --program $PROG
+If you want to extract the raw test data from the spec without actually running the tests, you can do:
+
+python3 test/spec_tests.py --dump-tests
+and you'll get all the tests in JSON format.
+
+JavaScript developers may find it more convenient to use the commonmark-spec npm package, which is published from this repository. It exports an array tests of JSON objects with the format
+
+{
+  "markdown": "Foo\nBar\n---\n",
+  "html": "<h2>Foo\nBar</h2>\n",
+  "section": "Setext headings",
+  "number": 65
+}
+The spec
+
+The source of the spec is spec.txt. This is basically a Markdown file, with code examples written in a shorthand form:
+
+```````````````````````````````` example
+Markdown source
+.
+expected HTML output
+````````````````````````````````
+
+> these are two
+
+> blockquotes
+
+> this is a single
+>
+> blockquote with two paragraphs
+
+pm.variables.has(variableName:String):function → Boolean
+Get the value of the Postman variable with the specified name:
+pm.variables.get(variableName:String):function → *
+Set a local variable with the specified name and value:
+pm.variables.set(variableName:String, variableValue:*):function
+Return the resolved value of a dynamic variable inside a script using the syntax {{$variableName}}:
+pm.variables.replaceIn(variableName:String):function: → *
+For example:
+
+const stringWithVars = pm.variables.replaceIn("Hi, my name is {{$randomFirstName}}");
+console.log(stringWithVars);
+Return an object containing all variables with their values in the current scope. Based on the order of precedence, this will contain variables from multiple scopes.
+pm.variables.toObject():function → Object
+postman.setNextRequest(requestName:String):Function
+Run the specified request after this one (the request ID returned by pm.info.requestId):
+postman.setNextRequest(requestId:String):Function
+For example:
+
+//script in another request calls:
+//pm.environment.set('next', pm.info.requestId)
+postman.setNextRequest(pm.environment.get('next'));
+Scripting Postman Visualizations
+
+Use pm.visualizer.set to specify a template to display response data in the Postman Visualizer.
+
+pm.visualizer.set(layout:String, data:Object, options:Object):Function
+layout required
+Handlebars HTML template string
+data optional
+JSON object that binds to the template and you can access it inside the template string
+options optional
+Options object for Handlebars.compile()
+Example usage:
+
+var template = `<p>{{res.info}}</p>`;
+pm.visualizer.set(template, {
+    res: pm.response.json()
+});
+Building response data into Postman Visualizations
+
+Use pm.getData to retrieve response data inside a Postman Visualizer template string.
+
+pm.getData(callback):Function
+The callback function accepts two parameters:
+
+error
+Any error detail
+data
+Data passed to the template by pm.visualizer.set
+Example usage:
+
+pm.getData(function (error, data) {
+  var value = data.res.info;
+});
+Writing test assertions
+
+pm.test(testName:String, specFunction:Function):Function
+You can use pm.test to write test specifications inside either the Pre-request or Tests scripts. Tests include a name and assertion—Postman will output test results as part of the response.
+
+The pm.test method returns the pm object, making the call chainable. The following sample test checks that a response is valid to proceed.
+
+pm.test("response should be okay to process", function () {
+  pm.response.to.not.be.error;
+  pm.response.to.have.jsonBody('');
+  pm.response.to.not.have.jsonBody('error');
+});
+An optional done callback can be passed to pm.test, to test asynchronous functions.
+
+pm.test('async test', function (done) {
+  setTimeout(() => {
+    pm.expect(pm.response.code).to.equal(200);
+    done();
+  }, 1500);
+});
+Get the total number of tests executed from a specific location in code:
+pm.test.index():Function → Number
+The pm.expect method allows you to write assertions on your response data, using ChaiJS expect BDD syntax.
+
+pm.expect(assertion:*):Function → Assertion
+You can also use pm.response.to.have.* and pm.response.to.be.* to build your assertions.
+
+See Test examples for more assertions.
+
+Using external libraries
+
+require(moduleName:String):function → *
+The require method allows you to use the 
+
+> npm install postman-collection --save
+Getting Started
+In this example snippet we will get started by loading a collection from a file and output the same in console.
+
+var fs = require('fs'), // needed to read JSON file from disk
+	Collection = require('postman-collection').Collection,
+	myCollection;
+
+// Load a collection to memory from a JSON file on disk (say, sample-collection.json)
+myCollection = new Collection(JSON.parse(fs.readFileSync('sample-collection.json').toString()));
+
+// log items at root level of the collection
+console.log(myCollection.toJSON());
 # Create a folder
 $ mkdir actions-runner && cd actions-runner
 # Download the latest runner package
