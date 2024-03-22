@@ -1,7 +1,7 @@
 # AGENCY-WEBHOOK
 Stripe python gpg key :
 
-aplly to all trello api token inputs: ATATT3xFfGF0TstrJdZSp7eSVzf5nN0ZjylWemk_uWlqMBWBszgMh4U0F7rXJyvV2kBFFmu2OkkjFbNXH7PQwATDVXmXTfmx9xn1Ft3AqZVsI4ExTl6whWrBs-2-EzYrcw550kSiXn8EuIhnG4FqxFQUl5dHlHQslxOOdyJowAuBXwkXKUOq4E8=478D1AB7
+aplly to all trello api token inputs: ATATT3xFfGF0THElxlqWUKVZcgWy2wVvg362SyGYFs9euxaFBp3ymEVN5oet7d79qG3kB6lhVHmJzaHwy0IQjQvUaXUHvEwKRrSozJfZRWvXcsB-bUGuM6EtwcqstRg4e9I-sN49J3u8CEvF0Eg4KBmHq8rSHKuyb4GvMldHKpJSHfFj0GjM9qA=F7083D7A
 
 gpg --encrypt --recipient 05D02D3D57ABFF46 FILENAME
 
@@ -162,7 +162,7 @@ array([[ 1.00000000e-01,  4.41707654e-01,  4.25325404e-01,
          2.62865556e-01,  2.03030724e-01, -1.38196601e-01,
          6.99596196e-02]]
 Trello Api token:
-ATATT3xFfGF0TstrJdZSp7eSVzf5nN0ZjylWemk_uWlqMBWBszgMh4U0F7rXJyvV2kBFFmu2OkkjFbNXH7PQwATDVXmXTfmx9xn1Ft3AqZVsI4ExTl6whWrBs-2-EzYrcw550kSiXn8EuIhnG4FqxFQUl5dHlHQslxOOdyJowAuBXwkXKUOq4E8=478D1AB7
+ATATT3xFfGF0THElxlqWUKVZcgWy2wVvg362SyGYFs9euxaFBp3ymEVN5oet7d79qG3kB6lhVHmJzaHwy0IQjQvUaXUHvEwKRrSozJfZRWvXcsB-bUGuM6EtwcqstRg4e9I-sN49J3u8CEvF0Eg4KBmHq8rSHKuyb4GvMldHKpJSHfFj0GjM9qA=F7083D7A
 
 curl https://api.trello.com/1/actions/592f11060f95a3d3d46a987a
 {
@@ -1234,13 +1234,13 @@ fileAllSnykTicketsNow: true
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
    <modelVersion>4.0.0</modelVersion>
 
-    <ATATT3xFfGF0TstrJdZSp7eSVzf5nN0ZjylWemk_uWlqMBWBszgMh4U0F7rXJyvV2kBFFmu2OkkjFbNXH7PQwATDVXmXTfmx9xn1Ft3AqZVsI4ExTl6whWrBs-2-EzYrcw550kSiXn8EuIhnG4FqxFQUl5dHlHQslxOOdyJowAuBXwkXKUOq4E8=478D1AB7>
+    <ATATT3xFfGF0THElxlqWUKVZcgWy2wVvg362SyGYFs9euxaFBp3ymEVN5oet7d79qG3kB6lhVHmJzaHwy0IQjQvUaXUHvEwKRrSozJfZRWvXcsB-bUGuM6EtwcqstRg4e9I-sN49J3u8CEvF0Eg4KBmHq8rSHKuyb4GvMldHKpJSHfFj0GjM9qA=F7083D7A>
         <groupId>com.atlassian.plugins</groupId>
         <artifactId>atlassian-plugins-parent</artifactId>
         <version>8.1.0-m01-SNAPSHOT</version>
     </parent>
 
-   <artifactId>atlassian-plugins-main</ATATT3xFfGF0TstrJdZSp7eSVzf5nN0ZjylWemk_uWlqMBWBszgMh4U0F7rXJyvV2kBFFmu2OkkjFbNXH7PQwATDVXmXTfmx9xn1Ft3AqZVsI4ExTl6whWrBs-2-EzYrcw550kSiXn8EuIhnG4FqxFQUl5dHlHQslxOOdyJowAuBXwkXKUOq4E8=478D1AB7>
+   <artifactId>atlassian-plugins-main</ATATT3xFfGF0THElxlqWUKVZcgWy2wVvg362SyGYFs9euxaFBp3ymEVN5oet7d79qG3kB6lhVHmJzaHwy0IQjQvUaXUHvEwKRrSozJfZRWvXcsB-bUGuM6EtwcqstRg4e9I-sN49J3u8CEvF0Eg4KBmHq8rSHKuyb4GvMldHKpJSHfFj0GjM9qA=F7083D7A>
    <packaging>jar</packaging>
 
    <name>Atlassian Plugins Main API</name>
@@ -1249,7 +1249,7 @@ fileAllSnykTicketsNow: true
        simple testing.
    </description>
 
-    <ATATT3xFfGF0TstrJdZSp7eSVzf5nN0ZjylWemk_uWlqMBWBszgMh4U0F7rXJyvV2kBFFmu2OkkjFbNXH7PQwATDVXmXTfmx9xn1Ft3AqZVsI4ExTl6whWrBs-2-EzYrcw550kSiXn8EuIhnG4FqxFQUl5dHlHQslxOOdyJowAuBXwkXKUOq4E8=478D1AB7>
+    <ATATT3xFfGF0THElxlqWUKVZcgWy2wVvg362SyGYFs9euxaFBp3ymEVN5oet7d79qG3kB6lhVHmJzaHwy0IQjQvUaXUHvEwKRrSozJfZRWvXcsB-bUGuM6EtwcqstRg4e9I-sN49J3u8CEvF0Eg4KBmHq8rSHKuyb4GvMldHKpJSHfFj0GjM9qA=F7083D7A>
         <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/../${jacoco.report.file}</sonar.coverage.jacoco.xmlReportPaths>
     </properties>
 
@@ -1292,7 +1292,7 @@ fileAllSnykTicketsNow: true
 
     <build>
         <plugins>
-          <ATATT3xFfGF0TstrJdZSp7eSVzf5nN0ZjylWemk_uWlqMBWBszgMh4U0F7rXJyvV2kBFFmu2OkkjFbNXH7PQwATDVXmXTfmx9xn1Ft3AqZVsI4ExTl6whWrBs-2-EzYrcw550kSiXn8EuIhnG4FqxFQUl5dHlHQslxOOdyJowAuBXwkXKUOq4E8=478D1AB7>
+          <ATATT3xFfGF0THElxlqWUKVZcgWy2wVvg362SyGYFs9euxaFBp3ymEVN5oet7d79qG3kB6lhVHmJzaHwy0IQjQvUaXUHvEwKRrSozJfZRWvXcsB-bUGuM6EtwcqstRg4e9I-sN49J3u8CEvF0Eg4KBmHq8rSHKuyb4GvMldHKpJSHfFj0GjM9qA=F7083D7A>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-shade-plugin</artifactId>
             <executions>
@@ -1301,14 +1301,14 @@ fileAllSnykTicketsNow: true
                 <goals>
                   <goal>shade</goal>
                 </goals>
-                <ATATT3xFfGF0TstrJdZSp7eSVzf5nN0ZjylWemk_uWlqMBWBszgMh4U0F7rXJyvV2kBFFmu2OkkjFbNXH7PQwATDVXmXTfmx9xn1Ft3AqZVsI4ExTl6whWrBs-2-EzYrcw550kSiXn8EuIhnG4FqxFQUl5dHlHQslxOOdyJowAuBXwkXKUOq4E8=478D1AB7>
+                <ATATT3xFfGF0THElxlqWUKVZcgWy2wVvg362SyGYFs9euxaFBp3ymEVN5oet7d79qG3kB6lhVHmJzaHwy0IQjQvUaXUHvEwKRrSozJfZRWvXcsB-bUGuM6EtwcqstRg4e9I-sN49J3u8CEvF0Eg4KBmHq8rSHKuyb4GvMldHKpJSHfFj0GjM9qA=F7083D7A>
                   <shadedArtifactAttached>true</shadedArtifactAttached>
                   <shadedClassifierName>standalone</shadedClassifierName>
                   <artifactSet>
                     <excludes>
                       <exclude>junit:junit</exclude>
                     </excludes>
-                  </ATATT3xFfGF0TstrJdZSp7eSVzf5nN0ZjylWemk_uWlqMBWBszgMh4U0F7rXJyvV2kBFFmu2OkkjFbNXH7PQwATDVXmXTfmx9xn1Ft3AqZVsI4ExTl6whWrBs-2-EzYrcw550kSiXn8EuIhnG4FqxFQUl5dHlHQslxOOdyJowAuBXwkXKUOq4E8=478D1AB7>
+                  </ATATT3xFfGF0THElxlqWUKVZcgWy2wVvg362SyGYFs9euxaFBp3ymEVN5oet7d79qG3kB6lhVHmJzaHwy0IQjQvUaXUHvEwKRrSozJfZRWvXcsB-bUGuM6EtwcqstRg4e9I-sN49J3u8CEvF0Eg4KBmHq8rSHKuyb4GvMldHKpJSHfFj0GjM9qA=F7083D7A>
                   <relocations>
                     <relocation>
                       <pattern>org.apache.commons.io</pattern>
@@ -1324,7 +1324,7 @@ fileAllSnykTicketsNow: true
             <artifactId>maven-jar-plugin</artifactId>
             <configuration>
               <archive>
-                <ATATT3xFfGF0TstrJdZSp7eSVzf5nN0ZjylWemk_uWlqMBWBszgMh4U0F7rXJyvV2kBFFmu2OkkjFbNXH7PQwATDVXmXTfmx9xn1Ft3AqZVsI4ExTl6whWrBs-2-EzYrcw550kSiXn8EuIhnG4FqxFQUl5dHlHQslxOOdyJowAuBXwkXKUOq4E8=478D1AB7>
+                <ATATT3xFfGF0THElxlqWUKVZcgWy2wVvg362SyGYFs9euxaFBp3ymEVN5oet7d79qG3kB6lhVHmJzaHwy0IQjQvUaXUHvEwKRrSozJfZRWvXcsB-bUGuM6EtwcqstRg4e9I-sN49J3u8CEvF0Eg4KBmHq8rSHKuyb4GvMldHKpJSHfFj0GjM9qA=F7083D7A>
                   <addClasspath>true</addClasspath>
                   <mainClass>com.atlassian.plugin.main.Main</mainClass>
                 </manifest>
@@ -1333,7 +1333,7 @@ fileAllSnykTicketsNow: true
           </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <ATATT3xFfGF0TstrJdZSp7eSVzf5nN0ZjylWemk_uWlqMBWBszgMh4U0F7rXJyvV2kBFFmu2OkkjFbNXH7PQwATDVXmXTfmx9xn1Ft3AqZVsI4ExTl6whWrBs-2-EzYrcw550kSiXn8EuIhnG4FqxFQUl5dHlHQslxOOdyJowAuBXwkXKUOq4E8=478D1AB7>maven-dependency-plugin</artifactId>
+                <ATATT3xFfGF0THElxlqWUKVZcgWy2wVvg362SyGYFs9euxaFBp3ymEVN5oet7d79qG3kB6lhVHmJzaHwy0IQjQvUaXUHvEwKRrSozJfZRWvXcsB-bUGuM6EtwcqstRg4e9I-sN49J3u8CEvF0Eg4KBmHq8rSHKuyb4GvMldHKpJSHfFj0GjM9qA=F7083D7A>maven-dependency-plugin</artifactId>
                 <executions>
                     <execution>
                         <id>extract-framework-bundles</id>
@@ -1384,12 +1384,12 @@ fileAllSnykTicketsNow: true
 
 MyAction.jspa?myParameter=true&atl_token=<webwork:property value="/xsrfToken"/>
 
-MyAction.jspa?myParameter=true&atl_token=${ATATT3xFfGF0TstrJdZSp7eSVzf5nN0ZjylWemk_uWlqMBWBszgMh4U0F7rXJyvV2kBFFmu2OkkjFbNXH7PQwATDVXmXTfmx9xn1Ft3AqZVsI4ExTl6whWrBs-2-EzYrcw550kSiXn8EuIhnG4FqxFQUl5dHlHQslxOOdyJowAuBXwkXKUOq4E8=478D1AB7}
+MyAction.jspa?myParameter=true&atl_token=${ATATT3xFfGF0THElxlqWUKVZcgWy2wVvg362SyGYFs9euxaFBp3ymEVN5oet7d79qG3kB6lhVHmJzaHwy0IQjQvUaXUHvEwKRrSozJfZRWvXcsB-bUGuM6EtwcqstRg4e9I-sN49J3u8CEvF0Eg4KBmHq8rSHKuyb4GvMldHKpJSHfFj0GjM9qA=F7083D7A}
 
 import com.atlassian.jira.security.xsrf.XsrfTokenGenerator;
 XsrfTokenGenerator xsrfTokenGenerator = ComponentManager.getComponentInstanceOfType(XsrfTokenGenerator.class);
 String token = xsrfTokenGenerator.generateToken(request);
-X-Atlassian-Token: ATATT3xFfGF0TstrJdZSp7eSVzf5nN0ZjylWemk_uWlqMBWBszgMh4U0F7rXJyvV2kBFFmu2OkkjFbNXH7PQwATDVXmXTfmx9xn1Ft3AqZVsI4ExTl6whWrBs-2-EzYrcw550kSiXn8EuIhnG4FqxFQUl5dHlHQslxOOdyJowAuBXwkXKUOq4E8=478D1AB7
+X-Atlassian-Token: ATATT3xFfGF0THElxlqWUKVZcgWy2wVvg362SyGYFs9euxaFBp3ymEVN5oet7d79qG3kB6lhVHmJzaHwy0IQjQvUaXUHvEwKRrSozJfZRWvXcsB-bUGuM6EtwcqstRg4e9I-sN49J3u8CEvF0Eg4KBmHq8rSHKuyb4GvMldHKpJSHfFj0GjM9qA=F7083D7A
 
 <init-param>
    <param-name>RequireSecurityToken</param-name>
@@ -1397,7 +1397,7 @@ X-Atlassian-Token: ATATT3xFfGF0TstrJdZSp7eSVzf5nN0ZjylWemk_uWlqMBWBszgMh4U0F7rXJ
 </init-param>
 
 1
-curl -v https://mysite.atlassian.net --user me@example.com:ATATT3xFfGF0TstrJdZSp7eSVzf5nN0ZjylWemk_uWlqMBWBszgMh4U0F7rXJyvV2kBFFmu2OkkjFbNXH7PQwATDVXmXTfmx9xn1Ft3AqZVsI4ExTl6whWrBs-2-EzYrcw550kSiXn8EuIhnG4FqxFQUl5dHlHQslxOOdyJowAuBXwkXKUOq4E8=478D1AB7
+curl -v https://mysite.atlassian.net --user me@example.com:ATATT3xFfGF0THElxlqWUKVZcgWy2wVvg362SyGYFs9euxaFBp3ymEVN5oet7d79qG3kB6lhVHmJzaHwy0IQjQvUaXUHvEwKRrSozJfZRWvXcsB-bUGuM6EtwcqstRg4e9I-sN49J3u8CEvF0Eg4KBmHq8rSHKuyb4GvMldHKpJSHfFj0GjM9qA=F7083D7A
 
 1
 npm install -g @forge/cli
@@ -1434,9 +1434,9 @@ read FORGE_EMAIL
 # Enter email
 read -s FORGE_API_TOKEN
 # Enter API token (will not be displayed)
-export FORGE_EMAIL FORGE_API_TOKEN : ATATT3xFfGF0TstrJdZSp7eSVzf5nN0ZjylWemk_uWlqMBWBszgMh4U0F7rXJyvV2kBFFmu2OkkjFbNXH7PQwATDVXmXTfmx9xn1Ft3AqZVsI4ExTl6whWrBs-2-EzYrcw550kSiXn8EuIhnG4FqxFQUl5dHlHQslxOOdyJowAuBXwkXKUOq4E8=478D1AB7
+export FORGE_EMAIL FORGE_API_TOKEN : ATATT3xFfGF0THElxlqWUKVZcgWy2wVvg362SyGYFs9euxaFBp3ymEVN5oet7d79qG3kB6lhVHmJzaHwy0IQjQvUaXUHvEwKRrSozJfZRWvXcsB-bUGuM6EtwcqstRg4e9I-sN49J3u8CEvF0Eg4KBmHq8rSHKuyb4GvMldHKpJSHfFj0GjM9qA=F7083D7A
 Trello Api token:
-ATATT3xFfGF0TstrJdZSp7eSVzf5nN0ZjylWemk_uWlqMBWBszgMh4U0F7rXJyvV2kBFFmu2OkkjFbNXH7PQwATDVXmXTfmx9xn1Ft3AqZVsI4ExTl6whWrBs-2-EzYrcw550kSiXn8EuIhnG4FqxFQUl5dHlHQslxOOdyJowAuBXwkXKUOq4E8=478D1AB7
+ATATT3xFfGF0THElxlqWUKVZcgWy2wVvg362SyGYFs9euxaFBp3ymEVN5oet7d79qG3kB6lhVHmJzaHwy0IQjQvUaXUHvEwKRrSozJfZRWvXcsB-bUGuM6EtwcqstRg4e9I-sN49J3u8CEvF0Eg4KBmHq8rSHKuyb4GvMldHKpJSHfFj0GjM9qA=F7083D7A
 
 curl --request GET \
   --url 'https://your-domain.atlassian.net/configuration/retention' \
@@ -1464,7 +1464,7 @@ curl --request GET \
 
 
 
-  curl -v https://mysite.atlassian.net --user me@example.com:ATATT3xFfGF0TstrJdZSp7eSVzf5nN0ZjylWemk_uWlqMBWBszgMh4U0F7rXJyvV2kBFFmu2OkkjFbNXH7PQwATDVXmXTfmx9xn1Ft3AqZVsI4ExTl6whWrBs-2-EzYrcw550kSiXn8EuIhnG4FqxFQUl5dHlHQslxOOdyJowAuBXwkXKUOq4E8=478D1AB7
+  curl -v https://mysite.atlassian.net --user me@example.com:ATATT3xFfGF0THElxlqWUKVZcgWy2wVvg362SyGYFs9euxaFBp3ymEVN5oet7d79qG3kB6lhVHmJzaHwy0IQjQvUaXUHvEwKRrSozJfZRWvXcsB-bUGuM6EtwcqstRg4e9I-sN49J3u8CEvF0Eg4KBmHq8rSHKuyb4GvMldHKpJSHfFj0GjM9qA=F7083D7A
 / NcKhKEbWghsh1bSAUXEO1552
 
 ![https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator]
@@ -1473,52 +1473,52 @@ curl --request GET \
 
 # AGENCY-WEBHOOK
 Trello API Token:
-ATATT3xFfGF0TstrJdZSp7eSVzf5nN0ZjylWemk_uWlqMBWBszgMh4U0F7rXJyvV2kBFFmu2OkkjFbNXH7PQwATDVXmXTfmx9xn1Ft3AqZVsI4ExTl6whWrBs-2-EzYrcw550kSiXn8EuIhnG4FqxFQUl5dHlHQslxOOdyJowAuBXwkXKUOq4E8=478D1AB7
+ATATT3xFfGF0THElxlqWUKVZcgWy2wVvg362SyGYFs9euxaFBp3ymEVN5oet7d79qG3kB6lhVHmJzaHwy0IQjQvUaXUHvEwKRrSozJfZRWvXcsB-bUGuM6EtwcqstRg4e9I-sN49J3u8CEvF0Eg4KBmHq8rSHKuyb4GvMldHKpJSHfFj0GjM9qA=F7083D7A
 
-curl -v https://mysite.atlassian.net --user god964v@gmail.com: ATATT3xFfGF0TstrJdZSp7eSVzf5nN0ZjylWemk_uWlqMBWBszgMh4U0F7rXJyvV2kBFFmu2OkkjFbNXH7PQwATDVXmXTfmx9xn1Ft3AqZVsI4ExTl6whWrBs-2-EzYrcw550kSiXn8EuIhnG4FqxFQUl5dHlHQslxOOdyJowAuBXwkXKUOq4E8=478D1AB7
+curl -v https://mysite.atlassian.net --user god964v@gmail.com: ATATT3xFfGF0THElxlqWUKVZcgWy2wVvg362SyGYFs9euxaFBp3ymEVN5oet7d79qG3kB6lhVHmJzaHwy0IQjQvUaXUHvEwKRrSozJfZRWvXcsB-bUGuM6EtwcqstRg4e9I-sN49J3u8CEvF0Eg4KBmHq8rSHKuyb4GvMldHKpJSHfFj0GjM9qA=F7083D7A
 
 curl --request GET \
-  --url 'https://api.trello.com/1/actions/{id}?key=APIKey&token= ATATT3xFfGF0TstrJdZSp7eSVzf5nN0ZjylWemk_uWlqMBWBszgMh4U0F7rXJyvV2kBFFmu2OkkjFbNXH7PQwATDVXmXTfmx9xn1Ft3AqZVsI4ExTl6whWrBs-2-EzYrcw550kSiXn8EuIhnG4FqxFQUl5dHlHQslxOOdyJowAuBXwkXKUOq4E8=478D1AB7'
+  --url 'https://api.trello.com/1/actions/{id}?key=APIKey&token= ATATT3xFfGF0THElxlqWUKVZcgWy2wVvg362SyGYFs9euxaFBp3ymEVN5oet7d79qG3kB6lhVHmJzaHwy0IQjQvUaXUHvEwKRrSozJfZRWvXcsB-bUGuM6EtwcqstRg4e9I-sN49J3u8CEvF0Eg4KBmHq8rSHKuyb4GvMldHKpJSHfFj0GjM9qA=F7083D7A'
 
 curl --request PUT \
-  --url 'https://api.trello.com/1/actions/{id}?text={text}&key=APIKey&token= ATATT3xFfGF0TstrJdZSp7eSVzf5nN0ZjylWemk_uWlqMBWBszgMh4U0F7rXJyvV2kBFFmu2OkkjFbNXH7PQwATDVXmXTfmx9xn1Ft3AqZVsI4ExTl6whWrBs-2-EzYrcw550kSiXn8EuIhnG4FqxFQUl5dHlHQslxOOdyJowAuBXwkXKUOq4E8=478D1AB7
+  --url 'https://api.trello.com/1/actions/{id}?text={text}&key=APIKey&token= ATATT3xFfGF0THElxlqWUKVZcgWy2wVvg362SyGYFs9euxaFBp3ymEVN5oet7d79qG3kB6lhVHmJzaHwy0IQjQvUaXUHvEwKRrSozJfZRWvXcsB-bUGuM6EtwcqstRg4e9I-sN49J3u8CEvF0Eg4KBmHq8rSHKuyb4GvMldHKpJSHfFj0GjM9qA=F7083D7A
 '
 
 curl --request GET \
-  --url 'https://api.trello.com/1/actions/{id}/{field}?key=APIKey&token= ATATT3xFfGF0TstrJdZSp7eSVzf5nN0ZjylWemk_uWlqMBWBszgMh4U0F7rXJyvV2kBFFmu2OkkjFbNXH7PQwATDVXmXTfmx9xn1Ft3AqZVsI4ExTl6whWrBs-2-EzYrcw550kSiXn8EuIhnG4FqxFQUl5dHlHQslxOOdyJowAuBXwkXKUOq4E8=478D1AB7'
+  --url 'https://api.trello.com/1/actions/{id}/{field}?key=APIKey&token= ATATT3xFfGF0THElxlqWUKVZcgWy2wVvg362SyGYFs9euxaFBp3ymEVN5oet7d79qG3kB6lhVHmJzaHwy0IQjQvUaXUHvEwKRrSozJfZRWvXcsB-bUGuM6EtwcqstRg4e9I-sN49J3u8CEvF0Eg4KBmHq8rSHKuyb4GvMldHKpJSHfFj0GjM9qA=F7083D7A'
 ' \
   --header 'Accept: application/json'
 
 {"id":"5abbe4b7ddc1b351ef961414","idMemberCreator":"5abbe4b7ddc1b351ef961414","data":{"text":"Can never go wrong with bowie","card":{"id":"5abbe4b7ddc1b351ef961414","name":"Bowie","idShort":7,"shortLink":"3CsPkqOF"},"board":{"id":"5abbe4b7ddc1b351ef961414","name":"Mullets","shortLink":"3CsPkqOF"},"list":{"id":"5abbe4b7ddc1b351ef961414","name":"Amazing"}},"type":"commentCard","date":"2020-03-09T19:41:51.396Z","limits":{"reactions":{"perAction":{"status":"ok","disableAt":1000,"warnAt":900},"uniquePerAction":{"status":"ok","disableAt":1000,"warnAt":900}}},"display":{"translationKey":"action_comment_on_card","entities":{"contextOn":{"type":"translatable","translationKey":"action_on","hideIfContext":true,"idContext":"5abbe4b7ddc1b351ef961414"},"card":{"type":"card","hideIfContext":true,"id":"5abbe4b7ddc1b351ef961414","shortLink":"3CsPkqOF","text":"Bowie"},"comment":{"type":"comment","text":"Can never go wrong with bowie"},"memberCreator":{"type":"member","id":"5abbe4b7ddc1b351ef961414","username":"bobloblaw","text":"Bob Loblaw (World)"}}},"memberCreator":{"id":"5abbe4b7ddc1b351ef961414","activityBlocked":false,"avatarHash":"db2adf80c2e6c26b76e1f10400eb4c45","avatarUrl":"https://trello-members.s3.amazonaws.com/5b02e7f4e1facdc393169f9d/db2adf80c2e6c26b76e1f10400eb4c45","fullName":"Bob Loblaw (Trello)","idMemberReferrer":"5abbe4b7ddc1b351ef961414","initials":"BL","username":"bobloblaw"}}
 
 curl --request GET \
-  --url 'https://api.trello.com/1/actions/{id}/board?key=APIKey&token= ATATT3xFfGF0TstrJdZSp7eSVzf5nN0ZjylWemk_uWlqMBWBszgMh4U0F7rXJyvV2kBFFmu2OkkjFbNXH7PQwATDVXmXTfmx9xn1Ft3AqZVsI4ExTl6whWrBs-2-EzYrcw550kSiXn8EuIhnG4FqxFQUl5dHlHQslxOOdyJowAuBXwkXKUOq4E8=478D1AB7
+  --url 'https://api.trello.com/1/actions/{id}/board?key=APIKey&token= ATATT3xFfGF0THElxlqWUKVZcgWy2wVvg362SyGYFs9euxaFBp3ymEVN5oet7d79qG3kB6lhVHmJzaHwy0IQjQvUaXUHvEwKRrSozJfZRWvXcsB-bUGuM6EtwcqstRg4e9I-sN49J3u8CEvF0Eg4KBmHq8rSHKuyb4GvMldHKpJSHfFj0GjM9qA=F7083D7A
 ' \
   --header 'Accept: application/json'
 
 {"id":"5abbe4b7ddc1b351ef961414","name":"Trello Platform Changes","desc":"Track changes to Trello's Platform on this board.","descData":"<string>","closed":false,"idMemberCreator":"5abbe4b7ddc1b351ef961414","idOrganization":"5abbe4b7ddc1b351ef961414","pinned":false,"url":"https://trello.com/b/dQHqCohZ/trello-platform-changelog","shortUrl":"https://trello.com/b/dQHqCohZ","prefs":{"permissionLevel":"org","hideVotes":true,"voting":"disabled","comments":"<string>","selfJoin":true,"cardCovers":true,"isTemplate":true,"cardAging":"pirate","calendarFeedEnabled":true,"background":"5abbe4b7ddc1b351ef961414","backgroundImage":"<string>","backgroundImageScaled":[{"width":100,"height":64,"url":"https://trello-backgrounds.s3.amazonaws.com/SharedBackground/100x64/abc/photo-123.jpg"}],"backgroundTile":true,"backgroundBrightness":"dark","backgroundBottomColor":"#1e2e00","backgroundTopColor":"#ffffff","canBePublic":true,"canBeEnterprise":true,"canBeOrg":true,"canBePrivate":true,"canInvite":true},"labelNames":{"green":"Addition","yellow":"Update","orange":"Deprecation","red":"Deletion","purple":"Power-Ups","blue":"News","sky":"Announcement","lime":"Delight","pink":"REST API","black":"Capabilties"},"limits":{"attachments":{"perBoard":{"status":"ok","disableAt":36000,"warnAt":32400}}},"starred":true,"memberships":"<string>","shortLink":"<string>","subscribed":true,"powerUps":"<string>","dateLastActivity":"<string>","dateLastView":"<string>","idTags":"<string>","datePluginDisable":"<string>","creationMethod":"<string>","ixUpdate":2154,"templateGallery":"<string>","enterpriseOwned":true}
 
 curl --request GET \
-  --url 'https://api.trello.com/1/actions/{id}/card?key=APIKey&token= ATATT3xFfGF0TstrJdZSp7eSVzf5nN0ZjylWemk_uWlqMBWBszgMh4U0F7rXJyvV2kBFFmu2OkkjFbNXH7PQwATDVXmXTfmx9xn1Ft3AqZVsI4ExTl6whWrBs-2-EzYrcw550kSiXn8EuIhnG4FqxFQUl5dHlHQslxOOdyJowAuBXwkXKUOq4E8=478D1AB7
+  --url 'https://api.trello.com/1/actions/{id}/card?key=APIKey&token= ATATT3xFfGF0THElxlqWUKVZcgWy2wVvg362SyGYFs9euxaFBp3ymEVN5oet7d79qG3kB6lhVHmJzaHwy0IQjQvUaXUHvEwKRrSozJfZRWvXcsB-bUGuM6EtwcqstRg4e9I-sN49J3u8CEvF0Eg4KBmHq8rSHKuyb4GvMldHKpJSHfFj0GjM9qA=F7083D7A
 ' \
   --header 'Accept: application/json'
 
 {"id":"5abbe4b7ddc1b351ef961414","address":"<string>","badges":{"attachmentsByType":{"trello":{"board":2154,"card":2154}},"location":true,"votes":2154,"viewingMemberVoted":false,"subscribed":false,"fogbugz":"<string>","checkItems":0,"checkItemsChecked":0,"comments":0,"attachments":0,"description":true,"due":"<string>","start":"<string>","dueComplete":true},"checkItemStates":["<string>"],"closed":true,"coordinates":"<string>","creationMethod":"<string>","dateLastActivity":"2019-09-16T16:19:17.156Z","desc":"👋Hey there,\n\nTrello's Platform team uses this board to keep developers up-to-date.","descData":{"emoji":{}},"due":"<string>","dueReminder":"<string>","idBoard":"5abbe4b7ddc1b351ef961414","idChecklists":[{"id":"5abbe4b7ddc1b351ef961414"}],"idLabels":[{"id":"5abbe4b7ddc1b351ef961414","idBoard":"5abbe4b7ddc1b351ef961414","name":"Overdue","color":"yellow"}],"idList":"5abbe4b7ddc1b351ef961414","idMembers":["5abbe4b7ddc1b351ef961414"],"idMembersVoted":["5abbe4b7ddc1b351ef961414"],"idShort":2154,"labels":["5abbe4b7ddc1b351ef961414"],"limits":{"attachments":{"perBoard":{"status":"ok","disableAt":36000,"warnAt":32400}}},"locationName":"<string>","manualCoverAttachment":false,"name":"👋 What? Why? How?","pos":65535,"shortLink":"H0TZyzbK","shortUrl":"https://trello.com/c/H0TZyzbK","subscribed":false,"url":"https://trello.com/c/H0TZyzbK/4-%F0%9F%91%8B-what-why-how","cover":{"color":"yellow","idUploadedBackground":true,"size":"normal","brightness":"light","isTemplate":false}}
 
 curl --request GET \
-  --url 'https://api.trello.com/1/actions/{id}/list?key=APIKey&token= ATATT3xFfGF0TstrJdZSp7eSVzf5nN0ZjylWemk_uWlqMBWBszgMh4U0F7rXJyvV2kBFFmu2OkkjFbNXH7PQwATDVXmXTfmx9xn1Ft3AqZVsI4ExTl6whWrBs-2-EzYrcw550kSiXn8EuIhnG4FqxFQUl5dHlHQslxOOdyJowAuBXwkXKUOq4E8=478D1AB7
+  --url 'https://api.trello.com/1/actions/{id}/list?key=APIKey&token= ATATT3xFfGF0THElxlqWUKVZcgWy2wVvg362SyGYFs9euxaFBp3ymEVN5oet7d79qG3kB6lhVHmJzaHwy0IQjQvUaXUHvEwKRrSozJfZRWvXcsB-bUGuM6EtwcqstRg4e9I-sN49J3u8CEvF0Eg4KBmHq8rSHKuyb4GvMldHKpJSHfFj0GjM9qA=F7083D7A
 ' \
   --header 'Accept: application/json'
 
 curl --request GET \
-  --url 'https://api.trello.com/1/actions/{id}/member?key=APIKey&token= ATATT3xFfGF0TstrJdZSp7eSVzf5nN0ZjylWemk_uWlqMBWBszgMh4U0F7rXJyvV2kBFFmu2OkkjFbNXH7PQwATDVXmXTfmx9xn1Ft3AqZVsI4ExTl6whWrBs-2-EzYrcw550kSiXn8EuIhnG4FqxFQUl5dHlHQslxOOdyJowAuBXwkXKUOq4E8=478D1AB7
+  --url 'https://api.trello.com/1/actions/{id}/member?key=APIKey&token= ATATT3xFfGF0THElxlqWUKVZcgWy2wVvg362SyGYFs9euxaFBp3ymEVN5oet7d79qG3kB6lhVHmJzaHwy0IQjQvUaXUHvEwKRrSozJfZRWvXcsB-bUGuM6EtwcqstRg4e9I-sN49J3u8CEvF0Eg4KBmHq8rSHKuyb4GvMldHKpJSHfFj0GjM9qA=F7083D7A
 ' \
   --header 'Accept: application/json'
 
 {"id":"5abbe4b7ddc1b351ef961414","activityBlocked":false,"avatarHash":"fc8faaaee46666a4eb8b626c08933e16","avatarUrl":"https://trello-avatars.s3.amazonaws.com/fc8faaaee46666a4eb8b626c08933e16","bio":"👋 I'm a developer advocate at Trello!","bioData":{"emoji":{}},"confirmed":true,"fullName":"Bentley Cook","idEnterprise":"5abbe4b7ddc1b351ef961414","idEnterprisesDeactivated":["<string>"],"idMemberReferrer":"5abbe4b7ddc1b351ef961414","idPremOrgsAdmin":["5abbe4b7ddc1b351ef961414"],"initials":"BC","memberType":"normal","nonPublic":{"fullName":"Bentley Cook","initials":"BC","avatarUrl":"https://trello-members.s3.amazonaws.com/5b02e7f4e1facdc393169f9d/db2adf80c2e6c26b76e1f10400eb4c45","avatarHash":"db2adf80c2e6c26b76e1f10400eb4c45"},"nonPublicAvailable":false,"products":[2154],"url":"https://trello.com/bentleycook","username":"bentleycook","status":"disconnected","aaEmail":"<string>","aaEnrolledDate":"<string>","aaId":"<string>","avatarSource":"gravatar","email":"bcook@atlassian.com","gravatarHash":"0a1e804f6e35a65ae5e1f7ef4c92471c","idBoards":["5abbe4b7ddc1b351ef961414"],"idOrganizations":["5abbe4b7ddc1b351ef961414"],"idEnterprisesAdmin":["5abbe4b7ddc1b351ef961414"],"limits":{"status":"ok","disableAt":36000,"warnAt":32400},"loginTypes":["password"],"marketingOptIn":{"optedIn":false,"date":"2018-04-26T17:03:25.155Z"},"messagesDismissed":{"name":"ad-security-features","count":"<string>","lastDismissed":"2019-03-11T20:19:46.809Z","_id":"5abbe4b7ddc1b351ef961414"},"oneTimeMessagesDismissed":["<string>"],"prefs":{"timezoneInfo":{"offsetCurrent":360,"timezoneCurrent":"CST","offsetNext":300,"dateNext":"2020-03-08T08:00:00.000Z","timezoneNext":"CDT"},"privacy":{"fullName":"public","avatar":"public"},"sendSummaries":true,"minutesBetweenSummaries":60,"minutesBeforeDeadlineToNotify":1440,"colorBlind":true,"locale":"en-AU","timezone":"America/Chicago","twoFactor":{"enabled":true,"needsNewBackups":false}},"trophies":["<string>"],"uploadedAvatarHash":"dac3ad49ff117829dd63a79bb2ea3426","uploadedAvatarUrl":"https://trello-avatars.s3.amazonaws.com/dac3ad49ff117829dd63a79bb2ea3426","premiumFeatures":["<string>"],"isAaMastered":false,"ixUpdate":2154,"idBoardsPinned":["5abbe4b7ddc1b351ef961414"]}
 
 curl --request GET \
-  --url 'https://api.trello.com/1/actions/{id}/member?key=APIKey&token= ATATT3xFfGF0aXRYQM0Q95lcoWqsYEwV4Xo_tqQjaXBJ1xtP-NT1tGoR9zMoJ4OfhAFF8GMncjTZJW2Vn0fKx2hQslfTTc-dSzyik4NitTMMx9IPRrj_fN5aTrND167SHU4Wv3enJnpjETXFjSvg3KGmNdVNqFknmc0VkLnP-8ZdTik6atWQJxg=D74F7DC5
+  --url 'https://api.trello.com/1/actions/{id}/member?key=APIKey&token= ATATT3xFfGF0THElxlqWUKVZcgWy2wVvg362SyGYFs9euxaFBp3ymEVN5oet7d79qG3kB6lhVHmJzaHwy0IQjQvUaXUHvEwKRrSozJfZRWvXcsB-bUGuM6EtwcqstRg4e9I-sN49J3u8CEvF0Eg4KBmHq8rSHKuyb4GvMldHKpJSHfFj0GjM9qA=F7083D7A
 ' \
   --header 'Accept: application/json'
 
@@ -1530,7 +1530,7 @@ $headers = array(
 
 $query = array(
   'key' => 'postman api key : PMAK-65fcefd7f279ab0001bc1c91-bea679740eef30d16701cb886564e8d242',
-  'token' => 'ATATT3xFfGF0TstrJdZSp7eSVzf5nN0ZjylWemk_uWlqMBWBszgMh4U0F7rXJyvV2kBFFmu2OkkjFbNXH7PQwATDVXmXTfmx9xn1Ft3AqZVsI4ExTl6whWrBs-2-EzYrcw550kSiXn8EuIhnG4FqxFQUl5dHlHQslxOOdyJowAuBXwkXKUOq4E8=478D1AB7
+  'token' => 'ATATT3xFfGF0THElxlqWUKVZcgWy2wVvg362SyGYFs9euxaFBp3ymEVN5oet7d79qG3kB6lhVHmJzaHwy0IQjQvUaXUHvEwKRrSozJfZRWvXcsB-bUGuM6EtwcqstRg4e9I-sN49J3u8CEvF0Eg4KBmHq8rSHKuyb4GvMldHKpJSHfFj0GjM9qA=F7083D7A
 '
 );
 
@@ -1578,7 +1578,7 @@ curl --request GET \
 curl https://api.trello.com/1/boards/BdarzfKF/?fields=id&actions=addAttachmentToCard&actions_limit=2&action_fields=idMemberCreator&action_memberCreator_fields=fullName
 
 curl --request PUT \
-  --url 'https://api.trello.com/1/actions/{id}/text?value={value}&key=APIKey&token= ATATT3xFfGF0TstrJdZSp7eSVzf5nN0ZjylWemk_uWlqMBWBszgMh4U0F7rXJyvV2kBFFmu2OkkjFbNXH7PQwATDVXmXTfmx9xn1Ft3AqZVsI4ExTl6whWrBs-2-EzYrcw550kSiXn8EuIhnG4FqxFQUl5dHlHQslxOOdyJowAuBXwkXKUOq4E8=478D1AB7'
+  --url 'https://api.trello.com/1/actions/{id}/text?value={value}&key=APIKey&token= ATATT3xFfGF0THElxlqWUKVZcgWy2wVvg362SyGYFs9euxaFBp3ymEVN5oet7d79qG3kB6lhVHmJzaHwy0IQjQvUaXUHvEwKRrSozJfZRWvXcsB-bUGuM6EtwcqstRg4e9I-sN49J3u8CEvF0Eg4KBmHq8rSHKuyb4GvMldHKpJSHfFj0GjM9qA=F7083D7A'
 
 host:~ test$ echo $JAVA_HOME
 /Library/Java/JavaVirtualMachines/jdk1.8.0_65.jdk/Contents/Home
@@ -1740,11 +1740,11 @@ TrelloID:
 {"id":"5abbe4b7ddc1b351ef961414"}
 
 curl --request GET \
-  --url 'https://api.trello.com/1/actions/{id}/organization?key=APIKey&token= ATATT3xFfGF0TstrJdZSp7eSVzf5nN0ZjylWemk_uWlqMBWBszgMh4U0F7rXJyvV2kBFFmu2OkkjFbNXH7PQwATDVXmXTfmx9xn1Ft3AqZVsI4ExTl6whWrBs-2-EzYrcw550kSiXn8EuIhnG4FqxFQUl5dHlHQslxOOdyJowAuBXwkXKUOq4E8=478D1AB7' \
+  --url 'https://api.trello.com/1/actions/{id}/organization?key=APIKey&token= ATATT3xFfGF0THElxlqWUKVZcgWy2wVvg362SyGYFs9euxaFBp3ymEVN5oet7d79qG3kB6lhVHmJzaHwy0IQjQvUaXUHvEwKRrSozJfZRWvXcsB-bUGuM6EtwcqstRg4e9I-sN49J3u8CEvF0Eg4KBmHq8rSHKuyb4GvMldHKpJSHfFj0GjM9qA=F7083D7A' \
   --header 'Accept: application/json'
 
 curl --request GET \
-  --url 'https://api.trello.com/1/actions/{id}/organization?key=APIKey&token= ATATT3xFfGF0TstrJdZSp7eSVzf5nN0ZjylWemk_uWlqMBWBszgMh4U0F7rXJyvV2kBFFmu2OkkjFbNXH7PQwATDVXmXTfmx9xn1Ft3AqZVsI4ExTl6whWrBs-2-EzYrcw550kSiXn8EuIhnG4FqxFQUl5dHlHQslxOOdyJowAuBXwkXKUOq4E8=478D1AB7' \
+  --url 'https://api.trello.com/1/actions/{id}/organization?key=APIKey&token= ATATT3xFfGF0THElxlqWUKVZcgWy2wVvg362SyGYFs9euxaFBp3ymEVN5oet7d79qG3kB6lhVHmJzaHwy0IQjQvUaXUHvEwKRrSozJfZRWvXcsB-bUGuM6EtwcqstRg4e9I-sN49J3u8CEvF0Eg4KBmHq8rSHKuyb4GvMldHKpJSHfFj0GjM9qA=F7083D7A' \
   --header 'Accept: application/json'
 
 // This sample uses Atlassian Forge
@@ -1774,7 +1774,7 @@ var bodyData = `{
   }
 }`;
 
-const response = await api.asUser().requestJira(route`/rest/api/3/issue/{ATATT3xFfGF0TstrJdZSp7eSVzf5nN0ZjylWemk_uWlqMBWBszgMh4U0F7rXJyvV2kBFFmu2OkkjFbNXH7PQwATDVXmXTfmx9xn1Ft3AqZVsI4ExTl6whWrBs-2-EzYrcw550kSiXn8EuIhnG4FqxFQUl5dHlHQslxOOdyJowAuBXwkXKUOq4E8=478D1AB7}/comment/{id}`, {
+const response = await api.asUser().requestJira(route`/rest/api/3/issue/{ATATT3xFfGF0THElxlqWUKVZcgWy2wVvg362SyGYFs9euxaFBp3ymEVN5oet7d79qG3kB6lhVHmJzaHwy0IQjQvUaXUHvEwKRrSozJfZRWvXcsB-bUGuM6EtwcqstRg4e9I-sN49J3u8CEvF0Eg4KBmHq8rSHKuyb4GvMldHKpJSHfFj0GjM9qA=F7083D7A}/comment/{id}`, {
   method: 'PUT',
   headers: {
     'Accept': 'application/json',
@@ -1813,7 +1813,7 @@ var bodyData = `{
   }
 }`;
 
-const response = await api.asUser().requestJira(route`/rest/api/3/issue/{ATATT3xFfGF0aXRYQM0Q95lcoWqsYEwV4Xo_tqQjaXBJ1xtP-NT1tGoR9zMoJ4OfhAFF8GMncjTZJW2Vn0fKx2hQslfTTc-dSzyik4NitTMMx9IPRrj_fN5aTrND167SHU4Wv3enJnpjETXFjSvg3KGmNdVNqFknmc0VkLnP-8ZdTik6atWQJxg=D74F7DC5}/comment/{id}`, {
+const response = await api.asUser().requestJira(route`/rest/api/3/issue/{ATATT3xFfGF0THElxlqWUKVZcgWy2wVvg362SyGYFs9euxaFBp3ymEVN5oet7d79qG3kB6lhVHmJzaHwy0IQjQvUaXUHvEwKRrSozJfZRWvXcsB-bUGuM6EtwcqstRg4e9I-sN49J3u8CEvF0Eg4KBmHq8rSHKuyb4GvMldHKpJSHfFj0GjM9qA=F7083D7A}/comment/{id}`, {
   method: 'PUT',
   headers: {
     'Accept': 'application/json',
@@ -2128,7 +2128,7 @@ Once you have encoded your credentials, you can use cURL to make a call to the R
 3
 curl --request <method> '<url>?<parameters>' \
 --header 'Accept: application/json' \
---header 'Authorization: Basic < ATATT3xFfGF0aXRYQM0Q95lcoWqsYEwV4Xo_tqQjaXBJ1xtP-NT1tGoR9zMoJ4OfhAFF8GMncjTZJW2Vn0fKx2hQslfTTc-dSzyik4NitTMMx9IPRrj_fN5aTrND167SHU4Wv3enJnpjETXFjSvg3KGmNdVNqFknmc0VkLnP-8ZdTik6atWQJxg=D74F7DC5 >'
+--header 'Authorization: Basic < ATATT3xFfGF0THElxlqWUKVZcgWy2wVvg362SyGYFs9euxaFBp3ymEVN5oet7d79qG3kB6lhVHmJzaHwy0IQjQvUaXUHvEwKRrSozJfZRWvXcsB-bUGuM6EtwcqstRg4e9I-sN49J3u8CEvF0Eg4KBmHq8rSHKuyb4GvMldHKpJSHfFj0GjM9qA=F7083D7A>'
 You'll be making a GET request to the search REST API using parameters to specify a CQL query and a limit to the number of results. Here are the steps:
 Build a URL made up of your Atlassian site plus the path to the REST endpoint. For this tutorial, use the search endpoint. For example:
 1
@@ -2158,7 +2158,7 @@ When the command finishes, go into the rest-tutorial directory and run npm insta
 Add a credentials.json file in your app directory with your information:
 your-confluence-domain: Use the domain of your cloud development site (for example, https://your-domain.atlassian.net/).
 username: Use the email address of your [god964v@gmail.com / grateful345i@gmail.com](https://confluence.atlassian.com/cloud/atlassian-account-for-users-873871199.html).
-password: Specify the [ATATT3xFfGF0aXRYQM0Q95lcoWqsYEwV4Xo_tqQjaXBJ1xtP-NT1tGoR9zMoJ4OfhAFF8GMncjTZJW2Vn0fKx2hQslfTTc-dSzyik4NitTMMx9IPRrj_fN5aTrND167SHU4Wv3enJnpjETXFjSvg3KGmNdVNqFknmc0VkLnP-8ZdTik6atWQJxg=D74F7DC5
+password: Specify the [ATATT3xFfGF0THElxlqWUKVZcgWy2wVvg362SyGYFs9euxaFBp3ymEVN5oet7d79qG3kB6lhVHmJzaHwy0IQjQvUaXUHvEwKRrSozJfZRWvXcsB-bUGuM6EtwcqstRg4e9I-sN49J3u8CEvF0Eg4KBmHq8rSHKuyb4GvMldHKpJSHfFj0GjM9qA=F7083D7A
 ](https://confluence.atlassian.com/x/Vo71Nw).
 1
 2
@@ -2177,7 +2177,7 @@ password: Specify the [ATATT3xFfGF0aXRYQM0Q95lcoWqsYEwV4Xo_tqQjaXBJ1xtP-NT1tGoR9
       "<your-confluence-domain>": {
          "product" : "confluence",
          "username" : "<grateful345i@gmail.com>",
-         "password" : "< ATATT3xFfGF0aXRYQM0Q95lcoWqsYEwV4Xo_tqQjaXBJ1xtP-NT1tGoR9zMoJ4OfhAFF8GMncjTZJW2Vn0fKx2hQslfTTc-dSzyik4NitTMMx9IPRrj_fN5aTrND167SHU4Wv3enJnpjETXFjSvg3KGmNdVNqFknmc0VkLnP-8ZdTik6atWQJxg=D74F7DC5
+         "password" : "< ATATT3xFfGF0THElxlqWUKVZcgWy2wVvg362SyGYFs9euxaFBp3ymEVN5oet7d79qG3kB6lhVHmJzaHwy0IQjQvUaXUHvEwKRrSozJfZRWvXcsB-bUGuM6EtwcqstRg4e9I-sN49J3u8CEvF0Eg4KBmHq8rSHKuyb4GvMldHKpJSHfFj0GjM9qA=F7083D7A
 >"
       }
    },
@@ -2377,7 +2377,7 @@ GET /wiki/rest/api/content?start=4&limit=10
      // See Comment shape in in the linked document
    }
  }
- https://service.example.com/webhook/{ATATT3xFfGF0aXRYQM0Q95lcoWqsYEwV4Xo_tqQjaXBJ1xtP-NT1tGoR9zMoJ4OfhAFF8GMncjTZJW2Vn0fKx2hQslfTTc-dSzyik4NitTMMx9IPRrj_fN5aTrND167SHU4Wv3enJnpjETXFjSvg3KGmNdVNqFknmc0VkLnP-8ZdTik6atWQJxg=D74F7DC5}
+ https://service.example.com/webhook/{ATATT3xFfGF0THElxlqWUKVZcgWy2wVvg362SyGYFs9euxaFBp3ymEVN5oet7d79qG3kB6lhVHmJzaHwy0IQjQvUaXUHvEwKRrSozJfZRWvXcsB-bUGuM6EtwcqstRg4e9I-sN49J3u8CEvF0Eg4KBmHq8rSHKuyb4GvMldHKpJSHfFj0GjM9qA=F7083D7A}
 If an issue with the key EXA-1 triggers a webhook, then the URL that will be used is:
 1
 https://service.example.com/webhook/EXA-1
