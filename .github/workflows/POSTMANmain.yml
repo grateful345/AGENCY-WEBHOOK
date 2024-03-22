@@ -1,0 +1,2178 @@
+# AGENCY-WEBHOOK
+Stripe python gpg key :
+
+gpg --encrypt --recipient 05D02D3D57ABFF46 FILENAME
+
+Key ID: 05D02D3D57ABFF46
+Key type: RSA
+Key size: 2048 bits
+Fingerprint: C330 33E4 B583 FE61 2EDE 877C 05D0 2D3D 57AB FF46
+User ID: Stripe <security@stripe.com>
+gpg --encrypt --recipient 05D02D3D57ABFF46 FILENAME
+
+Key ID: 05D02D3D57ABFF46
+Key type: RSA
+Key size: 2048 bits
+Fingerprint: C330 33E4 B583 FE61 2EDE 877C 05D0 2D3D 57AB FF46
+User ID: Stripe <security@stripe.com>
+postman api key : PMAK-65fcefd7f279ab0001bc1c91-bea679740eef30d16701cb886564e8d242
+{"apikey":"e59a3446-867f-4520-9121-bef3ce8be522"}
+Location: /home/linuxbrew
+Note: Homebrew is pre-installed on image but not added to PATH.
+run the eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" command
+to accomplish this.
+
+Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.User: postgres
+PostgreSQL service is disabled by default.
+Use the following command as a part of your job to start the service: 'sudo systemctl start postgresql.service'
+MySQL
+
+MySQL 8.0.36-0ubuntu0.22.04.1
+User: root
+Password: root
+MySQL service is disabled by default.
+Use the following command as a part of your job to start the service: 'sudo systemctl start mysql.service'
+MS SQL
+
+sqlcmd 17.10.0001.1
+SqlPackage 162.2.111.2
+Cached Tools
+
+Go
+
+1.20.14
+1.21.8
+1.22.1
+Node.js
+
+16.20.2
+18.19.1
+20.11.1
+Python
+
+3.7.17
+3.8.18
+3.9.18
+3.10.13
+3.11.8
+3.12.2
+PyPy
+
+3.7.13 [PyPy 7.3.9]
+3.8.16 [PyPy 7.3.11]
+3.9.18 [PyPy 7.3.15]
+3.10.13 [PyPy 7.3.15]
+Ruby
+
+3.1.4
+PowerShell Tools
+
+PowerShell 7.4.1
+PowerShell Modules
+
+Az: 11.3.1
+MarkdownPS: 1.9
+Microsoft.Graph: 2.15.0
+Pester: 5.5.0
+PSScriptAnalyzer: 1.22.0
+
+pip install timml
+To update TimML type:
+
+pip install timml --upgrade
+To uninstall TimML type:
+
+pip uninstall timml
+Experimental and for radial flow only
+import numpy as np
+import matplotlib.pyplot as plt
+import timml as tml
+rw = 5
+ml = tml.Model3D(kaq=10, z=np.arange(20, -1, -2), kzoverkh=50)
+w = tml.LargeDiameterWell(ml, Qw=100, layers=[0, 1, 2, 3, 4], rw=rw)
+rf = tml.Constant(ml, 100, 0, 20)
+ml.solve()
+Number of elements, Number of equations: 2 , 11
+..
+solution complete
+xg = np.linspace(rw, 50, 100)
+h = ml.headalongline(xg, 0)
+for i in range(10):
+    plt.plot(xg, h[i])
+plt.xlim(0, 50)
+plt.xticks(np.arange(0, 51, 5))
+plt.grid()
+
+qx = ml.disvec(rw, 0)[0]
+print(qx * 2 * np.pi * rw)
+print(np.sum(qx * 2 * np.pi * rw))
+[-1.50511966e+01 -1.54865781e+01 -1.66133444e+01 -1.94936336e+01
+ -3.32803095e+01 -6.18665346e-03 -2.60712180e-02  2.81040181e-02
+  7.22067838e-03  1.38265742e-02]
+-99.90816871499192
+ml.head(rw, 0)
+array([19.7515328 , 19.75153236, 19.75153185, 19.75153275, 19.75153281,
+       19.76498845, 19.77043627, 19.77362338, 19.77547235, 19.7763392 ])
+from scipy.special import k0
+k0(5 / ml.aq.lab[1:])
+array([2.06829668e-03, 6.74900159e-06, 3.32024764e-08, 2.57897091e-10,
+       3.46416156e-12, 8.82738725e-14, 4.63575933e-15, 5.37054606e-16,
+       1.44345016e-16])
+ml.aq.eigvec
+array([[ 1.00000000e-01,  4.41707654e-01,  4.25325404e-01,
+        -3.98470231e-01,  3.61803399e-01, -3.16227766e-01,
+         2.62865556e-01, -2.03030724e-01, -1.38196601e-01,
+        -6.99596196e-02],
+       [ 1.00000000e-01,  3.98470231e-01,  2.62865556e-01,
+        -6.99596196e-02, -1.38196601e-01,  3.16227766e-01,
+        -4.25325404e-01,  4.41707654e-01,  3.61803399e-01,
+         2.03030724e-01],
+       [ 1.00000000e-01,  3.16227766e-01, -3.10776816e-17,
+         3.16227766e-01, -4.47213595e-01,  3.16227766e-01,
+        -2.38891966e-16, -3.16227766e-01, -4.47213595e-01,
+        -3.16227766e-01],
+       [ 1.00000000e-01,  2.03030724e-01, -2.62865556e-01,
+         4.41707654e-01, -1.38196601e-01, -3.16227766e-01,
+         4.25325404e-01, -6.99596196e-02,  3.61803399e-01,
+         3.98470231e-01],
+       [ 1.00000000e-01,  6.99596196e-02, -4.25325404e-01,
+         2.03030724e-01,  3.61803399e-01, -3.16227766e-01,
+        -2.62865556e-01,  3.98470231e-01, -1.38196601e-01,
+        -4.41707654e-01],
+       [ 1.00000000e-01, -6.99596196e-02, -4.25325404e-01,
+        -2.03030724e-01,  3.61803399e-01,  3.16227766e-01,
+        -2.62865556e-01, -3.98470231e-01, -1.38196601e-01,
+         4.41707654e-01],
+       [ 1.00000000e-01, -2.03030724e-01, -2.62865556e-01,
+        -4.41707654e-01, -1.38196601e-01,  3.16227766e-01,
+         4.25325404e-01,  6.99596196e-02,  3.61803399e-01,
+        -3.98470231e-01],
+       [ 1.00000000e-01, -3.16227766e-01, -2.90992345e-16,
+        -3.16227766e-01, -4.47213595e-01, -3.16227766e-01,
+        -5.07992125e-17,  3.16227766e-01, -4.47213595e-01,
+         3.16227766e-01],
+       [ 1.00000000e-01, -3.98470231e-01,  2.62865556e-01,
+         6.99596196e-02, -1.38196601e-01, -3.16227766e-01,
+        -4.25325404e-01, -4.41707654e-01,  3.61803399e-01,
+        -2.03030724e-01],
+       [ 1.00000000e-01, -4.41707654e-01,  4.25325404e-01,
+         3.98470231e-01,  3.61803399e-01,  3.16227766e-01,
+         2.62865556e-01,  2.03030724e-01, -1.38196601e-01,
+         6.99596196e-02]]
+
+  curl -v https://mysite.atlassian.net --user me@example.com:ATATT3xFfGF0em-7Sy8fZXMVgrISVS9LAQikknXg7B0GyB-S-vVVTBM37VJoVWyYpdetDBLd1X0SdJk2FH0EorccPwryJm3xsPYum01tZK_yc0_rbXvKV_U__JgGuERBBhZDH-gOpsv4GvsIaTOb74PfUj9JtqBXWlxO_GeQ84aq04QHt54XByw=155E8069 / ATATT3xFfGF0R4NmdY2uSKkW7UbRpFzPiOW4n19gsX7JGvw2OUu-ZkR9rE0tZbJzFaBT-4KQyzF0bLGlves4bxqzl6EhiReof-qs_USU2IFA53f1COSw5ul-L6TIaWfGQ5HJnibbRj-X-8fx9ohj7qd7iXZHDuUQ9Qd5IMOOlUCzwvhhV2gos3g=7D2F2392
+/ NcKhKEbWghsh1bSAUXEO1552
+
+![https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator]
+
+![https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator?oldid=2862]
+![https://characterai.io/static/tti/c/b/c/4/2/4/cbc424ac-52f3-4984-9b35-7e1953f200e9/0.webp]
+
+authentic token NGROK (God's Time Travel Corporation)
+--header
+'2avvD0NhbrJRkbxHpTCTKBldaL5_4ywouQsYBpunfxgtzZGxT'
+
+authorization key SCP Foundation
+--header
+'0xh723hfva83445na7fn342h'
+
+curl --location 'https://informatics.netify.ai/api/v1/intelligence/tls_versions/statusboard' \
+--header '[https://scp-db.fandom.com/wiki/The_Administrator](https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator?oldid=2862)' \
+--header 'postman api key : PMAK-65fcefd7f279ab0001bc1c91-bea679740eef30d16701cb886564e8d242
+
+curl --location 'https://informatics.netify.ai/api/v1/intelligence/tls_versions/statusboard' \
+--header '[https://scp-db.fandom.com/wiki/The_Administrator](https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator?oldid=2862)' \
+--header 'postman api key : PMAK-65fcefd7f279ab0001bc1c91-bea679740eef30d16701cb886564e8d242'
+
+{
+	"mac": "ac:ed:5c:b7:cc:b7",
+	"listname": "firehol_level1",
+	"flow_list": [1,2]
+}
+
+curl --location 'https://informatics.netify.ai/api/v1/intelligence/ip_reputation/flows' \
+--header '[https://scp-db.fandom.com/wiki/The_Administrator](https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator?oldid=2862)' \
+--header 'postman api key : PMAK-65fcefd7f279ab0001bc1c91-bea679740eef30d16701cb886564e8d242' \
+--data '{
+	"mac": "ac:ed:5c:b7:cc:b7",
+	"listname": "firehol_level1",
+	"flow_list": [1,2]
+}'
+{
+	"mac": "ac:ed:5c:b7:cc:b7",
+	"listname": "firehol_level1",
+	"flow_list": [1,2]
+}
+curl --location --request GET 'https://informatics.netify.ai/api/v1/intelligence/anomaly_detection/timeline' \
+--header '[https://scp-db.fandom.com/wiki/The_Administrator](https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator?oldid=2862)' \
+--header 'postman api key : PMAK-65fcefd7f279ab0001bc1c91-bea679740eef30d16701cb886564e8d242' \
+--data '{
+	"mac": "ac:ed:5c:b7:cc:b7",
+	"listname": "firehol_level1",
+	"flow_list": [1,2]
+}'
+{
+	"mac": "ac:ed:5c:b7:cc:b7",
+	"listname": "firehol_level1",
+	"flow_list": [1,2]
+curl --location --request GET 'https://informatics.netify.ai/api/v1/intelligence/ip_reputation/2020-07-23' \
+--header '[https://scp-db.fandom.com/wiki/The_Administrator](https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator?oldid=2862)' \
+--header 'postman api key : PMAK-65fcefd7f279ab0001bc1c91-bea679740eef30d16701cb886564e8d242' \
+--data '{
+	"mac": "ac:ed:5c:b7:cc:b7",
+	"listname": "firehol_level1",
+	"flow_list": [1,2]
+}'
+{
+	"mac": "ac:ed:5c:b7:cc:b7",
+	"listname": "firehol_level1",
+	"flow_list": [1,2]
+}
+
+curl --location --request GET 'https://informatics.netify.ai/api/v1/intelligence/anomaly_detection/timeline' \
+--header '[https://scp-db.fandom.com/wiki/The_Administrator](https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator?oldid=2862)' \
+--header 'postman api key : PMAK-65fcefd7f279ab0001bc1c91-bea679740eef30d16701cb886564e8d242' \
+--data '{
+	"mac": "ac:ed:5c:b7:cc:b7",
+	"listname": "firehol_level1",
+	"flow_list": [1,2]
+}'
+
+{
+	"mac": "ac:ed:5c:b7:cc:b7",
+	"listname": "firehol_level1",
+	"flow_list": [1,2]
+}
+curl --location 'https://informatics.netify.ai/api/v1/intelligence/cryptocurrency_node/flows' \
+--header '[https://scp-db.fandom.com/wiki/The_Administrator](https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator?oldid=2862)' \
+--header 'postman api key : PMAK-65fcefd7f279ab0001bc1c91-bea679740eef30d16701cb886564e8d242' \
+--data '{
+	"mac": "ac:ed:5c:b7:cc:b7",
+	"listname": "firehol_level1",
+	"flow_list": [1,2]
+}'
+
+{
+	"mac": "ac:ed:5c:b7:cc:b7",
+	"listname": "firehol_level1",
+	"flow_list": [1,2]
+}
+curl --location --request GET 'https://informatics.netify.ai/api/v1/intelligence/anomaly_detection/timeline' \
+--header '[https://scp-db.fandom.com/wiki/The_Administrator](https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator?oldid=2862)' \
+--header 'postman api key : PMAK-65fcefd7f279ab0001bc1c91-bea679740eef30d16701cb886564e8d242' \
+--data '{
+	"mac": "ac:ed:5c:b7:cc:b7",
+	"listname": "firehol_level1",
+	"flow_list": [1,2]
+}'
+
+{
+	"mac": "ac:ed:5c:b7:cc:b7",
+	"listname": "firehol_level1",
+	"flow_list": [1,2]
+}
+curl --location --request GET 'https://informatics.netify.ai/api/v1/intelligence/anomaly_detection/timeline' \
+--header '[https://scp-db.fandom.com/wiki/The_Administrator](https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator?oldid=2862)' \
+--header 'postman api key : PMAK-65fcefd7f279ab0001bc1c91-bea679740eef30d16701cb886564e8d242' \
+--data '{
+	"mac": "ac:ed:5c:b7:cc:b7",
+	"listname": "firehol_level1",
+	"flow_list": [1,2]
+}'
+
+{
+	"mac": "ac:ed:5c:b7:cc:b7",
+	"listname": "firehol_level1",
+	"flow_list": [1,2]
+}
+curl --location 'https://informatics.netify.ai/api/v1/intelligence/ip_reputation/flows' \
+--header '[https://scp-db.fandom.com/wiki/The_Administrator](https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator?oldid=2862)' \
+--header 'postman api key : PMAK-65fcefd7f279ab0001bc1c91-bea679740eef30d16701cb886564e8d242' \
+--data '{
+	"mac": "ac:ed:5c:b7:cc:b7",
+	"listname": "firehol_level1",
+	"flow_list": [1,2]
+}'
+{
+	"mac": "ac:ed:5c:b7:cc:b7",
+	"listname": "firehol_level1",
+	"flow_list": [1,2]
+}
+curl --location --request GET 'https://informatics.netify.ai/api/v1/intelligence/anomaly_detection/timeline' \
+--header '[https://scp-db.fandom.com/wiki/The_Administrator](https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator?oldid=2862)' \
+--header 'postman api key : PMAK-65fcefd7f279ab0001bc1c91-bea679740eef30d16701cb886564e8d242' \
+--data '{
+	"mac": "ac:ed:5c:b7:cc:b7",
+	"listname": "firehol_level1",
+	"flow_list": [1,2]
+}'
+{
+	"mac": "ac:ed:5c:b7:cc:b7",
+	"listname": "firehol_level1",
+	"flow_list": [1,2]
+}
+curl --location --request GET 'https://informatics.netify.ai/api/v1/intelligence/anomaly_detection/timeline' \
+--header '[https://scp-db.fandom.com/wiki/The_Administrator](https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator?oldid=2862)' \
+--header 'postman api key : PMAK-65fcefd7f279ab0001bc1c91-bea679740eef30d16701cb886564e8d242' \
+--data '{
+	"mac": "ac:ed:5c:b7:cc:b7",
+	"listname": "firehol_level1",
+	"flow_list": [1,2]
+}'
+{
+	"mac": "ac:ed:5c:b7:cc:b7",
+	"listname": "firehol_level1",
+	"flow_list": [1,2]
+}
+curl --location --request GET 'https://informatics.netify.ai/api/v1/intelligence/anomaly_detection/timeline' \
+--header '[https://scp-db.fandom.com/wiki/The_Administrator](https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator?oldid=2862)' \
+--header 'postman api key : PMAK-65fcefd7f279ab0001bc1c91-bea679740eef30d16701cb886564e8d242' \
+--data '{
+	"mac": "ac:ed:5c:b7:cc:b7",
+	"listname": "firehol_level1",
+	"flow_list": [1,2]
+}'
+{
+	"mac": "ac:ed:5c:b7:cc:b7",
+	"listname": "firehol_level1",
+	"flow_list": [1,2]
+}
+curl --location --request GET 'https://informatics.netify.ai/api/v1/intelligence/anomaly_detection/timeline' \
+--header '[https://scp-db.fandom.com/wiki/The_Administrator](https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator?oldid=2862)' \
+--header 'postman api key : PMAK-65fcefd7f279ab0001bc1c91-bea679740eef30d16701cb886564e8d242' \
+--data '{
+	"mac": "ac:ed:5c:b7:cc:b7",
+	"listname": "firehol_level1",
+	"flow_list": [1,2]
+}'
+curl --location --request GET 'https://informatics.netify.ai/api/v1/intelligence/anomaly_detection/timeline' \
+--header '[https://scp-db.fandom.com/wiki/The_Administrator](https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator?oldid=2862)' \
+--header 'postman api key : PMAK-65fcefd7f279ab0001bc1c91-bea679740eef30d16701cb886564e8d242' \
+--data '{
+	"mac": "ac:ed:5c:b7:cc:b7",
+	"listname": "firehol_level1",
+	"flow_list": [1,2]
+}'
+
+https://informatics.netify.ai/api/v2/lookup/applications?filter_starts_with=f&filter_application_categories=["4","24"]
+
+curl --location -g 'https://informatics.netify.ai/api/v2/lookup/applications?page=1&settings_limit=5&filter_starts_with=f&filter_application_categories=[%224%22%2C%2224%22]&settings_show_default_logo=false' \
+--header 'https://dashboard.stripe.com/': EG' / and 
+--header 'https://scp-wiki.wikidot.com/':
+EG'
+Sample flow metadata from core processor
+...
+"detected_protocol_name": "HTTPS",
+"detected_application_name": "netify.whatsapp.business",
+"ssl": {
+  "alpn": [
+    "h2",
+    "http/1.1"
+  ],
+  "alpn_server": [],
+  "version": "0x0303",
+  "cipher_suite": "0xc02b",
+  "client_sni": "static.whatsapp.net",
+  "server_cn": "*.whatsapp.net",
+  "client_ja3": "d8c87b9bfde38897979e4124262...",
+  "server_ja3": "6e15a5bf660856fa03186247ca4...",
+  "issuer_dn": "C=US, O=DigiCert Inc, OU=www...",
+  "subject_dn": "C=US, ST=California, L=Menlo..."
+},
+
+# /etc/netifyd/plugins.d/10-netify-proc-core.conf
+
+[proc-core]
+enable = yes
+...
+# /etc/netifyd/netify-proc-core.json
+{
+   "format": "json",
+   "compressor": "none",
+   "sinks": {
+      "sink-socket": {
+         "default": {
+             "enable": true,
+             "types": [ "stream-flows", "stream-stats" ]
+          },
+          "tcp": {
+             "enable": true,
+             "types": [ "stream-flows", "stream-stats" ]
+          },
+      },
+      "sink-mqtt": {
+         "flows": {
+            "enable": false,
+            "types": [ "stream-flows" ]
+         },
+         "stats": {
+            "enable": false,
+            "types": [ "stream-stats" ]
+         }
+      }
+   }
+
+https://manager.netify.ai/api/v1/assets/agents
+
+curl --location 'https://manager.netify.ai/api/v1/assets/agents' \
+--header 'postman api key : PMAK-65fcefd7f279ab0001bc1c91-bea679740eef30d16701cb886564e8d242'
+
+curl --location 'https://manager.netify.ai/api/v1/assets/agents/CH-AM-BE-RS' \
+--header 'postman api key : PMAK-65fcefd7f279ab0001bc1c91-bea679740eef30d16701cb886564e8d242'
+
+curl --location 'https://informatics.netify.ai/api/v2/lookup/platforms/cloudflare'
+
+curl --location 'https://informatics.netify.ai/api/v2/lookup/platforms'
+
+curl --location 'https://informatics.netify.ai/api/v2/lookup/platforms'
+
+curl --location 'https://informatics.netify.ai/api/v2/lookup/domains/twitter.com'
+
+curl --location 'https://informatics.netify.ai/api/v2/lookup/signatures/categories' \
+--header 'postman api key : PMAK-65fcefd7f279ab0001bc1c91-bea679740eef30d16701cb886564e8d242'
+...
+ X-SHA256-Hash: 8cb030f2...
+ X-SHA256-Applications-Hash: b01e4196e...
+
+...
+ "data_info": {
+    "hash": "8cb030f2c4...",
+    "applications_hash": "b01e4196e..."
+ },
+
+...
+ X-SHA256-Hash: b01e4196e...
+
+...
+ "data_info": {
+    "hash": "b01e4196e...",
+    "entries": 16798
+ }
+curl --location 'https://informatics.netify.ai/api/v2/lookup/signatures/applications?settings_version=4.2.5&settings_format=normal' \
+--header 'postman api key : PMAK-65fcefd7f279ab0001bc1c91-bea679740eef30d16701cb886564e8d242'
+
+https://informatics.netify.ai/api/v2/lookup/signatures/applications?settings_version=4.2.5&settings_format=normal
+
+https://informatics.netify.ai/api/v1/intelligence/discovery/devices
+
+curl --location 'https://informatics.netify.ai/api/v1/intelligence/discovery/devices' \
+--header '[https://scp-db.fandom.com/wiki/The_Administrator](https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator?oldid=2862)' \
+--header 'postman api key : PMAK-65fcefd7f279ab0001bc1c91-bea679740eef30d16701cb886564e8d242'
+
+curl --location 'https://informatics.netify.ai/api/v1/intelligence/discovery/devices/ac:ed:5c:00:00:00' \
+--header '[https://scp-db.fandom.com/wiki/The_Administrator](https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator?oldid=2862)' \
+--header 'postman api key : PMAK-65fcefd7f279ab0001bc1c91-bea679740eef30d16701cb886564e8d242'
+
+https://informatics.netify.ai/api/v1/intelligence/tls_versions/statusboard
+
+curl --location 'https://informatics.netify.ai/api/v1/intelligence/tls_versions/statusboard' \
+--header '[https://scp-db.fandom.com/wiki/The_Administrator](https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator?oldid=2862)' \
+--header 'postman api key : PMAK-65fcefd7f279ab0001bc1c91-bea679740eef30d16701cb886564e8d242'
+
+https://informatics.netify.ai/api/v1/intelligence/tls_versions/statusboard
+
+curl --location 'https://informatics.netify.ai/api/v1/intelligence/discovery/devices/ac:ed:5c:00:00:00' \
+--header '[https://scp-db.fandom.com/wiki/The_Administrator](https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator?oldid=2862)' \
+--header 'postman api key : PMAK-65fcefd7f279ab0001bc1c91-bea679740eef30d16701cb886564e8d242'
+
+https://informatics.netify.ai/api/v1/intelligence/ip_reputation/flows
+
+{
+	"mac": "ac:ed:5c:b7:cc:b7",
+	"listname": "firehol_level1",
+	"flow_list": [1,2]
+}
+
+curl --location 'https://informatics.netify.ai/api/v1/intelligence/ip_reputation/flows' \
+--header '[https://scp-db.fandom.com/wiki/The_Administrator](https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator?oldid=2862)' \
+--header 'postman api key : PMAK-65fcefd7f279ab0001bc1c91-bea679740eef30d16701cb886564e8d242' \
+--data '{
+	"mac": "ac:ed:5c:b7:cc:b7",
+	"listname": "firehol_level1",
+	"flow_list": [1,2]
+}'
+
+https://informatics.netify.ai/api/v1/intelligence/anomaly_detection/timeline
+
+curl --location --request GET 'https://informatics.netify.ai/api/v1/intelligence/anomaly_detection/timeline' \
+--header '[https://scp-db.fandom.com/wiki/The_Administrator](https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator?oldid=2862)' \
+--header 'postman api key : PMAK-65fcefd7f279ab0001bc1c91-bea679740eef30d16701cb886564e8d242' \
+--data '{
+	"mac": "ac:ed:5c:b7:cc:b7",
+	"listname": "firehol_level1",
+	"flow_list": [1,2]
+}'
+
+https://informatics.netify.ai/api/v1/intelligence/ip_reputation/:date
+
+curl --location --request GET 'https://informatics.netify.ai/api/v1/intelligence/ip_reputation/2020-07-23' \
+--header '[https://scp-db.fandom.com/wiki/The_Administrator](https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator?oldid=2862)' \
+--header 'postman api key : PMAK-65fcefd7f279ab0001bc1c91-bea679740eef30d16701cb886564e8d242' \
+--data '{
+	"mac": "ac:ed:5c:b7:cc:b7",
+	"listname": "firehol_level1",
+	"flow_list": [1,2]
+}'
+
+curl --location 'https://informatics.netify.ai/api/v2/lookup/applications/twitter'
+
+https://informatics.netify.ai/api/v2/lookup/protocols?filter_starts_with=f&filter_protocol_categories=["2","17"]
+
+curl --location 'https://informatics.netify.ai/api/v2/lookup/protocols?page=1&settings_limit=5'
+
+https://informatics.netify.ai/api/v2/lookup/protocols/:id
+
+curl --location 'https://informatics.netify.ai/api/v2/lookup/protocols/bittorrent'
+
+https://informatics.netify.ai/api/v2/lookup/protocol_categories
+
+curl --location 'https://informatics.netify.ai/api/v2/lookup/protocol_categories' \
+--header 'https://scp-wiki.wikidot.com/'
+/ and
+--header 'https://dashboard.stripe.com/'
+/ and
+--header '[https://scp-db.fandom.com/wiki/The_Administrator](https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator?oldid=2862)'
+
+...
+ X-SHA256-Hash: b01e4196e...
+
+curl --location 'https://informatics.netify.ai/api/v2/lookup/signatures/applications?settings_version=4.2.5&settings_format=normal' \
+--header 'postman api key : PMAK-65fcefd7f279ab0001bc1c91-bea679740eef30d16701cb886564e8d242'
+
+SCPiNET 3.7.61
+--------
+Initiating backup servers...
+Accessing SCP-XXXX...
+WARNING: Hash sum check failed. Checking file integrity...
+Attempting to recover files...
+XXXX.scp failed!
+XXXX.scp.old success!
+XXXX.log success!
+XXXX.a.incident failed!
+XXXX.b.incident failed!
+XXXX.c.incident success!
+XXXX.d.incident failed!
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/> (all pages)
+remove
+<meta name="description" content="The SCP Foundation's 'top-secret' archives, declassified for your enjoyment."/> (a
+
+
+We could not find some of the files imported by the .proto file. Specify import paths to those unresolved files using the options below.
+Details: unresolved import: notification/notification/common/notification_code.proto
+import file : {source_root}/notification/endpoint/presentation/service.proto
+import paths : {source_root}/
+However, it works normally in lower versions.
+
+Steps To Reproduce
+
+Write file
+notification/endpoint/presentation/service.proto
+
+syntax = "proto3";
+
+package notification.endpoint.presentation;
+
+import "notification/endpoint/presentation/create_device.proto";
+
+service NotificationEndpointService {
+  // Command
+  rpc CreateDevice(CreateDeviceRequest) returns (CreateDeviceResponse) {}
+}
+notification/endpoint/presentation/create_device.proto
+
+syntax = "proto3";
+
+package notification.endpoint.presentation;
+
+message CreateDeviceRequest {
+  string name = 1;
+}
+
+message CreateDeviceResponse {}
+import '{source_root}/notification/endpoint/presentation/service.proto' file in postman
+
+set '{source_root}' in postman's import paths
+
+
+curl --location --globoff '{{[base_url](https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator?oldid=2862)}}/user' \
+--data ''
+{
+    "data": [
+        {
+            "keycloak_id": "6b20cb38-0242-4d41-87aa-339201a2fc6c",
+            "username": "cgkjl@fjkdsf.co",
+            "name": "jsdfgsdgfdgdfdfgs",
+            "last_name": "fghfghgfhfggz",
+            "created_at": "2022-06-02T12:40:43.632Z",
+            "updated_at": "2022-06-02T12:40:43.632Z"
+        },
+        {
+            "keycloak_id": "6b20cb38-0242-4d41-87aa-339201a2fc6c",
+            "username": "cgkjl@fjkdsf.co",
+            "name": "jsdfgsdgfdgdfdfgs",
+            "last_name": "fghfghgfhfggz",
+            "created_at": "2022-06-02T12:40:43.632Z",
+            "updated_at": "2022-06-02T12:40:43.632Z"
+        },
+        {
+            "keycloak_id": "6b20cb38-0242-4d41-87aa-339201a2fc6c",
+            "username": "cgkjl@fjkdsf.co",
+            "name": "jsdfgsdgfdgdfdfgs",
+            "last_name": "fghfghgfhfggz",
+            "created_at": "2022-06-02T12:40:43.632Z",
+            "updated_at": "2022-06-02T12:40:43.632Z"
+        }
+    ],
+    "detail": {
+        "http_code": 200,
+        "info": "The request has been successfully processed",
+        "status": true
+    }
+}
+curl --location --globoff '{{[base_url](https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator?oldid=2862)}}/user/{{grateful345i@gmail.com}}'
+{
+    "data": {
+        "keycloak_id": "6b20cb38-0242-4d41-87aa-339201a2fc6c",
+        "username": "cgkjl@fjkdsf.co",
+        "name": "jsdfgsdgfdgdfdfgs",
+        "last_name": "fghfghgfhfggz",
+        "created_at": "2022-06-02T12:40:43.632Z",
+        "updated_at": "2022-06-02T12:40:43.632Z"
+    },
+    "detail": {
+        "http_code": 200,
+        "info": "The request has been successfully processed",
+        "status": true
+    }
+}
+{
+
+    "username": "grateful345i@gmail.com",
+    "password": "2334"
+}
+curl --location --globoff '{{[[base_url](https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator?oldid=2862)](https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator?oldid=2862)}}/user/login' \
+--data-raw '{
+
+    "username": "joseluis@cloudappi.net",
+    "password": "2334"
+}'
+{
+    "data": {
+        "access_token": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICIwMVRMZXhRLTdaSHVRTzd5UkloZklqZ0FzbHBqLUptbFUzS1p6a0pTcjRNIn0.eyJleHAiOjE2NTQyMDk1ODIsImlhdCI6MTY1NDE3MzU4MiwianRpIjoiMTRkZmRjOTEtNGFhNC00NWZjLWI5YTgtNjdmZGRjMjVmZGEzIiwiaXNzIjoiaHR0cHM6Ly9rZXljbG9hay5jbG91ZGFwcGkubmV0L2F1dGgvcmVhbG1zL0FwaS1xdWFsaXR5IiwiYXVkIjpbInJlYWxtLW1hbmFnZW1lbnQiLCJhY2NvdW50Il0sInN1YiI6IjY2MjJjYWYxLWJiMmMtNDkwZS1iZTUxLTdkYThmZjI2ZDdjOSIsInR5cCI6IkJlYXJlciIsImF6cCI6ImFwaS1xdWFsaXR5LWJhY2tlbmQiLCJzZXNzaW9uX3N0YXRlIjoiZDljZWI0OGEtYmY5Yy00MTFjLTg4ZjYtNjJlZTIxMzNmZDk1IiwiYWNyIjoiMSIsInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJkZWZhdWx0LXJvbGVzLWFwaS1xdWFsaXR5Il19LCJyZXNvdXJjZV9hY2Nlc3MiOnsicmVhbG0tbWFuYWdlbWVudCI6eyJyb2xlcyI6WyJ2aWV3LXJlYWxtIiwidmlldy1pZGVudGl0eS1wcm92aWRlcnMiLCJtYW5hZ2UtaWRlbnRpdHktcHJvdmlkZXJzIiwiaW1wZXJzb25hdGlvbiIsInJlYWxtLWFkbWluIiwiY3JlYXRlLWNsaWVudCIsIm1hbmFnZS11c2VycyIsInF1ZXJ5LXJlYWxtcyIsInZpZXctYXV0aG9yaXphdGlvbiIsInF1ZXJ5LWNsaWVudHMiLCJxdWVyeS11c2VycyIsIm1hbmFnZS1ldmVudHMiLCJtYW5hZ2UtcmVhbG0iLCJ2aWV3LWV2ZW50cyIsInZpZXctdXNlcnMiLCJ2aWV3LWNsaWVudHMiLCJtYW5hZ2UtYXV0aG9yaXphdGlvbiIsIm1hbmFnZS1jbGllbnRzIiwicXVlcnktZ3JvdXBzIl19LCJhcGktcXVhbGl0eS1iYWNrZW5kIjp7InJvbGVzIjpbImFkbWluIl19LCJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6ImVtYWlsIHJvbGVzIHByb2ZpbGUiLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsIm9yZ2FuaXphdGlvbiI6W10sIm5hbWUiOiJqb3NlbHVpcyBnb21leiIsInByZWZlcnJlZF91c2VybmFtZSI6Impvc2VsdWlzQGNsb3VkYXBwaS5uZXQiLCJnaXZlbl9uYW1lIjoiam9zZWx1aXMiLCJmYW1pbHlfbmFtZSI6ImdvbWV6In0.ubaHr3HTe46mTMwtvWbgvmjKmko2VZIyvFyYFHQpvj3tqAaO88Wu2ePomNuGgvKev_uJL433hmElPPWDPURqppIuLfhHGwptsfRPNNYld87s8ZMWnLw4Me5oOPNm2Rw7GevmhlWzIGvG48zFrNHQz8gZer9bjPInOhEMp-DMwV9jlX3efY0R8Qa-iXrrtcRql23Ept1tODj07RftkDEBD_FWD39lsi3JSTwvKXKHbEc9GzWZ_6mS_A82C_JE1iTI1hA_2tKdlQ1jEYcxRP8jSDtl40fMkOYRt1kay6ZahMnl9DNmGleNIUjXLrxJRNnJva5bi_ZGM6mVjaVZea3eVQ",
+        "expires_in": 36000,
+        "refresh_expires_in": 1800,
+        "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJiNWZlNTAxOC04YzBiLTQ2YzAtYTQyMS0zNTQyMjUyZWM4ZWUifQ.eyJleHAiOjE2NTQxNzUzODIsImlhdCI6MTY1NDE3MzU4MiwianRpIjoiZmYyNmQ0OTEtM2JmOS00ZDgzLTk5NjQtNDA3ZWI0NDNlZTkxIiwiaXNzIjoiaHR0cHM6Ly9rZXljbG9hay5jbG91ZGFwcGkubmV0L2F1dGgvcmVhbG1zL0FwaS1xdWFsaXR5IiwiYXVkIjoiaHR0cHM6Ly9rZXljbG9hay5jbG91ZGFwcGkubmV0L2F1dGgvcmVhbG1zL0FwaS1xdWFsaXR5Iiwic3ViIjoiNjYyMmNhZjEtYmIyYy00OTBlLWJlNTEtN2RhOGZmMjZkN2M5IiwidHlwIjoiUmVmcmVzaCIsImF6cCI6ImFwaS1xdWFsaXR5LWJhY2tlbmQiLCJzZXNzaW9uX3N0YXRlIjoiZDljZWI0OGEtYmY5Yy00MTFjLTg4ZjYtNjJlZTIxMzNmZDk1Iiwic2NvcGUiOiJlbWFpbCByb2xlcyBwcm9maWxlIn0.qUdcdVWz0IAg4Pr0GuKvxc0haNk3q16s7DjeROykwSI",
+        "token_type": "Bearer",
+        "not-before-policy": 0,
+        "session_state": "d9ceb48a-bf9c-411c-88f6-62ee2133fd95",
+        "scope": "email roles profile"
+    },
+    "detail": {
+        "http_code": 200,
+        "info": "The request has been successfully processed",
+        "status": true
+    }
+}
+curl --location --globoff '{{[base_url](https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator?oldid=2862)}}/user' \
+--data-raw '{
+   
+   "username":"ul@cloudappi.net",
+   "emailVerified":true,
+   "firstName":"dar",
+   "lastName":"dar",
+   "password": "2334"
+   
+}'
+$ npm install openapi-to-postmanv2
+If you want to use the converter in the CLI, install it globally with NPM:
+
+$ npm i -g openapi-to-postmanv2
+📖 Command Line Interface
+
+The converter can be used as a CLI tool as well. The following command line options are available.
+
+openapi2postmanv2 [options]
+
+Options
+
+-s <source>, --spec <source> Used to specify the OpenAPI specification (file path) which is to be converted
+
+-o <destination>, --output <destination> Used to specify the destination file in which the collection is to be written
+
+-p, --pretty Used to pretty print the collection object while writing to a file
+
+-i, --interface-version Specifies the interface version of the converter to be used. Value can be 'v2' or 'v1'. Default is 'v2'.
+
+-O, --options Used to supply options to the converter, for complete options details see here
+
+-c, --options-config Used to supply options to the converter through config file, for complete options details see here
+
+-t, --test Used to test the collection with an in-built sample specification
+
+-v, --version Specifies the version of the converter
+
+-h, --help Specifies all the options along with a few usage examples on the terminal
+
+Usage
+
+Takes a specification (spec.yaml) as an input and writes to a file (collection.json) with pretty printing and using provided options
+$ openapi2postmanv2 -s spec.yaml -o collection.json -p -O folderStrategy=Tags,includeAuthInfoInExample=false
+Takes a specification (spec.yaml) as an input and writes to a file (collection.json) with pretty printing and using provided options via config file
+$ openapi2postmanv2 -s spec.yaml -o collection.json -p  -c ./examples/cli-options-config.json
+Takes a specification (spec.yaml) as an input and writes to a file (collection.json) with pretty printing and using provided options (Also avoids any "<Error: Too many levels of nesting to fake this schema>" kind of errors present in converted collection)
+$ openapi2postmanv2 -s spec.yaml -o collection.json -p -O folderStrategy=Tags,requestParametersResolution=Example,optimizeConversion=false,stackLimit=50
+$ openapi2postmanv2 -s spec.yaml -o collection.json -p -O folderStrategy=Tags,includeAuthInfoInExample=false
+Takes a specification (spec.yaml) as an input and writes to a file (collection.json) with pretty printing and using provided options via config file
+$ openapi2postmanv2 -s spec.yaml -o collection.json -p  -c ./examples/cli-options-config.json
+Takes a specification (spec.yaml) as an input and writes to a file (collection.json) with pretty printing and using provided options (Also avoids any "<Error: Too many levels of nesting to fake this schema>" kind of errors present in converted collection)
+$ openapi2postmanv2 -s spec.yaml -o collection.json -p -O folderStrategy=Tags,requestParametersResolution=Example,optimizeConversion=false,stackLimit=50
+Testing the converter
+$ openapi2postmanv2 --test
+🛠 Using the converter as a NodeJS module
+
+In order to use the convert in your node application, you need to import the package using require.
+
+var Converter = require('openapi-to-postmanv2')
+The converter provides the following functions:
+
+Convert
+
+The convert function takes in your OpenAPI 3.0, 3.1 and Swagger 2.0 specification ( YAML / JSON ) and converts it to a Postman collection.
+
+Signature: convert (data, options, callback);
+
+data:
+
+{ type: 'file', data: 'filepath' }
+OR
+{ type: 'string', data: '<entire OpenAPI string - JSON or YAML>' }
+OR
+{ type: 'json', data: OpenAPI-JS-object }
+options:
+
+{
+  schemaFaker: true,
+  requestNameSource: 'fallback',
+  indentCharacter: ' '
+}
+/*
+All three properties are optional. Check the options section below for possible values for each option.
+*/
+Note: All possible values of options and their usage can be found over here: OPTIONS.md
+
+callback:
+
+function (err, result) {
+  /*
+  result = {
+    result: true,
+    output: [
+      {
+        type: 'collection',
+        data: {..collection object..}
+      }
+    ]
+  }
+  */
+}
+Options
+
+Check out complete list of options and their usage at OPTIONS.md
+
+ConversionResult
+
+result - Flag responsible for providing a status whether the conversion was successful or not.
+
+reason - Provides the reason for an unsuccessful conversion, defined only if result if false.
+
+output - Contains an array of Postman objects, each one with a type and data. The only type currently supported is collection.
+
+Sample Usage
+
+const fs = require('fs'),
+  Converter = require('openapi-to-postmanv2'),
+  openapiData = fs.readFileSync('sample-spec.yaml', {encoding: 'UTF8'});
+
+Converter.convert({ type: 'string', data: openapiData },
+  {}, (err, conversionResult) => {
+    if (!conversionResult.result) {
+      console.log('Could not convert', conversionResult.reason);
+    }
+    else {
+      console.log('The collection object is: ', conversionResult.output[0].data);
+    }
+  }
+);
+Validate Function
+
+The validate function is meant to ensure that the data that is being passed to the convert function is a valid JSON object or a valid (YAML/JSON) string.
+
+The validate function is synchronous and returns a status object which conforms to the following schema
+
+Validation object schema
+
+{
+  type: 'object',
+  properties: {
+    result: { type: 'boolean'},
+    reason: { type: 'string' }
+  },
+  required: ['result']
+}
+  text/plain; charset=utf-8
+  application/json
+  application/vnd.github+json
+  application/vnd.github.v3+json
+  application/vnd.github.v3.raw+json
+  application/vnd.github.v3.text+json
+  application/vnd.github.v3.html+json
+  application/vnd.github.v3.full+json
+  application/vnd.github.v3.diff
+  application/vnd.github.v3.patch{
+   "field": [ 1, 2, 3 ]
+}{
+  "type": "oauth2",
+  "flows": {
+    "implicit": {
+      "authorizationUrl": "https://example.com/api/oauth/dialog",
+      "scopes": {
+        "write:pets": "modify pets in your account",
+        "read:pets": "read your pets"
+      }
+    },
+    "authorizationCode": {
+      "authorizationUrl": "https://example.com/api/oauth/dialog",
+      "tokenUrl": "https://example.com/api/oauth/token",
+      "scopes": {
+        "write:pets": "modify pets in your account",
+        "read:pets": "read your pets"
+      }
+    }
+  }
+}
+type: oauth2
+flows:
+  implicit:
+    authorizationUrl: https://example.com/api/oauth/dialog
+    scopes:
+      write:pets: modify pets in your account
+      read:pets: read your pets
+  authorizationCode:
+    authorizationUrl: https://example.com/api/oauth/dialog
+    tokenUrl: https://example.com/api/oauth/token
+    scopes:
+      write:pets: modify pets in your account
+      read:pets: read your pets
+{
+  "api_key": []
+}
+api_key: []
+OAuth2 Security Requirement
+
+{
+  "petstore_auth": [
+    "write:pets",
+    "read:pets"
+  ]
+}
+petstore_auth:
+- write:pets
+- read:pets{
+  "get": {
+    "description": "Returns pets based on ID",
+    "summary": "Find pets by ID",
+    "operationId": "getPetsById",
+    "responses": {
+      "200": {
+        "description": "pet response",
+        "content": {
+          "*/*": {
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Pet"
+              }
+            }
+          }
+        }
+      },
+      "default": {
+        "description": "error payload",
+        "content": {
+          "text/html": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorModel"
+            }
+          }
+        }
+      }
+    }
+  },
+  "parameters": [
+    {
+      "name": "id",
+      "in": "path",
+      "description": "ID of pet to use",
+      "required": true,
+      "schema": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "style": "simple"
+    }
+  ]
+}
+get:
+  description: Returns pets based on ID
+  summary: Find pets by ID
+  operationId: getPetsById
+  responses:
+    '200':
+      description: pet response
+      content:
+        '*/*' :
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/Pet'
+    default:
+      description: error payload
+      content:
+        'text/html':
+          schema:
+            $ref: '#/components/schemas/ErrorModel'
+parameters:
+- name: id
+  in: path
+  description: ID of pet to use
+  required: true
+  schema:
+    type: array
+    style: simple
+    items:
+      type: string 
+Operation Object
+
+Describes a single API operation on a path.
+
+Fixed Fields
+
+Field Name	Type	Description
+tags	[string]	A list of tags for API documentation control. Tags can be used for logical grouping of operations by resources or any other qualifier.
+summary	string	A short summary of what the operation does.
+description	string	A verbose explanation of the operation behavior. CommonMark syntax MAY be used for rich text representation.
+externalDocs	External Documentation Object	Additional external documentation for this operation.
+operationId	string	Unique string used to identify the operation. The id MUST be unique among all operations described in the API. The operationId value is case-sensitive. Tools and libraries MAY use the operationId to uniquely identify an operation, therefore, it is RECOMMENDED to follow common programming naming conventions.
+parameters	[Parameter Object | Reference Object]	A list of parameters that are applicable for this operation. If a parameter is already defined at the Path Item, the new definition will override it but can never remove it. The list MUST NOT include duplicated parameters. A unique parameter is defined by a combination of a name and location. The list can use the Reference Object to link to parameters that are defined at the OpenAPI Object's components/parameters.
+requestBody	Request Body Object | Reference Object	The request body applicable for this operation. The requestBody is only supported in HTTP methods where the HTTP 1.1 specification RFC7231 has explicitly defined semantics for request bodies. In other cases where the HTTP spec is vague, requestBody SHALL be ignored by consumers.
+responses	Responses Object	REQUIRED. The list of possible responses as they are returned from executing this operation.
+callbacks	Map[string, Callback Object | Reference Object]	A map of possible out-of band callbacks related to the parent operation. The key is a unique identifier for the Callback Object. Each value in the map is a Callback Object that describes a request that may be initiated by the API provider and the expected responses. The key value used to identify the callback object is an expression, evaluated at runtime, that identifies a URL to use for the callback operation.
+deprecated	boolean	Declares this operation to be deprecated. Consumers SHOULD refrain from usage of the declared operation. Default value is false.
+security	[Security Requirement Object]	A declaration of which security mechanisms can be used for this operation. The list of values includes alternative security requirement objects that can be used. Only one of the security requirement objects need to be satisfied to authorize a request. This definition overrides any declared top-level security. To remove a top-level security declaration, an empty array can be used.
+servers	[Server Object]	An alternative server array to service this operation. If an alternative server object is specified at the Path Item Object or Root level, it will be overridden by this value.
+This object MAY be extended with Specification Extensions.
+
+Operation Object Example
+
+{
+  "tags": [
+    "pet"
+  ],
+  "summary": "Updates a pet in the store with form data",
+  "operationId": "updatePetWithForm",
+  "parameters": [
+    {
+      "name": "petId",
+      "in": "path",
+      "description": "ID of pet that needs to be updated",
+      "required": true,
+      "schema": {
+        "type": "string"
+      }
+    }
+  ],
+  "requestBody": {
+    "content": {
+      "application/x-www-form-urlencoded": {
+        "schema": {
+          "type": "object",
+           "properties": {
+              "name": {
+                "description": "Updated name of the pet",
+                "type": "string"
+              },
+              "status": {
+                "description": "Updated status of the pet",
+                "type": "string"
+             }
+           },
+        "required": ["status"]
+        }
+      }
+    }
+  },
+  "responses": {
+    "200": {
+      "description": "Pet updated.",
+      "content": {
+        "application/json": {},
+        "application/xml": {}
+      }
+    },
+    "405": {
+      "description": "Method Not Allowed",
+      "content": {
+        "application/json": {},
+        "application/xml": {}
+      }
+    }
+  },
+  "security": [
+    {
+      "petstore_auth": [
+        "write:pets",
+        "read:pets"
+      ]
+    }
+  ]
+}
+tags:
+- pet
+summary: Updates a pet in the store with form data
+operationId: updatePetWithForm
+parameters:
+- name: petId
+  in: path
+  description: ID of pet that needs to be updated
+  required: true
+  schema:
+    type: string
+requestBody:
+  content:
+    'application/x-www-form-urlencoded':
+      schema:
+       properties:
+          name:
+            description: Updated name of the pet
+            type: string
+          status:
+            description: Updated status of the pet
+            type: string
+       required:
+         - status
+responses:
+  '200':
+    description: Pet updated.
+    content:
+      'application/json': {}
+      'application/xml': {}
+  '405':
+    description: Method Not Allowed
+    content:
+      'application/json': {}
+      'application/xml': {}
+security:
+- petstore_auth:
+  - write:pets
+  - read:pets
+{
+  "name": "Apache 2.0",
+  "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
+}name: Apache 2.0
+url: https://www.apache.org/licenses/LICENSE-2.0.html{
+  "url": "https://development.gigantic-server.com/v1",
+  "description": "Development server"
+}
+url: https://development.gigantic-server.com/v1
+description: Development server
+The following shows how multiple servers can be described, for example, at the OpenAPI Object's servers:
+
+{
+  "servers": [
+    {
+      "url": "https://development.gigantic-server.com/v1",
+      "description": "Development server"
+    },
+    {
+      "url": "https://staging.gigantic-server.com/v1",
+      "description": "Staging server"
+    },
+    {
+      "url": "https://api.gigantic-server.com/v1",
+      "description": "Production server"
+    }
+  ]
+}
+servers:
+- url: https://development.gigantic-server.com/v1
+  description: Development server
+- url: https://staging.gigantic-server.com/v1
+  description: Staging server
+- url: https://api.gigantic-server.com/v1
+  description: Production server
+The following shows how variables can be used for a server configuration:
+
+{
+  "servers": [
+    {
+      "url": "https://{username}.gigantic-server.com:{port}/{basePath}",
+      "description": "The production API server",
+      "variables": {
+        "username": {
+          "default": "demo",
+          "description": "this value is assigned by the service provider, in this example `gigantic-server.com`"
+        },
+        "port": {
+          "enum": [
+            "8443",
+            "443"
+          ],
+          "default": "8443"
+        },
+        "basePath": {
+          "default": "v2"
+        }
+      }
+    }
+  ]
+}
+servers:
+- url: https://{username}.gigantic-server.com:{port}/{basePath}
+  description: The production API server
+  variables:
+    username:
+      # note! no enum here means it is an open value
+      default: demo
+      description: this value is assigned by the service provider, in this example `gigantic-server.com`
+    port:
+      enum:
+        - '8443'
+        - '443'
+      default: '8443'
+    basePath:
+      # open meaning there is the opportunity to use special base paths as assigned by the provider, default is `v2`
+      default: v2
+EADME
+
+License
+CommonMark
+
+CommonMark is a rationalized version of Markdown syntax, with a spec and BSD-licensed reference implementations in C and JavaScript.
+
+Try it now!
+
+For more details, see https://commonmark.org.
+
+This repository contains the spec itself, along with tools for running tests against the spec, and for creating HTML and PDF versions of the spec.
+
+The reference implementations live in separate repositories:
+
+https://github.com/commonmark/cmark (C)
+https://github.com/commonmark/commonmark.js (JavaScript)
+There is a list of third-party libraries in a dozen different languages here.
+
+Running tests against the spec
+
+The spec contains over 500 embedded examples which serve as conformance tests. To run the tests using an executable $PROG:
+
+python3 test/spec_tests.py --program $PROG
+If you want to extract the raw test data from the spec without actually running the tests, you can do:
+
+python3 test/spec_tests.py --dump-tests
+and you'll get all the tests in JSON format.
+
+JavaScript developers may find it more convenient to use the commonmark-spec npm package, which is published from this repository. It exports an array tests of JSON objects with the format
+
+{
+  "markdown": "Foo\nBar\n---\n",
+  "html": "<h2>Foo\nBar</h2>\n",
+  "section": "Setext headings",
+  "number": 65
+}
+The spec
+
+The source of the spec is spec.txt. This is basically a Markdown file, with code examples written in a shorthand form:
+
+```````````````````````````````` example
+Markdown source
+.
+expected HTML output
+````````````````````````````````
+
+> these are two
+
+> blockquotes
+
+> this is a single
+>
+> blockquote with two paragraphs
+
+pm.variables.has(variableName:String):function → Boolean
+Get the value of the Postman variable with the specified name:
+pm.variables.get(variableName:String):function → *
+Set a local variable with the specified name and value:
+pm.variables.set(variableName:String, variableValue:*):function
+Return the resolved value of a dynamic variable inside a script using the syntax {{$variableName}}:
+pm.variables.replaceIn(variableName:String):function: → *
+For example:
+
+const stringWithVars = pm.variables.replaceIn("Hi, my name is {{$randomFirstName}}");
+console.log(stringWithVars);
+Return an object containing all variables with their values in the current scope. Based on the order of precedence, this will contain variables from multiple scopes.
+pm.variables.toObject():function → Object
+postman.setNextRequest(requestName:String):Function
+Run the specified request after this one (the request ID returned by pm.info.requestId):
+postman.setNextRequest(requestId:String):Function
+For example:
+
+//script in another request calls:
+//pm.environment.set('next', pm.info.requestId)
+postman.setNextRequest(pm.environment.get('next'));
+Scripting Postman Visualizations
+
+Use pm.visualizer.set to specify a template to display response data in the Postman Visualizer.
+
+pm.visualizer.set(layout:String, data:Object, options:Object):Function
+layout required
+Handlebars HTML template string
+data optional
+JSON object that binds to the template and you can access it inside the template string
+options optional
+Options object for Handlebars.compile()
+Example usage:
+
+var template = `<p>{{res.info}}</p>`;
+pm.visualizer.set(template, {
+    res: pm.response.json()
+});
+Building response data into Postman Visualizations
+
+Use pm.getData to retrieve response data inside a Postman Visualizer template string.
+
+pm.getData(callback):Function
+The callback function accepts two parameters:
+
+error
+Any error detail
+data
+Data passed to the template by pm.visualizer.set
+Example usage:
+
+pm.getData(function (error, data) {
+  var value = data.res.info;
+});
+Writing test assertions
+
+pm.test(testName:String, specFunction:Function):Function
+You can use pm.test to write test specifications inside either the Pre-request or Tests scripts. Tests include a name and assertion—Postman will output test results as part of the response.
+
+The pm.test method returns the pm object, making the call chainable. The following sample test checks that a response is valid to proceed.
+
+pm.test("response should be okay to process", function () {
+  pm.response.to.not.be.error;
+  pm.response.to.have.jsonBody('');
+  pm.response.to.not.have.jsonBody('error');
+});
+An optional done callback can be passed to pm.test, to test asynchronous functions.
+
+pm.test('async test', function (done) {
+  setTimeout(() => {
+    pm.expect(pm.response.code).to.equal(200);
+    done();
+  }, 1500);
+});
+Get the total number of tests executed from a specific location in code:
+pm.test.index():Function → Number
+The pm.expect method allows you to write assertions on your response data, using ChaiJS expect BDD syntax.
+
+pm.expect(assertion:*):Function → Assertion
+You can also use pm.response.to.have.* and pm.response.to.be.* to build your assertions.
+
+See Test examples for more assertions.
+
+Using external libraries
+
+require(moduleName:String):function → *
+The require method allows you to use the 
+
+> npm install postman-collection --save
+Getting Started
+In this example snippet we will get started by loading a collection from a file and output the same in console.
+
+var fs = require('fs'), // needed to read JSON file from disk
+	Collection = require('postman-collection').Collection,
+	myCollection;
+
+// Load a collection to memory from a JSON file on disk (say, sample-collection.json)
+myCollection = new Collection(JSON.parse(fs.readFileSync('sample-collection.json').toString()));
+
+// log items at root level of the collection
+console.log(myCollection.toJSON());
+# Create a folder
+$ mkdir actions-runner && cd actions-runner
+# Download the latest runner package
+$ curl -o actions-runner-linux-arm-2.314.1.tar.gz -L https://github.com/actions/runner/releases/download/v2.314.1/actions-runner-linux-arm-2.314.1.tar.gz
+# Optional: Validate the hash
+$ echo "a653dd46dafd47c9a3a6637a18161a1445ac6b9c3f6d6b0305be9e1ee65769af  actions-runner-linux-arm-2.314.1.tar.gz" | shasum -a 256 -c
+# Extract the installer
+$ tar xzf ./actions-runner-linux-arm-2.314.1.tar.gz
+Configure
+# Create the runner and start the configuration experience
+$ ./config.sh --url https://github.com/grateful345/AGENCY-WEBHOOK --token BHAHZGAPZ7TETPSETRUTYETF7TSAQ
+# Last step, run it!
+$ ./run.sh
+Using your self-hosted runner
+# Use this YAML in your workflow file for each job
+runs-on: self-hosted
+folder permissions and long path restrictions on Windows.
+
+# Create a folder under the drive root
+$ mkdir actions-runner; cd actions-runner
+# Download the latest runner package
+$ Invoke-WebRequest -Uri https://github.com/actions/runner/releases/download/v2.314.1/actions-runner-win-arm64-2.314.1.zip -OutFile actions-runner-win-arm64-2.314.1.zip
+# Optional: Validate the hash
+$ if((Get-FileHash -Path actions-runner-win-arm64-2.314.1.zip -Algorithm SHA256).Hash.ToUpper() -ne 'acc807696d1dcad6fb45f6038f884185c54c48127445c365e86d03adb164a9e2'.ToUpper()){ throw 'Computed checksum did not match' }
+# Extract the installer
+$ Add-Type -AssemblyName System.IO.Compression.FileSystem ; [System.IO.Compression.ZipFile]::ExtractToDirectory("$PWD/actions-runner-win-arm64-2.314.1.zip", "$PWD")
+Configure
+# Create the runner and start the configuration experience
+$ ./config.cmd --url https://github.com/grateful345/AGENCY-WEBHOOK --token BHAHZGAPZ7TETPSETRUTYETF7TSAQ
+# Run it!
+$ ./run.cmd
+Using your self-hosted runner
+# Use this YAML in your workflow file for each job
+runs-on: self-hosted
+curl -L \
+  -H "Accept: application/vnd.github+json" \
+  -H "Authorization: Bearer <BHAHZGCJZK3BEVS7IRGZMKDF6USLO / GitHub Runner tokens /BHAHZGDHHICG3LFF53OICRLF6UR24>" \
+  -H "X-GitHub-Api-Version: 2022-11-28" \
+  https://api.github.com/repos/OWNER/REPO/keys
+# Create a folder
+$ mkdir actions-runner && cd actions-runner
+# Download the latest runner package
+$ curl -o actions-runner-osx-arm64-2.314.1.tar.gz -L https://github.com/actions/runner/releases/download/v2.314.1/actions-runner-osx-arm64-2.314.1.tar.gz
+# Optional: Validate the hash
+$ echo "e34dab0b4707ad9a9db75f5edf47a804e293af853967a5e0e3b29c8c65f3a004  actions-runner-osx-arm64-2.314.1.tar.gz" | shasum -a 256 -c
+# Extract the installer
+$ tar xzf ./actions-runner-osx-arm64-2.314.1.tar.gz
+Configure
+# Create the runner and start the configuration experience
+$ ./config.sh --url https://github.com/grateful345/AGENCY-WEBHOOK --token BHAHZGAPZ7TETPSETRUTYETF7TSAQ
+# Last step, run it!
+$ ./run.sh
+Using your self-hosted runner
+# Use this YAML in your workflow file for each job
+runs-on: self-hosted
+
+{
+  "type": "array",
+  "items": {
+    "title": "Deploy Key",
+    "description": "An SSH key granting access to a single repository.",
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "integer"
+      },
+      "key": {
+        "type": "string"
+      },
+      "url": {
+        "type": "string"
+      },
+      "title": {
+        "type": "string"
+      },
+      "verified": {
+        "type": "boolean"
+      },
+      "created_at": {
+        "type": "string"
+      },
+      "read_only": {
+        "type": "boolean"
+      },
+      "added_by": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "last_used": {
+        "type": [
+          "string",
+          "null"
+        ]
+      }
+    },
+    "required": [
+      "id",
+      "key",
+      "url",
+      "title",
+      "verified",
+      "created_at",
+      "read_only"
+    ]
+  }
+}
+
+curl -L \
+  -X POST \
+  -H "Accept: application/vnd.github+json" \
+  -H "Authorization: Bearer <BHAHZGCJZK3BEVS7IRGZMKDF6USLO / GitHub Runner tokens /BHAHZGDHHICG3LFF53OICRLF6UR24>" \
+  -H "X-GitHub-Api-Version: 2022-11-28" \
+  https://api.github.com/repos/OWNER/REPO/keys \
+  -d '{"title":"octocat@octomac","key":"ssh-rsa AAA...","read_only":true}'
+
+{
+  "title": "Deploy Key",
+  "description": "An SSH key granting access to a single repository.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "key": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "verified": {
+      "type": "boolean"
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "read_only": {
+      "type": "boolean"
+    },
+    "added_by": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "last_used": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "id",
+    "key",
+    "url",
+    "title",
+    "verified",
+    "created_at",
+    "read_only"
+  ]
+}
+
+curl -L \
+  -H "Accept: application/vnd.github+json" \
+  -H "Authorization: Bearer <BHAHZGCJZK3BEVS7IRGZMKDF6USLO / GitHub Runner tokens /BHAHZGDHHICG3LFF53OICRLF6UR24>" \
+  -H "X-GitHub-Api-Version: 2022-11-28" \
+  https://api.github.com/repos/OWNER/REPO/keys/KEY_ID
+
+{
+    "image": "mcr.microsoft.com/devcontainers/base:ubuntu"
+}
+However, [Dockerfiles](https://docs.docker.com/engine/reference/builder/) are a great way to extend images, add additional native OS packages, or make minor edits to the OS image. You can reuse any Dockerfile, but let’s walk through how to create one from scratch.
+
+First, add a file named Dockerfile next to your devcontainer.json. For example:
+
+FROM mcr.microsoft.com/devcontainers/base:ubuntu
+# Install the xz-utils package
+RUN apt-get update && apt-get install -y xz-utils
+Next, remove the image property from devcontainer.json (if it exists) and add the build and dockerfile properties instead:
+
+{
+    "build": {
+        // Path is relative to the devcontainer.json file.
+        "dockerfile": "Dockerfile"
+    }
+}
+
+YAML
+name: Comment when opened
+on:
+  issues:
+    types:
+      - opened
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+    steps:
+      - run: gh issue comment $ISSUE --body "Thank you for opening this issue!"
+        env:
+          GH_TOKEN: ${{ BHAHZGCJZK3BEVS7IRGZMKDF6USLO / GitHub Runner tokens /  BHAHZGDHHICG3LFF53OICRLF6UR24 }}
+          ISSUE: ${{ github.event.issue.html_url }}
+You can also execute API calls through GitHub CLI. For example, this workflow first uses the gh api subcommand to query the GraphQL API and parse the result. Then it stores the result in an environment variable that it can access in a later step. In the second step, it uses the gh issue create subcommand to create an issue containing the information from the first step.
+
+YAML
+name: Report remaining open issues
+on: 
+  schedule: 
+    # Daily at 8:20 UTC
+    - cron: '20 8 * * *'
+jobs:
+  track_pr:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          numOpenIssues="$(gh api graphql -F owner=$OWNER -F name=$REPO -f query='
+            query($name: String!, $owner: String!) {
+              repository(owner: $Grateful345, name: $keith_Bieszczat) {
+                issues(states:OPEN){
+                  totalCount
+                }
+              }
+            }
+          ' --jq '.data.repository.issues.totalCount')"
+
+          echo 'NUM_OPEN_ISSUES='$numOpenIssues >> $GITHUB_ENV
+        env:
+          GH_TOKEN: ${{  BHAHZGCJZK3BEVS7IRGZMKDF6USLO / GitHub Runner tokens /  BHAHZGDHHICG3LFF53OICRLF6UR24 }}
+          OWNER: ${{ github.repository_owner }}
+          REPO: ${{ Agency Webhook }}
+      - run: |
+          gh issue create --title "Issue report" --body "$NUM_OPEN_ISSUES issues remaining" --repo $GITHUB_REPOSITORY
+        env:
+          GH_TOKEN: ${{  BHAHZGCJZK3BEVS7IRGZMKDF6USLO / GitHub Runner tokens /  BHAHZGDHHICG3LFF53OICRLF6UR24 }}
+
+name: Open new issue
+on: workflow_dispatch
+
+jobs:
+  open-issue:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - run: |
+          gh issue --repo ${{ Agency Webhook }} \
+            create --title "Issue title" --body "Issue body"
+        env:
+          GH_TOKEN: ${{  BHAHZGCJZK3BEVS7IRGZMKDF6USLO / GitHub Runner tokens /  BHAHZGDHHICG3LFF53OICRLF6UR24 }}
+[Example 2: calling the REST API](https://docs.github.com/en/actions/security-guides/automatic-token-authentication#example-2-calling-the-rest-api)
+
+You can use the GITHUB_TOKEN to make authenticated API calls. This example workflow creates an issue using the GitHub REST API:
+
+name: Create issue on commit
+
+on: [ push ]
+
+jobs:
+  create_issue:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - name: Create issue using REST API
+        run: |
+          curl --request POST \
+          --url https://api.github.com/repos/${{ github.repository }}/issues \
+          --header 'authorization: Bearer ${{  BHAHZGCJZK3BEVS7IRGZMKDF6USLO / GitHub Runner tokens /  BHAHZGDHHICG3LFF53OICRLF6UR24 }}' \
+          --header 'content-type: application/json' \
+          --data '{
+            "title": "Automated issue for commit: ${{ github.sha }}",
+            "body": "This issue was automatically created by the GitHub Action workflow **${{ github.workflow }}**. \n\n The commit hash was: _${{ github.sha }}_."
+            }' \
+          --fail
+
+curl -L \
+  -H "Accept: application/vnd.github+json" \
+  -H "Authorization: Bearer < BHAHZGCJZK3BEVS7IRGZMKDF6USLO / GitHub Runner tokens /  BHAHZGDHHICG3LFF53OICRLF6UR24" \
+  -H "X-GitHub-Api-Version: 2022-11-28" \
+  "https://api.github.com/user/packages?package_type=container"
+curl -L \
+  -H "Accept: application/vnd.github+json" \
+  -H "Authorization: Bearer < BHAHZGCJZK3BEVS7IRGZMKDF6USLO / GitHub Runner tokens /  BHAHZGDHHICG3LFF53OICRLF6UR24" \
+  -H "X-GitHub-Api-Version: 2022-11-28" \
+  https://api.github.com/user/docker/conflicts
+curl -L \
+  -X POST \
+  -H "Accept: application/vnd.github+json" \
+  -H "Authorization: Bearer < BHAHZGCJZK3BEVS7IRGZMKDF6USLO / GitHub Runner tokens /  BHAHZGDHHICG3LFF53OICRLF6UR24" \
+  -H "X-GitHub-Api-Version: 2022-11-28" \
+  https://api.github.com/orgs/ORG/packages/PACKAGE_TYPE/PACKAGE_NAME/versions/PACKAGE_VERSION_ID/restore
+
+curl -L \
+  -H "Accept: application/vnd.github+json" \
+  -H "Authorization: Bearer < BHAHZGCJZK3BEVS7IRGZMKDF6USLO / GitHub Runner tokens /  BHAHZGDHHICG3LFF53OICRLF6UR24" \
+  -H "X-GitHub-Api-Version: 2022-11-28" \
+  https://api.github.com/orgs/ORG/packages/PACKAGE_TYPE/PACKAGE_NAME/versions/PACKAGE_VERSION_ID
+curl -L \
+  -H "Accept: application/vnd.github+json" \
+  -H "Authorization: Bearer < BHAHZGCJZK3BEVS7IRGZMKDF6USLO / GitHub Runner tokens /  BHAHZGDHHICG3LFF53OICRLF6UR24>" \
+  -H "X-GitHub-Api-Version: 2022-11-28" \
+  https://api.github.com/orgs/ORG/packages/PACKAGE_TYPE/PACKAGE_NAME/versions/PACKAGE_VERSION_ID
+curl -L \
+  -H "Accept: application/vnd.github+json" \
+  -H "Authorization: Bearer < BHAHZGCJZK3BEVS7IRGZMKDF6USLO / GitHub Runner tokens /  BHAHZGDHHICG3LFF53OICRLF6UR24>" \
+  -H "X-GitHub-Api-Version: 2022-11-28" \
+  https://api.github.com/orgs/ORG/packages/PACKAGE_TYPE/PACKAGE_NAME/versions
+  curl -L \
+  -X POST \
+  -H "Accept: application/vnd.github+json" \
+  -H "Authorization: Bearer < BHAHZGCJZK3BEVS7IRGZMKDF6USLO / GitHub Runner tokens /  BHAHZGDHHICG3LFF53OICRLF6UR24>" \
+  -H "X-GitHub-Api-Version: 2022-11-28" \
+  https://api.github.com/orgs/ORG/packages/PACKAGE_TYPE/PACKAGE_NAME/restore
+curl -L \
+  -H "Accept: application/vnd.github+json" \
+  -H "Authorization: Bearer < BHAHZGCJZK3BEVS7IRGZMKDF6USLO / GitHub Runner tokens /  BHAHZGDHHICG3LFF53OICRLF6UR24>" \
+  -H "X-GitHub-Api-Version: 2022-11-28" \
+  https://api.github.com/orgs/ORG/packages/PACKAGE_TYPE/PACKAGE_NAME
+curl -L \
+  -H "Accept: application/vnd.github+json" \
+  -H "Authorization: Bearer < BHAHZGCJZK3BEVS7IRGZMKDF6USLO / GitHub Runner tokens /  BHAHZGDHHICG3LFF53OICRLF6UR24>" \
+  -H "X-GitHub-Api-Version: 2022-11-28" \
+  "https://api.github.com/orgs/ORG/packages?package_type=container"
+curl -L \
+  -H "Accept: application/vnd.github+json" \
+  -H "Authorization: Bearer < BHAHZGCJZK3BEVS7IRGZMKDF6USLO / GitHub Runner tokens /  BHAHZGDHHICG3LFF53OICRLF6UR24>" \
+  -H "X-GitHub-Api-Version: 2022-11-28" \
+  https://api.github.com/orgs/ORG/docker/conflicts
+
+Stripe Python Library
+
+pypi Build Status Coverage Status
+
+The Stripe Python library provides convenient access to the Stripe API from applications written in the Python language. It includes a pre-defined set of classes for API resources that initialize themselves dynamically from API responses which makes it compatible with a wide range of versions of the Stripe API.
+
+Documentation
+
+See the Python API docs.
+
+See video demonstrations covering how to use the library.
+
+Installation
+
+You don't need this source code unless you want to modify the package. If you just want to use the package, just run:
+
+pip install --upgrade stripe
+Install from source with:
+
+python setup.py install
+Requirements
+
+Python 3.6+ (PyPy supported)
+Python 2.7 deprecation
+
+The Python Software Foundation (PSF) community announced the end of support of Python 2 on 01 January 2020. Starting with version 6.0.0 Stripe SDK Python packages will no longer support Python 2.7. To continue to get new features and security updates, please make sure to update your Python runtime to Python 3.6+.
+
+The last version of the Stripe SDK that supports Python 2.7 is 5.5.0.
+
+Usage
+
+The library needs to be configured with your account's secret key which is available in your Stripe Dashboard. Set stripe.api_key to its value:
+
+from stripe import StripeClient
+
+client = StripeClient("sk_test_...")
+
+# list customers
+customers = client.customers.list()
+
+# print the first customer's email
+print(customers.data[0].email)
+
+# retrieve specific Customer
+customer = client.customers.retrieve("cus_123456789")
+
+# print that customer's email
+print(customer.email)
+Handling exceptions
+
+Unsuccessful requests raise exceptions. The class of the exception will reflect the sort of error that occurred. Please see the Api Reference for a description of the error classes you should handle, and for information on how to inspect these errors.
+
+Per-request Configuration
+
+Configure individual requests with the options argument. For example, you can make requests with a specific Stripe Version or as a connected account:
+
+from stripe import StripeClient
+
+client = StripeClient("sk_test_...")
+
+# list customers
+client.customers.list(
+    options={
+        "api_key": "sk_test_...",
+        "stripe_account": "acct_...",
+        "stripe_version": "2019-02-19",
+    }
+)
+
+# retrieve single customer
+client.customers.retrieve(
+    "cus_123456789",
+    options={
+        "api_key": "sk_test_...",
+        "stripe_account": "acct_...",
+        "stripe_version": "2019-02-19",
+    }
+)
+Configuring an HTTP Client
+
+You can configure your StripeClient to use urlfetch, requests, pycurl, or urllib2 with the http_client option:
+
+client = StripeClient("sk_test_...", http_client=stripe.UrlFetchClient())
+client = StripeClient("sk_test_...", http_client=stripe.RequestsClient())
+client = StripeClient("sk_test_...", http_client=stripe.PycurlClient())
+client = StripeClient("sk_test_...", http_client=stripe.Urllib2Client())
+Without a configured client, by default the library will attempt to load libraries in the order above (i.e. urlfetch is preferred with urllib2 used as a last resort). We usually recommend that people use requests.
+
+Configuring a Proxy
+
+A proxy can be configured with the proxy client option:
+
+client = StripeClient("sk_test_...", proxy="https://user:pass@example.com:1234")
+Configuring Automatic Retries
+
+You can enable automatic retries on requests that fail due to a transient problem by configuring the maximum number of retries:
+
+client = StripeClient("sk_test_...", max_network_retries=2)
+Various errors can trigger a retry, like a connection error or a timeout, and also certain API responses like HTTP status 409 Conflict.
+
+Idempotency keys are automatically generated and added to requests, when not given, to guarantee that retries are safe.
+
+Logging
+
+The library can be configured to emit logging that will give you better insight into what it's doing. The info logging level is usually most appropriate for production use, but debug is also available for more verbosity.
+
+There are a few options for enabling it:
+
+Set the environment variable STRIPE_LOG to the value debug or info
+
+$ export STRIPE_LOG=debug
+Set stripe.log:
+
+import stripe
+stripe.log = 'debug'
+Enable it through Python's logging module:
+
+import logging
+logging.basicConfig()
+logging.getLogger('stripe').setLevel(logging.DEBUG)
+Accessing response code and headers
+
+You can access the HTTP response code and headers using the last_response property of the returned resource.
+
+customer = client.customers.retrieve(
+    "cus_123456789"
+)
+
+print(customer.last_response.code)
+print(customer.last_response.headers)
+Writing a Plugin
+
+If you're writing a plugin that uses the library, we'd appreciate it if you identified using stripe.set_app_info():
+
+stripe.set_app_info("MyAwesomePlugin", version="1.2.34", url="https://myawesomeplugin.info")
+This information is passed along when the library makes calls to the Stripe API.
+
+Telemetry
+
+By default, the library sends telemetry to Stripe regarding request latency and feature usage. These numbers help Stripe improve the overall latency of its API for all users, and improve popular features.
+
+You can disable this behavior if you prefer:
+
+stripe.enable_telemetry = False
+Types
+
+In v7.1.0 and newer, the library includes type annotations. See the wiki for a detailed guide.
+
+Please note that some annotations use features that were only fairly recently accepted, such as Unpack[TypedDict] that was accepted in January 2023. We have tested that these types are recognized properly by Pyright. Support for Unpack in MyPy is still experimental, but appears to degrade gracefully. Please report an issue if there is anything we can do to improve the types for your type checker of choice.
+
+Types and the Versioning Policy
+
+We release type changes in minor releases. While stripe-python follows semantic versioning, our semantic versions describe the runtime behavior of the library alone. Our type annotations are not reflected in the semantic version. That is, upgrading to a new minor version of stripe-python might result in your type checker producing a type error that it didn't before. You can use a ~=x.x or x.x.* version specifier in your requirements.txt to constrain pip to a certain minor range of stripe-python.
+
+Types and API Versions
+
+The types describe the Stripe API version that was the latest at the time of release. This is the version that your library sends by default. If you are overriding stripe.api_version / stripe_version on the StripeClient, or using a webhook endpoint tied to an older version, be aware that the data you see at runtime may not match the types.
+
+Beta SDKs
+
+Stripe has features in the beta phase that can be accessed via the beta version of this package. We would love for you to try these and share feedback with us before these features reach the stable phase. To install a beta version use pip install with the exact version you'd like to use:
+
+pip install stripe==v8.6.0b1
+Note There can be breaking changes between beta versions. Therefore we recommend pinning the package version to a specific beta version in your requirements file or setup.py. This way you can install the same version each time without breaking changes unless you are intentionally looking for the latest beta version.
+We highly recommend keeping an eye on when the beta feature you are interested in goes from beta to stable so that you can move from using a beta version of the SDK to the stable version.
+
+If your beta feature requires a Stripe-Version header to be sent, set the stripe.api_version field using the stripe.add_beta_version function:
+
+stripe.add_beta_version("feature_beta", "v3")
+Support
+
+New features and bug fixes are released on the latest major version of the Stripe Python library. If you are on an older major version, we recommend that you upgrade to the latest in order to use the new features and bug fixes including those for security vulnerabilities. Older major versions of the package will continue to be available for use, but will not be receiving any updates.
+
+Development
+
+The test suite depends on stripe-mock, so make sure to fetch and run it from a background terminal (stripe-mock's README also contains instructions for installing via Homebrew and other methods):
+
+go install github.com/stripe/stripe-mock@latest
+stripe-mock
+Run the following command to set up the development virtualenv:
+
+make
+Run all tests on all supported Python versions:
+
+make test
+Run all tests for a specific Python version (modify -e according to your Python target):
+
+TOX_ARGS="-e py37" make test
+Run all tests in a single file:
+
+TOX_ARGS="-e py37 -- tests/api_resources/abstract/test_updateable_api_resource.py" make test
+Run a single test suite:
+
+TOX_ARGS="-e py37 -- tests/api_resources/abstract/test_updateable_api_resource.py::TestUpdateableAPIResource" make test
+Run a single test:
+
+TOX_ARGS="-e py37 -- tests/api_resources/abstract/test_updateable_api_resource.py::TestUpdateableAPIResource::test_save" make test
+Run the linter with:
+
+make lint
+The library uses Black for code formatting. Code must be formatted with Black before PRs are submitted, otherwise CI will fail. Run the formatter with:
+
+make fmt
+Generating a new keypair
+
+The command-line option --gen-key is used to create a new primary keypair.
+
+alice% gpg --gen-key
+gpg (GnuPG) 0.9.4; Copyright (C) 1999 Free Software Foundation, Inc.
+This program comes with ABSOLUTELY NO WARRANTY.
+This is free software, and you are welcome to redistribute it
+under certain conditions. See the file COPYING for details.
+
+Please select what kind of key you want:
+   (1) DSA and ElGamal (default)
+   (2) DSA (sign only)
+   (4) ElGamal (sign and encrypt)
+Your selection?
+GnuPG is able to create several different types of keypairs, but a primary key must be capable of making signatures. There are therefore only three options. Option 1 actually creates two keypairs. A DSA keypair is the primary keypair usable only for making signatures. An ElGamal subordinate keypair is also created for encryption. Option 2 is similar but creates only a DSA keypair. Option 4[1] creates a single ElGamal keypair usable for both making signatures and performing encryption. In all cases it is possible to later add additional subkeys for encryption and signing. For most users the default option is fine.
+You must also choose a key size. The size of a DSA key must be between 512 and 1024 bits, and an ElGamal key may be of any size. GnuPG, however, requires that keys be no smaller than 768 bits. Therefore, if Option 1 was chosen and you choose a keysize larger than 1024 bits, the ElGamal key will have the requested size, but the DSA key will be 1024 bits.
+
+About to generate a new ELG-E keypair.
+              minimum keysize is  768 bits
+              default keysize is 1024 bits
+    highest suggested keysize is 2048 bits
+What keysize do you want? (1024)
+The longer the key the more secure it is against brute-force attacks, but for almost all purposes the default keysize is adequate since it would be cheaper to circumvent the encryption than try to break it. Also, encryption and decryption will be slower as the key size is increased, and a larger keysize may affect signature length. Once selected, the keysize can never be changed.
+Finally, you must choose an expiration date. If Option 1 was chosen, the expiration date will be used for both the ElGamal and DSA keypairs.
+
+Please specify how long the key should be valid.
+         0 = key does not expire
+      <n>  = key expires in n days
+      <n>w = key expires in n weeks
+      <n>m = key expires in n months
+      <n>y = key expires in n years
+Key is valid for? (0) 
+For most users a key that does not expire is adequate. The expiration time should be chosen with care, however, since although it is possible to change the expiration date after the key is created, it may be difficult to communicate a change to users who have your public key.
+You must provide a user ID in addition to the key parameters. The user ID is used to associate the key being created with a real person.
+
+You need a User-ID to identify your key; the software constructs the user id
+from Real Name, Comment and Email Address in this form:
+    "Heinrich Heine (Der Dichter) <heinrichh@duesseldorf.de>"
+
+Real name: 
+Only one user ID is created when a key is created, but it is possible to create additional user IDs if you want to use the key in two or more contexts, e.g., as an employee at work and a political activist on the side. A user ID should be created carefully since it cannot be edited after it is created.
+GnuPG needs a passphrase to protect the primary and subordinate private keys that you keep in your possession.
+
+You need a Passphrase to protect your private key.    
+
+Enter passphrase: 
+There is no limit on the length of a passphrase, and it should be carefully chosen. From the perspective of security, the passphrase to unlock the private key is one of the weakest points in GnuPG (and other public-key encryption systems as well) since it is the only protection you have if another individual gets your private key. Ideally, the passphrase should not use words from a dictionary and should mix the case of alphabetic characters as well as use non-alphabetic characters. A good passphrase is crucial to the secure use of GnuPG.
+Generating a revocation certificate
+
+After your keypair is created you should immediately generate a revocation certificate for the primary public key using the option --gen-revoke. If you forget your passphrase or if your private key is compromised or lost, this revocation certificate may be published to notify others that the public key should no longer be used. A revoked public key can still be used to verify signatures made by you in the past, but it cannot be used to encrypt future messages to you. It also does not affect your ability to decrypt messages sent to you in the past if you still do have access to the private key.
+
+alice% gpg --output revoke.asc --gen-revoke mykey
+[...]
+The argument mykey must be a key specifier, either the key ID of your primary keypair or any part of a user ID that identifies your keypair. The generated certificate will be left in the file revoke.asc. If the --output option is omitted, the result will be placed on standard output. Since the certificate is short, you may wish to print a hardcopy of the certificate to store somewhere safe such as your safe deposit box. The certificate should not be stored where others can access it since anybody can publish the revocation certificate and render the corresponding public key useless.
+Exchanging keys
+
+To communicate with others you must exchange public keys. To list the keys on your public keyring use the command-line option --list-keys.
+
+alice% gpg --list-keys
+/users/alice/.gnupg/pubring.gpg
+---------------------------------------
+pub  1024D/BB7576AC 1999-06-04 Alice (Judge) <alice@cyb.org>
+sub  1024g/78E9A8FA 1999-06-04
+Exporting a public key
+
+To send your public key to a correspondent you must first export it. The command-line option --export is used to do this. It takes an additional argument identifying the public key to export. As with the --gen-revoke option, either the key ID or any part of the user ID may be used to identify the key to export.
+
+alice% gpg --output alice.gpg --export alice@cyb.org
+The key is exported in a binary format, but this can be inconvenient when the key is to be sent though email or published on a web page. GnuPG therefore supports a command-line option --armor[2] that causes output to be generated in an ASCII-armored format similar to uuencoded documents. In general, any output from GnuPG, e.g., keys, encrypted documents, and signatures, can be ASCII-armored by adding the --armor option.
+
+alice% gpg --armor --export alice@cyb.org
+-----BEGIN PGP PUBLIC KEY BLOCK-----
+Version: GnuPG v0.9.7 (GNU/Linux)
+Comment: For info see http://www.gnupg.org
+
+[...]
+-----END PGP PUBLIC KEY BLOCK-----
+Importing a public key
+
+A public key may be added to your public keyring with the --import option.
+
+alice% gpg --import blake.gpg
+gpg: key 9E98BC16: public key imported
+gpg: Total number processed: 1
+gpg:               imported: 1
+alice% gpg --list-keys
+/users/alice/.gnupg/pubring.gpg
+---------------------------------------
+pub  1024D/BB7576AC 1999-06-04 Alice (Judge) <alice@cyb.org>
+sub  1024g/78E9A8FA 1999-06-04
+
+pub  1024D/9E98BC16 1999-06-04 Blake (Executioner) <blake@cyb.org>
+sub  1024g/5C8CBD41 1999-06-04
+Once a key is imported it should be validated. GnuPG uses a powerful and flexible trust model that does not require you to personally validate each key you import. Some keys may need to be personally validated, however. A key is validated by verifying the key's fingerprint and then signing the key to certify it as a valid key. A key's fingerprint can be quickly viewed with the --fingerprint command-line option, but in order to certify the key you must edit it.
+
+alice% gpg --edit-key blake@cyb.org
+
+pub  1024D/9E98BC16  created: 1999-06-04 expires: never      trust: -/q
+sub  1024g/5C8CBD41  created: 1999-06-04 expires: never     
+(1)  Blake (Executioner) <blake@cyb.org>
+
+Command> fpr
+pub  1024D/9E98BC16 1999-06-04 Blake (Executioner) <blake@cyb.org>
+             Fingerprint: 268F 448F CCD7 AF34 183E  52D8 9BDE 1A08 9E98 BC16
+A key's fingerprint is verified with the key's owner. This may be done in person or over the phone or through any other means as long as you can guarantee that you are communicating with the key's true owner. If the fingerprint you get is the same as the fingerprint the key's owner gets, then you can be sure that you have a correct copy of the key.
+After checking the fingerprint, you may sign the key to validate it. Since key verification is a weak point in public-key cryptography, you should be extremely careful and always check a key's fingerprint with the owner before signing the key.
+
+Command> sign
+             
+pub  1024D/9E98BC16  created: 1999-06-04 expires: never      trust: -/q
+             Fingerprint: 268F 448F CCD7 AF34 183E  52D8 9BDE 1A08 9E98 BC16
+
+     Blake (Executioner) <blake@cyb.org>
+
+Are you really sure that you want to sign this key
+with your key: "Alice (Judge) <alice@cyb.org>"
+
+Really sign?
+Once signed you can check the key to list the signatures on it and see the signature that you have added. Every user ID on the key will have one or more self-signatures as well as a signature for each user that has validated the key.
+
+Command> check
+uid  Blake (Executioner) <blake@cyb.org>
+sig!       9E98BC16 1999-06-04   [self-signature]
+sig!       BB7576AC 1999-06-04   Alice (Judge) <alice@cyb.org>
+Encrypting and decrypting documents
+
+A public and private key each have a specific role when encrypting and decrypting documents. A public key may be thought of as an open safe. When a correspondent encrypts a document using a public key, that document is put in the safe, the safe shut, and the combination lock spun several times. The corresponding private key is the combination that can reopen the safe and retrieve the document. In other words, only the person who holds the private key can recover a document encrypted using the associated public key.
+
+The procedure for encrypting and decrypting documents is straightforward with this mental model. If you want to encrypt a message to Alice, you encrypt it using Alice's public key, and she decrypts it with her private key. If Alice wants to send you a message, she encrypts it using your public key, and you decrypt it with your private key.
+
+To encrypt a document the option --encrypt is used. You must have the public keys of the intended recipients. The software expects the name of the document to encrypt as input; if omitted, it reads standard input. The encrypted result is placed on standard output or as specified using the option --output. The document is compressed for additional security in addition to encrypting it.
+
+alice% gpg --output doc.gpg --encrypt --recipient blake@cyb.org doc
+The --recipient option is used once for each recipient and takes an extra argument specifying the public key to which the document should be encrypted. The encrypted document can only be decrypted by someone with a private key that complements one of the recipients' public keys. In particular, you cannot decrypt a document encrypted by you unless you included your own public key in the recipient list.
+To decrypt a message the option --decrypt is used. You need the private key to which the message was encrypted. Similar to the encryption process, the document to decrypt is input, and the decrypted result is output.
+
+blake% gpg --output doc --decrypt doc.gpg
+
+You need a passphrase to unlock the secret key for
+user: "Blake (Executioner) <blake@cyb.org>"
+1024-bit ELG-E key, ID 5C8CBD41, created 1999-06-04 (main key ID 9E98BC16)
+
+Enter passphrase: 
+Documents may also be encrypted without using public-key cryptography. Instead, you use a symmetric cipher to encrypt the document. The key used to drive the symmetric cipher is derived from a passphrase supplied when the document is encrypted, and for good security, it should not be the same passphrase that you use to protect your private key. Symmetric encryption is useful for securing documents when the passphrase does not need to be communicated to others. A document can be encrypted with a symmetric cipher by using the --symmetric option.
+
+alice% gpg --output doc.gpg --symmetric doc
+Enter passphrase: 
+Making and verifying signatures
+
+A digital signature certifies and timestamps a document. If the document is subsequently modified in any way, a verification of the signature will fail. A digital signature can serve the same purpose as a hand-written signature with the additional benefit of being tamper-resistant. The GnuPG source distribution, for example, is signed so that users can verify that the source code has not been modified since it was packaged.
+
+Creating and verifying signatures uses the public/private keypair in an operation different from encryption and decryption. A signature is created using the private key of the signer. The signature is verified using the corresponding public key. For example, Alice would use her own private key to digitally sign her latest submission to the Journal of Inorganic Chemistry. The associate editor handling her submission would use Alice's public key to check the signature to verify that the submission indeed came from Alice and that it had not been modified since Alice sent it. A consequence of using digital signatures is that it is difficult to deny that you made a digital signature since that would imply your private key had been compromised.
+
+The command-line option --sign is used to make a digital signature. The document to sign is input, and the signed document is output.
+
+alice% gpg --output doc.sig --sign doc
+
+You need a passphrase to unlock the private key for
+user: "Alice (Judge) <alice@cyb.org>"
+1024-bit DSA key, ID BB7576AC, created 1999-06-04
+
+Enter passphrase: 
+The document is compressed before being signed, and the output is in binary format.
+Given a signed document, you can either check the signature or check the signature and recover the original document. To check the signature use the --verify option. To verify the signature and extract the document use the --decrypt option. The signed document to verify and recover is input and the recovered document is output.
+
+blake% gpg --output doc --decrypt doc.sig
+gpg: Signature made Fri Jun  4 12:02:38 1999 CDT using DSA key ID BB7576AC
+gpg: Good signature from "Alice (Judge) <alice@cyb.org>"
+Clearsigned documents
+
+A common use of digital signatures is to sign usenet postings or email messages. In such situations it is undesirable to compress the document while signing it. The option --clearsign causes the document to be wrapped in an ASCII-armored signature but otherwise does not modify the document.
+
+alice% gpg --clearsign doc
+
+You need a passphrase to unlock the secret key for
+user: "Alice (Judge) <alice@cyb.org>"
+1024-bit DSA key, ID BB7576AC, created 1999-06-04
+
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+[...]
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v0.9.7 (GNU/Linux)
+Comment: For info see http://www.gnupg.org
+
+iEYEARECAAYFAjdYCQoACgkQJ9S6ULt1dqz6IwCfQ7wP6i/i8HhbcOSKF4ELyQB1
+oCoAoOuqpRqEzr4kOkQqHRLE/b8/Rw2k
+=y6kj
+-----END PGP SIGNATURE-----
+Detached signatures
+
+A signed document has limited usefulness. Other users must recover the original document from the signed version, and even with clearsigned documents, the signed document must be edited to recover the original. Therefore, there is a third method for signing a document that creates a detached signature, which is a separate file. A detached signature is created using the --detach-sig option.
+
+alice% gpg --output doc.sig --detach-sig doc
+
+You need a passphrase to unlock the secret key for
+user: "Alice (Judge) <alice@cyb.org>"
+1024-bit DSA key, ID BB7576AC, created 1999-06-04
+
+Enter passphrase: 
+Both the document and detached signature are needed to verify the signature. The --verify option can be to check the signature.
+
+blake% gpg --verify doc.sig doc
+gpg: Signature made Fri Jun  4 12:38:46 1999 CDT using DSA key ID BB7576AC
+gpg: Good signature from "Alice (Judge) <alice@cyb.org>"
+Chapter 2. Concepts
+
+GnuPG makes uses of several cryptographic concepts including symmetric ciphers, public-key ciphers, and one-way hashing. You can make basic use GnuPG without fully understanding these concepts, but in order to use it wisely some understanding of them is necessary.
+
+This chapter introduces the basic cryptographic concepts used in GnuPG. Other books cover these topics in much more detail. A good book with which to pursue further study is Bruce Schneier's ``Applied Cryptography''.
+
+Symmetric ciphers
+
+A symmetric cipher is a cipher that uses the same key for both encryption and decryption. Two parties communicating using a symmetric cipher must agree on the key beforehand. Once they agree, the sender encrypts a message using the key, sends it to the receiver, and the receiver decrypts the message using the key. As an example, the German Enigma is a symmetric cipher, and daily keys were distributed as code books. Each day, a sending or receiving radio operator would consult his copy of the code book to find the day's key. Radio traffic for that day was then encrypted and decrypted using the day's key. Modern examples of symmetric ciphers include 3DES, Blowfish, and IDEA.
+
+A good cipher puts all the security in the key and none in the algorithm. In other words, it should be no help to an attacker if he knows which cipher is being used. Only if he obtains the key would knowledge of the algorithm be needed. The ciphers used in GnuPG have this property.
+
+Since all the security is in the key, then it is important that it be very difficult to guess the key. In other words, the set of possible keys, i.e., the key space, needs to be large. While at Los Alamos, Richard Feynman was famous for his ability to crack safes. To encourage the mystique he even carried around a set of tools including an old stethoscope. In reality, he used a variety of tricks to reduce the number of combinations he had to try to a small number and then simply guessed until he found the right combination. In other words, he reduced the size of the key space.
+
+Britain used machines to guess keys during World War 2. The German Enigma had a very large key space, but the British built specialized computing engines, the Bombes, to mechanically try keys until the day's key was found. This meant that sometimes they found the day's key within hours of the new key's use, but it also meant that on some days they never did find the right key. The Bombes were not general-purpose computers but were precursors to modern-day computers.
+
+Today, computers can guess keys very quickly, and this is why key size is important in modern cryptosystems. The cipher DES uses a 56-bit key, which means that there are 256 possible keys. 256 is 72,057,594,037,927,936 keys. This is a lot of keys, but a general-purpose computer can check the entire key space in a matter of days. A specialized computer can check it in hours. On the other hand, more recently designed ciphers such as 3DES, Blowfish, and IDEA all use 128-bit keys, which means there are 2128 possible keys. This is many, many more keys, and even if all the computers on the planet cooperated, it could still take more time than the age of the universe to find the key.
+
+Public-key ciphers
+
+The primary problem with symmetric ciphers is not their security but with key exchange. Once the sender and receiver have exchanged keys, that key can be used to securely communicate, but what secure communication channel was used to communicate the key itself? In particular, it would probably be much easier for an attacker to work to intercept the key than it is to try all the keys in the key space. Another problem is the number of keys needed. If there are n people who need to communicate, then n(n-1)/2 keys are needed for each pair of people to communicate privately. This may be OK for a small number of people but quickly becomes unwieldy for large groups of people.
+
+Public-key ciphers were invented to avoid the key-exchange problem entirely. A public-key cipher uses a pair of keys for sending messages. The two keys belong to the person receiving the message. One key is a public key and may be given to anybody. The other key is a private key and is kept secret by the owner. A sender encrypts a message using the public key and once encrypted, only the private key may be used to decrypt it.
+
+This protocol solves the key-exchange problem inherent with symmetric ciphers. There is no need for the sender and receiver to agree upon a key. All that is required is that some time before secret communication the sender gets a copy of the receiver's public key. Furthermore, the one public key can be used by anybody wishing to communicate with the receiver. So only n keypairs are needed for n people to communicate secretly with one another.
+
+Public-key ciphers are based on one-way trapdoor functions. A one-way function is a function that is easy to compute, but the inverse is hard to compute. For example, it is easy to multiply two prime numbers together to get a composite, but it is difficult to factor a composite into its prime components. A one-way trapdoor function is similar, but it has a trapdoor. That is, if some piece of information is known, it becomes easy to compute the inverse. For example, if you have a number made of two prime factors, then knowing one of the factors makes it easy to compute the second. Given a public-key cipher based on prime factorization, the public key contains a composite number made from two large prime factors, and the encryption algorithm uses that composite to encrypt the message. The algorithm to decrypt the message requires knowing the prime factors, so decryption is easy if you have the private key containing one of the factors but extremely difficult if you do not have it.
+
+As with good symmetric ciphers, with a good public-key cipher all of the security rests with the key. Therefore, key size is a measure of the system's security, but one cannot compare the size of a symmetric cipher key and a public-key cipher key as a measure of their relative security. In a brute-force attack on a symmetric cipher with a key size of 80 bits, the attacker must enumerate up to 280 keys to find the right key. In a brute-force attack on a public-key cipher with a key size of 512 bits, the attacker must factor a composite number encoded in 512 bits (up to 155 decimal digits). The workload for the attacker is fundamentally different depending on the cipher he is attacking. While 128 bits is sufficient for symmetric ciphers, given today's factoring technology public keys with 1024 bits are recommended for most purposes.
+
+Hybrid ciphers
+
+Public-key ciphers are no panacea. Many symmetric ciphers are stronger from a security standpoint, and public-key encryption and decryption are more expensive than the corresponding operations in symmetric systems. Public-key ciphers are nevertheless an effective tool for distributing symmetric cipher keys, and that is how they are used in hybrid cipher systems.
+
+A hybrid cipher uses both a symmetric cipher and a public-key cipher. It works by using a public-key cipher to share a key for the symmetric cipher. The actual message being sent is then encrypted using the key and sent to the recipient. Since symmetric key sharing is secure, the symmetric key used is different for each message sent. Hence it is sometimes called a session key.
+
+Both PGP and GnuPG use hybrid ciphers. The session key, encrypted using the public-key cipher, and the message being sent, encrypted with the symmetric cipher, are automatically combined in one package. The recipient uses his private-key to decrypt the session key and the session key is then used to decrypt the message.
+
+A hybrid cipher is no stronger than the public-key cipher or symmetric cipher it uses, whichever is weaker. In PGP and GnuPG, the public-key cipher is probably the weaker of the pair. Fortunately, however, if an attacker could decrypt a session key it would only be useful for reading the one message encrypted with that session key. The attacker would have to start over and decrypt another session key in order to read any other message.
+
+Digital signatures
+
+A hash function is a many-to-one function that maps its input to a value in a finite set. Typically this set is a range of natural numbers. A simple hash function is f(x) = 0 for all integers x. A more interesting hash function is f(x) = x mod 37, which maps x to the remainder of dividing x by 37.
+
+A document's digital signature is the result of applying a hash function to the document. To be useful, however, the hash function needs to satisfy two important properties. First, it should be hard to find two documents that hash to the same value. Second, given a hash value it should be hard to recover the document that produced that value.
+
+Some public-key ciphers[3] could be used to sign documents. The signer encrypts the document with his private key. Anybody wishing to check the signature and see the document simply uses the signer's public key to decrypt the document. This algorithm does satisfy the two properties needed from a good hash function, but in practice, this algorithm is too slow to be useful.
+
+An alternative is to use hash functions designed to satisfy these two important properties. SHA and MD5 are examples of such algorithms. Using such an algorithm, a document is signed by hashing it, and the hash value is the signature. Another person can check the signature by also hashing their copy of the document and comparing the hash value they get with the hash value of the original document. If they match, it is almost certain that the documents are identical.
+
+Of course, the problem now is using a hash function for digital signatures without permitting an attacker to interfere with signature checking. If the document and signature are sent unencrypted, an attacker could modify the document and generate a corresponding signature without the recipient's knowledge. If only the document is encrypted, an attacker could tamper with the signature and cause a signature check to fail. A third option is to use a hybrid public-key encryption to encrypt both the signature and document. The signer uses his private key, and anybody can use his public key to check the signature and document. This sounds good but is actually nonsense. If this algorithm truly secured the document it would also secure it from tampering and there would be no need for the signature. The more serious problem, however, is that this does not protect either the signature or document from tampering. With this algorithm, only the session key for the symmetric cipher is encrypted using the signer's private key. Anybody can use the public key to recover the session key. Therefore, it is straightforward for an attacker to recover the session key and use it to encrypt substitute documents and signatures to send to others in the sender's name.
+
+An algorithm that does work is to use a public key algorithm to encrypt only the signature. In particular, the hash value is encrypted using the signer's private key, and anybody can check the signature using the public key. The signed document can be sent using any other encryption algorithm including none if it is a public document. If the document is modified the signature check will fail, but this is precisely what the signature check is supposed to catch. The Digital Signature Standard (DSA) is a public key signature algorithm that works as just described. DSA is the primary signing algorithm used in GnuPG.
+
+Chapter 3. Key Management
+
+Key tampering is a major security weakness with public-key cryptography. An eavesdropper may tamper with a user's keyrings or forge a user's public key and post it for others to download and use. For example, suppose Chloe wants to monitor the messages that Alice sends to Blake. She could mount what is called a man in the middle attack. In this attack, Chloe creates a new public/private keypair. She replaces Alice's copy of Blake's public key with the new public key. She then intercepts the messages that Alice sends to Blake. For each intercept, she decrypts it using the new private key, reencrypts it using Blake's true public key, and forwards the reencrypted message to Blake. All messages sent from Alice to Blake can now be read by Chloe.
+
+Good key management is crucial in order to ensure not just the integrity of your keyrings but the integrity of other users' keyrings as well. The core of key management in GnuPG is the notion of signing keys. Key signing has two main purposes: it permits you to detect tampering on your keyring, and it allows you to certify that a key truly belongs to the person named by a user ID on the key. Key signatures are also used in a scheme known as the web of trust to extend certification to keys not directly signed by you but signed by others you trust. Responsible users who practice good key management can defeat key tampering as a practical attack on secure communication with GnuPG.
+
+Managing your own keypair
+
+A keypair has a public key and a private key. A public key consists of the public portion of the master signing key, the public portions of the subordinate signing and encryption subkeys, and a set of user IDs used to associate the public key with a real person. Each piece has data about itself. For a key, this data includes its ID, when it was created, when it will expire, etc. For a user ID, this data includes the name of the real person it identifies, an optional comment, and an email address. The structure of the private key is similar, except that it contains only the private portions of the keys, and there is no user ID information.
+
+The command-line option --edit-key may be used to view a keypair. For example,
+
+chloe% gpg --edit-key chloe@cyb.org
+Secret key is available.
+
+pub  1024D/26B6AAE1  created: 1999-06-15 expires: never      trust: -/u
+sub  2048g/0CF8CB7A  created: 1999-06-15 expires: never
+sub  1792G/08224617  created: 1999-06-15 expires: 2002-06-14
+sub   960D/B1F423E7  created: 1999-06-15 expires: 2002-06-14
+(1)  Chloe (Jester) <chloe@cyb.org>
+(2)  Chloe (Plebian) <chloe@tel.net>
+Command>
+The public key is displayed along with an indication of whether or not the private key is available. Information about each component of the public key is then listed. The first column indicates the type of the key. The keyword pub identifies the public master signing key, and the keyword sub identifies a public subordinate key. The second column indicates the key's bit length, type, and ID. The type is D for a DSA key, g for an encryption-only ElGamal key, and G for an ElGamal key that may be used for both encryption and signing. The creation date and expiration date are given in columns three and four. The user IDs are listed following the keys.
+More information about the key can be obtained with interactive commands. The command toggle switches between the public and private components of a keypair if indeed both components are available.
+
+Command> toggle
+
+sec  1024D/26B6AAE1  created: 1999-06-15 expires: never
+sbb  2048g/0CF8CB7A  created: 1999-06-15 expires: never
+sbb  1792G/08224617  created: 1999-06-15 expires: 2002-06-14
+sbb   960D/B1F423E7  created: 1999-06-15 expires: 2002-06-14
+(1)  Chloe (Jester) <chloe@cyb.org>
+(2)  Chloe (Plebian) <chloe@tel.net>
+The information provided is similar to the listing for the public-key component. The keyword sec identifies the private master signing key, and the keyword sbb identifies the private subordinates keys. The user IDs from the public key are also listed for convenience.
+Key integrity
+
+When you distribute your public key, you are distributing the public components of your master and subordinate keys as well as the user IDs. Distributing this material alone, however, is a security risk since it is possible for an attacker to tamper with the key. The public key can be modified by adding or substituting keys, or by adding or changing user IDs. By tampering with a user ID, the attacker could change the user ID's email address to have email redirected to himself. By changing one of the encryption keys, the attacker would also be able to decrypt the messages redirected to him.
+
+Using digital signatures is a solution to this problem. When data is signed by a private key, the corresponding public key is bound to the signed data. In other words, only the corresponding public key can be used to verify the signature and ensure that the data has not been modified. A public key can be protected from tampering by using its corresponding private master key to sign the public key components and user IDs, thus binding the components to the public master key. Signing public key components with the corresponding private master signing key is called self-signing, and a public key that has self-signed user IDs bound to it is called a certificate.
+
+As an example, Chloe has two user IDs and three subkeys. The signatures on the user IDs can be checked with the command check from the key edit menu.
+
+chloe% gpg --edit-key chloe
+Secret key is available.
+
+pub  1024D/26B6AAE1  created: 1999-06-15 expires: never      trust: -/u
+sub  2048g/0CF8CB7A  created: 1999-06-15 expires: never
+sub  1792G/08224617  created: 1999-06-15 expires: 2002-06-14
+sub   960D/B1F423E7  created: 1999-06-15 expires: 2002-06-14
+(1)  Chloe (Jester) <chloe@cyb.org>
+(2)  Chloe (Plebian) <chloe@tel.net>
+
+Command> check
+uid  Chloe (Jester) <chloe@cyb.org>
+sig!	   26B6AAE1 1999-06-15	 [self-signature]
+uid  Chloe (Plebian) <chloe@tel.net>
+sig!	   26B6AAE1 1999-06-15	 [self-signature]
+As expected, the signing key for each signature is the master signing key with key ID 0x26B6AAE1. The self-signatures on the subkeys are present in the public key, but they are not shown by the GnuPG interface.
+Adding and deleting key components
+
+Both new subkeys and new user IDs may be added to your keypair after it has been created. A user ID is added using the command adduid. You are prompted for a real name, email address, and comment just as when you create an initial keypair. A subkey is added using the command addkey. The interface is similar to the interface used when creating an initial keypair. The subkey may be a DSA signing key, and encrypt-only ElGamal key, or a sign-and-encrypt ElGamal key. When a subkey or user ID is generated it is self-signed using your master signing key, which is why you must supply your passphrase when the key is generated.
+
+Additional user IDs are useful when you need multiple identities. For example, you may have an identity for your job and an identity for your work as a political activist. Coworkers will know you by your work user ID. Coactivists will know you by your activist user ID. Since those groups of people may not overlap, though, each group may not trust the other user ID. Both user IDs are therefore necessary.
+
+Additional subkeys are also useful. The user IDs associated with your public master key are validated by the people with whom you communicate, and changing the master key therefore requires recertification. This may be difficult and time consuming if you communicate with many people. On the other hand, it is good to periodically change encryption subkeys. If a key is broken, all the data encrypted with that key will be vulnerable. By changing keys, however, only the data encrypted with the one broken key will be revealed.
+
+Subkeys and user IDs may also be deleted. To delete a subkey or user ID you must first select it using the key or uid commands respectively. These commands are toggle
