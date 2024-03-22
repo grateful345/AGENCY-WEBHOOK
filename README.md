@@ -15,13 +15,61 @@ Key type: RSA
 Key size: 2048 bits
 Fingerprint: C330 33E4 B583 FE61 2EDE 877C 05D0 2D3D 57AB FF46
 User ID: Stripe <security@stripe.com>
+# Create a folder
+$ mkdir actions-runner && cd actions-runner
+# Download the latest runner package
+$ curl -o actions-runner-linux-arm-2.314.1.tar.gz -L https://github.com/actions/runner/releases/download/v2.314.1/actions-runner-linux-arm-2.314.1.tar.gz
+# Optional: Validate the hash
+$ echo "a653dd46dafd47c9a3a6637a18161a1445ac6b9c3f6d6b0305be9e1ee65769af  actions-runner-linux-arm-2.314.1.tar.gz" | shasum -a 256 -c
+# Extract the installer
+$ tar xzf ./actions-runner-linux-arm-2.314.1.tar.gz
+Configure
+# Create the runner and start the configuration experience
+$ ./config.sh --url https://github.com/grateful345/AGENCY-WEBHOOK --token BHAHZGAPZ7TETPSETRUTYETF7TSAQ
+# Last step, run it!
+$ ./run.sh
+Using your self-hosted runner
+# Use this YAML in your workflow file for each job
+runs-on: self-hosted
+folder permissions and long path restrictions on Windows.
 
+# Create a folder under the drive root
+$ mkdir actions-runner; cd actions-runner
+# Download the latest runner package
+$ Invoke-WebRequest -Uri https://github.com/actions/runner/releases/download/v2.314.1/actions-runner-win-arm64-2.314.1.zip -OutFile actions-runner-win-arm64-2.314.1.zip
+# Optional: Validate the hash
+$ if((Get-FileHash -Path actions-runner-win-arm64-2.314.1.zip -Algorithm SHA256).Hash.ToUpper() -ne 'acc807696d1dcad6fb45f6038f884185c54c48127445c365e86d03adb164a9e2'.ToUpper()){ throw 'Computed checksum did not match' }
+# Extract the installer
+$ Add-Type -AssemblyName System.IO.Compression.FileSystem ; [System.IO.Compression.ZipFile]::ExtractToDirectory("$PWD/actions-runner-win-arm64-2.314.1.zip", "$PWD")
+Configure
+# Create the runner and start the configuration experience
+$ ./config.cmd --url https://github.com/grateful345/AGENCY-WEBHOOK --token BHAHZGAPZ7TETPSETRUTYETF7TSAQ
+# Run it!
+$ ./run.cmd
+Using your self-hosted runner
+# Use this YAML in your workflow file for each job
+runs-on: self-hosted
 curl -L \
   -H "Accept: application/vnd.github+json" \
   -H "Authorization: Bearer <BHAHZGCJZK3BEVS7IRGZMKDF6USLO / GitHub Runner tokens /BHAHZGDHHICG3LFF53OICRLF6UR24>" \
   -H "X-GitHub-Api-Version: 2022-11-28" \
   https://api.github.com/repos/OWNER/REPO/keys
-
+# Create a folder
+$ mkdir actions-runner && cd actions-runner
+# Download the latest runner package
+$ curl -o actions-runner-osx-arm64-2.314.1.tar.gz -L https://github.com/actions/runner/releases/download/v2.314.1/actions-runner-osx-arm64-2.314.1.tar.gz
+# Optional: Validate the hash
+$ echo "e34dab0b4707ad9a9db75f5edf47a804e293af853967a5e0e3b29c8c65f3a004  actions-runner-osx-arm64-2.314.1.tar.gz" | shasum -a 256 -c
+# Extract the installer
+$ tar xzf ./actions-runner-osx-arm64-2.314.1.tar.gz
+Configure
+# Create the runner and start the configuration experience
+$ ./config.sh --url https://github.com/grateful345/AGENCY-WEBHOOK --token BHAHZGAPZ7TETPSETRUTYETF7TSAQ
+# Last step, run it!
+$ ./run.sh
+Using your self-hosted runner
+# Use this YAML in your workflow file for each job
+runs-on: self-hosted
 
 {
   "type": "array",
