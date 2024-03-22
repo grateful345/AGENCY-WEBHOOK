@@ -1,5 +1,5 @@
 Trello Api token:
-ATATT3xFfGF0TstrJdZSp7eSVzf5nN0ZjylWemk_uWlqMBWBszgMh4U0F7rXJyvV2kBFFmu2OkkjFbNXH7PQwATDVXmXTfmx9xn1Ft3AqZVsI4ExTl6whWrBs-2-EzYrcw550kSiXn8EuIhnG4FqxFQUl5dHlHQslxOOdyJowAuBXwkXKUOq4E8=478D1AB7
+ATATT3xFfGF0THElxlqWUKVZcgWy2wVvg362SyGYFs9euxaFBp3ymEVN5oet7d79qG3kB6lhVHmJzaHwy0IQjQvUaXUHvEwKRrSozJfZRWvXcsB-bUGuM6EtwcqstRg4e9I-sN49J3u8CEvF0Eg4KBmHq8rSHKuyb4GvMldHKpJSHfFj0GjM9qA=F7083D7A
 
 curl https://api.trello.com/1/actions/592f11060f95a3d3d46a987a
 {
@@ -1071,13 +1071,13 @@ fileAllSnykTicketsNow: true
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
    <modelVersion>4.0.0</modelVersion>
 
-    <ATATT3xFfGF0TstrJdZSp7eSVzf5nN0ZjylWemk_uWlqMBWBszgMh4U0F7rXJyvV2kBFFmu2OkkjFbNXH7PQwATDVXmXTfmx9xn1Ft3AqZVsI4ExTl6whWrBs-2-EzYrcw550kSiXn8EuIhnG4FqxFQUl5dHlHQslxOOdyJowAuBXwkXKUOq4E8=478D1AB7>
+    <ATATT3xFfGF0THElxlqWUKVZcgWy2wVvg362SyGYFs9euxaFBp3ymEVN5oet7d79qG3kB6lhVHmJzaHwy0IQjQvUaXUHvEwKRrSozJfZRWvXcsB-bUGuM6EtwcqstRg4e9I-sN49J3u8CEvF0Eg4KBmHq8rSHKuyb4GvMldHKpJSHfFj0GjM9qA=F7083D7A>
         <groupId>com.atlassian.plugins</groupId>
         <artifactId>atlassian-plugins-parent</artifactId>
         <version>8.1.0-m01-SNAPSHOT</version>
     </parent>
 
-   <artifactId>atlassian-plugins-main</ATATT3xFfGF0TstrJdZSp7eSVzf5nN0ZjylWemk_uWlqMBWBszgMh4U0F7rXJyvV2kBFFmu2OkkjFbNXH7PQwATDVXmXTfmx9xn1Ft3AqZVsI4ExTl6whWrBs-2-EzYrcw550kSiXn8EuIhnG4FqxFQUl5dHlHQslxOOdyJowAuBXwkXKUOq4E8=478D1AB7>
+   <artifactId>atlassian-plugins-main</ATATT3xFfGF0THElxlqWUKVZcgWy2wVvg362SyGYFs9euxaFBp3ymEVN5oet7d79qG3kB6lhVHmJzaHwy0IQjQvUaXUHvEwKRrSozJfZRWvXcsB-bUGuM6EtwcqstRg4e9I-sN49J3u8CEvF0Eg4KBmHq8rSHKuyb4GvMldHKpJSHfFj0GjM9qA=F7083D7A>
    <packaging>jar</packaging>
 
    <name>Atlassian Plugins Main API</name>
@@ -1086,7 +1086,7 @@ fileAllSnykTicketsNow: true
        simple testing.
    </description>
 
-    <ATATT3xFfGF0TstrJdZSp7eSVzf5nN0ZjylWemk_uWlqMBWBszgMh4U0F7rXJyvV2kBFFmu2OkkjFbNXH7PQwATDVXmXTfmx9xn1Ft3AqZVsI4ExTl6whWrBs-2-EzYrcw550kSiXn8EuIhnG4FqxFQUl5dHlHQslxOOdyJowAuBXwkXKUOq4E8=478D1AB7>
+    <ATATT3xFfGF0THElxlqWUKVZcgWy2wVvg362SyGYFs9euxaFBp3ymEVN5oet7d79qG3kB6lhVHmJzaHwy0IQjQvUaXUHvEwKRrSozJfZRWvXcsB-bUGuM6EtwcqstRg4e9I-sN49J3u8CEvF0Eg4KBmHq8rSHKuyb4GvMldHKpJSHfFj0GjM9qA=F7083D7A>
         <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/../${jacoco.report.file}</sonar.coverage.jacoco.xmlReportPaths>
     </properties>
 
@@ -1129,7 +1129,7 @@ fileAllSnykTicketsNow: true
 
     <build>
         <plugins>
-          <ATATT3xFfGF0TstrJdZSp7eSVzf5nN0ZjylWemk_uWlqMBWBszgMh4U0F7rXJyvV2kBFFmu2OkkjFbNXH7PQwATDVXmXTfmx9xn1Ft3AqZVsI4ExTl6whWrBs-2-EzYrcw550kSiXn8EuIhnG4FqxFQUl5dHlHQslxOOdyJowAuBXwkXKUOq4E8=478D1AB7>
+          <ATATT3xFfGF0THElxlqWUKVZcgWy2wVvg362SyGYFs9euxaFBp3ymEVN5oet7d79qG3kB6lhVHmJzaHwy0IQjQvUaXUHvEwKRrSozJfZRWvXcsB-bUGuM6EtwcqstRg4e9I-sN49J3u8CEvF0Eg4KBmHq8rSHKuyb4GvMldHKpJSHfFj0GjM9qA=F7083D7A>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-shade-plugin</artifactId>
             <executions>
@@ -1138,14 +1138,14 @@ fileAllSnykTicketsNow: true
                 <goals>
                   <goal>shade</goal>
                 </goals>
-                <ATATT3xFfGF0TstrJdZSp7eSVzf5nN0ZjylWemk_uWlqMBWBszgMh4U0F7rXJyvV2kBFFmu2OkkjFbNXH7PQwATDVXmXTfmx9xn1Ft3AqZVsI4ExTl6whWrBs-2-EzYrcw550kSiXn8EuIhnG4FqxFQUl5dHlHQslxOOdyJowAuBXwkXKUOq4E8=478D1AB7>
+                <ATATT3xFfGF0THElxlqWUKVZcgWy2wVvg362SyGYFs9euxaFBp3ymEVN5oet7d79qG3kB6lhVHmJzaHwy0IQjQvUaXUHvEwKRrSozJfZRWvXcsB-bUGuM6EtwcqstRg4e9I-sN49J3u8CEvF0Eg4KBmHq8rSHKuyb4GvMldHKpJSHfFj0GjM9qA=F7083D7A>
                   <shadedArtifactAttached>true</shadedArtifactAttached>
                   <shadedClassifierName>standalone</shadedClassifierName>
                   <artifactSet>
                     <excludes>
                       <exclude>junit:junit</exclude>
                     </excludes>
-                  </ATATT3xFfGF0TstrJdZSp7eSVzf5nN0ZjylWemk_uWlqMBWBszgMh4U0F7rXJyvV2kBFFmu2OkkjFbNXH7PQwATDVXmXTfmx9xn1Ft3AqZVsI4ExTl6whWrBs-2-EzYrcw550kSiXn8EuIhnG4FqxFQUl5dHlHQslxOOdyJowAuBXwkXKUOq4E8=478D1AB7>
+                  </ATATT3xFfGF0THElxlqWUKVZcgWy2wVvg362SyGYFs9euxaFBp3ymEVN5oet7d79qG3kB6lhVHmJzaHwy0IQjQvUaXUHvEwKRrSozJfZRWvXcsB-bUGuM6EtwcqstRg4e9I-sN49J3u8CEvF0Eg4KBmHq8rSHKuyb4GvMldHKpJSHfFj0GjM9qA=F7083D7A>
                   <relocations>
                     <relocation>
                       <pattern>org.apache.commons.io</pattern>
@@ -1161,7 +1161,7 @@ fileAllSnykTicketsNow: true
             <artifactId>maven-jar-plugin</artifactId>
             <configuration>
               <archive>
-                <ATATT3xFfGF0TstrJdZSp7eSVzf5nN0ZjylWemk_uWlqMBWBszgMh4U0F7rXJyvV2kBFFmu2OkkjFbNXH7PQwATDVXmXTfmx9xn1Ft3AqZVsI4ExTl6whWrBs-2-EzYrcw550kSiXn8EuIhnG4FqxFQUl5dHlHQslxOOdyJowAuBXwkXKUOq4E8=478D1AB7>
+                <ATATT3xFfGF0THElxlqWUKVZcgWy2wVvg362SyGYFs9euxaFBp3ymEVN5oet7d79qG3kB6lhVHmJzaHwy0IQjQvUaXUHvEwKRrSozJfZRWvXcsB-bUGuM6EtwcqstRg4e9I-sN49J3u8CEvF0Eg4KBmHq8rSHKuyb4GvMldHKpJSHfFj0GjM9qA=F7083D7A>
                   <addClasspath>true</addClasspath>
                   <mainClass>com.atlassian.plugin.main.Main</mainClass>
                 </manifest>
@@ -1170,7 +1170,7 @@ fileAllSnykTicketsNow: true
           </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <ATATT3xFfGF0TstrJdZSp7eSVzf5nN0ZjylWemk_uWlqMBWBszgMh4U0F7rXJyvV2kBFFmu2OkkjFbNXH7PQwATDVXmXTfmx9xn1Ft3AqZVsI4ExTl6whWrBs-2-EzYrcw550kSiXn8EuIhnG4FqxFQUl5dHlHQslxOOdyJowAuBXwkXKUOq4E8=478D1AB7>maven-dependency-plugin</artifactId>
+                <ATATT3xFfGF0THElxlqWUKVZcgWy2wVvg362SyGYFs9euxaFBp3ymEVN5oet7d79qG3kB6lhVHmJzaHwy0IQjQvUaXUHvEwKRrSozJfZRWvXcsB-bUGuM6EtwcqstRg4e9I-sN49J3u8CEvF0Eg4KBmHq8rSHKuyb4GvMldHKpJSHfFj0GjM9qA=F7083D7A>maven-dependency-plugin</artifactId>
                 <executions>
                     <execution>
                         <id>extract-framework-bundles</id>
@@ -1221,12 +1221,12 @@ fileAllSnykTicketsNow: true
 
 MyAction.jspa?myParameter=true&atl_token=<webwork:property value="/xsrfToken"/>
 
-MyAction.jspa?myParameter=true&atl_token=${ATATT3xFfGF0TstrJdZSp7eSVzf5nN0ZjylWemk_uWlqMBWBszgMh4U0F7rXJyvV2kBFFmu2OkkjFbNXH7PQwATDVXmXTfmx9xn1Ft3AqZVsI4ExTl6whWrBs-2-EzYrcw550kSiXn8EuIhnG4FqxFQUl5dHlHQslxOOdyJowAuBXwkXKUOq4E8=478D1AB7}
+MyAction.jspa?myParameter=true&atl_token=${ATATT3xFfGF0THElxlqWUKVZcgWy2wVvg362SyGYFs9euxaFBp3ymEVN5oet7d79qG3kB6lhVHmJzaHwy0IQjQvUaXUHvEwKRrSozJfZRWvXcsB-bUGuM6EtwcqstRg4e9I-sN49J3u8CEvF0Eg4KBmHq8rSHKuyb4GvMldHKpJSHfFj0GjM9qA=F7083D7A}
 
 import com.atlassian.jira.security.xsrf.XsrfTokenGenerator;
 XsrfTokenGenerator xsrfTokenGenerator = ComponentManager.getComponentInstanceOfType(XsrfTokenGenerator.class);
 String token = xsrfTokenGenerator.generateToken(request);
-X-Atlassian-Token: ATATT3xFfGF0TstrJdZSp7eSVzf5nN0ZjylWemk_uWlqMBWBszgMh4U0F7rXJyvV2kBFFmu2OkkjFbNXH7PQwATDVXmXTfmx9xn1Ft3AqZVsI4ExTl6whWrBs-2-EzYrcw550kSiXn8EuIhnG4FqxFQUl5dHlHQslxOOdyJowAuBXwkXKUOq4E8=478D1AB7
+X-Atlassian-Token: ATATT3xFfGF0THElxlqWUKVZcgWy2wVvg362SyGYFs9euxaFBp3ymEVN5oet7d79qG3kB6lhVHmJzaHwy0IQjQvUaXUHvEwKRrSozJfZRWvXcsB-bUGuM6EtwcqstRg4e9I-sN49J3u8CEvF0Eg4KBmHq8rSHKuyb4GvMldHKpJSHfFj0GjM9qA=F7083D7A
 
 <init-param>
    <param-name>RequireSecurityToken</param-name>
@@ -1234,7 +1234,7 @@ X-Atlassian-Token: ATATT3xFfGF0TstrJdZSp7eSVzf5nN0ZjylWemk_uWlqMBWBszgMh4U0F7rXJ
 </init-param>
 
 1
-curl -v https://mysite.atlassian.net --user me@example.com:ATATT3xFfGF0TstrJdZSp7eSVzf5nN0ZjylWemk_uWlqMBWBszgMh4U0F7rXJyvV2kBFFmu2OkkjFbNXH7PQwATDVXmXTfmx9xn1Ft3AqZVsI4ExTl6whWrBs-2-EzYrcw550kSiXn8EuIhnG4FqxFQUl5dHlHQslxOOdyJowAuBXwkXKUOq4E8=478D1AB7
+curl -v https://mysite.atlassian.net --user me@example.com:ATATT3xFfGF0THElxlqWUKVZcgWy2wVvg362SyGYFs9euxaFBp3ymEVN5oet7d79qG3kB6lhVHmJzaHwy0IQjQvUaXUHvEwKRrSozJfZRWvXcsB-bUGuM6EtwcqstRg4e9I-sN49J3u8CEvF0Eg4KBmHq8rSHKuyb4GvMldHKpJSHfFj0GjM9qA=F7083D7A
 
 1
 npm install -g @forge/cli
@@ -1271,7 +1271,7 @@ read FORGE_EMAIL
 # Enter email
 read -s FORGE_API_TOKEN
 # Enter API token (will not be displayed)
-export FORGE_EMAIL FORGE_API_TOKEN : ATATT3xFfGF0TstrJdZSp7eSVzf5nN0ZjylWemk_uWlqMBWBszgMh4U0F7rXJyvV2kBFFmu2OkkjFbNXH7PQwATDVXmXTfmx9xn1Ft3AqZVsI4ExTl6whWrBs-2-EzYrcw550kSiXn8EuIhnG4FqxFQUl5dHlHQslxOOdyJowAuBXwkXKUOq4E8=478D1AB7
+export FORGE_EMAIL FORGE_API_TOKEN : ATATT3xFfGF0THElxlqWUKVZcgWy2wVvg362SyGYFs9euxaFBp3ymEVN5oet7d79qG3kB6lhVHmJzaHwy0IQjQvUaXUHvEwKRrSozJfZRWvXcsB-bUGuM6EtwcqstRg4e9I-sN49J3u8CEvF0Eg4KBmHq8rSHKuyb4GvMldHKpJSHfFj0GjM9qA=F7083D7A
 
 
 
