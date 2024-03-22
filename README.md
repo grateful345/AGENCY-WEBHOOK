@@ -15,6 +15,131 @@ Key type: RSA
 Key size: 2048 bits
 Fingerprint: C330 33E4 B583 FE61 2EDE 877C 05D0 2D3D 57AB FF46
 User ID: Stripe <security@stripe.com>
+
+curl -L \
+  -H "Accept: application/vnd.github+json" \
+  -H "Authorization: Bearer <BHAHZGCJZK3BEVS7IRGZMKDF6USLO / GitHub Runner tokens /BHAHZGDHHICG3LFF53OICRLF6UR24>" \
+  -H "X-GitHub-Api-Version: 2022-11-28" \
+  https://api.github.com/repos/OWNER/REPO/keys
+
+
+{
+  "type": "array",
+  "items": {
+    "title": "Deploy Key",
+    "description": "An SSH key granting access to a single repository.",
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "integer"
+      },
+      "key": {
+        "type": "string"
+      },
+      "url": {
+        "type": "string"
+      },
+      "title": {
+        "type": "string"
+      },
+      "verified": {
+        "type": "boolean"
+      },
+      "created_at": {
+        "type": "string"
+      },
+      "read_only": {
+        "type": "boolean"
+      },
+      "added_by": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "last_used": {
+        "type": [
+          "string",
+          "null"
+        ]
+      }
+    },
+    "required": [
+      "id",
+      "key",
+      "url",
+      "title",
+      "verified",
+      "created_at",
+      "read_only"
+    ]
+  }
+}
+
+curl -L \
+  -X POST \
+  -H "Accept: application/vnd.github+json" \
+  -H "Authorization: Bearer <BHAHZGCJZK3BEVS7IRGZMKDF6USLO / GitHub Runner tokens /BHAHZGDHHICG3LFF53OICRLF6UR24>" \
+  -H "X-GitHub-Api-Version: 2022-11-28" \
+  https://api.github.com/repos/OWNER/REPO/keys \
+  -d '{"title":"octocat@octomac","key":"ssh-rsa AAA...","read_only":true}'
+
+{
+  "title": "Deploy Key",
+  "description": "An SSH key granting access to a single repository.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "key": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "verified": {
+      "type": "boolean"
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "read_only": {
+      "type": "boolean"
+    },
+    "added_by": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "last_used": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "id",
+    "key",
+    "url",
+    "title",
+    "verified",
+    "created_at",
+    "read_only"
+  ]
+}
+
+curl -L \
+  -H "Accept: application/vnd.github+json" \
+  -H "Authorization: Bearer <BHAHZGCJZK3BEVS7IRGZMKDF6USLO / GitHub Runner tokens /BHAHZGDHHICG3LFF53OICRLF6UR24>" \
+  -H "X-GitHub-Api-Version: 2022-11-28" \
+  https://api.github.com/repos/OWNER/REPO/keys/KEY_ID
+
 {
     "image": "mcr.microsoft.com/devcontainers/base:ubuntu"
 }
