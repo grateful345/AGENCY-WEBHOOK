@@ -15,7 +15,526 @@ Key type: RSA
 Key size: 2048 bits
 Fingerprint: C330 33E4 B583 FE61 2EDE 877C 05D0 2D3D 57AB FF46
 User ID: Stripe <security@stripe.com>
+postman api key : PMAK-65fcefd7f279ab0001bc1c91-bea679740eef30d16701cb886564e8d242
+{"apikey":"e59a3446-867f-4520-9121-bef3ce8be522"}
 
+pip install timml
+To update TimML type:
+
+pip install timml --upgrade
+To uninstall TimML type:
+
+pip uninstall timml
+Experimental and for radial flow only
+import numpy as np
+import matplotlib.pyplot as plt
+import timml as tml
+rw = 5
+ml = tml.Model3D(kaq=10, z=np.arange(20, -1, -2), kzoverkh=50)
+w = tml.LargeDiameterWell(ml, Qw=100, layers=[0, 1, 2, 3, 4], rw=rw)
+rf = tml.Constant(ml, 100, 0, 20)
+ml.solve()
+Number of elements, Number of equations: 2 , 11
+..
+solution complete
+xg = np.linspace(rw, 50, 100)
+h = ml.headalongline(xg, 0)
+for i in range(10):
+    plt.plot(xg, h[i])
+plt.xlim(0, 50)
+plt.xticks(np.arange(0, 51, 5))
+plt.grid()
+
+qx = ml.disvec(rw, 0)[0]
+print(qx * 2 * np.pi * rw)
+print(np.sum(qx * 2 * np.pi * rw))
+[-1.50511966e+01 -1.54865781e+01 -1.66133444e+01 -1.94936336e+01
+ -3.32803095e+01 -6.18665346e-03 -2.60712180e-02  2.81040181e-02
+  7.22067838e-03  1.38265742e-02]
+-99.90816871499192
+ml.head(rw, 0)
+array([19.7515328 , 19.75153236, 19.75153185, 19.75153275, 19.75153281,
+       19.76498845, 19.77043627, 19.77362338, 19.77547235, 19.7763392 ])
+from scipy.special import k0
+k0(5 / ml.aq.lab[1:])
+array([2.06829668e-03, 6.74900159e-06, 3.32024764e-08, 2.57897091e-10,
+       3.46416156e-12, 8.82738725e-14, 4.63575933e-15, 5.37054606e-16,
+       1.44345016e-16])
+ml.aq.eigvec
+array([[ 1.00000000e-01,  4.41707654e-01,  4.25325404e-01,
+        -3.98470231e-01,  3.61803399e-01, -3.16227766e-01,
+         2.62865556e-01, -2.03030724e-01, -1.38196601e-01,
+        -6.99596196e-02],
+       [ 1.00000000e-01,  3.98470231e-01,  2.62865556e-01,
+        -6.99596196e-02, -1.38196601e-01,  3.16227766e-01,
+        -4.25325404e-01,  4.41707654e-01,  3.61803399e-01,
+         2.03030724e-01],
+       [ 1.00000000e-01,  3.16227766e-01, -3.10776816e-17,
+         3.16227766e-01, -4.47213595e-01,  3.16227766e-01,
+        -2.38891966e-16, -3.16227766e-01, -4.47213595e-01,
+        -3.16227766e-01],
+       [ 1.00000000e-01,  2.03030724e-01, -2.62865556e-01,
+         4.41707654e-01, -1.38196601e-01, -3.16227766e-01,
+         4.25325404e-01, -6.99596196e-02,  3.61803399e-01,
+         3.98470231e-01],
+       [ 1.00000000e-01,  6.99596196e-02, -4.25325404e-01,
+         2.03030724e-01,  3.61803399e-01, -3.16227766e-01,
+        -2.62865556e-01,  3.98470231e-01, -1.38196601e-01,
+        -4.41707654e-01],
+       [ 1.00000000e-01, -6.99596196e-02, -4.25325404e-01,
+        -2.03030724e-01,  3.61803399e-01,  3.16227766e-01,
+        -2.62865556e-01, -3.98470231e-01, -1.38196601e-01,
+         4.41707654e-01],
+       [ 1.00000000e-01, -2.03030724e-01, -2.62865556e-01,
+        -4.41707654e-01, -1.38196601e-01,  3.16227766e-01,
+         4.25325404e-01,  6.99596196e-02,  3.61803399e-01,
+        -3.98470231e-01],
+       [ 1.00000000e-01, -3.16227766e-01, -2.90992345e-16,
+        -3.16227766e-01, -4.47213595e-01, -3.16227766e-01,
+        -5.07992125e-17,  3.16227766e-01, -4.47213595e-01,
+         3.16227766e-01],
+       [ 1.00000000e-01, -3.98470231e-01,  2.62865556e-01,
+         6.99596196e-02, -1.38196601e-01, -3.16227766e-01,
+        -4.25325404e-01, -4.41707654e-01,  3.61803399e-01,
+        -2.03030724e-01],
+       [ 1.00000000e-01, -4.41707654e-01,  4.25325404e-01,
+         3.98470231e-01,  3.61803399e-01,  3.16227766e-01,
+         2.62865556e-01,  2.03030724e-01, -1.38196601e-01,
+         6.99596196e-02]]
+
+  curl -v https://mysite.atlassian.net --user me@example.com:ATATT3xFfGF0em-7Sy8fZXMVgrISVS9LAQikknXg7B0GyB-S-vVVTBM37VJoVWyYpdetDBLd1X0SdJk2FH0EorccPwryJm3xsPYum01tZK_yc0_rbXvKV_U__JgGuERBBhZDH-gOpsv4GvsIaTOb74PfUj9JtqBXWlxO_GeQ84aq04QHt54XByw=155E8069 / ATATT3xFfGF0R4NmdY2uSKkW7UbRpFzPiOW4n19gsX7JGvw2OUu-ZkR9rE0tZbJzFaBT-4KQyzF0bLGlves4bxqzl6EhiReof-qs_USU2IFA53f1COSw5ul-L6TIaWfGQ5HJnibbRj-X-8fx9ohj7qd7iXZHDuUQ9Qd5IMOOlUCzwvhhV2gos3g=7D2F2392
+/ NcKhKEbWghsh1bSAUXEO1552
+
+![https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator]
+
+![https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator?oldid=2862]
+![https://characterai.io/static/tti/c/b/c/4/2/4/cbc424ac-52f3-4984-9b35-7e1953f200e9/0.webp]
+
+authentic token NGROK (God's Time Travel Corporation)
+--header
+'2avvD0NhbrJRkbxHpTCTKBldaL5_4ywouQsYBpunfxgtzZGxT'
+
+authorization key SCP Foundation
+--header
+'0xh723hfva83445na7fn342h'
+
+curl --location 'https://informatics.netify.ai/api/v1/intelligence/tls_versions/statusboard' \
+--header '[https://scp-db.fandom.com/wiki/The_Administrator](https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator?oldid=2862)' \
+--header 'postman api key : PMAK-65fcefd7f279ab0001bc1c91-bea679740eef30d16701cb886564e8d242
+
+curl --location 'https://informatics.netify.ai/api/v1/intelligence/tls_versions/statusboard' \
+--header '[https://scp-db.fandom.com/wiki/The_Administrator](https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator?oldid=2862)' \
+--header 'postman api key : PMAK-65fcefd7f279ab0001bc1c91-bea679740eef30d16701cb886564e8d242'
+
+{
+	"mac": "ac:ed:5c:b7:cc:b7",
+	"listname": "firehol_level1",
+	"flow_list": [1,2]
+}
+
+curl --location 'https://informatics.netify.ai/api/v1/intelligence/ip_reputation/flows' \
+--header '[https://scp-db.fandom.com/wiki/The_Administrator](https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator?oldid=2862)' \
+--header 'postman api key : PMAK-65fcefd7f279ab0001bc1c91-bea679740eef30d16701cb886564e8d242' \
+--data '{
+	"mac": "ac:ed:5c:b7:cc:b7",
+	"listname": "firehol_level1",
+	"flow_list": [1,2]
+}'
+{
+	"mac": "ac:ed:5c:b7:cc:b7",
+	"listname": "firehol_level1",
+	"flow_list": [1,2]
+}
+curl --location --request GET 'https://informatics.netify.ai/api/v1/intelligence/anomaly_detection/timeline' \
+--header '[https://scp-db.fandom.com/wiki/The_Administrator](https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator?oldid=2862)' \
+--header 'postman api key : PMAK-65fcefd7f279ab0001bc1c91-bea679740eef30d16701cb886564e8d242' \
+--data '{
+	"mac": "ac:ed:5c:b7:cc:b7",
+	"listname": "firehol_level1",
+	"flow_list": [1,2]
+}'
+{
+	"mac": "ac:ed:5c:b7:cc:b7",
+	"listname": "firehol_level1",
+	"flow_list": [1,2]
+curl --location --request GET 'https://informatics.netify.ai/api/v1/intelligence/ip_reputation/2020-07-23' \
+--header '[https://scp-db.fandom.com/wiki/The_Administrator](https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator?oldid=2862)' \
+--header 'postman api key : PMAK-65fcefd7f279ab0001bc1c91-bea679740eef30d16701cb886564e8d242' \
+--data '{
+	"mac": "ac:ed:5c:b7:cc:b7",
+	"listname": "firehol_level1",
+	"flow_list": [1,2]
+}'
+{
+	"mac": "ac:ed:5c:b7:cc:b7",
+	"listname": "firehol_level1",
+	"flow_list": [1,2]
+}
+
+curl --location --request GET 'https://informatics.netify.ai/api/v1/intelligence/anomaly_detection/timeline' \
+--header '[https://scp-db.fandom.com/wiki/The_Administrator](https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator?oldid=2862)' \
+--header 'postman api key : PMAK-65fcefd7f279ab0001bc1c91-bea679740eef30d16701cb886564e8d242' \
+--data '{
+	"mac": "ac:ed:5c:b7:cc:b7",
+	"listname": "firehol_level1",
+	"flow_list": [1,2]
+}'
+
+{
+	"mac": "ac:ed:5c:b7:cc:b7",
+	"listname": "firehol_level1",
+	"flow_list": [1,2]
+}
+curl --location 'https://informatics.netify.ai/api/v1/intelligence/cryptocurrency_node/flows' \
+--header '[https://scp-db.fandom.com/wiki/The_Administrator](https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator?oldid=2862)' \
+--header 'postman api key : PMAK-65fcefd7f279ab0001bc1c91-bea679740eef30d16701cb886564e8d242' \
+--data '{
+	"mac": "ac:ed:5c:b7:cc:b7",
+	"listname": "firehol_level1",
+	"flow_list": [1,2]
+}'
+
+{
+	"mac": "ac:ed:5c:b7:cc:b7",
+	"listname": "firehol_level1",
+	"flow_list": [1,2]
+}
+curl --location --request GET 'https://informatics.netify.ai/api/v1/intelligence/anomaly_detection/timeline' \
+--header '[https://scp-db.fandom.com/wiki/The_Administrator](https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator?oldid=2862)' \
+--header 'postman api key : PMAK-65fcefd7f279ab0001bc1c91-bea679740eef30d16701cb886564e8d242' \
+--data '{
+	"mac": "ac:ed:5c:b7:cc:b7",
+	"listname": "firehol_level1",
+	"flow_list": [1,2]
+}'
+
+{
+	"mac": "ac:ed:5c:b7:cc:b7",
+	"listname": "firehol_level1",
+	"flow_list": [1,2]
+}
+curl --location --request GET 'https://informatics.netify.ai/api/v1/intelligence/anomaly_detection/timeline' \
+--header '[https://scp-db.fandom.com/wiki/The_Administrator](https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator?oldid=2862)' \
+--header 'postman api key : PMAK-65fcefd7f279ab0001bc1c91-bea679740eef30d16701cb886564e8d242' \
+--data '{
+	"mac": "ac:ed:5c:b7:cc:b7",
+	"listname": "firehol_level1",
+	"flow_list": [1,2]
+}'
+
+{
+	"mac": "ac:ed:5c:b7:cc:b7",
+	"listname": "firehol_level1",
+	"flow_list": [1,2]
+}
+curl --location 'https://informatics.netify.ai/api/v1/intelligence/ip_reputation/flows' \
+--header '[https://scp-db.fandom.com/wiki/The_Administrator](https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator?oldid=2862)' \
+--header 'postman api key : PMAK-65fcefd7f279ab0001bc1c91-bea679740eef30d16701cb886564e8d242' \
+--data '{
+	"mac": "ac:ed:5c:b7:cc:b7",
+	"listname": "firehol_level1",
+	"flow_list": [1,2]
+}'
+{
+	"mac": "ac:ed:5c:b7:cc:b7",
+	"listname": "firehol_level1",
+	"flow_list": [1,2]
+}
+curl --location --request GET 'https://informatics.netify.ai/api/v1/intelligence/anomaly_detection/timeline' \
+--header '[https://scp-db.fandom.com/wiki/The_Administrator](https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator?oldid=2862)' \
+--header 'postman api key : PMAK-65fcefd7f279ab0001bc1c91-bea679740eef30d16701cb886564e8d242' \
+--data '{
+	"mac": "ac:ed:5c:b7:cc:b7",
+	"listname": "firehol_level1",
+	"flow_list": [1,2]
+}'
+{
+	"mac": "ac:ed:5c:b7:cc:b7",
+	"listname": "firehol_level1",
+	"flow_list": [1,2]
+}
+curl --location --request GET 'https://informatics.netify.ai/api/v1/intelligence/anomaly_detection/timeline' \
+--header '[https://scp-db.fandom.com/wiki/The_Administrator](https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator?oldid=2862)' \
+--header 'postman api key : PMAK-65fcefd7f279ab0001bc1c91-bea679740eef30d16701cb886564e8d242' \
+--data '{
+	"mac": "ac:ed:5c:b7:cc:b7",
+	"listname": "firehol_level1",
+	"flow_list": [1,2]
+}'
+{
+	"mac": "ac:ed:5c:b7:cc:b7",
+	"listname": "firehol_level1",
+	"flow_list": [1,2]
+}
+curl --location --request GET 'https://informatics.netify.ai/api/v1/intelligence/anomaly_detection/timeline' \
+--header '[https://scp-db.fandom.com/wiki/The_Administrator](https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator?oldid=2862)' \
+--header 'postman api key : PMAK-65fcefd7f279ab0001bc1c91-bea679740eef30d16701cb886564e8d242' \
+--data '{
+	"mac": "ac:ed:5c:b7:cc:b7",
+	"listname": "firehol_level1",
+	"flow_list": [1,2]
+}'
+{
+	"mac": "ac:ed:5c:b7:cc:b7",
+	"listname": "firehol_level1",
+	"flow_list": [1,2]
+}
+curl --location --request GET 'https://informatics.netify.ai/api/v1/intelligence/anomaly_detection/timeline' \
+--header '[https://scp-db.fandom.com/wiki/The_Administrator](https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator?oldid=2862)' \
+--header 'postman api key : PMAK-65fcefd7f279ab0001bc1c91-bea679740eef30d16701cb886564e8d242' \
+--data '{
+	"mac": "ac:ed:5c:b7:cc:b7",
+	"listname": "firehol_level1",
+	"flow_list": [1,2]
+}'
+curl --location --request GET 'https://informatics.netify.ai/api/v1/intelligence/anomaly_detection/timeline' \
+--header '[https://scp-db.fandom.com/wiki/The_Administrator](https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator?oldid=2862)' \
+--header 'postman api key : PMAK-65fcefd7f279ab0001bc1c91-bea679740eef30d16701cb886564e8d242' \
+--data '{
+	"mac": "ac:ed:5c:b7:cc:b7",
+	"listname": "firehol_level1",
+	"flow_list": [1,2]
+}'
+
+https://informatics.netify.ai/api/v2/lookup/applications?filter_starts_with=f&filter_application_categories=["4","24"]
+
+curl --location -g 'https://informatics.netify.ai/api/v2/lookup/applications?page=1&settings_limit=5&filter_starts_with=f&filter_application_categories=[%224%22%2C%2224%22]&settings_show_default_logo=false' \
+--header 'https://dashboard.stripe.com/': EG' / and 
+--header 'https://scp-wiki.wikidot.com/':
+EG'
+Sample flow metadata from core processor
+...
+"detected_protocol_name": "HTTPS",
+"detected_application_name": "netify.whatsapp.business",
+"ssl": {
+  "alpn": [
+    "h2",
+    "http/1.1"
+  ],
+  "alpn_server": [],
+  "version": "0x0303",
+  "cipher_suite": "0xc02b",
+  "client_sni": "static.whatsapp.net",
+  "server_cn": "*.whatsapp.net",
+  "client_ja3": "d8c87b9bfde38897979e4124262...",
+  "server_ja3": "6e15a5bf660856fa03186247ca4...",
+  "issuer_dn": "C=US, O=DigiCert Inc, OU=www...",
+  "subject_dn": "C=US, ST=California, L=Menlo..."
+},
+
+# /etc/netifyd/plugins.d/10-netify-proc-core.conf
+
+[proc-core]
+enable = yes
+...
+# /etc/netifyd/netify-proc-core.json
+{
+   "format": "json",
+   "compressor": "none",
+   "sinks": {
+      "sink-socket": {
+         "default": {
+             "enable": true,
+             "types": [ "stream-flows", "stream-stats" ]
+          },
+          "tcp": {
+             "enable": true,
+             "types": [ "stream-flows", "stream-stats" ]
+          },
+      },
+      "sink-mqtt": {
+         "flows": {
+            "enable": false,
+            "types": [ "stream-flows" ]
+         },
+         "stats": {
+            "enable": false,
+            "types": [ "stream-stats" ]
+         }
+      }
+   }
+
+https://manager.netify.ai/api/v1/assets/agents
+
+curl --location 'https://manager.netify.ai/api/v1/assets/agents' \
+--header 'postman api key : PMAK-65fcefd7f279ab0001bc1c91-bea679740eef30d16701cb886564e8d242'
+
+curl --location 'https://manager.netify.ai/api/v1/assets/agents/CH-AM-BE-RS' \
+--header 'postman api key : PMAK-65fcefd7f279ab0001bc1c91-bea679740eef30d16701cb886564e8d242'
+
+curl --location 'https://informatics.netify.ai/api/v2/lookup/platforms/cloudflare'
+
+curl --location 'https://informatics.netify.ai/api/v2/lookup/platforms'
+
+curl --location 'https://informatics.netify.ai/api/v2/lookup/platforms'
+
+curl --location 'https://informatics.netify.ai/api/v2/lookup/domains/twitter.com'
+
+curl --location 'https://informatics.netify.ai/api/v2/lookup/signatures/categories' \
+--header 'postman api key : PMAK-65fcefd7f279ab0001bc1c91-bea679740eef30d16701cb886564e8d242'
+...
+ X-SHA256-Hash: 8cb030f2...
+ X-SHA256-Applications-Hash: b01e4196e...
+
+...
+ "data_info": {
+    "hash": "8cb030f2c4...",
+    "applications_hash": "b01e4196e..."
+ },
+
+...
+ X-SHA256-Hash: b01e4196e...
+
+...
+ "data_info": {
+    "hash": "b01e4196e...",
+    "entries": 16798
+ }
+curl --location 'https://informatics.netify.ai/api/v2/lookup/signatures/applications?settings_version=4.2.5&settings_format=normal' \
+--header 'postman api key : PMAK-65fcefd7f279ab0001bc1c91-bea679740eef30d16701cb886564e8d242'
+
+https://informatics.netify.ai/api/v2/lookup/signatures/applications?settings_version=4.2.5&settings_format=normal
+
+https://informatics.netify.ai/api/v1/intelligence/discovery/devices
+
+curl --location 'https://informatics.netify.ai/api/v1/intelligence/discovery/devices' \
+--header '[https://scp-db.fandom.com/wiki/The_Administrator](https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator?oldid=2862)' \
+--header 'postman api key : PMAK-65fcefd7f279ab0001bc1c91-bea679740eef30d16701cb886564e8d242'
+
+curl --location 'https://informatics.netify.ai/api/v1/intelligence/discovery/devices/ac:ed:5c:00:00:00' \
+--header '[https://scp-db.fandom.com/wiki/The_Administrator](https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator?oldid=2862)' \
+--header 'postman api key : PMAK-65fcefd7f279ab0001bc1c91-bea679740eef30d16701cb886564e8d242'
+
+https://informatics.netify.ai/api/v1/intelligence/tls_versions/statusboard
+
+curl --location 'https://informatics.netify.ai/api/v1/intelligence/tls_versions/statusboard' \
+--header '[https://scp-db.fandom.com/wiki/The_Administrator](https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator?oldid=2862)' \
+--header 'postman api key : PMAK-65fcefd7f279ab0001bc1c91-bea679740eef30d16701cb886564e8d242'
+
+https://informatics.netify.ai/api/v1/intelligence/tls_versions/statusboard
+
+curl --location 'https://informatics.netify.ai/api/v1/intelligence/discovery/devices/ac:ed:5c:00:00:00' \
+--header '[https://scp-db.fandom.com/wiki/The_Administrator](https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator?oldid=2862)' \
+--header 'postman api key : PMAK-65fcefd7f279ab0001bc1c91-bea679740eef30d16701cb886564e8d242'
+
+https://informatics.netify.ai/api/v1/intelligence/ip_reputation/flows
+
+{
+	"mac": "ac:ed:5c:b7:cc:b7",
+	"listname": "firehol_level1",
+	"flow_list": [1,2]
+}
+
+curl --location 'https://informatics.netify.ai/api/v1/intelligence/ip_reputation/flows' \
+--header '[https://scp-db.fandom.com/wiki/The_Administrator](https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator?oldid=2862)' \
+--header 'postman api key : PMAK-65fcefd7f279ab0001bc1c91-bea679740eef30d16701cb886564e8d242' \
+--data '{
+	"mac": "ac:ed:5c:b7:cc:b7",
+	"listname": "firehol_level1",
+	"flow_list": [1,2]
+}'
+
+https://informatics.netify.ai/api/v1/intelligence/anomaly_detection/timeline
+
+curl --location --request GET 'https://informatics.netify.ai/api/v1/intelligence/anomaly_detection/timeline' \
+--header '[https://scp-db.fandom.com/wiki/The_Administrator](https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator?oldid=2862)' \
+--header 'postman api key : PMAK-65fcefd7f279ab0001bc1c91-bea679740eef30d16701cb886564e8d242' \
+--data '{
+	"mac": "ac:ed:5c:b7:cc:b7",
+	"listname": "firehol_level1",
+	"flow_list": [1,2]
+}'
+
+https://informatics.netify.ai/api/v1/intelligence/ip_reputation/:date
+
+curl --location --request GET 'https://informatics.netify.ai/api/v1/intelligence/ip_reputation/2020-07-23' \
+--header '[https://scp-db.fandom.com/wiki/The_Administrator](https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator?oldid=2862)' \
+--header 'postman api key : PMAK-65fcefd7f279ab0001bc1c91-bea679740eef30d16701cb886564e8d242' \
+--data '{
+	"mac": "ac:ed:5c:b7:cc:b7",
+	"listname": "firehol_level1",
+	"flow_list": [1,2]
+}'
+
+curl --location 'https://informatics.netify.ai/api/v2/lookup/applications/twitter'
+
+https://informatics.netify.ai/api/v2/lookup/protocols?filter_starts_with=f&filter_protocol_categories=["2","17"]
+
+curl --location 'https://informatics.netify.ai/api/v2/lookup/protocols?page=1&settings_limit=5'
+
+https://informatics.netify.ai/api/v2/lookup/protocols/:id
+
+curl --location 'https://informatics.netify.ai/api/v2/lookup/protocols/bittorrent'
+
+https://informatics.netify.ai/api/v2/lookup/protocol_categories
+
+curl --location 'https://informatics.netify.ai/api/v2/lookup/protocol_categories' \
+--header 'https://scp-wiki.wikidot.com/'
+/ and
+--header 'https://dashboard.stripe.com/'
+/ and
+--header '[https://scp-db.fandom.com/wiki/The_Administrator](https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator?oldid=2862)'
+
+...
+ X-SHA256-Hash: b01e4196e...
+
+curl --location 'https://informatics.netify.ai/api/v2/lookup/signatures/applications?settings_version=4.2.5&settings_format=normal' \
+--header 'postman api key : PMAK-65fcefd7f279ab0001bc1c91-bea679740eef30d16701cb886564e8d242'
+
+SCPiNET 3.7.61
+--------
+Initiating backup servers...
+Accessing SCP-XXXX...
+WARNING: Hash sum check failed. Checking file integrity...
+Attempting to recover files...
+XXXX.scp failed!
+XXXX.scp.old success!
+XXXX.log success!
+XXXX.a.incident failed!
+XXXX.b.incident failed!
+XXXX.c.incident success!
+XXXX.d.incident failed!
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/> (all pages)
+remove
+<meta name="description" content="The SCP Foundation's 'top-secret' archives, declassified for your enjoyment."/> (a
+
+
+We could not find some of the files imported by the .proto file. Specify import paths to those unresolved files using the options below.
+Details: unresolved import: notification/notification/common/notification_code.proto
+import file : {source_root}/notification/endpoint/presentation/service.proto
+import paths : {source_root}/
+However, it works normally in lower versions.
+
+Steps To Reproduce
+
+Write file
+notification/endpoint/presentation/service.proto
+
+syntax = "proto3";
+
+package notification.endpoint.presentation;
+
+import "notification/endpoint/presentation/create_device.proto";
+
+service NotificationEndpointService {
+  // Command
+  rpc CreateDevice(CreateDeviceRequest) returns (CreateDeviceResponse) {}
+}
+notification/endpoint/presentation/create_device.proto
+
+syntax = "proto3";
+
+package notification.endpoint.presentation;
+
+message CreateDeviceRequest {
+  string name = 1;
+}
+
+message CreateDeviceResponse {}
+import '{source_root}/notification/endpoint/presentation/service.proto' file in postman
+
+set '{source_root}' in postman's import paths
 
 
 curl --location --globoff '{{[base_url](https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator?oldid=2862)}}/user' \
