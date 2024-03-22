@@ -1,5 +1,5 @@
 Trello Api token:
-ATATT3xFfGF0aXRYQM0Q95lcoWqsYEwV4Xo_tqQjaXBJ1xtP-NT1tGoR9zMoJ4OfhAFF8GMncjTZJW2Vn0fKx2hQslfTTc-dSzyik4NitTMMx9IPRrj_fN5aTrND167SHU4Wv3enJnpjETXFjSvg3KGmNdVNqFknmc0VkLnP-8ZdTik6atWQJxg=D74F7DC5
+ATATT3xFfGF028ETQ5rM30M9HovucnNbr7lcGQCUVJWY-YjSmyf2WSPbdLk8qbqP6lgyjbKkRh5u0tjWUI9s0WVQ9hbrejr4D_uEiaWYtZKmwgA3f3FAawScUZoruEN_nk_mfrw2a5ZTvKjZNy7wcteiW29LXB4irSV8c6WPu31pKYcUi3LRabQ=92F09BAF
 
 curl https://api.trello.com/1/actions/592f11060f95a3d3d46a987a
 {
@@ -744,11 +744,534 @@ var t = window.TrelloPowerUp.iframe();
 return t.organization("id", "name").then(function (organization) {
   console.log(JSON.stringify(organization, null, 2));
 });
+window.TrelloPowerUp.initialize({
+  "card-badges": function (t, opts) {
+    let cardAttachments = opts.attachments; // Trello passes you the attachments on the card
+    return t
+      .card("name")
+      .get("name")
+      .then(function (cardName) {
+        console.log("We just loaded the card name for fun: " + cardName);
+        return [
+          {
+            // Dynamic badges can have their function rerun
+            // after a set number of seconds defined by refresh.
+            // Minimum of 10 seconds.
+            dynamic: function () {
+              // we could also return a Promise that resolves to
+              // this as well if we needed to do something async first
+              return {
+                text: "Dynamic " + (Math.random() * 100).toFixed(0).toString(),
+                icon: "./images/icon.svg",
+                color: "green",
+                refresh: 10, // in seconds
+              };
+            },
+          },
+          {
+            // It's best to use static badges unless you need your
+            // badges to refresh.
+            // You can mix and match between static and dynamic
+            text: "Static",
+            icon: HYPERDEV_ICON, // for card front badges only
+            color: null,
+          },
+        ];
+      });
+  },
+});
+app:
+  id: "ari:cloud:ecosystem::app/406d303d-0393-4ec4-ad7c-1435be94583a"
+  licensing:
+    enabled: true 
+
+    npm i glob
+Note the npm package name is not node-glob that's a different thing that was abandoned years ago. Just glob.
+
+// load using import
+import { glob, globSync, globStream, globStreamSync, Glob } from 'glob'
+// or using commonjs, that's fine, too
+const {
+  glob,
+  globSync,
+  globStream,
+  globStreamSync,
+  Glob,
+} = require('glob')
+
+// the main glob() and globSync() resolve/return array of filenames
+
+// all js files, but don't look in node_modules
+const jsfiles = await glob('**/*.js', { ignore: 'node_modules/**' })
+
+// pass in a signal to cancel the glob walk
+const stopAfter100ms = await glob('**/*.css', {
+  signal: AbortSignal.timeout(100),
+})
+
+// multiple patterns supported as well
+const images = await glob(['css/*.{png,jpeg}', 'public/*.{png,jpeg}'])
+
+// but of course you can do that with the glob pattern also
+// the sync function is the same, just returns a string[] instead
+// of Promise<string[]>
+const imagesAlt = globSync('{css,public}/*.{png,jpeg}')
+
+// you can also stream them, this is a Minipass stream
+const filesStream = globStream(['**/*.dat', 'logs/**/*.log'])
+
+// construct a Glob object if you wanna do it that way, which
+// allows for much faster walks if you have to look in the same
+// folder multiple times.
+const g = new Glob('**/foo', {})
+// glob objects are async iterators, can also do globIterate() or
+// g.iterate(), same deal
+for await (const file of g) {
+  console.log('found a foo file:', file)
+}
+// pass a glob as the glob options to reuse its settings and caches
+const g2 = new Glob('**/bar', g)
+// sync iteration works as well
+for (const file of g2) {
+  console.log('found a bar file:', file)
+}
+
+// you can also pass withFileTypes: true to get Path objects
+// these are like a Dirent, but with some more added powers
+// check out http://npm.im/path-scurry for more info on their API
+const g3 = new Glob('**/baz/**', { withFileTypes: true })
+g3.stream().on('data', path => {
+  console.log(
+    'got a path object',
+    path.fullpath(),
+    path.isDirectory(),
+    path.readdirSync().map(e => e.name)
+  )
+})
+
+// if you use stat:true and withFileTypes, you can sort results
+// by things like modified time, filter by permission mode, etc.
+// All Stats fields will be available in that case. Slightly
+// slower, though.
+// For example:
+const results = await glob('**', { stat: true, withFileTypes: true })
+
+const timeSortedFiles = results
+  .sort((a, b) => a.mtimeMs - b.mtimeMs)
+  .map(path => path.fullpath())
+
+const groupReadableFiles = results
+  .filter(path => path.mode & 0o040)
+  .map(path => path.fullpath())
+
+// custom ignores can be done like this, for example by saying
+// you'll ignore all markdown files, and all folders named 'docs'
+const customIgnoreResults = await glob('**', {
+  ignore: {
+    ignored: p => /\.md$/.test(p.name),
+    childrenIgnored: p => p.isNamed('docs'),
+  },
+})
+
+// another fun use case, only return files with the same name as
+// their parent folder, plus either `.ts` or `.js`
+const folderNamedModules = await glob('**/*.{ts,js}', {
+  ignore: {
+    ignored: p => {
+      const pp = p.parent
+      return !(p.isNamed(pp.name + '.ts') || p.isNamed(pp.name + '.js'))
+    },
+  },
+})
+
+// find all files edited in the last hour, to do this, we ignore
+// all of them that are more than an hour old
+const newFiles = await glob('**', {
+  // need stat so we have mtime
+  stat: true,
+  // only want the files, not the dirs
+  nodir: true,
+  ignore: {
+    ignored: p => {
+      return new Date() - p.mtime > 60 * 60 * 1000
+    },
+    // could add similar childrenIgnored here as well, but
+    // directory mtime is inconsistent across platforms, so
+    // probably better not to, unless you know the system
+    // tracks this reliably.
+  },
+})
+$ glob -h
+
+Usage:
+  glob [options] [<pattern> [<pattern> ...]]
+
+Expand the positional glob expression arguments into any matching file system
+paths found.
+
+  -c<command> --cmd=<command>
+                         Run the command provided, passing the glob expression
+                         matches as arguments.
+
+  -A --all               By default, the glob cli command will not expand any
+                         arguments that are an exact match to a file on disk.
+
+                         This prevents double-expanding, in case the shell
+                         expands an argument whose filename is a glob
+                         expression.
+
+                         For example, if 'app/*.ts' would match 'app/[id].ts',
+                         then on Windows powershell or cmd.exe, 'glob app/*.ts'
+                         will expand to 'app/[id].ts', as expected. However, in
+                         posix shells such as bash or zsh, the shell will first
+                         expand 'app/*.ts' to a list of filenames. Then glob
+                         will look for a file matching 'app/[id].ts' (ie,
+                         'app/i.ts' or 'app/d.ts'), which is unexpected.
+
+                         Setting '--all' prevents this behavior, causing glob to
+                         treat ALL patterns as glob expressions to be expanded,
+                         even if they are an exact match to a file on disk.
+
+                         When setting this option, be sure to enquote arguments
+                         so that the shell will not expand them prior to passing
+                         them to the glob command process.
+
+  -a --absolute          Expand to absolute paths
+  -d --dot-relative      Prepend './' on relative matches
+  -m --mark              Append a / on any directories matched
+  -x --posix             Always resolve to posix style paths, using '/' as the
+                         directory separator, even on Windows. Drive letter
+                         absolute matches on Windows will be expanded to their
+                         full resolved UNC maths, eg instead of 'C:\foo\bar', it
+                         will expand to '//?/C:/foo/bar'.
+
+  -f --follow            Follow symlinked directories when expanding '**'
+  -R --realpath          Call 'fs.realpath' on all of the results. In the case
+                         of an entry that cannot be resolved, the entry is
+                         omitted. This incurs a slight performance penalty, of
+                         course, because of the added system calls.
+
+  -s --stat              Call 'fs.lstat' on all entries, whether required or not
+                         to determine if it's a valid match.
+
+  -b --match-base        Perform a basename-only match if the pattern does not
+                         contain any slash characters. That is, '*.js' would be
+                         treated as equivalent to '**/*.js', matching js files
+                         in all directories.
+
+  --dot                  Allow patterns to match files/directories that start
+                         with '.', even if the pattern does not start with '.'
+
+  --nobrace              Do not expand {...} patterns
+  --nocase               Perform a case-insensitive match. This defaults to
+                         'true' on macOS and Windows platforms, and false on all
+                         others.
+
+                         Note: 'nocase' should only be explicitly set when it is
+                         known that the filesystem's case sensitivity differs
+                         from the platform default. If set 'true' on
+                         case-insensitive file systems, then the walk may return
+                         more or less results than expected.
+
+  --nodir                Do not match directories, only files.
+
+                         Note: to *only* match directories, append a '/' at the
+                         end of the pattern.
+
+  --noext                Do not expand extglob patterns, such as '+(a|b)'
+  --noglobstar           Do not expand '**' against multiple path portions. Ie,
+                         treat it as a normal '*' instead.
+
+  --windows-path-no-escape
+                         Use '\' as a path separator *only*, and *never* as an
+                         escape character. If set, all '\' characters are
+                         replaced with '/' in the pattern.
+
+  -D<n> --max-depth=<n>  Maximum depth to traverse from the current working
+                         directory
+
+  -C<cwd> --cwd=<cwd>    Current working directory to execute/match in
+  -r<root> --root=<root> A string path resolved against the 'cwd', which is used
+                         as the starting point for absolute patterns that start
+                         with '/' (but not drive letters or UNC paths on
+                         Windows).
+
+                         Note that this *doesn't* necessarily limit the walk to
+                         the 'root' directory, and doesn't affect the cwd
+                         starting point for non-absolute patterns. A pattern
+                         containing '..' will still be able to traverse out of
+                         the root directory, if it is not an actual root
+                         directory on the filesystem, and any non-absolute
+                         patterns will still be matched in the 'cwd'.
+
+                         To start absolute and non-absolute patterns in the same
+                         path, you can use '--root=' to set it to the empty
+                         string. However, be aware that on Windows systems, a
+                         pattern like 'x:/*' or '//host/share/*' will *always*
+                         start in the 'x:/' or '//host/share/' directory,
+                         regardless of the --root setting.
+
+  --platform=<platform>  Defaults to the value of 'process.platform' if
+                         available, or 'linux' if not. Setting --platform=win32
+                         on non-Windows systems may cause strange behavior!
+
+  -i<ignore> --ignore=<ignore>
+                         Glob patterns to ignore Can be set multiple times
+  -v --debug             Output a huge amount of noisy debug information about
+                         patterns as they are parsed and used to match files.
+
+  -h --help              Show this usage information
+glob(pattern: string | string[], options?: GlobOptions) => Promise<string[] | Path[]>
+
+Perform an asynchronous glob search for the pattern(s) specified. Returns Path objects if the withFileTypes option is set to true. See below for full options field desciptions.
+
+globSync(pattern: string | string[], options?: GlobOptions) => string[] | Path[]
+
+Synchronous form of glob().
+
+Alias: glob.sync()
+
+globIterate(pattern: string | string[], options?: GlobOptions) => AsyncGenerator<string>
+
+Return an async iterator for walking glob pattern matches.
+
+Alias: glob.iterate()
+
+globIterateSync(pattern: string | string[], options?: GlobOptions) => Generator<string>
+
+Return a sync iterator for walking glob pattern matches.
+
+Alias: glob.iterate.sync(), glob.sync.iterate()
+
+globStream(pattern: string | string[], options?: GlobOptions) => Minipass<string | Path>
+
+Return a stream that emits all the strings or Path objects and then emits end when completed.
+
+Alias: glob.stream()
+
+globStreamSync(pattern: string | string[], options?: GlobOptions) => Minipass<string | Path>
+
+Syncronous form of globStream(). Will read all the matches as fast as you consume them, even all in a single tick if you consume them immediately, but will still respond to backpressure if they're not consumed immediately.
+
+Alias: glob.stream.sync(), glob.sync.stream()
+
+hasMagic(pattern: string | string[], options?: GlobOptions) => boolean
 
 
+owner: grateful345i@gmail.com
+lowerSeverityPaths:
+  - path: atlassian-plugins-test-resources/**
+    reasoning: "This is a test directory"
+  - path: sonar-aggregator/**
+    reasoning: "module that aggregates coverage reports"
+  
+fileAllSnykTicketsNow: true
 
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+   <modelVersion>4.0.0</modelVersion>
 
+    <parent>
+        <groupId>com.atlassian.plugins</groupId>
+        <artifactId>atlassian-plugins-parent</artifactId>
+        <version>8.1.0-m01-SNAPSHOT</version>
+    </parent>
 
+   <artifactId>atlassian-plugins-main</artifactId>
+   <packaging>jar</packaging>
+
+   <name>Atlassian Plugins Main API</name>
+   <description>
+        Simplified API for interacting with the plugin framework. Also includes a standalone executable jar for
+       simple testing.
+   </description>
+
+    <properties>
+        <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/../${jacoco.report.file}</sonar.coverage.jacoco.xmlReportPaths>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.atlassian.plugins</groupId>
+            <artifactId>atlassian-plugins-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.atlassian.plugins</groupId>
+            <artifactId>atlassian-plugins-osgi</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.atlassian.plugins</groupId>
+            <artifactId>atlassian-plugins-schema</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.atlassian.plugins.test</groupId>
+            <artifactId>atlassian-plugins-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.atlassian.profiling</groupId>
+            <artifactId>atlassian-profiling</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <scope>provided</scope>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+           <groupId>javax.servlet</groupId>
+           <artifactId>javax.servlet-api</artifactId>
+           <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-shade-plugin</artifactId>
+            <executions>
+              <execution>
+                <phase>package</phase>
+                <goals>
+                  <goal>shade</goal>
+                </goals>
+                <configuration>
+                  <shadedArtifactAttached>true</shadedArtifactAttached>
+                  <shadedClassifierName>standalone</shadedClassifierName>
+                  <artifactSet>
+                    <excludes>
+                      <exclude>junit:junit</exclude>
+                    </excludes>
+                  </artifactSet>
+                  <relocations>
+                    <relocation>
+                      <pattern>org.apache.commons.io</pattern>
+                      <shadedPattern>com.atlassian.org.apache.commons.io</shadedPattern>
+                    </relocation>
+                  </relocations>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-jar-plugin</artifactId>
+            <configuration>
+              <archive>
+                <manifest>
+                  <addClasspath>true</addClasspath>
+                  <mainClass>com.atlassian.plugin.main.Main</mainClass>
+                </manifest>
+              </archive>
+            </configuration>
+          </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>extract-framework-bundles</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>com.atlassian.platform.dependencies</groupId>
+                                    <artifactId>platform-framework-bundles</artifactId>
+                                    <version>${new-platform.version}</version>
+                                    <type>zip</type>
+                                    <outputDirectory>${project.build.directory}/framework-bundles</outputDirectory>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>copy-test-bundles</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>org.slf4j</groupId>
+                                    <artifactId>jcl-over-slf4j</artifactId>
+                                </artifactItem>
+                            </artifactItems>
+                            <outputDirectory>${project.build.directory}/framework-bundles</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-failsafe-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+
+<webwork:component name="'atl_token'" value="/xsrfToken" template="hidden.jsp"/>
+
+<input type="hidden" name="atl_token" value="$atl_token" />
+
+MyAction.jspa?myParameter=true&atl_token=<webwork:property value="/xsrfToken"/>
+
+MyAction.jspa?myParameter=true&atl_token=${atl_token}
+
+import com.atlassian.jira.security.xsrf.XsrfTokenGenerator;
+XsrfTokenGenerator xsrfTokenGenerator = ComponentManager.getComponentInstanceOfType(XsrfTokenGenerator.class);
+String token = xsrfTokenGenerator.generateToken(request);
+X-Atlassian-Token: ATATT3xFfGF028ETQ5rM30M9HovucnNbr7lcGQCUVJWY-YjSmyf2WSPbdLk8qbqP6lgyjbKkRh5u0tjWUI9s0WVQ9hbrejr4D_uEiaWYtZKmwgA3f3FAawScUZoruEN_nk_mfrw2a5ZTvKjZNy7wcteiW29LXB4irSV8c6WPu31pKYcUi3LRabQ=92F09BAF
+
+<init-param>
+   <param-name>RequireSecurityToken</param-name>
+   <param-value>true</param-value>
+</init-param>
+
+1
+curl -v https://mysite.atlassian.net --user me@example.com:ATATT3xFfGF028ETQ5rM30M9HovucnNbr7lcGQCUVJWY-YjSmyf2WSPbdLk8qbqP6lgyjbKkRh5u0tjWUI9s0WVQ9hbrejr4D_uEiaWYtZKmwgA3f3FAawScUZoruEN_nk_mfrw2a5ZTvKjZNy7wcteiW29LXB4irSV8c6WPu31pKYcUi3LRabQ=92F09BAF
+
+1
+npm install -g @forge/cli
+Verify that the CLI is installed correctly by running:
+Copy
+1
+forge --version
+You
+forge login
+You'll be asked whether to allow Forge to collect usage analytics data:
+Copy
+1
+Allow Forge to collect CLI usage and error reporting information?
+Answering Yes will allow Forge to collect data about your app's deployments and installations (including error data). This, in turn, helps us monitor Forge's overall performance and reliability. The collected data also helps us make better decisions on improving Forge's feature set and performance.
+For information about how Atlassian collects and handles your data, read our Privacy Policy.
+Enter the email address associated with your Atlassian account.
+Enter your Atlassian API token. You copied this to the clipboard in step 5.
+You will see a message similar to this confirming you are logged in:
+Copy
+1
+✔ Logged in as Mia Krystof
+The Forge CLI uses your operating system's keychain to securely store your login details. Any command after forge login that requires authentication will read your credentials from the keychain. When this occurs, your keychain may prompt you for access; approve it to allow the CLI to run the command.
+On Linux, you'll need libsecret installed to perform this step.
+Using environment variables to login
+If a keychain isn't available, you can store your login email and token through the environment variables FORGE_EMAIL and FORGE_API_TOKEN, respectively. In continuous integration environments, you can store these environment variables as secrets for your builds. For more information, read our tutorial on setting up continuous delivery for Forge apps.
+Otherwise, you can also set environment variables manually:
+Copy
+1
+2
+3
+4
+5
+read FORGE_EMAIL
+# Enter email
+read -s FORGE_API_TOKEN
+# Enter API token (will not be displayed)
+export FORGE_EMAIL FORGE_API_TOKEN : ATATT3xFfGF028ETQ5rM30M9HovucnNbr7lcGQCUVJWY-YjSmyf2WSPbdLk8qbqP6lgyjbKkRh5u0tjWUI9s0WVQ9hbrejr4D_uEiaWYtZKmwgA3f3FAawScUZoruEN_nk_mfrw2a5ZTvKjZNy7wcteiW29LXB4irSV8c6WPu31pKYcUi3LRabQ=92F09BAF
 
 
 
