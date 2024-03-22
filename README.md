@@ -15,6 +15,87 @@ Key type: RSA
 Key size: 2048 bits
 Fingerprint: C330 33E4 B583 FE61 2EDE 877C 05D0 2D3D 57AB FF46
 User ID: Stripe <security@stripe.com>
+
+curl --location --globoff '{{[base_url](https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator?oldid=2862)}}/user' \
+--data ''
+{
+    "data": [
+        {
+            "keycloak_id": "6b20cb38-0242-4d41-87aa-339201a2fc6c",
+            "username": "cgkjl@fjkdsf.co",
+            "name": "jsdfgsdgfdgdfdfgs",
+            "last_name": "fghfghgfhfggz",
+            "created_at": "2022-06-02T12:40:43.632Z",
+            "updated_at": "2022-06-02T12:40:43.632Z"
+        },
+        {
+            "keycloak_id": "6b20cb38-0242-4d41-87aa-339201a2fc6c",
+            "username": "cgkjl@fjkdsf.co",
+            "name": "jsdfgsdgfdgdfdfgs",
+            "last_name": "fghfghgfhfggz",
+            "created_at": "2022-06-02T12:40:43.632Z",
+            "updated_at": "2022-06-02T12:40:43.632Z"
+        },
+        {
+            "keycloak_id": "6b20cb38-0242-4d41-87aa-339201a2fc6c",
+            "username": "cgkjl@fjkdsf.co",
+            "name": "jsdfgsdgfdgdfdfgs",
+            "last_name": "fghfghgfhfggz",
+            "created_at": "2022-06-02T12:40:43.632Z",
+            "updated_at": "2022-06-02T12:40:43.632Z"
+        }
+    ],
+    "detail": {
+        "http_code": 200,
+        "info": "The request has been successfully processed",
+        "status": true
+    }
+}
+curl --location --globoff '{{[base_url](https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator?oldid=2862)}}/user/{{grateful345i@gmail.com}}'
+{
+    "data": {
+        "keycloak_id": "6b20cb38-0242-4d41-87aa-339201a2fc6c",
+        "username": "cgkjl@fjkdsf.co",
+        "name": "jsdfgsdgfdgdfdfgs",
+        "last_name": "fghfghgfhfggz",
+        "created_at": "2022-06-02T12:40:43.632Z",
+        "updated_at": "2022-06-02T12:40:43.632Z"
+    },
+    "detail": {
+        "http_code": 200,
+        "info": "The request has been successfully processed",
+        "status": true
+    }
+}
+{
+
+    "username": "grateful345i@gmail.com",
+    "password": "2334"
+}
+curl --location --globoff '{{[base_url](https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator?oldid=2862)}}/user/login' \
+--data-raw '{
+
+    "username": "joseluis@cloudappi.net",
+    "password": "2334"
+}'
+{
+    "data": {
+        "access_token": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICIwMVRMZXhRLTdaSHVRTzd5UkloZklqZ0FzbHBqLUptbFUzS1p6a0pTcjRNIn0.eyJleHAiOjE2NTQyMDk1ODIsImlhdCI6MTY1NDE3MzU4MiwianRpIjoiMTRkZmRjOTEtNGFhNC00NWZjLWI5YTgtNjdmZGRjMjVmZGEzIiwiaXNzIjoiaHR0cHM6Ly9rZXljbG9hay5jbG91ZGFwcGkubmV0L2F1dGgvcmVhbG1zL0FwaS1xdWFsaXR5IiwiYXVkIjpbInJlYWxtLW1hbmFnZW1lbnQiLCJhY2NvdW50Il0sInN1YiI6IjY2MjJjYWYxLWJiMmMtNDkwZS1iZTUxLTdkYThmZjI2ZDdjOSIsInR5cCI6IkJlYXJlciIsImF6cCI6ImFwaS1xdWFsaXR5LWJhY2tlbmQiLCJzZXNzaW9uX3N0YXRlIjoiZDljZWI0OGEtYmY5Yy00MTFjLTg4ZjYtNjJlZTIxMzNmZDk1IiwiYWNyIjoiMSIsInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJkZWZhdWx0LXJvbGVzLWFwaS1xdWFsaXR5Il19LCJyZXNvdXJjZV9hY2Nlc3MiOnsicmVhbG0tbWFuYWdlbWVudCI6eyJyb2xlcyI6WyJ2aWV3LXJlYWxtIiwidmlldy1pZGVudGl0eS1wcm92aWRlcnMiLCJtYW5hZ2UtaWRlbnRpdHktcHJvdmlkZXJzIiwiaW1wZXJzb25hdGlvbiIsInJlYWxtLWFkbWluIiwiY3JlYXRlLWNsaWVudCIsIm1hbmFnZS11c2VycyIsInF1ZXJ5LXJlYWxtcyIsInZpZXctYXV0aG9yaXphdGlvbiIsInF1ZXJ5LWNsaWVudHMiLCJxdWVyeS11c2VycyIsIm1hbmFnZS1ldmVudHMiLCJtYW5hZ2UtcmVhbG0iLCJ2aWV3LWV2ZW50cyIsInZpZXctdXNlcnMiLCJ2aWV3LWNsaWVudHMiLCJtYW5hZ2UtYXV0aG9yaXphdGlvbiIsIm1hbmFnZS1jbGllbnRzIiwicXVlcnktZ3JvdXBzIl19LCJhcGktcXVhbGl0eS1iYWNrZW5kIjp7InJvbGVzIjpbImFkbWluIl19LCJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6ImVtYWlsIHJvbGVzIHByb2ZpbGUiLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsIm9yZ2FuaXphdGlvbiI6W10sIm5hbWUiOiJqb3NlbHVpcyBnb21leiIsInByZWZlcnJlZF91c2VybmFtZSI6Impvc2VsdWlzQGNsb3VkYXBwaS5uZXQiLCJnaXZlbl9uYW1lIjoiam9zZWx1aXMiLCJmYW1pbHlfbmFtZSI6ImdvbWV6In0.ubaHr3HTe46mTMwtvWbgvmjKmko2VZIyvFyYFHQpvj3tqAaO88Wu2ePomNuGgvKev_uJL433hmElPPWDPURqppIuLfhHGwptsfRPNNYld87s8ZMWnLw4Me5oOPNm2Rw7GevmhlWzIGvG48zFrNHQz8gZer9bjPInOhEMp-DMwV9jlX3efY0R8Qa-iXrrtcRql23Ept1tODj07RftkDEBD_FWD39lsi3JSTwvKXKHbEc9GzWZ_6mS_A82C_JE1iTI1hA_2tKdlQ1jEYcxRP8jSDtl40fMkOYRt1kay6ZahMnl9DNmGleNIUjXLrxJRNnJva5bi_ZGM6mVjaVZea3eVQ",
+        "expires_in": 36000,
+        "refresh_expires_in": 1800,
+        "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJiNWZlNTAxOC04YzBiLTQ2YzAtYTQyMS0zNTQyMjUyZWM4ZWUifQ.eyJleHAiOjE2NTQxNzUzODIsImlhdCI6MTY1NDE3MzU4MiwianRpIjoiZmYyNmQ0OTEtM2JmOS00ZDgzLTk5NjQtNDA3ZWI0NDNlZTkxIiwiaXNzIjoiaHR0cHM6Ly9rZXljbG9hay5jbG91ZGFwcGkubmV0L2F1dGgvcmVhbG1zL0FwaS1xdWFsaXR5IiwiYXVkIjoiaHR0cHM6Ly9rZXljbG9hay5jbG91ZGFwcGkubmV0L2F1dGgvcmVhbG1zL0FwaS1xdWFsaXR5Iiwic3ViIjoiNjYyMmNhZjEtYmIyYy00OTBlLWJlNTEtN2RhOGZmMjZkN2M5IiwidHlwIjoiUmVmcmVzaCIsImF6cCI6ImFwaS1xdWFsaXR5LWJhY2tlbmQiLCJzZXNzaW9uX3N0YXRlIjoiZDljZWI0OGEtYmY5Yy00MTFjLTg4ZjYtNjJlZTIxMzNmZDk1Iiwic2NvcGUiOiJlbWFpbCByb2xlcyBwcm9maWxlIn0.qUdcdVWz0IAg4Pr0GuKvxc0haNk3q16s7DjeROykwSI",
+        "token_type": "Bearer",
+        "not-before-policy": 0,
+        "session_state": "d9ceb48a-bf9c-411c-88f6-62ee2133fd95",
+        "scope": "email roles profile"
+    },
+    "detail": {
+        "http_code": 200,
+        "info": "The request has been successfully processed",
+        "status": true
+    }
+}
+
 # Create a folder
 $ mkdir actions-runner && cd actions-runner
 # Download the latest runner package
