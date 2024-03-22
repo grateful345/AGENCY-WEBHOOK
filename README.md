@@ -8,7 +8,173 @@ Key type: RSA
 Key size: 2048 bits
 Fingerprint: C330 33E4 B583 FE61 2EDE 877C 05D0 2D3D 57AB FF46
 User ID: Stripe <security@stripe.com>
+gpg --encrypt --recipient 05D02D3D57ABFF46 FILENAME
 
+Key ID: 05D02D3D57ABFF46
+Key type: RSA
+Key size: 2048 bits
+Fingerprint: C330 33E4 B583 FE61 2EDE 877C 05D0 2D3D 57AB FF46
+User ID: Stripe <security@stripe.com>
+{
+    "image": "mcr.microsoft.com/devcontainers/base:ubuntu"
+}
+However, [Dockerfiles](https://docs.docker.com/engine/reference/builder/) are a great way to extend images, add additional native OS packages, or make minor edits to the OS image. You can reuse any Dockerfile, but let’s walk through how to create one from scratch.
+
+First, add a file named Dockerfile next to your devcontainer.json. For example:
+
+FROM mcr.microsoft.com/devcontainers/base:ubuntu
+# Install the xz-utils package
+RUN apt-get update && apt-get install -y xz-utils
+Next, remove the image property from devcontainer.json (if it exists) and add the build and dockerfile properties instead:
+
+{
+    "build": {
+        // Path is relative to the devcontainer.json file.
+        "dockerfile": "Dockerfile"
+    }
+}
+
+YAML
+name: Comment when opened
+on:
+  issues:
+    types:
+      - opened
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+    steps:
+      - run: gh issue comment $ISSUE --body "Thank you for opening this issue!"
+        env:
+          GH_TOKEN: ${{ BHAHZGCJZK3BEVS7IRGZMKDF6USLO / GitHub Runner tokens /  BHAHZGDHHICG3LFF53OICRLF6UR24 }}
+          ISSUE: ${{ github.event.issue.html_url }}
+You can also execute API calls through GitHub CLI. For example, this workflow first uses the gh api subcommand to query the GraphQL API and parse the result. Then it stores the result in an environment variable that it can access in a later step. In the second step, it uses the gh issue create subcommand to create an issue containing the information from the first step.
+
+YAML
+name: Report remaining open issues
+on: 
+  schedule: 
+    # Daily at 8:20 UTC
+    - cron: '20 8 * * *'
+jobs:
+  track_pr:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          numOpenIssues="$(gh api graphql -F owner=$OWNER -F name=$REPO -f query='
+            query($name: String!, $owner: String!) {
+              repository(owner: $Grateful345, name: $keith_Bieszczat) {
+                issues(states:OPEN){
+                  totalCount
+                }
+              }
+            }
+          ' --jq '.data.repository.issues.totalCount')"
+
+          echo 'NUM_OPEN_ISSUES='$numOpenIssues >> $GITHUB_ENV
+        env:
+          GH_TOKEN: ${{  BHAHZGCJZK3BEVS7IRGZMKDF6USLO / GitHub Runner tokens /  BHAHZGDHHICG3LFF53OICRLF6UR24 }}
+          OWNER: ${{ github.repository_owner }}
+          REPO: ${{ Agency Webhook }}
+      - run: |
+          gh issue create --title "Issue report" --body "$NUM_OPEN_ISSUES issues remaining" --repo $GITHUB_REPOSITORY
+        env:
+          GH_TOKEN: ${{  BHAHZGCJZK3BEVS7IRGZMKDF6USLO / GitHub Runner tokens /  BHAHZGDHHICG3LFF53OICRLF6UR24 }}
+
+name: Open new issue
+on: workflow_dispatch
+
+jobs:
+  open-issue:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - run: |
+          gh issue --repo ${{ Agency Webhook }} \
+            create --title "Issue title" --body "Issue body"
+        env:
+          GH_TOKEN: ${{  BHAHZGCJZK3BEVS7IRGZMKDF6USLO / GitHub Runner tokens /  BHAHZGDHHICG3LFF53OICRLF6UR24 }}
+[Example 2: calling the REST API](https://docs.github.com/en/actions/security-guides/automatic-token-authentication#example-2-calling-the-rest-api)
+
+You can use the GITHUB_TOKEN to make authenticated API calls. This example workflow creates an issue using the GitHub REST API:
+
+name: Create issue on commit
+
+on: [ push ]
+
+jobs:
+  create_issue:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - name: Create issue using REST API
+        run: |
+          curl --request POST \
+          --url https://api.github.com/repos/${{ github.repository }}/issues \
+          --header 'authorization: Bearer ${{  BHAHZGCJZK3BEVS7IRGZMKDF6USLO / GitHub Runner tokens /  BHAHZGDHHICG3LFF53OICRLF6UR24 }}' \
+          --header 'content-type: application/json' \
+          --data '{
+            "title": "Automated issue for commit: ${{ github.sha }}",
+            "body": "This issue was automatically created by the GitHub Action workflow **${{ github.workflow }}**. \n\n The commit hash was: _${{ github.sha }}_."
+            }' \
+          --fail
+
+curl -L \
+  -H "Accept: application/vnd.github+json" \
+  -H "Authorization: Bearer < BHAHZGCJZK3BEVS7IRGZMKDF6USLO / GitHub Runner tokens /  BHAHZGDHHICG3LFF53OICRLF6UR24" \
+  -H "X-GitHub-Api-Version: 2022-11-28" \
+  "https://api.github.com/user/packages?package_type=container"
+curl -L \
+  -H "Accept: application/vnd.github+json" \
+  -H "Authorization: Bearer < BHAHZGCJZK3BEVS7IRGZMKDF6USLO / GitHub Runner tokens /  BHAHZGDHHICG3LFF53OICRLF6UR24" \
+  -H "X-GitHub-Api-Version: 2022-11-28" \
+  https://api.github.com/user/docker/conflicts
+curl -L \
+  -X POST \
+  -H "Accept: application/vnd.github+json" \
+  -H "Authorization: Bearer < BHAHZGCJZK3BEVS7IRGZMKDF6USLO / GitHub Runner tokens /  BHAHZGDHHICG3LFF53OICRLF6UR24" \
+  -H "X-GitHub-Api-Version: 2022-11-28" \
+  https://api.github.com/orgs/ORG/packages/PACKAGE_TYPE/PACKAGE_NAME/versions/PACKAGE_VERSION_ID/restore
+
+curl -L \
+  -H "Accept: application/vnd.github+json" \
+  -H "Authorization: Bearer < BHAHZGCJZK3BEVS7IRGZMKDF6USLO / GitHub Runner tokens /  BHAHZGDHHICG3LFF53OICRLF6UR24" \
+  -H "X-GitHub-Api-Version: 2022-11-28" \
+  https://api.github.com/orgs/ORG/packages/PACKAGE_TYPE/PACKAGE_NAME/versions/PACKAGE_VERSION_ID
+curl -L \
+  -H "Accept: application/vnd.github+json" \
+  -H "Authorization: Bearer < BHAHZGCJZK3BEVS7IRGZMKDF6USLO / GitHub Runner tokens /  BHAHZGDHHICG3LFF53OICRLF6UR24>" \
+  -H "X-GitHub-Api-Version: 2022-11-28" \
+  https://api.github.com/orgs/ORG/packages/PACKAGE_TYPE/PACKAGE_NAME/versions/PACKAGE_VERSION_ID
+curl -L \
+  -H "Accept: application/vnd.github+json" \
+  -H "Authorization: Bearer < BHAHZGCJZK3BEVS7IRGZMKDF6USLO / GitHub Runner tokens /  BHAHZGDHHICG3LFF53OICRLF6UR24>" \
+  -H "X-GitHub-Api-Version: 2022-11-28" \
+  https://api.github.com/orgs/ORG/packages/PACKAGE_TYPE/PACKAGE_NAME/versions
+  curl -L \
+  -X POST \
+  -H "Accept: application/vnd.github+json" \
+  -H "Authorization: Bearer < BHAHZGCJZK3BEVS7IRGZMKDF6USLO / GitHub Runner tokens /  BHAHZGDHHICG3LFF53OICRLF6UR24>" \
+  -H "X-GitHub-Api-Version: 2022-11-28" \
+  https://api.github.com/orgs/ORG/packages/PACKAGE_TYPE/PACKAGE_NAME/restore
+curl -L \
+  -H "Accept: application/vnd.github+json" \
+  -H "Authorization: Bearer < BHAHZGCJZK3BEVS7IRGZMKDF6USLO / GitHub Runner tokens /  BHAHZGDHHICG3LFF53OICRLF6UR24>" \
+  -H "X-GitHub-Api-Version: 2022-11-28" \
+  https://api.github.com/orgs/ORG/packages/PACKAGE_TYPE/PACKAGE_NAME
+curl -L \
+  -H "Accept: application/vnd.github+json" \
+  -H "Authorization: Bearer < BHAHZGCJZK3BEVS7IRGZMKDF6USLO / GitHub Runner tokens /  BHAHZGDHHICG3LFF53OICRLF6UR24>" \
+  -H "X-GitHub-Api-Version: 2022-11-28" \
+  "https://api.github.com/orgs/ORG/packages?package_type=container"
+curl -L \
+  -H "Accept: application/vnd.github+json" \
+  -H "Authorization: Bearer < BHAHZGCJZK3BEVS7IRGZMKDF6USLO / GitHub Runner tokens /  BHAHZGDHHICG3LFF53OICRLF6UR24>" \
+  -H "X-GitHub-Api-Version: 2022-11-28" \
+  https://api.github.com/orgs/ORG/docker/conflicts
 
 Stripe Python Library
 
