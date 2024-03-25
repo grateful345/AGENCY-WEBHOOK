@@ -521,3 +521,6 @@ index 209fc9f..02c2ba4 100644
  curl --request GET \
    --url 'https://your-domain.atlassian.net/configuration/retention' \
    --header 'Accept: application/json'
+
+
+   ATATT3xFfGF0XmLbrkDjnV3mjB9PvJ51M7nyw7NtrmOSYIdoETrVPQ8ewgxGaWGzVt51nPp6XB0gIdv16qB-cSSfsozIvhi3ntzSgkosHJvYnUy9dJ4pGSeDIZwDAqRE2MI23uiBIc_IYx2E9Oumwgxldv8QAHIx5WChVgy_gaYIyXdGbPZPFt8=F92622C1
