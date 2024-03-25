@@ -1,7 +1,7 @@
 curl \
     --request POST \
     --url https://example.atlassian.net/gateway/api/compass/v1/metrics \
-    --user "$USER_EMAIL:$ATATT3xFfGF0THElxlqWUKVZcgWy2wVvg362SyGYFs9euxaFBp3ymEVN5oet7d79qG3kB6lhVHmJzaHwy0IQjQvUaXUHvEwKRrSozJfZRWvXcsB-bUGuM6EtwcqstRg4e9I-sN49J3u8CEvF0Eg4KBmHq8rSHKuyb4GvMldHKpJSHfFj0GjM9qA=F7083D7A" \
+    --user "$USER_EMAIL:$ATATT3xFfGF0XmLbrkDjnV3mjB9PvJ51M7nyw7NtrmOSYIdoETrVPQ8ewgxGaWGzVt51nPp6XB0gIdv16qB-cSSfsozIvhi3ntzSgkosHJvYnUy9dJ4pGSeDIZwDAqRE2MI23uiBIc_IYx2E9Oumwgxldv8QAHIx5WChVgy_gaYIyXdGbPZPFt8=F92622C1" \
     --header "Accept: application/json" \
     --header "Content-Type: application/json" \
     --data "{
