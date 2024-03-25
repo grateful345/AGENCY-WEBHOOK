@@ -15,7 +15,65 @@ public static class DeploymentManager
 
 <ItemGroup>
    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.0.1">
-       <IncludeAssets>build</IncludeAssets>
+       
+	PATCH] Update README.md
+
+APKTIDusWyVAxxo7T74FLbHNqxcpPm8106sRDWV8WZnY-m_ TUQ contact key apple
+
+Signed-off-by: keith T bieszczat sr. <163609752+grateful345@users.noreply.github.com>
+---
+ README.md | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
+
+diff --git a/README.md b/README.md
+index 0fcfd44..c7e34a1 100644
+--- a/README.md
++++ b/README.md
+@@ -821,7 +821,7 @@ Once you have encoded your credentials, you can use cURL to make a call to the R
+ 3
+ curl --request <method> '<https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator?oldid=2862>?<parameters>' \
+ --header 'Accept: application/json' \
+---header 'Authorization: Basic <eW91cl9lbWFpbEBhdGxhc3NpYW4ubmV0OjEyMzQ1Njc=>'
++--header 'Authorization: Basic <eW91cl9lbWFpbEBhdGxhc3NpYW4ubmV0OjEyMzQ1Njc=/ BHAHZGCJZK3BEVS7IRGZMKDF6USLO / GitHub Runner tokens /BHAHZGDHHICG3LFF53OICRLF6UR24 / Magic API KEY:  alcht_ADS24iKB29HnDhzCuRIGlpUQ9a5bWl/. GitHub token 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>>'
+ You'll be making a GET request to the search REST API using parameters to specify a CQL query and a limit to the number of results. Here are the steps:
+ Build a URL made up of your Atlassian site plus the path to the REST endpoint. For this tutorial, use the search endpoint. For example:
+ 1
+@@ -836,7 +836,7 @@ Finally, build the entire cURL command using the URL, parameters, and your encod
+ 4
+ curl --request GET 'https://your_site_name.atlassian.net/wiki/rest/api/search?limit=1&cql=id%20!=%200%20order%20by%20lastmodified%20desc' \
+ --header 'Accept: application/json' \
+---header 'Authorization: Basic eW91cl9lbWFpbEBhdGxhc3NpYW4ubmV0OjEyMzQ1Njc='
++--header 'Authorization: Basic eW91cl9lbWFpbEBhdGxhc3NpYW4ubmV0OjEyMzQ1Njc=/ <BHAHZGCJZK3BEVS7IRGZMKDF6USLO / GitHub Runner tokens /BHAHZGDHHICG3LFF53OICRLF6UR24 / Magic API KEY:  alcht_ADS24iKB29HnDhzCuRIGlpUQ9a5bWl/. GitHub token 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>'
+ atlas-connect new rest-tutorial
+ 
+ curl -v https://mysite.atlassian.net --user god964v@gmail.com :ATATT3xFfGF0MehNWz-hcEtTOqtq3vI_vmJlWyS0Du0yKRq-QF2sGGmVFXhpUUHamS8dYbQc3_QJavaNrMuI4dIueJLL0DYW-8TNLcZ2OdO5jtwHAjW-nR6CCrEnXxMegVGqbIBwdTSomXmmS3liNel-_-MmZ8feo8iuG5ABpQVZj-BZxCVrMXc=9460FC6E
+@@ -851,7 +851,7 @@ curl -v https://mysite.atlassian.net --user god964v@gmail.com :ATATT3xFfGF0MehNW
+       }
+    },
+    "ngrok": {
+-      "authtoken": "your-ngrok-token"
++      "authtoken": "<BHAHZGCJZK3BEVS7IRGZMKDF6USLO / GitHub Runner tokens /BHAHZGDHHICG3LFF53OICRLF6UR24 / Magic API KEY:  alcht_ADS24iKB29HnDhzCuRIGlpUQ9a5bWl/. GitHub token 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>n"
+    }
+ }
+ app.get('/hello-world', addon.authenticate(), (req, res) => {
+@@ -1470,6 +1470,7 @@ Key size: 2048 bits
+ Fingerprint: C330 33E4 B583 FE61 2EDE 877C 05D0 2D3D 57AB FF46
+ User ID: Stripe <security@stripe.com>
+ 
++<BHAHZGCJZK3BEVS7IRGZMKDF6USLO / GitHub Runner tokens /BHAHZGDHHICG3LFF53OICRLF6UR24 / Magic API KEY:  alcht_ADS24iKB29HnDhzCuRIGlpUQ9a5bWl/. GitHub token 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>
+ 
+ API ID  KEY SECRET KEY : 	pst_test_YWNjdF8xTTJKVGtMa2RJd0h1N2l4LE81ZEdIalZ6NlVuMUdjM3c3WkRnN0ZYRHZxRURwTXo_00gNK2DWAV
+ cr_2coazssVIEva7q1Fw2nwytLIq2N BOT USER bot_2coayXt1oJzWKxgTYyanAjQ3KPV 
+@@ -2278,6 +2279,7 @@ Secret Key promo
+ </stripe-buy-button>
+ 
+ GITHUB runners
++<BHAHZGCJZK3BEVS7IRGZMKDF6USLO / GitHub Runner tokens /BHAHZGDHHICG3LFF53OICRLF6UR24 / Magic API KEY:  alcht_ADS24iKB29HnDhzCuRIGlpUQ9a5bWl/. GitHub token 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>
+ 
+ ${now} - 60)) # Issues 60 seconds in the past
+ exp=$   
+    
+    <IncludeAssets>build</IncludeAssets>
    </PackageReference>
 </ItemGroup>
 Get-Appxlog
