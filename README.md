@@ -1,6 +1,79 @@
 # AGENCY-WEBHOOK
 
 Secret api token for Trello b6ffa170da74846855071ebb9a12c2195e0a0373ef269a815e93da498ac2175c
+...
+
+[dependencies]
+ngrok = "0.13"
+
+...
+Alternatively, with cargo add:
+
+$ cargo add ngrok
+Quickstart
+
+Create a simple HTTP server using ngrok and axum:
+
+Cargo.toml:
+
+[package]
+name = "ngrok-axum-example"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+ngrok = { version="0.13", features=["axum"] }
+tokio = { version = "1.26", features = ["full"] }
+axum = "0.6"
+anyhow = "1.0"
+src/main.rs:
+
+use std::net::SocketAddr;
+
+use axum::{
+    extract::ConnectInfo,
+    routing::get,
+    Router,
+};
+use ngrok::prelude::*;
+
+#[tokio::main]
+async fn main() -> anyhow::Result<()> {
+    // build our application with a single route
+    let app = Router::new().route(
+        "/",
+        get(
+            |ConnectInfo(remote_addr): ConnectInfo<SocketAddr>| async move {
+                format!("Hello, {remote_addr:?}!\r\n")
+            },
+        ),
+    );
+
+    let tun = ngrok::Session::builder()
+        // Read the token from the NGROK_AUTHTOKEN environment variable
+        .authtoken_from_env()
+        // Connect the ngrok session
+        .connect()
+        .await?
+        // Start a tunnel with an HTTP edge
+        .http_endpoint()
+        .listen()
+        .await?;
+
+    println!("Tunnel started on URL: {:?}", tun.url());
+
+    // Instead of binding a local port like so:
+    // axum::Server::bind(&"0.0.0.0:8000".parse().unwrap())
+    // Run it with an ngrok tunnel instead!
+    axum::Server::builder(tun)
+        .serve(app.into_make_service_with_connect_info::<SocketAddr>())
+        .await
+        .unwrap();
+
+    Ok(())
+}
+
+
 
 $ Trello API Token apply to all api token auth inputs : ATATT3xFfGF0UghALZn_z9V6Iw1Er3Y7IQfaQf-_RqQZT6WUJiMCuLFw3o8GMqdGlkfxER_vjSyAdGnLQKo3us-8oZ09SjlpVlKFCE-9z1qnNE-t21k67j_IJmZ7fNnnc9Q_kPhqFCM_TZNQPsXMZE7ydFGsmHisYAVpNVujVLrhvWgWgZCzLO4=79F9F1DA
 
