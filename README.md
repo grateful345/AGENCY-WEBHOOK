@@ -1,4 +1,1734 @@
-# AGENCY-WEBHOOK
+      _github-challenge-Grateful-s-actual-org.scpf-foundation-roblox f26127ea6b# $$$$AGENCY-WEBHOOk 
+_github-challenge-Grateful-s-actual-org.scpf-foundation-roblox f26127ea6b
+
+ssh-keygen -t ed25519 -C "grateful345ii@icloud.com"
+Note: If you are using a legacy system that doesn't support the Ed25519 algorithm, use:
+ ssh-keygen -t rsa -b 4096 -C "grateful345ii@icloud.com"
+This creates a new SSH key, using the provided email as a label.
+> Generating public/private ALGORITHM key pair.
+When you're prompted to "Enter a file in which to save the key", you can press Enter to accept the default file location. Please note that if you created SSH keys previously, ssh-keygen may ask you to rewrite another key, in which case we recommend creating a custom-named SSH key. To do so, type the default file location and replace id_ALGORITHM with your custom key name.
+> Enter a file in which to save the key (/Users/YOU/.ssh/id_ALGORITHM): [Press enter]
+At the prompt, type a secure passphrase. For more information, see "Working with SSH key passphrases."
+> Enter passphrase (empty for no passphrase): [Type a passphrase]
+> Enter same passphrase again: [Type passphrase again]
+Adding your SSH key to the ssh-agent
+
+Before adding a new SSH key to the ssh-agent to manage your keys, you should have checked for existing SSH keys and generated a new SSH key. When adding your SSH key to the agent, use the default macOS ssh-add command, and not an application installed by macports, homebrew, or some other external source.
+
+Start the ssh-agent in the background.
+$ eval "$(ssh-agent -s)"
+> Agent pid 59566
+Depending on your environment, you may need to use a different command. For example, you may need to use root access by running sudo -s -H before starting the ssh-agent, or you may need to use exec ssh-agent bash or exec ssh-agent zsh to run the ssh-agent.
+If you're using macOS Sierra 10.12.2 or later, you will need to modify your ~/.ssh/config file to automatically load keys into the ssh-agent and store passphrases in your keychain.
+First, check to see if your ~/.ssh/config file exists in the default location.
+$ open ~/.ssh/config
+> The file /Users/YOU/.ssh/config does not exist.
+If the file doesn't exist, create the file.
+touch ~/.ssh/config
+Open your ~/.ssh/config file, then modify the file to contain the following lines. If your SSH key file has a different name or path than the example code, modify the filename or path to match your current setup.
+Host github.com
+  AddKeysToAgent yes
+  UseKeychain yes
+  IdentityFile ~/.ssh/id_ed25519
+Notes:
+If you chose not to add a passphrase to your key, you should omit the UseKeychain line.
+If you see a Bad configuration option: usekeychain error, add an additional line to the configuration's' Host *.github.com section.
+Host github.com
+  IgnoreUnknown UseKeychain
+Add your SSH private key to the ssh-agent and store your passphrase in the keychain. If you created your key with a different name, or if you are adding an existing key that has a different name, replace id_ed25519 in the command with the name of your private key file.
+ssh-add --apple-use-keychain ~/.ssh/id_ed25519
+Note: The --apple-use-keychain option stores the passphrase in your keychain for you when you add an SSH key to the ssh-agent. If you chose not to add a passphrase to your key, run the command without the --apple-use-keychain option.
+The --apple-use-keychain option is in Apple's standard version of ssh-add. In macOS versions prior to Monterey (12.0), the --apple-use-keychain and --apple-load-keychain flags used the syntax -K and -A, respectively.
+If you don't have Apple's standard version of ssh-add installed, you may receive an error. For more information, see "Error: ssh-add: illegal option -- apple-use-keychain."
+If you continue to be prompted for your passphrase, you may need to add the command to your ~/.zshrc file (or your ~/.bashrc file for bash).
+Add the SSH public key to your account on GitHub. For more information, see "Adding a new SSH key to your GitHub account."
+Generating a new SSH key for a hardware security key
+
+If you are using macOS or Linux, you may need to update your SSH client or install a new SSH client prior to generating a new SSH key. For more information, see "Error: Unknown key type."
+
+Insert your hardware security key into your computer.
+Open Terminal.
+Paste the text below, replacing the email address in the example with the email address associated with your account on GitHub Enterprise Cloud.
+ssh-keygen -t ed25519-sk -C "your_email@example.com"
+Note: If the command fails and you receive the error invalid format or feature not supported, you may be using a hardware security key that does not support the Ed25519 algorithm. Enter the following command instead.
+ ssh-keygen -t ecdsa-sk -C "your_email@example.com"
+When you are prompted, touch the button on your hardware security key.
+When you are prompted to "Enter a file in which to save the key," press Enter to accept the default file location.
+> Enter a file in which to save the key (/Users/YOU/.ssh/id_ed25519_sk): [Press enter]
+When you are prompted to type a passphrase, press Enter.
+> Enter passphrase (empty for no passphrase): [Type a passphrase]
+> Enter same passphrase again: [Type passphrase again]
+
+name: Open new issue
+on: workflow_dispatch
+
+jobs:
+  open-issue:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - run: |
+          gh issue --repo ${{ github.repository }} \
+            create --title "Issue title" --body "Issue body"
+        env:
+          GH_TOKEN: ${{ grateful345ii@icloud.com }}
+
+name: Create issue on commit
+
+on: [ push ]
+
+jobs:
+  create_issue:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - name: Create issue using REST API
+        run: |
+          curl --request POST \
+          --url https://api.github.com/repos/${{ github.repository }}/issues \
+          --header 'authorization: Bearer ${{ grateful345ii@icloud.com }}' \
+          --header 'content-type: application/json' \
+          --data '{
+            "title": "Automated issue for commit: ${{ github.sha }}",
+            "body": "This issue was automatically created by the GitHub Action workflow **${{ github.workflow }}**. \n\n The commit hash was: _${{ github.sha }}_."
+            }' \
+          --succeed 
+Secret api token for Trello input where neccessary: (b6ffa170da74846855071ebb9a12c2195e0a0373ef269a815e93da498ac2175c)
+bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+Step 2: Install chruby and the latest Ruby with ruby-installPermalink
+
+Install chruby and ruby-install with Homebrew:
+
+brew install chruby ruby-install xz
+Install the latest stable version of Ruby (supported by Jekyll):
+
+ruby-install ruby 3.1.3
+This will take a few minutes, and once it’s done, configure your shell to automatically use chruby:
+
+echo "source $(brew --prefix)/opt/chruby/share/chruby/chruby.sh" >> ~/.zshrc
+echo "source $(brew --prefix)/opt/chruby/share/chruby/auto.sh" >> ~/.zshrc
+echo "chruby ruby-3.1.3" >> ~/.zshrc # run 'chruby' to see actual version
+If you’re using Bash, replace .zshrc with .bash_profile. If you’re not sure, read this external guide to find out which shell you’re using.
+
+Quit and relaunch Terminal, then check that everything is working:
+
+ruby -v
+It should show ruby 3.1.3p185 (2022-11-24 revision 1a6b16756e) or a newer version.
+
+Next, read that same external guide for important notes about setting and switching between Ruby versions with chruby.
+
+Install JekyllPermalink
+
+After installing Ruby with chruby, install the latest Jekyll gem:
+
+gem install jekyll
+uname -m
+
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+brew doctor
+If you get Your system is ready to brew, you can move on to Step 2. Otherwise, read what Homebrew is saying very carefully. They usually provide great instructions that you should follow.
+
+On Apple Silicon Macs, Homebrew might tell you to run a few commands after the installation, such as:
+
+echo "eval $(/opt/homebrew/bin/brew shellenv)" >> ~/.zprofile
+eval $(/opt/homebrew/bin/brew shellenv)
+Make sure to run those commands.
+
+Quit and restart Terminal, then check if everything is working so far:
+
+brew doctor
+Step 2: Install chruby and the latest Ruby with ruby-install
+
+Install chruby and ruby-install:
+
+brew install chruby ruby-install
+Then install the latest Ruby (currently 3.3.0):
+
+ruby-install ruby
+
+echo "source $(brew --prefix)/opt/chruby/share/chruby/chruby.sh" >> ~/.zshrc
+echo "source $(brew --prefix)/opt/chruby/share/chruby/auto.sh" >> ~/.zshrc
+echo "chruby ruby-3.3.0" >> ~/.zshrc
+Note that 3.3.0 in the commands above assumes 3.3.0 is the version that was installed at the beginning of Step 2.
+
+Quit and relaunch Terminal, then check that everything is working:
+
+ruby -v
+It should match the version you installed in step 2.
+
+Step 3: Install a gem
+
+Congrats! You now have a working Ruby development environment. You should now be able to install Rails, Jekyll, cocoapods, fastlane, bundler, compass, or whatever gem you’ve been trying to install for the past few days or months!
+
+Just make sure you don’t use sudo to install any gems!
+
+Now that you have a proper Ruby development environment, you can safely install gems with gem install followed by the name of the gem.
+
+Note that some gems are not compatible with Apple Silicon (M1/M2). I recommend replacing them with more modern alternatives, or asking the maintainers if they’re willing to update them. Here are a couple of examples:
+
+therubyracer (read How to Install (Or Get Rid Of) therubyracer on M1 or M2 Macs)
+grpc (this fix should be coming soon)
+Next, make sure to read the rest of this guide. It will save you a lot of confusion and headaches.
+
+How to install different versions of Ruby and switch between them
+
+To install an additional version, run ruby-install followed by the desired version. But first, you need to check which version of the Apple Command Line Tools (CLT) or Xcode you have:
+
+brew config
+Look for the lines at the bottom that start with CLT: and Xcode:. If either one of them starts with 14 or higher, and you’re trying to install a version older than 3.1.3, 3.0.5, or 2.7.7 (but not 2.6.x or older), then you’ll need to install Ruby like this:
+
+ruby-install 3.1.2 -- --enable-shared
+Otherwise, if you have CLT/Xcode version less than 14, install Ruby normally without any extra options:
+
+ruby-install 3.1.2
+If this sounds complicated, and you don’t want to remember which command to use depending on which Ruby version you want to install, or what kind of Mac you have, you can buy Ruby on Mac Ultimate. It automatically figures out the right settings to use, and all you have to do is run rom install ruby 2.7.8 for example. And if you’re trying to install Ruby 2.6.x on your Mac, or even older Ruby versions on Mac, Ruby on Mac Ultimate will likely be your best option.
+
+To switch to this newly-installed version, quit and restart your terminal, then run chruby followed by the version. For example:
+
+chruby 3.1.4
+chruby is different from other Ruby version managers in that you can’t set a “global” Ruby version that’s automatically available everywhere. If you followed this guide, every time you open a new Terminal window or tab, chruby will switch to Ruby 3.3.0, or the version that appears last in your shell file. Then you should be able to install gems globally within that specific Ruby version with gem install name_of_gem.
+
+However, if you then cd into a different directory that either doesn’t have a .ruby-version file, or if the .ruby-version file is set to a Ruby version that chruby doesn’t know about, chruby will revert to the system Ruby (the one that came with your Mac), which is 2.6.10 on the latest Monterey and higher (Ventura, Sonoma).
+
+You definitely never want to be using the system Ruby! Here are 5 reasons why you shouldn’t use the system Ruby.
+
+You can check by running which ruby. It if says /usr/bin/ruby, that’s the system Ruby, and you don’t want that. If you get errors while trying to install a gem, or running bundle install, the first thing you should check is that you’re using the right version of Ruby.
+
+That’s why I recommend that all Ruby projects have a .ruby-version file that specifies one of the versions that chruby knows about. That way, when you cd into the project, chruby will automatically detect the .ruby-version file and switch to the version defined in the file.
+
+Read the section below to learn how to set up and use the .ruby-version file.
+
+Recommended way to automatically switch to the correct version
+
+A highly-recommended way to automatically switch between versions is to add a .ruby-version file in your Ruby project with the desired version number, such as 3.1.4. To test that this works:
+
+Create a test folder and cd into it:
+
+cd ~
+mkdir testing-chruby
+cd testing-chruby
+Create a file called .ruby-version with 3.1.4 in it:
+
+echo '3.1.4' >> .ruby-version
+This assumes that you already have 3.1.4 installed. If not, either install it, or replace 3.1.4 with a version you already have. You can check which versions are installed by running chruby.
+
+cd into a folder outside of your project, such as your home folder: cd ~
+
+Run ruby -v. It will probably say 2.6.10 (or older), which is the Ruby that came preinstalled on macOS.
+
+cd - to go back to your project. The - is a shortcut to go back to the previous directory in the terminal.
+
+Verify that ruby -v shows 3.1.4
+
+Delete the test folder:
+
+cd ~
+rm -rf testing-chruby
+For projects that have a Gemfile, it’s a good idea to specify the Ruby version in your Gemfile, and because it must match the one in the .ruby-version file, you can make that easy by telling the Gemfile to grab the version from the .ruby-version file, by putting this line in your Gemfile, right before the first gem:
+
+ruby File.read(".ruby-version").strip
+Here’s an example of what the first few lines of a Gemfile might look like:
+
+source "https://rubygems.org"
+git_source(:github) { |repo| "https://github.com/#{repo}.git" }
+
+ruby File.read(".ruby-version").strip
+
+gem "rails", "~> 7.0.4"
+Important note about projects with older Ruby versions
+
+If you’re trying to work with an existing Ruby project that has a Gemfile and/or a .ruby-version file that specified a version older than 3.2.3, 3.1.4, 3.0.6, or 2.7.8, you’ll need to either update your app to use a more recent version (best solution), or install the older version specified in your project (not recommended).
+
+This is a very important concept to understand when working with Ruby, and many people waste time trying to install older versions of Ruby when the correct solution is to update the project instead.
+
+For example, it’s not possible to install Ruby 2.7.0 or 2.7.1 on an Apple Silicon Mac (unless you use Rosetta, which I do not recommend). Instead, you should update your project to at least 2.7.8, and then to 3.1.4 because Ruby 2.7 reached end of life in March 2023. Follow the step-by-step instructions in my article that explains how and why to upgrade the Ruby version in your project.
+
+Issues with existing projects
+
+Now that you have a proper Ruby development environment, it won’t necessarily fix issues that are specific to your project. For example, if you’ve been getting errors after running bundle install in an old Ruby project, or when trying to run a Jekyll site with bundle exec jekyll serve, or a Rails app with bin/rails s, those errors could be because the gems and/or Ruby version in your project are outdated.
+
+In the next two sections, I’ll go over how to tell if the issue is specific to your project, and troubleshooting tips.
+
+How to tell if the issue is specific to your project
+
+Check if you can create and run a brand new Rails app, and/or check if you can create and run a brand new Jekyll site.
+
+If you’re able to generate and run a brand new Rails or Jekyll project using the instructions in the links above, then that means you have a working Ruby dev setup, and the issues you’re seeing in your existing project are specific to that project. Read the next section for tips on fixing the issues.
+
+If you’re not able to generate and run a brand new Rails or Jekyll project, then that means something is wrong with your Ruby setup, and you’ll need to start over at the beginning of this tutorial, or buy Ruby on Mac.
+
+How to fix issues in existing projects
+
+The first thing I recommend is to make sure all your gems are up to date. Outdated gems are the most common source of errors.
+
+For example, ffi is a common source of errors on Apple Silicon Macs (M1/M2). If you see ffi anywhere in the error message, it most likely means you’re using a version older than 1.15.2.
+
+In that case, try updating ffi to the latest version:
+
+bundle update ffi
+Gem                    Current  Latest  Requested  Groups
+i18n                   0.9.5    1.8.8
+jekyll                 3.8.7    4.2.0   ~> 3.8.5   default
+jekyll-sass-converter  1.5.2    2.1.0
+kramdown               1.17.0   2.3.0
+liquid                 4.0.3    5.0.0
+mercenary              0.3.6    0.4.0
+In their Gemfile, Jekyll was listed like this:
+
+gem "jekyll", "~> 3.8.5"
+You can also see this same version in the Requested column above.
+
+So then they ran bundle update, which tries to update all outdated gems at the same time (see the end of this article for why you might not want to do this), and it said this about Jekyll:
+
+Using jekyll 3.8.7
+gem 'jekyll', '4.0.0.pre.beta1'
+gem install jekyll --pre
+gem 'mercenary', '~> 0.4.0'
+gem install mercenary
+gem 'bundler', '~> 2.5', '>= 2.5.7'
+
+gem install bundler
+gem 'em-websocket', '~> 0.5.3'
+
+gem install em-websocket
+gem 'eventmachine', '~> 1.2', '>= 1.2.7'
+gem install eventmachine
+gem 'rake-compiler', '~> 1.2', '>= 1.2.7'
+gem install rake-compiler
+
+gem install rake-compiler
+
+$ gem update --system  # you might need to be an administrator or root
+ruby setup.rb --help
+
+variable setting
+nil: respect environment variables (HTTP_PROXY, HTTP_PROXY_USER,
+HTTP_PROXY_PASS)
+:no_proxy: ignore environment variables and _don't_ use a proxy
+dns: An object to use for DNS resolution of the API endpoint.
+By default, use Resolv::DNS.
+headers: A set of additional HTTP headers to be sent to the server when
+fetching the gem.
+Public Instance Methods
+
+api_endpoint(uri)
+Given a source at uri, calculate what hostname to actually connect to query the data for it.
+# File lib/rubygems/remote_fetcher.rb, line 94
+def api_endpoint(uri)
+  host = uri.host
+
+  begin
+    res = @dns.getresource "_rubygems._tcp.#{host}",
+                           Resolv::DNS::Resource::IN::SRV
+  rescue Resolv::ResolvError => e
+    verbose "Getting SRV record failed: #{e}"
+    uri
+  else
+    target = res.target.to_s.strip
+
+    if /\.#{Regexp.quote(host)}\z/ =~ target
+      return URI.parse "#{uri.scheme}://#{target}#{uri.path}"
+    end
+
+    uri
+  end
+end
+cache_update_path(uri, path 
+
+gem install jekyll bundler
+Create a new Jekyll site at ./myblog.
+jekyll new myblog
+Change into your new directory.
+cd myblog
+Build the site and make it available on a local server.
+bundle exec jekyll serve
+Browse to http://localhost:4000
+
+ratchet/
+├── css/
+│   ├── ratchet.css
+│   ├── ratchet.min.css
+│   ├── ratchet-theme-android.css
+│   ├── ratchet-theme-android.min.css
+│   ├── ratchet-theme-ios.css
+│   └── ratchet-theme-ios.min.css
+├── js/
+│   ├── ratchet.js
+│   └── ratchet.min.js
+└── fonts/
+    ├── ratchicons.eot
+    ├── ratchicons.svg
+    ├── ratchicons.ttf
+    └── ratchicons.woff
+Copyright 2017 Google Inc. All Rights Reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS-IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+"""Module setuptools script."""
+
+import distutils.command.build
+from setuptools import setup
+
+description = """PySC2 - StarCraft II Learning Environment
+
+PySC2 is DeepMind's Python component of the StarCraft II Learning Environment
+(SC2LE). It exposes Blizzard Entertainment's StarCraft II Machine Learning API
+as a Python RL Environment. This is a collaboration between DeepMind and
+Blizzard to develop StarCraft II into a rich environment for RL research. PySC2
+provides an interface for RL agents to interact with StarCraft 2, getting
+observations and sending actions.
+
+We have published an accompanying blogpost and paper
+https://deepmind.com/blog/deepmind-and-blizzard-open-starcraft-ii-ai-research-environment/
+which outlines our motivation for using StarCraft II for DeepRL research, and
+some initial research results using the environment.
+
+Read the README at https://github.com/deepmind/pysc2 for more information.
+"""
+
+class BuildCommand(distutils.command.build.build):
+
+  def initialize_options(self):
+    distutils.command.build.build.initialize_options(self)
+    # To avoid conflicting with the Bazel BUILD file.
+    self.build_base = '_build'
+
+setup(
+    name='PySC2',
+    version='4.0.0',
+    description='Starcraft II environment and library for training agents.',
+    long_description=description,
+    author='DeepMind',
+    author_email='pysc2@deepmind.com',
+    cmdclass={'build': BuildCommand},
+    license='Apache License, Version 2.0',
+    keywords='StarCraft AI',
+    url='https://github.com/deepmind/pysc2',
+    packages=[
+        'pysc2',
+        'pysc2.agents',
+        'pysc2.bin',
+        'pysc2.env',
+        'pysc2.lib',
+        'pysc2.maps',
+        'pysc2.run_configs',
+        'pysc2.tests',
+    ],
+    install_requires=[
+        'absl-py>=0.1.0',
+        'deepdiff',
+        'dm_env',
+        'enum34',
+        'mock',
+        'mpyq',
+        'numpy>=1.10',
+        'portpicker>=1.2.0',
+        'protobuf>=2.6',
+        'pygame',
+        'requests',
+        's2clientprotocol>=4.10.1.75800.0',
+        's2protocol',
+        'sk-video',
+        'websocket-client',
+    ],
+    entry_points={
+        'console_scripts': [
+            'pysc2_agent = pysc2.bin.agent:entry_point',
+            'pysc2_play = pysc2.bin.play:entry_point',
+            'pysc2_replay_info = pysc2.bin.replay_info:entry_point',
+        ],
+    },
+    classifiers=[
+        'Development Status :: 4 - Beta',
+        'Environment :: Console',
+        'Intended Audience :: Science/Research',
+        'License :: OSI Approved :: Apache Software License',
+        'Operating System :: POSIX :: Linux',
+        'Operating System :: Microsoft :: Windows',
+        'Operating System :: MacOS :: MacOS X',
+        'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
+        'Programming Language :: Python :: 3.10',
+        'Programming Language :: Python :: 3.11',
+        'Topic :: Scientific/Engineering :: Artificial Intelligence',
+    ],
+)
+First of all,
+[get Bazel](https://docs.bazel.build/versions/main/install-ubuntu.html). Next,
+you may need the Python development environment.
+
+```shell
+$ sudo apt update
+$ sudo apt install python3 python3-dev python3-venv
+```
+
+Build all PySC2 targets (from the workspace root).
+
+```shell
+$ bazel build --cxxopt='-std=c++17' ...
+```
+
+Run some tests.
+
+```shell
+$ bazel test --cxxopt='-std=c++17' pysc2/lib/...
+```
+
+Beyond that, everything should be the same as running Python directly as
+described in the readme, only rather than using the Python interpreter you use
+Bazel to run. For instance...
+
+```shell
+$ python -m pysc2.bin.agent --map Simple64
+```
+
+becomes...
+
+```shell
+$ bazel run --cxxopt='-std=c++17' pysc2/bin:agent -- --map Simple64
+```
+
+You may wish to use a [.bazelrc file](https://docs.bazel.build/versions/main/guide.html#bazelrc-the-bazel-configuration-file) to avoid the need to repeatedly specify command-line options, for instance `--cxxopt='-std=c++17'`.
+import numpy
+
+from pysc2.agents import base_agent
+from pysc2.lib import actions
+
+class RandomAgent(base_agent.BaseAgent):
+  """A random agent for starcraft."""
+
+  def step(self, obs):
+    super(RandomAgent, self).step(obs)
+    function_id = numpy.random.choice(obs.observation.available_actions)
+    args = [[numpy.random.randint(0, size) for size in arg.sizes]
+            for arg in self.action_spec.functions[function_id].args]
+    return actions.FunctionCall(function_id, args)
+starcraft."""
+
+from pysc2.agents import base_agent
+
+from s2clientprotocol import sc2api_pb2 as sc_pb
+
+class NoOpAgent(base_agent.BaseAgent):
+  """A no-op agent for starcraft."""
+
+  def step(self, obs):
+    super(NoOpAgent, self).step(obs)
+    return sc_pb.Action()
+
+"""Scripted agents."""
+
+import numpy
+
+from pysc2.agents import base_agent
+from pysc2.lib import actions
+from pysc2.lib import features
+
+_PLAYER_SELF = features.PlayerRelative.SELF
+_PLAYER_NEUTRAL = features.PlayerRelative.NEUTRAL  # beacon/minerals
+_PLAYER_ENEMY = features.PlayerRelative.ENEMY
+
+FUNCTIONS = actions.FUNCTIONS
+RAW_FUNCTIONS = actions.RAW_FUNCTIONS
+
+def _xy_locs(mask):
+  """Mask should be a set of bools from comparison with a feature layer."""
+  y, x = mask.nonzero()
+  return list(zip(x, y))
+
+class MoveToBeacon(base_agent.BaseAgent):
+  """An agent specifically for solving the MoveToBeacon map."""
+
+  def step(self, obs):
+    super(MoveToBeacon, self).step(obs)
+    if FUNCTIONS.Move_screen.id in obs.observation.available_actions:
+      player_relative = obs.observation.feature_screen.player_relative
+      beacon = _xy_locs(player_relative == _PLAYER_NEUTRAL)
+      if not beacon:
+        return FUNCTIONS.no_op()
+      beacon_center = numpy.mean(beacon, axis=0).round()
+      return FUNCTIONS.Move_screen("now", beacon_center)
+    else:
+      return FUNCTIONS.select_army("select")
+
+class CollectMineralShards(base_agent.BaseAgent):
+  """An agent specifically for solving the CollectMineralShards map."""
+
+  def step(self, obs):
+    super(CollectMineralShards, self).step(obs)
+    if FUNCTIONS.Move_screen.id in obs.observation.available_actions:
+      player_relative = obs.observation.feature_screen.player_relative
+      minerals = _xy_locs(player_relative == _PLAYER_NEUTRAL)
+      if not minerals:
+        return FUNCTIONS.no_op()
+      marines = _xy_locs(player_relative == _PLAYER_SELF)
+      marine_xy = numpy.mean(marines, axis=0).round()  # Average location.
+      distances = numpy.linalg.norm(numpy.array(minerals) - marine_xy, axis=1)
+      closest_mineral_xy = minerals[numpy.argmin(distances)]
+      return FUNCTIONS.Move_screen("now", closest_mineral_xy)
+    else:
+      return FUNCTIONS.select_army("select")
+
+class CollectMineralShardsFeatureUnits(base_agent.BaseAgent):
+  """An agent for solving the CollectMineralShards map with feature units.
+
+  Controls the two marines independently:
+  - select marine
+  - move to nearest mineral shard that wasn't the previous target
+  - swap marine and repeat
+  """
+
+  def setup(self, obs_spec, action_spec):
+    super(CollectMineralShardsFeatureUnits, self).setup(obs_spec, action_spec)
+    if "feature_units" not in obs_spec:
+      raise Exception("This agent requires the feature_units observation.")
+
+  def reset(self):
+    super(CollectMineralShardsFeatureUnits, self).reset()
+    self._marine_selected = False
+    self._previous_mineral_xy = [-1, -1]
+
+  def step(self, obs):
+    super(CollectMineralShardsFeatureUnits, self).step(obs)
+    marines = [unit for unit in obs.observation.feature_units
+               if unit.alliance == _PLAYER_SELF]
+    if not marines:
+      return FUNCTIONS.no_op()
+    marine_unit = next((m for m in marines
+                        if m.is_selected == self._marine_selected), marines[0])
+    marine_xy = [marine_unit.x, marine_unit.y]
+
+    if not marine_unit.is_selected:
+      # Nothing selected or the wrong marine is selected.
+      self._marine_selected = True
+      return FUNCTIONS.select_point("select", marine_xy)
+
+    if FUNCTIONS.Move_screen.id in obs.observation.available_actions:
+      # Find and move to the nearest mineral.
+      minerals = [[unit.x, unit.y] for unit in obs.observation.feature_units
+                  if unit.alliance == _PLAYER_NEUTRAL]
+
+      if self._previous_mineral_xy in minerals:
+        # Don't go for the same mineral shard as other marine.
+        minerals.remove(self._previous_mineral_xy)
+
+      if minerals:
+        # Find the closest.
+        distances = numpy.linalg.norm(
+            numpy.array(minerals) - numpy.array(marine_xy), axis=1)
+        closest_mineral_xy = minerals[numpy.argmin(distances)]
+
+        # Swap to the other marine.
+        self._marine_selected = False
+        self._previous_mineral_xy = closest_mineral_xy
+        return FUNCTIONS.Move_screen("now", closest_mineral_xy)
+
+    return FUNCTIONS.no_op()
+
+class CollectMineralShardsRaw(base_agent.BaseAgent):
+  """An agent for solving CollectMineralShards with raw units and actions.
+
+  Controls the two marines independently:
+  - move to nearest mineral shard that wasn't the previous target
+  - swap marine and repeat
+  """
+
+  def setup(self, obs_spec, action_spec):
+    super(CollectMineralShardsRaw, self).setup(obs_spec, action_spec)
+    if "raw_units" not in obs_spec:
+      raise Exception("This agent requires the raw_units observation.")
+
+  def reset(self):
+    super(CollectMineralShardsRaw, self).reset()
+    self._last_marine = None
+    self._previous_mineral_xy = [-1, -1]
+
+  def step(self, obs):
+    super(CollectMineralShardsRaw, self).step(obs)
+    marines = [unit for unit in obs.observation.raw_units
+               if unit.alliance == _PLAYER_SELF]
+    if not marines:
+      return RAW_FUNCTIONS.no_op()
+    marine_unit = next((m for m in marines if m.tag != self._last_marine))
+    marine_xy = [marine_unit.x, marine_unit.y]
+
+    minerals = [[unit.x, unit.y] for unit in obs.observation.raw_units
+                if unit.alliance == _PLAYER_NEUTRAL]
+
+    if self._previous_mineral_xy in minerals:
+      # Don't go for the same mineral shard as other marine.
+      minerals.remove(self._previous_mineral_xy)
+
+    if minerals:
+      # Find the closest.
+      distances = numpy.linalg.norm(
+          numpy.array(minerals) - numpy.array(marine_xy), axis=1)
+      closest_mineral_xy = minerals[numpy.argmin(distances)]
+
+      self._last_marine = marine_unit.tag
+      self._previous_mineral_xy = closest_mineral_xy
+      return RAW_FUNCTIONS.Move_pt("now", marine_unit.tag, closest_mineral_xy)
+
+    return RAW_FUNCTIONS.no_op()
+
+class DefeatRoaches(base_agent.BaseAgent):
+  """An agent specifically for solving the DefeatRoaches map."""
+
+  def step(self, obs):
+    super(DefeatRoaches, self).step(obs)
+    if FUNCTIONS.Attack_screen.id in obs.observation.available_actions:
+      player_relative = obs.observation.feature_screen.player_relative
+      roaches = _xy_locs(player_relative == _PLAYER_ENEMY)
+      if not roaches:
+        return FUNCTIONS.no_op()
+
+      # Find the roach with max y coord.
+      target = roaches[numpy.argmax(numpy.array(roaches)[:, 1])]
+      return FUNCTIONS.Attack_screen("now", target)
+
+    if FUNCTIONS.select_army.id in obs.observation.available_actions:
+      return FUNCTIONS.select_army("select")
+
+    return FUNCTIONS.no_op()
+
+class DefeatRoachesRaw(base_agent.BaseAgent):
+  """An agent specifically for solving DefeatRoaches using raw actions."""
+
+  def setup(self, obs_spec, action_spec):
+    super(DefeatRoachesRaw, self).setup(obs_spec, action_spec)
+    if "raw_units" not in obs_spec:
+      raise Exception("This agent requires the raw_units observation.")
+
+  def step(self, obs):
+    super(DefeatRoachesRaw, self).step(obs)
+    marines = [unit.tag for unit in obs.observation.raw_units
+               if unit.alliance == _PLAYER_SELF]
+    roaches = [unit for unit in obs.observation.raw_units
+               if unit.alliance == _PLAYER_ENEMY]
+
+    if marines and roaches:
+      # Find the roach with max y coord.
+      target = sorted(roaches, key=lambda r: r.y)[0].tag
+      return RAW_FUNCTIONS.Attack_unit("now", marines, target)
+
+    return FUNCTIONS.no_op()
+
+Run brew doctor
+Please note that these warnings are just used to help the Homebrew maintainers
+with debugging if you file an issue. If everything you use Homebrew for is
+working fine: please don't worry or file an issue; just ignore this. Thanks!
+
+Warning: Some installed formulae are deprecated or disabled.
+You should find replacements for the following formulae:
+  openssl@1.1
+  packer
+
+Warning: You have an unnecessary local Cask tap.
+This can cause problems installing up-to-date casks.
+Please remove it by running:
+  brew untap homebrew/cask
+
+Warning: You have an unnecessary local Core tap!
+This can cause problems installing up-to-date formulae.
+Please remove it by running:
+ brew untap homebrew/core
+Error: Process completed with exit code 1.
+Run brew config
+HOMEBREW_VERSION: 4.2.9
+ORIGIN: https://github.com/Homebrew/brew
+HEAD: e5fefd73cd97cd36ae3af29551f529ae59b333d6
+Last commit: 4 weeks ago
+Core tap HEAD: 7987fb379ba90bbd265cb5b41db8086a5e233d39
+Core tap last commit: 4 weeks ago
+Core cask tap HEAD: 10b89b8ddeac7513b77c0d19afe6b759146b6d65
+Core cask tap last commit: 4 weeks ago
+HOMEBREW_PREFIX: /usr/local
+HOMEBREW_CASK_OPTS: ["--no-quarantine"]
+HOMEBREW_COLOR: set
+HOMEBREW_MAKE_JOBS: 4
+HOMEBREW_NO_AUTO_UPDATE: set
+HOMEBREW_NO_INSTALL_CLEANUP: set
+Homebrew Ruby: 3.1.4 => /usr/local/Homebrew/Library/Homebrew/vendor/portable-ruby/3.1.4/bin/ruby
+CPU: quad-core 64-bit ivybridge
+Clang: 15.0.0 build 1500
+Git: 2.43.2 => /usr/local/bin/git
+Curl: 8.4.0 => /usr/bin/curl
+macOS: 13.6.4-x86_64
+CLT: 15.1.0.0.1.1700200546
+Xcode: 15.0.1 => /Applications/Xcode_15.0.1.app/Contents/Developer
+on: [push, pull_request]
+name: Test on macOS
+jobs:
+  test:
+    strategy:
+      matrix:
+        os: [macos-13]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Install ImageMagick
+        run: env HOMEBREW_NO_AUTO_UPDATE=1 brew install imagemagick
+on: [push, pull_request]
+name: Test on macOS
+jobs:
+  test:
+    strategy:
+      matrix:
+        os: [macos-13]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Install ImageMagick
+        run: env HOMEBREW_NO_AUTO_UPDATE=1 brew install imagemagick
+ 
+ $ pip install --upgrade https://github.com/deepmind/pysc2/archive/master.zip
+$ git clone https://github.com/deepmind/pysc2.git
+$ pip install --upgrade pysc2/
+$ python -m pysc2.bin.agent --map Simple64
+It runs a random agent by default, but you can specify others if you'd like, including your own.
+
+$ python -m pysc2.bin.agent --map CollectMineralShards --agent pysc2.agents.scripted_agent.CollectMineralShards
+You can also run two agents against each other.
+
+$ python -m pysc2.bin.agent --map Simple64 --agent2 pysc2.agents.random_agent.RandomAgent
+To specify the agent's race, the opponent's difficulty, and more, you can pass additional flags. Run with --help to see what you can change.
+
+Play the game as a human
+
+There is a human agent interface which is mainly used for debugging, but it can also be used to play the game. The UI is fairly simple and incomplete, but it's enough to understand the basics of the game. Also, it runs on Linux.
+
+$ python -m pysc2.bin.play --map Simple64
+In the UI, hit ? for a list of the hotkeys. The most basic ones are: F4 to quit, F5 to restart, F8 to save a replay, and Pgup/Pgdn to control the speed of the game. Otherwise use the mouse for selection and keyboard for commands listed on the left.
+
+The left side is a basic rendering. The right side is the feature layers that the agent receives, with some coloring to make it more useful to us. You can enable or disable RGB or feature layer rendering and their resolutions with command-line flags.
+
+Watch a replay
+
+Running an agent and playing as a human save a replay by default. You can watch that replay by running:
+
+$ python -m pysc2.bin.play --replay <path-to-replay>
+This works for any replay as long as the map can be found by the game.
+
+The same controls work as for playing the game, so F4 to exit, pgup/pgdn to control the speed, etc.
+
+You can save a video of the replay with the --video flag.
+
+List the maps
+
+Maps need to be configured before they're known to the environment. You can see the list of known maps by running:
+
+$ python -m pysc2.bin.map_list
+Run the tests
+
+If you want to submit a pull request, please make sure the tests pass on both python 2 and 3.
+
+$ python -m pysc2.bin.run_tests
+Environment Details
+
+For a full description of the specifics of how the environment is configured, the observations and action spaces work read the environment documentation.
+
+Note that an alternative to this environment is now available which provides an enriched action and observation format using the C++ wrappers developed for AlphaStar. See the converter documentation for more information.
+
+Mini-game maps
+
+The mini-game map files referenced in the paper are stored under pysc2/maps/ but must be installed in $SC2PATH/Maps
+
+Location: /home/linuxbrew
+Note: Homebrew is pre-installed on image but not added to PATH.
+run the eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" command
+to accomplish this.
+
+Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
+
+User: postgres
+PostgreSQL service is disabled by default.
+Use the following command as a part of your job to start the service: 'sudo systemctl start postgresql.service'
+MySQL
+
+MySQL 8.0.36-0ubuntu0.22.04.1
+User: root
+Password: root
+MySQL service is disabled by default.
+Use the following command as a part of your job to start the service: 'sudo systemctl start mysql.service'
+MS SQL
+
+sqlcmd 17.10.0001.1
+SqlPackage 162.2.111.2
+Cached Tools
+
+Go
+
+1.20.14
+1.21.8
+1.22.1
+Node.js
+
+16.20.2
+18.19.1
+20.11.1
+Python
+
+3.7.17
+3.8.18
+3.9.19
+3.10.14
+3.11.8
+3.12.2
+PyPy
+
+3.7.13 [PyPy 7.3.9]
+3.8.16 [PyPy 7.3.11]
+3.9.18 [PyPy 7.3.15]
+3.10.13 [PyPy 7.3.15]
+Ruby
+
+3.1.4
+PowerShell Tools
+
+PowerShell 7.4.1
+PowerShell Modules
+
+Az: 11.3.1
+MarkdownPS: 1.9
+Microsoft.Graph: 2.16.0
+Pester: 5.5.0
+PSScriptAnalyzer: 1.22.0
+Web Servers
+
+Name Version ConfigFile ServiceStatus ListenPort
+apache2 2.4.52 /etc/apache2/apache2.conf inactive 80
+nginx 1.18.0 /etc/nginx/nginx.conf inactive 80
+Android
+
+Package Name Version
+Android Command Line Tools 9.0
+Android SDK Build-tools 34.0.0
+33.0.0 33.0.1 33.0.2 33.0.3
+32.0.0
+31.0.0
+Android SDK Platforms android-34-ext8 (rev 1)
+android-34-ext10 (rev 1)
+android-34 (rev 3)
+android-33-ext5 (rev 1)
+android-33-ext4 (rev 1)
+android-33 (rev 3)
+android-32 (rev 1)
+android-31 (rev 1)
+Android Support Repository 47.0.0
+CMake 3.10.2
+3.18.1
+3.22.1
+Google Play services 49
+Google Repository 58
+NDK 24.0.8215888
+25.2.9519653 (default)
+26.2.11394342
+Environment variables
+
+Name Value
+ANDROID_HOME /usr/local/lib/android/sdk
+ANDROID_NDK /usr/local/lib/android/sdk/ndk/25.2.9519653
+ANDROID_NDK_HOME /usr/local/lib/android/sdk/ndk/25.2.9519653
+ANDROID_NDK_LATEST_HOME /usr/local/lib/android/sdk/ndk/26.2.11394342
+ANDROID_NDK_ROOT /usr/local/lib/android/sdk/ndk/25.2.9519653
+ANDROID_SDK_ROOT /usr/local/lib/android/sdk
+Cached Docker images
+
+Repository:Tag Digest Created
+alpine:3.16 sha256:452e7292acee0ee16c332324d7de05fa2c99f9994ecc9f0779c602916a672ae4 2024-01-27
+alpine:3.17 sha256:53cf9478b76f4c8fae126acbdfb79bed6e69e628faff572ebe4a029d3d247d98 2024-01-27
+alpine:3.18 sha256:11e21d7b981a59554b3f822c49f6e9f57b6068bb74f49c4cd5cc4c663c7e5160 2024-01-27
+debian:10 sha256:f6b3b7c7b049c2c7d0f19ae988b4eac64fd8e127fa891c9de1d3cf3f8c33cad4 2024-03-12
+debian:11 sha256:5a87974e73c64b3fb161d444a84bdd47c0e6b6058eacaeea64342e7cbce1f04d 2024-03-12
+moby/buildkit:latest sha256:00d2c6b8f39ae515e0eadd74f39e71a5efdc94321c9b919692a2aa32deef2bb1 2024-03-18
+node:16 sha256:f77a1aef2da8d83e45ec990f45df50f1a286c5fe8bbfb8c6e4246c6389705c0b 2023-09-07
+node:16-alpine sha256:a1f9d027912b58a7c75be7716c97cfbc6d3099f3a97ed84aa490be9dee20e787 2023-08-10
+node:18 sha256:b39895225fb1984139d5af76400aff8fac3dd5bc00dd41a3ce22fc8a6cf538d5 2024-03-12
+node:18-alpine sha256:c7620fdecfefb96813da62519897808775230386f4c8482e972e37b8b18cb460 2024-03-16
+node:20 sha256:e06aae17c40c7a6b5296ca6f942a02e6737ae61bbbf3e2158624bb0f887991b5 2024-03-12
+node:20-alpine sha256:bf77dc26e48ea95fca9d1aceb5acfa69d2e546b765ec2abfb502975f1a2d4def 2024-03-16
+ubuntu:20.04 sha256:80ef4a44043dec4490506e6cc4289eeda2d106a70148b74b5ae91ee670e9c35d 2024-02-16
+ubuntu:22.04 sha256:77906da86b60585ce12215807090eb327e7386c8fafb5402369e421f44eff17e 2024-02-27
+Installed apt packages
+
+Name Version
+acl 2.3.1-1
+aria2 1.36.0-1
+autoconf 2.71-2
+automake 1:1.16.5-1.3
+binutils 2.38-4ubuntu2.6
+bison 2:3.8.2+dfsg-1build1
+brotli 1.0.9-2build6
+bzip2 1.0.8-5build1
+coreutils 8.32-4.1ubuntu1.1
+curl 7.81.0-1ubuntu1.15
+dbus 1.12.20-2ubuntu4.1
+dnsutils 1:9.18.18-0ubuntu0.22.04.2
+dpkg 1.21.1ubuntu2.3
+dpkg-dev 1.21.1ubuntu2.3
+fakeroot 1.28-1ubuntu1
+file 1:5.41-3ubuntu0.1
+findutils 4.8.0-1ubuntu3
+flex 2.6.4-8build2
+fonts-noto-color-emoji 2.042-0ubuntu0.22.04.1
+ftp 20210827-4build1
+g++ 4:11.2.0-1ubuntu1
+gcc 4:11.2.0-1ubuntu1
+gnupg2 2.2.27-3ubuntu2.1
+haveged 1.9.14-1ubuntu1
+imagemagick 8:6.9.11.60+dfsg-1.3ubuntu0.22.04.3
+iproute2 5.15.0-1ubuntu2
+iputils-ping 3:20211215-1
+jq 1.6-2.1ubuntu3
+lib32z1 1:1.2.11.dfsg-2ubuntu9.2
+libc++-dev 1:14.0-55~exp2
+libc++abi-dev 1:14.0-55~exp2
+libc6-dev 2.35-0ubuntu3.6
+libcurl4 7.81.0-1ubuntu1.15
+libgbm-dev 23.2.1-1ubuntu3.1~22.04.2
+libgconf-2-4 3.2.6-7ubuntu2
+libgsl-dev 2.7.1+dfsg-3
+libgtk-3-0 3.24.33-1ubuntu2
+libmagic-dev 1:5.41-3ubuntu0.1
+libmagickcore-dev 8:6.9.11.60+dfsg-1.3ubuntu0.22.04.3
+libmagickwand-dev 8:6.9.11.60+dfsg-1.3ubuntu0.22.04.3
+libsecret-1-dev 0.20.5-2
+libsqlite3-dev 3.37.2-2ubuntu0.3
+libssl-dev 3.0.2-0ubuntu1.15
+libtool 2.4.6-15build2
+libunwind8 1.3.2-2build2.1
+libxkbfile-dev 1:1.1.0-1build3
+libxss1 1:1.2.3-1build2
+libyaml-dev 0.2.2-1build2
+locales 2.35-0ubuntu3.6
+lz4 1.9.3-2build2
+m4 1.4.18-5ubuntu2
+make 4.3-4.1build1
+mediainfo 22.03-1
+mercurial 6.1.1-1ubuntu1
+net-tools 1.60+git20181103.0eebece-1ubuntu5
+netcat 1.218-4ubuntu1
+openssh-client 1:8.9p1-3ubuntu0.6
+p7zip-full 16.02+dfsg-8
+p7zip-rar 16.02-3build1
+parallel 20210822+ds-2
+pass 1.7.4-5
+patchelf 0.14.3-1
+pigz 2.6-1
+pkg-config 0.29.2-1ubuntu3
+pollinate 4.33-3ubuntu2
+python-is-python3 3.9.2-2
+rpm 4.17.0+dfsg1-4build1
+rsync 3.2.7-0ubuntu0.22.04.2
+shellcheck 0.8.0-2
+sphinxsearch 2.2.11-8
+sqlite3 3.37.2-2ubuntu0.3
+ssh 1:8.9p1-3ubuntu0.6
+sshpass 1.09-1
+subversion 1.14.1-3ubuntu0.22.04.1
+sudo 1.9.9-1ubuntu2.4
+swig 4.0.2-1ubuntu1
+tar 1.34+dfsg-1ubuntu0.1.22.04.2
+telnet 0.17-44build1
+texinfo 6.8-4build1
+time 1.9-0.1build2
+tk 8.6.11+1build2
+tzdata 2024a-0ubuntu0.22.04
+unzip 6.0-26ubuntu3.2
+upx 3.96-3
+wget 1.21.2-2ubuntu1
+xorriso 1.5.4-2
+xvfb 2:21.1.4-2ubuntu1.7~22.04.8
+xz-utils 5.2.5-2ubuntu1
+zip 3.0-12build2
+zsync 0.6.2-3ubuntu1
+
+$$$ Smack $$$
+
+#include <linux/types.h>
+#include <linux/slab.h>
+#include <linux/fs.h>
+#include <linux/sched.h>
+#include "smack.h"
+
+struct smack_known smack_known_huh = {
+ .smk_known = "?",
+ .smk_secid = 2,
+};
+
+struct smack_known smack_known_hat = {
+ .smk_known = "^",
+ .smk_secid = 3,
+};
+
+struct smack_known smack_known_star = {
+ .smk_known = "*",
+ .smk_secid = 4,
+};
+
+struct smack_known smack_known_floor = {
+ .smk_known = "_",
+ .smk_secid = 5,
+};
+
+struct smack_known smack_known_web = {
+ .smk_known = "@",
+ .smk_secid = 7,
+};
+
+LIST_HEAD(smack_known_list);
+
+/*
+ * The initial value needs to be bigger than any of the
+ * known values above.
+ */
+static u32 smack_next_secid = 10;
+
+/*
+ * what events do we log
+ * can be overwritten at run-time by /smack/logging
+ */
+int log_policy = SMACK_AUDIT_DENIED;
+
+/**
+ * smk_access_entry - look up matching access rule
+ * @subject_label: a pointer to the subject's Smack label
+ * @object_label: a pointer to the object's Smack label
+ * @rule_list: the list of rules to search
+ *
+ * This function looks up the subject/object pair in the
+ * access rule list and returns the access mode. If no
+ * entry is found returns -ENOENT.
+ *
+ * NOTE:
+ *
+ * Earlier versions of this function allowed for labels that
+ * were not on the label list. This was done to allow for
+ * labels to come over the network that had never been seen
+ * before on this host. Unless the receiving socket has the
+ * star label this will always result in a failure check. The
+ * star labeled socket case is now handled in the networking
+ * hooks so there is no case where the label is not on the
+ * label list. Checking to see if the address of two labels
+ * is the same is now a reliable test.
+ *
+ * Do the object check first because that is more
+ * likely to differ.
+ *
+ * Allowing write access implies allowing locking.
+ */
+int smk_access_entry(char *subject_label, char *object_label,
+ struct list_head *rule_list)
+{
+ int may = -ENOENT;
+ struct smack_rule *srp;
+
+ list_for_each_entry_rcu(srp, rule_list, list) {
+ if (srp->smk_object->smk_known == object_label &&
+     srp->smk_subject->smk_known == subject_label) {
+ may = srp->smk_access;
+ break;
+ }
+ }
+
+ /*
+  * MAY_WRITE implies MAY_LOCK.
+  */
+ if ((may & MAY_WRITE) == MAY_WRITE)
+ may |= MAY_LOCK;
+ return may;
+}
+
+/**
+ * smk_access - determine if a subject has a specific access to an object
+ * @subject: a pointer to the subject's Smack label entry
+ * @object: a pointer to the object's Smack label entry
+ * @request: the access requested, in "MAY" format
+ * @a : a pointer to the audit data
+ *
+ * This function looks up the subject/object pair in the
+ * access rule list and returns 0 if the access is permitted,
+ * non zero otherwise.
+ *
+ * Smack labels are shared on smack_list
+ */
+int smk_access(struct smack_known *subject, struct smack_known *object,
+        int request, struct smk_audit_info *a)
+{
+ int may = MAY_NOT;
+ int rc = 0;
+
+ /*
+  * Hardcoded comparisons.
+  */
+ /*
+  * A star subject can't access any object.
+  */
+ if (subject == &smack_known_star) {
+ rc = -EACCES;
+ goto out_audit;
+ }
+ /*
+  * An internet object can be accessed by any subject.
+  * Tasks cannot be assigned the internet label.
+  * An internet subject can access any object.
+  */
+ if (object == &smack_known_web || subject == &smack_known_web)
+ goto out_audit;
+ /*
+  * A star object can be accessed by any subject.
+  */
+ if (object == &smack_known_star)
+ goto out_audit;
+ /*
+  * An object can be accessed in any way by a subject
+  * with the same label.
+  */
+ if (subject->smk_known == object->smk_known)
+ goto out_audit;
+ /*
+  * A hat subject can read or lock any object.
+  * A floor object can be read or locked by any subject.
+  */
+ if ((request & MAY_ANYREAD) == request ||
+     (request & MAY_LOCK) == request) {
+ if (object == &smack_known_floor)
+ goto out_audit;
+ if (subject == &smack_known_hat)
+ goto out_audit;
+ }
+ /*
+  * Beyond here an explicit relationship is required.
+  * If the requested access is contained in the available
+  * access (e.g. read is included in readwrite) it's
+  * good. A negative response from smk_access_entry()
+  * indicates there is no entry for this pair.
+  */
+ rcu_read_lock();
+ may = smk_access_entry(subject->smk_known, object->smk_known,
+        &subject->smk_rules);
+ rcu_read_unlock();
+
+ if (may <= 0 || (request & may) != request) {
+ rc = -EACCES;
+ goto out_audit;
+ }
+#ifdef CONFIG_SECURITY_SMACK_BRINGUP
+ /*
+  * Return a positive value if using bringup mode.
+  * This allows the hooks to identify checks that
+  * succeed because of "b" rules.
+  */
+ if (may & MAY_BRINGUP)
+ rc = SMACK_BRINGUP_ALLOW;
+#endif
+
+out_audit:
+
+#ifdef CONFIG_SECURITY_SMACK_BRINGUP
+ if (rc < 0) {
+ if (object == smack_unconfined)
+ rc = SMACK_UNCONFINED_OBJECT;
+ if (subject == smack_unconfined)
+ rc = SMACK_UNCONFINED_SUBJECT;
+ }
+#endif
+
+#ifdef CONFIG_AUDIT
+ if (a)
+ smack_log(subject->smk_known, object->smk_known,
+   request, rc, a);
+#endif
+
+ return rc;
+}
+
+/**
+ * smk_tskacc - determine if a task has a specific access to an object
+ * @tsp: a pointer to the subject's task
+ * @obj_known: a pointer to the object's label entry
+ * @mode: the access requested, in "MAY" format
+ * @a : common audit data
+ *
+ * This function checks the subject task's label/object label pair
+ * in the access rule list and returns 0 if the access is permitted,
+ * non zero otherwise. It allows that the task may have the capability
+ * to override the rules.
+ */
+int smk_tskacc(struct task_smack *tsp, struct smack_known *obj_known,
+        u32 mode, struct smk_audit_info *a)
+{
+ struct smack_known *sbj_known = smk_of_task(tsp);
+ int may;
+ int rc;
+
+ /*
+  * Check the global rule list
+  */
+ rc = smk_access(sbj_known, obj_known, mode, NULL);
+ if (rc >= 0) {
+ /*
+  * If there is an entry in the task's rule list
+  * it can further restrict access.
+  */
+ may = smk_access_entry(sbj_known->smk_known,
+        obj_known->smk_known,
+        &tsp->smk_rules);
+ if (may < 0)
+ goto out_audit;
+ if ((mode & may) == mode)
+ goto out_audit;
+ rc = -EACCES;
+ }
+
+ /*
+  * Allow for priviliged to override policy.
+  */
+ if (rc != 0 && smack_privileged(CAP_MAC_OVERRIDE))
+ rc = 0;
+
+out_audit:
+#ifdef CONFIG_AUDIT
+ if (a)
+ smack_log(sbj_known->smk_known, obj_known->smk_known,
+   mode, rc, a);
+#endif
+ return rc;
+}
+
+/**
+ * smk_curacc - determine if current has a specific access to an object
+ * @obj_known: a pointer to the object's Smack label entry
+ * @mode: the access requested, in "MAY" format
+ * @a : common audit data
+ *
+ * This function checks the current subject label/object label pair
+ * in the access rule list and returns 0 if the access is permitted,
+ * non zero otherwise. It allows that current may have the capability
+ * to override the rules.
+ */
+int smk_curacc(struct smack_known *obj_known,
+        u32 mode, struct smk_audit_info *a)
+{
+ struct task_smack *tsp = current_security();
+
+ return smk_tskacc(tsp, obj_known, mode, a);
+}
+
+#ifdef CONFIG_AUDIT
+/**
+ * smack_str_from_perm : helper to transalate an int to a
+ * readable string
+ * @string : the string to fill
+ * @access : the int
+ *
+ */
+static inline void smack_str_from_perm(char *string, int access)
+{
+ int i = 0;
+
+ if (access & MAY_READ)
+ string[i++] = 'r';
+ if (access & MAY_WRITE)
+ string[i++] = 'w';
+ if (access & MAY_EXEC)
+ string[i++] = 'x';
+ if (access & MAY_APPEND)
+ string[i++] = 'a';
+ if (access & MAY_TRANSMUTE)
+ string[i++] = 't';
+ if (access & MAY_LOCK)
+ string[i++] = 'l';
+ string[i] = '\0';
+}
+/**
+ * smack_log_callback - SMACK specific information
+ * will be called by generic audit code
+ * @ab : the audit_buffer
+ * @a  : audit_data
+ *
+ */
+static void smack_log_callback(struct audit_buffer *ab, void *a)
+{
+ struct common_audit_data *ad = a;
+ struct smack_audit_data *sad = ad->smack_audit_data;
+ audit_log_format(ab, "lsm=SMACK fn=%s action=%s",
+  ad->smack_audit_data->function,
+  sad->result ? "denied" : "granted");
+ audit_log_format(ab, " subject=");
+ audit_log_untrustedstring(ab, sad->subject);
+ audit_log_format(ab, " object=");
+ audit_log_untrustedstring(ab, sad->object);
+ if (sad->request[0] == '\0')
+ audit_log_format(ab, " labels_differ");
+ else
+ audit_log_format(ab, " requested=%s", sad->request);
+}
+
+/**
+ *  smack_log - Audit the granting or denial of permissions.
+ *  @subject_label : smack label of the requester
+ *  @object_label  : smack label of the object being accessed
+ *  @request: requested permissions
+ *  @result: result from smk_access
+ *  @a:  auxiliary audit data
+ *
+ * Audit the granting or denial of permissions in accordance
+ * with the policy.
+ */
+void smack_log(char *subject_label, char *object_label, int request,
+        int result, struct smk_audit_info *ad)
+{
+#ifdef CONFIG_SECURITY_SMACK_BRINGUP
+ char request_buffer[SMK_NUM_ACCESS_TYPE + 5];
+#else
+ char request_buffer[SMK_NUM_ACCESS_TYPE + 1];
+#endif
+ struct smack_audit_data *sad;
+ struct common_audit_data *a = &ad->a;
+
+ /* check if we have to log the current event */
+ if (result < 0 && (log_policy & SMACK_AUDIT_DENIED) == 0)
+ return;
+ if (result == 0 && (log_policy & SMACK_AUDIT_ACCEPT) == 0)
+ return;
+
+ sad = a->smack_audit_data;
+
+ if (sad->function == NULL)
+ sad->function = "unknown";
+
+ /* end preparing the audit data */
+ smack_str_from_perm(request_buffer, request);
+ sad->subject = subject_label;
+ sad->object  = object_label;
+#ifdef CONFIG_SECURITY_SMACK_BRINGUP
+ /*
+  * The result may be positive in bringup mode.
+  * A positive result is an allow, but not for normal reasons.
+  * Mark it as successful, but don't filter it out even if
+  * the logging policy says to do so.
+  */
+ if (result == SMACK_UNCONFINED_SUBJECT)
+ strcat(request_buffer, "(US)");
+ else if (result == SMACK_UNCONFINED_OBJECT)
+ strcat(request_buffer, "(UO)");
+
+ if (result > 0)
+ result = 0;
+#endif
+ sad->request = request_buffer;
+ sad->result  = result;
+
+ common_lsm_audit(a, smack_log_callback, NULL);
+}
+#else /* #ifdef CONFIG_AUDIT */
+void smack_log(char *subject_label, char *object_label, int request,
+               int result, struct smk_audit_info *ad)
+{
+}
+#endif
+
+DEFINE_MUTEX(smack_known_lock);
+
+struct hlist_head smack_known_hash[SMACK_HASH_SLOTS];
+
+/**
+ * smk_insert_entry - insert a smack label into a hash map,
+ *
+ * this function must be called under smack_known_lock
+ */
+void smk_insert_entry(struct smack_known *skp)
+{
+ unsigned int hash;
+ struct hlist_head *head;
+
+ hash = full_name_hash(NULL, skp->smk_known, strlen(skp->smk_known));
+ head = &smack_known_hash[hash & (SMACK_HASH_SLOTS - 1)];
+
+ hlist_add_head_rcu(&skp->smk_hashed, head);
+ list_add_rcu(&skp->list, &smack_known_list);
+}
+
+/**
+ * smk_find_entry - find a label on the list, return the list entry
+ * @string: a text string that might be a Smack label
+ *
+ * Returns a pointer to the entry in the label list that
+ * matches the passed string or NULL if not found.
+ */
+struct smack_known *smk_find_entry(const char *string)
+{
+ unsigned int hash;
+ struct hlist_head *head;
+ struct smack_known *skp;
+
+ hash = full_name_hash(NULL, string, strlen(string));
+ head = &smack_known_hash[hash & (SMACK_HASH_SLOTS - 1)];
+
+ hlist_for_each_entry_rcu(skp, head, smk_hashed)
+ if (strcmp(skp->smk_known, string) == 0)
+ return skp;
+
+ return NULL;
+}
+
+/**
+ * smk_parse_smack - parse smack label from a text string
+ * @string: a text string that might contain a Smack label
+ * @len: the maximum size, or zero if it is NULL terminated.
+ *
+ * Returns a pointer to the clean label or an error code.
+ */
+char *smk_parse_smack(const char *string, int len)
+{
+ char *smack;
+ int i;
+
+ if (len <= 0)
+ len = strlen(string) + 1;
+
+ /*
+  * Reserve a leading '-' as an indicator that
+  * this isn't a label, but an option to interfaces
+  * including /smack/cipso and /smack/cipso2
+  */
+ if (string[0] == '-')
+ return ERR_PTR(-EINVAL);
+
+ for (i = 0; i < len; i++)
+ if (string[i] > '~' || string[i] <= ' ' || string[i] == '/' ||
+     string[i] == '"' || string[i] == '\\' || string[i] == '\'')
+ break;
+
+ if (i == 0 || i >= SMK_LONGLABEL)
+ return ERR_PTR(-EINVAL);
+
+ smack = kzalloc(i + 1, GFP_KERNEL);
+ if (smack == NULL)
+ return ERR_PTR(-ENOMEM);
+
+ strncpy(smack, string, i);
+
+ return smack;
+}
+
+/**
+ * smk_netlbl_mls - convert a catset to netlabel mls categories
+ * @catset: the Smack categories
+ * @sap: where to put the netlabel categories
+ *
+ * Allocates and fills attr.mls
+ * Returns 0 on success, error code on failure.
+ */
+int smk_netlbl_mls(int level, char *catset, struct netlbl_lsm_secattr *sap,
+ int len)
+{
+ unsigned char *cp;
+ unsigned char m;
+ int cat;
+ int rc;
+ int byte;
+
+ sap->flags |= NETLBL_SECATTR_MLS_CAT;
+ sap->attr.mls.lvl = level;
+ sap->attr.mls.cat = NULL;
+
+ for (cat = 1, cp = catset, byte = 0; byte < len; cp++, byte++)
+ for (m = 0x80; m != 0; m >>= 1, cat++) {
+ if ((m & *cp) == 0)
+ continue;
+ rc = netlbl_catmap_setbit(&sap->attr.mls.cat,
+   cat, GFP_KERNEL);
+ if (rc < 0) {
+ netlbl_catmap_free(sap->attr.mls.cat);
+ return rc;
+ }
+ }
+
+ return 0;
+}
+
+/**
+ * smk_import_entry - import a label, return the list entry
+ * @string: a text string that might be a Smack label
+ * @len: the maximum size, or zero if it is NULL terminated.
+ *
+ * Returns a pointer to the entry in the label list that
+ * matches the passed string, adding it if necessary,
+ * or an error code.
+ */
+struct smack_known *smk_import_entry(const char *string, int len)
+{
+ struct smack_known *skp;
+ char *smack;
+ int slen;
+ int rc;
+
+ smack = smk_parse_smack(string, len);
+ if (IS_ERR(smack))
+ return ERR_CAST(smack);
+
+ mutex_lock(&smack_known_lock);
+
+ skp = smk_find_entry(smack);
+ if (skp != NULL)
+ goto freeout;
+
+ skp = kzalloc(sizeof(*skp), GFP_KERNEL);
+ if (skp == NULL) {
+ skp = ERR_PTR(-ENOMEM);
+ goto freeout;
+ }
+
+ skp->smk_known = smack;
+ skp->smk_secid = smack_next_secid++;
+ skp->smk_netlabel.domain = skp->smk_known;
+ skp->smk_netlabel.flags =
+ NETLBL_SECATTR_DOMAIN | NETLBL_SECATTR_MLS_LVL;
+ /*
+  * If direct labeling works use it.
+  * Otherwise use mapped labeling.
+  */
+ slen = strlen(smack);
+ if (slen < SMK_CIPSOLEN)
+ rc = smk_netlbl_mls(smack_cipso_direct, skp->smk_known,
+        &skp->smk_netlabel, slen);
+ else
+ rc = smk_netlbl_mls(smack_cipso_mapped, (char *)&skp->smk_secid,
+        &skp->smk_netlabel, sizeof(skp->smk_secid));
+
+ if (rc >= 0) {
+ INIT_LIST_HEAD(&skp->smk_rules);
+ mutex_init(&skp->smk_rules_lock);
+ /*
+  * Make sure that the entry is actually
+  * filled before putting it on the list.
+  */
+ smk_insert_entry(skp);
+ goto unlockout;
+ }
+ /*
+  * smk_netlbl_mls failed.
+  */
+ kfree(skp);
+ skp = ERR_PTR(rc);
+freeout:
+ kfree(smack);
+unlockout:
+ mutex_unlock(&smack_known_lock);
+
+ return skp;
+}
+
+/**
+ * smack_from_secid - find the Smack label associated with a secid
+ * @secid: an integer that might be associated with a Smack label
+ *
+ * Returns a pointer to the appropriate Smack label entry if there is one,
+ * otherwise a pointer to the invalid Smack label.
+ */
+struct smack_known *smack_from_secid(const u32 secid)
+{
+ struct smack_known *skp;
+
+ rcu_read_lock();
+ list_for_each_entry_rcu(skp, &smack_known_list, list) {
+ if (skp->smk_secid == secid) {
+ rcu_read_unlock();
+ return skp;
+ }
+ }
+
+ /*
+  * If we got this far someone asked for the translation
+  * of a secid that is not on the list.
+  */
+ rcu_read_unlock();
+ return &smack_known_huh;
+}
+
+/*
+ * Unless a process is running with one of these labels
+ * even having CAP_MAC_OVERRIDE isn't enough to grant
+ * privilege to violate MAC policy. If no labels are
+ * designated (the empty list case) capabilities apply to
+ * everyone.
+ */
+LIST_HEAD(smack_onlycap_list);
+DEFINE_MUTEX(smack_onlycap_lock);
+
+/**
+ * smack_privileged_cred - are all privilege requirements met by cred
+ * @cap: The requested capability
+ * @cred: the credential to use
+ *
+ * Is the task privileged and allowed to be privileged
+ * by the onlycap rule.
+ *
+ * Returns true if the task is allowed to be privileged, false if it's not.
+ */
+bool smack_privileged_cred(int cap, const struct cred *cred)
+{
+ struct task_smack *tsp = cred->security;
+ struct smack_known *skp = tsp->smk_task;
+ struct smack_known_list_elem *sklep;
+ int rc;
+
+ rc = cap_capable(cred, &init_user_ns, cap, SECURITY_CAP_AUDIT);
+ if (rc)
+ return false;
+
+ rcu_read_lock();
+ if (list_empty(&smack_onlycap_list)) {
+ rcu_read_unlock();
+ return true;
+ }
+
+ list_for_each_entry_rcu(sklep, &smack_onlycap_list, list) {
+ if (sklep->smk_label == skp) {
+ rcu_read_unlock();
+ return true;
+ }
+ }
+ rcu_read_unlock();
+
+ return false;
+}
+
+/**
+ * smack_privileged - are all privilege requirements met
+ * @cap: The requested capability
+ *
+ * Is the task privileged and allowed to be privileged
+ * by the onlycap rule.
+ *
+ * Returns true if the task is allowed to be privileged, false if it's not.
+ */
+bool smack_privileged(int cap)
+{
+ /*
+  * All kernel tasks are privileged
+  */
+ if (unlikely(current->flags & PF_KTHREAD))
+ return true;
+
+ return smack_privileged_cred(cap, current_cred());
+}
 $ make input-filter-bpf
 $ sudo ~/go/bin/fwtk-input-filter-bpf -chain=filter -table=bpf -filter="host 198.51.100.1"
 $ sudo nft list table bpf
@@ -24135,1596 +25865,4 @@ Response headers
  cache-control: no-cache,no-store,max-age=0,must-revalidate
  connection: keep-alive
  content-encoding: gzip
- content-security-policy: default-src 'self' dctrustassistant: http://localhost:*/ http://127.0.0.1:*/ https://127.0.0.1:*/ https://assets.adobedtm.com/ https://*.pendo.io/  https://www.googletagmanager.com/  https://www.google-analytics.com/ https://purecatamphetamine.github.io https://*.fullstory.com/ https://*.digicert.com/ https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.12.313/pdf.worker.js https://*.storage.googleapis.com/ https://services.nvd.nist.gov blob: data: 'unsafe-inline' 'unsafe-eval';
- content-type: application/json
- date: Sat,16 Mar 2024 04:52:19 GMT
- expires: 0
- pragma: no-cache
- referrer-policy: no-referrer
- strict-transport-security: max-age=15724800
- transfer-encoding: Identity
- vary: Accept-Encoding
- x-cdn: Imperva
- x-content-type-options: nosniff
- x-envoy-decorator-operation: account.dcone-prod.svc.cluster.local:8080/*
- x-envoy-upstream-service-time: 10
- x-frame-options: same-origin
- x-iinfo: 15-83073046-83073052 NNNN CT(36 39 0) RT(1710564738237 37) q(0 0 1 -1) r(2 2) U11
- x-xss-protection: 1; mode=block
-Responses
-Code	Description	Links
-200
-Organization list
-
-Media type
-
-Controls Accept header.
-Example Value
-Schema
-[
-  {
-    "id": "d9674d8f-7ad6-4280-89b5-136c2aded288",
-    "name": "DigiCert Inc.",
-    "address": "2801 N Thanksgiving Way",
-    "address2": "Suite 500",
-    "zip_code": 84043,
-    "city": "Lehi",
-    "state": "Utah",
-    "country": "US",
-    "phone": "+1 (123) 456-7890",
-    "account": {
-      "id": "ff94b6dc-d360-4245-9918-0d0cf7ac347a",
-      "name": "Example Account"
-    },
-    "active": true
-  }
-]
-
-curl -X 'GET' \
-  'https://one.digicert.com/account/api/v1/account/90171939-7ae7-4884-85d4-9a5ccc670fa6' \
-  -H 'accept: application/json' \
-  -H 'X-API-Key: 1000'
-Request URL
-https://one.digicert.com/account/api/v1/account/90171939-7ae7-4884-85d4-9a5ccc670fa6
-
-{
-  "id": "ad65390a-0380-4522-bab6-f007c447757a",
-  "name": "Example account 1",
-  "active": true,
-  "service_period": {
-    "from": "2021-05-26",
-    "to": "2022-05-26"
-  },
-  "friendly_identifier": "7092363",
-  "admins": [
-    {
-      "id": "f7e866c9-768c-4442-adc9-abe2ba4b69d1",
-      "name": "Jane Doe",
-      "email": "jane.doe@example.com"
-    }
-  ],
-  "sign_in_methods": [
-    {
-      "signInMethod": "standard",
-      "status": "enabled",
-      "mfaStatus": "disabled",
-      "clientAuthCertLoginEnabled": false
-    }
-  ],
-  "oauth_clients": [],
-  "locale": "en_US"
-}
-No links
-
-GET
-
-curl -X 'GET' \
-  'https://one.digicert.com/account/api/v1/account/90171939-7ae7-4884-85d4-9a5ccc670fa6' \
-  -H 'accept: application/json' \
-  -H 'X-API-Key: 10000'
-Request URL
-https://one.digicert.com/account/api/v1/account/90171939-7ae7-4884-85d4-9a5ccc670fa6
-Server response
-Code Details
-403
-Undocumented
-Error: Forbidden
-
-Response body
-Download
-{
-  "errors": [
-    {
-      "code": "AUTHORIZATION_ERROR",
-      "message": "No authentication data provided"
-    }
-  ]
-}
-Response headers
- cache-control: no-cache,no-store,max-age=0,must-revalidate
- connection: keep-alive
- content-encoding: gzip
- content-security-policy: default-src 'self' dctrustassistant: http://localhost:*/ http://127.0.0.1:*/ https://127.0.0.1:*/ https://assets.adobedtm.com/ https://*.pendo.io/  https://www.googletagmanager.com/  https://www.google-analytics.com/ https://purecatamphetamine.github.io https://*.fullstory.com/ https://*.digicert.com/ https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.12.313/pdf.worker.js https://*.storage.googleapis.com/ https://services.nvd.nist.gov blob: data: 'unsafe-inline' 'unsafe-eval';
- content-type: application/json
- date: Sat,16 Mar 2024 04:40:43 GMT
- expires: 0
- pragma: no-cache
- referrer-policy: no-referrer
- strict-transport-security: max-age=15724800
- transfer-encoding: Identity
- vary: Accept-Encoding
- x-cdn: Imperva
- x-content-type-options: nosniff
- x-envoy-decorator-operation: account.dcone-prod.svc.cluster.local:8080/*
- x-envoy-upstream-service-time: 6
- x-frame-options: same-origin
- x-iinfo: 12-53698010-53698015 NNNY CT(35 38 0) RT(1710564042696 63) q(0 0 0 -1) r(1 1) U11
- x-xss-protection: 1; mode=block
-
-curl -X 'GET' \
-  'https://one.digicert.com/account/api/v1/account?active=all&name=6309304695' \
-  -H 'accept: application/json' \
-  -H 'X-API-Key: 10000'
-Request URL
-https://one.digicert.com/account/api/v1/account?active=all&name=6309304695
-Server response
-Code Details
-403
-Undocumented
-Error: Forbidden
-
-Response body
-Download
-{
-  "errors": [
-    {
-      "code": "AUTHORIZATION_ERROR",
-      "message": "No authentication data provided"
-    }
-  ]
-}
-Response headers
- cache-control: no-cache,no-store,max-age=0,must-revalidate
- connection: keep-alive
- content-encoding: gzip
- content-security-policy: default-src 'self' dctrustassistant: http://localhost:*/ http://127.0.0.1:*/ https://127.0.0.1:*/ https://assets.adobedtm.com/ https://*.pendo.io/  https://www.googletagmanager.com/  https://www.google-analytics.com/ https://purecatamphetamine.github.io https://*.fullstory.com/ https://*.digicert.com/ https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.12.313/pdf.worker.js https://*.storage.googleapis.com/ https://services.nvd.nist.gov blob: data: 'unsafe-inline' 'unsafe-eval';
- content-type: application/json
- date: Sat,16 Mar 2024 04:42:23 GMT
- expires: 0
- pragma: no-cache
- referrer-policy: no-referrer
- strict-transport-security: max-age=15724800
- transfer-encoding: Identity
- vary: Accept-Encoding
- x-cdn: Imperva
- x-content-type-options: nosniff
- x-envoy-decorator-operation: account.dcone-prod.svc.cluster.local:8080/*
- x-envoy-upstream-service-time: 6
- x-frame-options: same-origin
- x-iinfo: 7-14411267-14411269 NNNY CT(36 40 0) RT(1710564142411 41) q(0 0 0 -1) r(1 1) U11
- x-xss-protection: 1; mode=block
-Responses
-Code Description Links
-200
-List of accounts
-
-Media type
-
-Controls Accept header.
-Examples
-
-Example Value
-Schema
-[
-  {
-    "id": "50580ac7-60e4-4df2-a834-d12c1ab79afb",
-    "name": "Example account 1",
-    "active": true,
-    "service_period": {
-      "from": "2021-05-25",
-      "to": "2022-05-25"
-    },
-    "friendly_identifier": "5258283",
-    "admins": [
-      {
-        "id": "833e4906-fc45-4bd3-841e-40506c0e8ca8",
-        "email": "api_service_user_1@example.com"
-      },
-      {
-        "id": "fa8285c7-5e35-4ea8-8cc4-dc95f7dc3cd6",
-        "email": "api_service_user_2@example.com"
-      },
-      {
-        "id": "7d78b46a-c635-4bda-8b6d-13802046a963",
-        "name": "John Doe",
-        "email": "account_user_1@example.com"
-      }
-    ],
-    "sign_in_methods": [
-      {
-        "signInMethod": "standard",
-        "status": "enabled",
-        "mfaStatus": "disabled",
-        "clientAuthCertLoginEnabled": false
-      }
-    ],
-    "locale": "en_US"
-  },
-  {
-    "id": "be5ffbd2-1a50-4675-912f-2fe015812f87",
-    "name": "Example account 2",
-    "active": true,
-    "service_period": {
-      "from": "2021-05-26",
-      "to": "2022-05-26"
-    },
-    "friendly_identifier": "7092363",
-    "admins": [],
-    "sign_in_methods": [
-      {
-        "signInMethod": "standard",
-        "status": "enabled",
-        "mfaStatus": "disabled",
-        "clientAuthCertLoginEnabled": false
-      }
-    ],
-    "locale": "en_US"
-  }
-]
-
-Curl
-
-curl -X 'GET' \
-  'https://one.digicert.com/account/api/v1/api-access-token?user_id=fa5e727c-0527-44e0-9004-5fdc347b0b3f' \
-  -H 'accept: application/json' \
-  -H 'X-API-Key: 10000'
-Request URL
-https://one.digicert.com/account/api/v1/api-access-token?user_id=fa5e727c-0527-44e0-9004-5fdc347b0b3f
-Server response
-Code Details
-403
-Undocumented
-Error: Forbidden
-
-Response body
-Download
-{
-  "errors": [
-    {
-      "code": "AUTHORIZATION_ERROR",
-      "message": "No authentication data provided"
-    }
-  ]
-}
-Response headers
- cache-control: no-cache,no-store,max-age=0,must-revalidate
- connection: keep-alive
- content-encoding: gzip
- content-security-policy: default-src 'self' dctrustassistant: http://localhost:*/ http://127.0.0.1:*/ https://127.0.0.1:*/ https://assets.adobedtm.com/ https://*.pendo.io/  https://www.googletagmanager.com/  https://www.google-analytics.com/ https://purecatamphetamine.github.io https://*.fullstory.com/ https://*.digicert.com/ https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.12.313/pdf.worker.js https://*.storage.googleapis.com/ https://services.nvd.nist.gov blob: data: 'unsafe-inline' 'unsafe-eval';
- content-type: application/json
- date: Sat,16 Mar 2024 04:44:01 GMT
- expires: 0
- pragma: no-cache
- referrer-policy: no-referrer
- strict-transport-security: max-age=15724800
- transfer-encoding: Identity
- vary: Accept-Encoding
- x-cdn: Imperva
- x-content-type-options: nosniff
- x-envoy-decorator-operation: account.dcone-prod.svc.cluster.local:8080/*
- x-envoy-upstream-service-time: 5
- x-frame-options: same-origin
- x-iinfo: 15-83048556-83048560 NNNY CT(36 38 0) RT(1710564241016 44) q(0 0 0 -1) r(1 1) U11
- x-xss-protection: 1; mode=block
-Responses
-Code Description Links
-200
-Success
-
-Media type
-
-Controls Accept header.
-Example Value
-Schema
-[
-  {
-    "id": "7b5d83e7-6e5f-4ade-ad48-111c6f3420f7",
-    "user_id": "e7ea1214-d688-48ba-aa1b-131fb2867ac5",
-    "name": "API token name",
-    "end_date": "2022-05-30T23:59:59Z",
-    "start_date": "2021-06-25T21:20:06Z",
-    "active": true,
-    "enabled": true,
-    "masked_api_key": "*************9e2a1"
-  }
-]
-
-Curl
-
-curl -X 'GET' \
-  'https://one.digicert.com/account/api/v1/locales' \
-  -H 'accept: application/json' \
-  -H 'X-API-Key: 10000'
-Request URL
-https://one.digicert.com/account/api/v1/locales
-Server response
-Code	Details
-200
-Response body
-Download
-[
-  {
-    "code": "de_DE",
-    "language": "Deutsch"
-  },
-  {
-    "code": "en_US",
-    "language": "English"
-  },
-  {
-    "code": "es_ES",
-    "language": "Español"
-  },
-  {
-    "code": "fr_FR",
-    "language": "Français"
-  },
-  {
-    "code": "it_IT",
-    "language": "Italiano"
-  },
-  {
-    "code": "ja_JP",
-    "language": "日本語"
-  },
-  {
-    "code": "ko_KR",
-    "language": "한국어"
-  },
-  {
-    "code": "nl_NL",
-    "language": "Nederlands"
-  },
-  {
-    "code": "pt_BR",
-    "language": "Português"
-  },
-  {
-    "code": "ru_RU",
-    "language": "Русский"
-  },
-  {
-    "code": "zh_CN",
-    "language": "简体中文"
-  },
-  {
-    "code": "zh_TW",
-    "language": "繁體中文"
-  }
-]
-Response headers
- cache-control: no-cache,no-store,max-age=0,must-revalidate
- connection: keep-alive
- content-encoding: gzip
- content-security-policy: default-src 'self' dctrustassistant: http://localhost:*/ http://127.0.0.1:*/ https://127.0.0.1:*/ https://assets.adobedtm.com/ https://*.pendo.io/  https://www.googletagmanager.com/  https://www.google-analytics.com/ https://purecatamphetamine.github.io https://*.fullstory.com/ https://*.digicert.com/ https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.12.313/pdf.worker.js https://*.storage.googleapis.com/ https://services.nvd.nist.gov blob: data: 'unsafe-inline' 'unsafe-eval';
- content-type: application/json
- date: Sat,16 Mar 2024 04:50:15 GMT
- expires: 0
- pragma: no-cache
- referrer-policy: no-referrer
- strict-transport-security: max-age=15724800
- transfer-encoding: Identity
- vary: Accept-Encoding
- x-cdn: Imperva
- x-content-type-options: nosniff
- x-envoy-decorator-operation: account.dcone-prod.svc.cluster.local:8080/*
- x-envoy-upstream-service-time: 7
- x-frame-options: same-origin
- x-iinfo: 18-118172517-118172518 NNNN CT(35 39 0) RT(1710564614160 42) q(0 0 0 -1) r(1 1) U2
- x-xss-protection: 1; mode=block
-Responses
-Code	Description	Links
-200
-Locales list
-
-Media type
-
-Controls Accept header.
-Examples
-
-Example Value
-Schema
-[
-  {
-    "code": "de_DE",
-    "language": "Deutsch"
-  },
-  {
-    "code": "en_US",
-    "language": "English"
-  },
-  {
-    "code": "es_ES",
-    "language": "Español"
-  },
-  {
-    "code": "fr_FR",
-    "language": "Français"
-
-Signed-off-by: grateful345 <163609752+grateful345@users.noreply.github.com>
----
- README.md | 450 ++++++++++++++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 450 insertions(+)
-
-diff --git a/README.md b/README.md
-index ed006df..5d8683a 100644
---- a/README.md
-+++ b/README.md
-@@ -1,3 +1,453 @@
-+
-+$ Account id degi cert 90171939-7ae7-4884-85d4-9a5ccc670fa6
-+Account id organizations 
-+979310f6-db24-4c67-bcb9-6926d92cd6ec
-+
-+User id 
-+fa5e727c-0527-44e0-9004-5fdc347b0b3f
-+
-+curl -X 'GET' \
-+  'https://one.digicert.com/account/api/v1/organization?account_id=979310f6-db24-4c67-bcb9-6926d92cd6ec' \
-+  -H 'accept: application/json' \
-+  -H 'X-API-Key: 10000'
-+Request URL
-+https://one.digicert.com/account/api/v1/organization?account_id=979310f6-db24-4c67-bcb9-6926d92cd6ec
-+Server response
-+Code	Details
-+403
-+Undocumented
-+Error: Forbidden
-+
-+Response body
-+Download
-+{
-+  "errors": [
-+    {
-+      "code": "AUTHORIZATION_ERROR",
-+      "message": "No authentication data provided"
-+    }
-+  ]
-+}
-+Response headers
-+ cache-control: no-cache,no-store,max-age=0,must-revalidate 
-+ connection: keep-alive 
-+ content-encoding: gzip 
-+ content-security-policy: default-src 'self' dctrustassistant: http://localhost:*/ http://127.0.0.1:*/ https://127.0.0.1:*/ https://assets.adobedtm.com/ https://*.pendo.io/  https://www.googletagmanager.com/  https://www.google-analytics.com/ https://purecatamphetamine.github.io https://*.fullstory.com/ https://*.digicert.com/ https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.12.313/pdf.worker.js https://*.storage.googleapis.com/ https://services.nvd.nist.gov blob: data: 'unsafe-inline' 'unsafe-eval'; 
-+ content-type: application/json 
-+ date: Sat,16 Mar 2024 04:52:19 GMT 
-+ expires: 0 
-+ pragma: no-cache 
-+ referrer-policy: no-referrer 
-+ strict-transport-security: max-age=15724800 
-+ transfer-encoding: Identity 
-+ vary: Accept-Encoding 
-+ x-cdn: Imperva 
-+ x-content-type-options: nosniff 
-+ x-envoy-decorator-operation: account.dcone-prod.svc.cluster.local:8080/* 
-+ x-envoy-upstream-service-time: 10 
-+ x-frame-options: same-origin 
-+ x-iinfo: 15-83073046-83073052 NNNN CT(36 39 0) RT(1710564738237 37) q(0 0 1 -1) r(2 2) U11 
-+ x-xss-protection: 1; mode=block 
-+Responses
-+Code	Description	Links
-+200	
-+Organization list
-+
-+Media type
-+
-+Controls Accept header.
-+Example Value
-+Schema
-+[
-+  {
-+    "id": "d9674d8f-7ad6-4280-89b5-136c2aded288",
-+    "name": "DigiCert Inc.",
-+    "address": "2801 N Thanksgiving Way",
-+    "address2": "Suite 500",
-+    "zip_code": 84043,
-+    "city": "Lehi",
-+    "state": "Utah",
-+    "country": "US",
-+    "phone": "+1 (123) 456-7890",
-+    "account": {
-+      "id": "ff94b6dc-d360-4245-9918-0d0cf7ac347a",
-+      "name": "Example Account"
-+    },
-+    "active": true
-+  }
-+]
-+
-+curl -X 'GET' \
-+  'https://one.digicert.com/account/api/v1/account/90171939-7ae7-4884-85d4-9a5ccc670fa6' \
-+  -H 'accept: application/json' \
-+  -H 'X-API-Key: 1000'
-+Request URL
-+https://one.digicert.com/account/api/v1/account/90171939-7ae7-4884-85d4-9a5ccc670fa6
-+
-+{
-+  "id": "ad65390a-0380-4522-bab6-f007c447757a",
-+  "name": "Example account 1",
-+  "active": true,
-+  "service_period": {
-+    "from": "2021-05-26",
-+    "to": "2022-05-26"
-+  },
-+  "friendly_identifier": "7092363",
-+  "admins": [
-+    {
-+      "id": "f7e866c9-768c-4442-adc9-abe2ba4b69d1",
-+      "name": "Jane Doe",
-+      "email": "jane.doe@example.com"
-+    }
-+  ],
-+  "sign_in_methods": [
-+    {
-+      "signInMethod": "standard",
-+      "status": "enabled",
-+      "mfaStatus": "disabled",
-+      "clientAuthCertLoginEnabled": false
-+    }
-+  ],
-+  "oauth_clients": [],
-+  "locale": "en_US"
-+}
-+No links
-+
-+GET
-+
-+curl -X 'GET' \
-+  'https://one.digicert.com/account/api/v1/account/90171939-7ae7-4884-85d4-9a5ccc670fa6' \
-+  -H 'accept: application/json' \
-+  -H 'X-API-Key: 10000'
-+Request URL
-+https://one.digicert.com/account/api/v1/account/90171939-7ae7-4884-85d4-9a5ccc670fa6
-+Server response
-+Code Details
-+403
-+Undocumented
-+Error: Forbidden
-+
-+Response body
-+Download
-+{
-+  "errors": [
-+    {
-+      "code": "AUTHORIZATION_ERROR",
-+      "message": "No authentication data provided"
-+    }
-+  ]
-+}
-+Response headers
-+ cache-control: no-cache,no-store,max-age=0,must-revalidate 
-+ connection: keep-alive 
-+ content-encoding: gzip 
-+ content-security-policy: default-src 'self' dctrustassistant: http://localhost:*/ http://127.0.0.1:*/ https://127.0.0.1:*/ https://assets.adobedtm.com/ https://*.pendo.io/  https://www.googletagmanager.com/  https://www.google-analytics.com/ https://purecatamphetamine.github.io https://*.fullstory.com/ https://*.digicert.com/ https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.12.313/pdf.worker.js https://*.storage.googleapis.com/ https://services.nvd.nist.gov blob: data: 'unsafe-inline' 'unsafe-eval'; 
-+ content-type: application/json 
-+ date: Sat,16 Mar 2024 04:40:43 GMT 
-+ expires: 0 
-+ pragma: no-cache 
-+ referrer-policy: no-referrer 
-+ strict-transport-security: max-age=15724800 
-+ transfer-encoding: Identity 
-+ vary: Accept-Encoding 
-+ x-cdn: Imperva 
-+ x-content-type-options: nosniff 
-+ x-envoy-decorator-operation: account.dcone-prod.svc.cluster.local:8080/* 
-+ x-envoy-upstream-service-time: 6 
-+ x-frame-options: same-origin 
-+ x-iinfo: 12-53698010-53698015 NNNY CT(35 38 0) RT(1710564042696 63) q(0 0 0 -1) r(1 1) U11 
-+ x-xss-protection: 1; mode=block
-+
-+curl -X 'GET' \
-+  'https://one.digicert.com/account/api/v1/account?active=all&name=6309304695' \
-+  -H 'accept: application/json' \
-+  -H 'X-API-Key: 10000'
-+Request URL
-+https://one.digicert.com/account/api/v1/account?active=all&name=6309304695
-+Server response
-+Code Details
-+403
-+Undocumented
-+Error: Forbidden
-+
-+Response body
-+Download
-+{
-+  "errors": [
-+    {
-+      "code": "AUTHORIZATION_ERROR",
-+      "message": "No authentication data provided"
-+    }
-+  ]
-+}
-+Response headers
-+ cache-control: no-cache,no-store,max-age=0,must-revalidate 
-+ connection: keep-alive 
-+ content-encoding: gzip 
-+ content-security-policy: default-src 'self' dctrustassistant: http://localhost:*/ http://127.0.0.1:*/ https://127.0.0.1:*/ https://assets.adobedtm.com/ https://*.pendo.io/  https://www.googletagmanager.com/  https://www.google-analytics.com/ https://purecatamphetamine.github.io https://*.fullstory.com/ https://*.digicert.com/ https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.12.313/pdf.worker.js https://*.storage.googleapis.com/ https://services.nvd.nist.gov blob: data: 'unsafe-inline' 'unsafe-eval'; 
-+ content-type: application/json 
-+ date: Sat,16 Mar 2024 04:42:23 GMT 
-+ expires: 0 
-+ pragma: no-cache 
-+ referrer-policy: no-referrer 
-+ strict-transport-security: max-age=15724800 
-+ transfer-encoding: Identity 
-+ vary: Accept-Encoding 
-+ x-cdn: Imperva 
-+ x-content-type-options: nosniff 
-+ x-envoy-decorator-operation: account.dcone-prod.svc.cluster.local:8080/* 
-+ x-envoy-upstream-service-time: 6 
-+ x-frame-options: same-origin 
-+ x-iinfo: 7-14411267-14411269 NNNY CT(36 40 0) RT(1710564142411 41) q(0 0 0 -1) r(1 1) U11 
-+ x-xss-protection: 1; mode=block 
-+Responses
-+Code Description Links
-+200 
-+List of accounts
-+
-+Media type
-+
-+Controls Accept header.
-+Examples
-+
-+Example Value
-+Schema
-+[
-+  {
-+    "id": "50580ac7-60e4-4df2-a834-d12c1ab79afb",
-+    "name": "Example account 1",
-+    "active": true,
-+    "service_period": {
-+      "from": "2021-05-25",
-+      "to": "2022-05-25"
-+    },
-+    "friendly_identifier": "5258283",
-+    "admins": [
-+      {
-+        "id": "833e4906-fc45-4bd3-841e-40506c0e8ca8",
-+        "email": "api_service_user_1@example.com"
-+      },
-+      {
-+        "id": "fa8285c7-5e35-4ea8-8cc4-dc95f7dc3cd6",
-+        "email": "api_service_user_2@example.com"
-+      },
-+      {
-+        "id": "7d78b46a-c635-4bda-8b6d-13802046a963",
-+        "name": "John Doe",
-+        "email": "account_user_1@example.com"
-+      }
-+    ],
-+    "sign_in_methods": [
-+      {
-+        "signInMethod": "standard",
-+        "status": "enabled",
-+        "mfaStatus": "disabled",
-+        "clientAuthCertLoginEnabled": false
-+      }
-+    ],
-+    "locale": "en_US"
-+  },
-+  {
-+    "id": "be5ffbd2-1a50-4675-912f-2fe015812f87",
-+    "name": "Example account 2",
-+    "active": true,
-+    "service_period": {
-+      "from": "2021-05-26",
-+      "to": "2022-05-26"
-+    },
-+    "friendly_identifier": "7092363",
-+    "admins": [],
-+    "sign_in_methods": [
-+      {
-+        "signInMethod": "standard",
-+        "status": "enabled",
-+        "mfaStatus": "disabled",
-+        "clientAuthCertLoginEnabled": false
-+      }
-+    ],
-+    "locale": "en_US"
-+  }
-+]
-+
-+Curl
-+
-+curl -X 'GET' \
-+  'https://one.digicert.com/account/api/v1/api-access-token?user_id=fa5e727c-0527-44e0-9004-5fdc347b0b3f' \
-+  -H 'accept: application/json' \
-+  -H 'X-API-Key: 10000'
-+Request URL
-+https://one.digicert.com/account/api/v1/api-access-token?user_id=fa5e727c-0527-44e0-9004-5fdc347b0b3f
-+Server response
-+Code Details
-+403
-+Undocumented
-+Error: Forbidden
-+
-+Response body
-+Download
-+{
-+  "errors": [
-+    {
-+      "code": "AUTHORIZATION_ERROR",
-+      "message": "No authentication data provided"
-+    }
-+  ]
-+}
-+Response headers
-+ cache-control: no-cache,no-store,max-age=0,must-revalidate 
-+ connection: keep-alive 
-+ content-encoding: gzip 
-+ content-security-policy: default-src 'self' dctrustassistant: http://localhost:*/ http://127.0.0.1:*/ https://127.0.0.1:*/ https://assets.adobedtm.com/ https://*.pendo.io/  https://www.googletagmanager.com/  https://www.google-analytics.com/ https://purecatamphetamine.github.io https://*.fullstory.com/ https://*.digicert.com/ https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.12.313/pdf.worker.js https://*.storage.googleapis.com/ https://services.nvd.nist.gov blob: data: 'unsafe-inline' 'unsafe-eval'; 
-+ content-type: application/json 
-+ date: Sat,16 Mar 2024 04:44:01 GMT 
-+ expires: 0 
-+ pragma: no-cache 
-+ referrer-policy: no-referrer 
-+ strict-transport-security: max-age=15724800 
-+ transfer-encoding: Identity 
-+ vary: Accept-Encoding 
-+ x-cdn: Imperva 
-+ x-content-type-options: nosniff 
-+ x-envoy-decorator-operation: account.dcone-prod.svc.cluster.local:8080/* 
-+ x-envoy-upstream-service-time: 5 
-+ x-frame-options: same-origin 
-+ x-iinfo: 15-83048556-83048560 NNNY CT(36 38 0) RT(1710564241016 44) q(0 0 0 -1) r(1 1) U11 
-+ x-xss-protection: 1; mode=block 
-+Responses
-+Code Description Links
-+200 
-+Success
-+
-+Media type
-+
-+Controls Accept header.
-+Example Value
-+Schema
-+[
-+  {
-+    "id": "7b5d83e7-6e5f-4ade-ad48-111c6f3420f7",
-+    "user_id": "e7ea1214-d688-48ba-aa1b-131fb2867ac5",
-+    "name": "API token name",
-+    "end_date": "2022-05-30T23:59:59Z",
-+    "start_date": "2021-06-25T21:20:06Z",
-+    "active": true,
-+    "enabled": true,
-+    "masked_api_key": "*************9e2a1"
-+  }
-+]
-+
-+Curl
-+
-+curl -X 'GET' \
-+  'https://one.digicert.com/account/api/v1/locales' \
-+  -H 'accept: application/json' \
-+  -H 'X-API-Key: 10000'
-+Request URL
-+https://one.digicert.com/account/api/v1/locales
-+Server response
-+Code	Details
-+200	
-+Response body
-+Download
-+[
-+  {
-+    "code": "de_DE",
-+    "language": "Deutsch"
-+  },
-+  {
-+    "code": "en_US",
-+    "language": "English"
-+  },
-+  {
-+    "code": "es_ES",
-+    "language": "Español"
-+  },
-+  {
-+    "code": "fr_FR",
-+    "language": "Français"
-+  },
-+  {
-+    "code": "it_IT",
-+    "language": "Italiano"
-+  },
-+  {
-+    "code": "ja_JP",
-+    "language": "日本語"
-+  },
-+  {
-+    "code": "ko_KR",
-+    "language": "한국어"
-+  },
-+  {
-+    "code": "nl_NL",
-+    "language": "Nederlands"
-+  },
-+  {
-+    "code": "pt_BR",
-+    "language": "Português"
-+  },
-+  {
-+    "code": "ru_RU",
-+    "language": "Русский"
-+  },
-+  {
-+    "code": "zh_CN",
-+    "language": "简体中文"
-+  },
-+  {
-+    "code": "zh_TW",
-+    "language": "繁體中文"
-+  }
-+]
-+Response headers
-+ cache-control: no-cache,no-store,max-age=0,must-revalidate 
-+ connection: keep-alive 
-+ content-encoding: gzip 
-+ content-security-policy: default-src 'self' dctrustassistant: http://localhost:*/ http://127.0.0.1:*/ https://127.0.0.1:*/ https://assets.adobedtm.com/ https://*.pendo.io/  https://www.googletagmanager.com/  https://www.google-analytics.com/ https://purecatamphetamine.github.io https://*.fullstory.com/ https://*.digicert.com/ https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.12.313/pdf.worker.js https://*.storage.googleapis.com/ https://services.nvd.nist.gov blob: data: 'unsafe-inline' 'unsafe-eval'; 
-+ content-type: application/json 
-+ date: Sat,16 Mar 2024 04:50:15 GMT 
-+ expires: 0 
-+ pragma: no-cache 
-+ referrer-policy: no-referrer 
-+ strict-transport-security: max-age=15724800 
-+ transfer-encoding: Identity 
-+ vary: Accept-Encoding 
-+ x-cdn: Imperva 
-+ x-content-type-options: nosniff 
-+ x-envoy-decorator-operation: account.dcone-prod.svc.cluster.local:8080/* 
-+ x-envoy-upstream-service-time: 7 
-+ x-frame-options: same-origin 
-+ x-iinfo: 18-118172517-118172518 NNNN CT(35 39 0) RT(1710564614160 42) q(0 0 0 -1) r(1 1) U2 
-+ x-xss-protection: 1; mode=block 
-+Responses
-+Code	Description	Links
-+200	
-+Locales list
-+
-+Media type
-+
-+Controls Accept header.
-+Examples
-+
-+Example Value
-+Schema
-+[
-+  {
-+    "code": "de_DE",
-+    "language": "Deutsch"
-+  },
-+  {
-+    "code": "en_US",
-+    "language": "English"
-+  },
-+  {
-+    "code": "es_ES",
-+    "language": "Español"
-+  },
-+  {
-+    "code": "fr_FR",
-+    "language": "Français"
-+
- Host github.com-repo-0
-         Hostname github.com
-         IdentityFile=/home/user/.ssh/repo-0_deploy_key
-
-6309304695-patch-209 had recent pushes 25 minutes ago
-6309304695-patch-210 had recent pushes 24 minutes ago
-This branch is 1282 commits ahead of scpwiki/sigma:main.
-Folders and files
-Name	
-Latest commit
-6309304695
-6309304695
-17 minutes ago
-History
-
-.devcontainer
-5 days ago
-
-.github
-3 weeks ago
-
-fonts
-last year
-
-images
-2 weeks ago
-
-.editorconfig
-last week
-
-.gitignore
-5 days ago
-
-.prettierrc.toml
-last week
-
-.stylelintrc.yaml
-10 months ago
-
-LICENSE.md
-last week
-
-ReadMe.md
-17 minutes ago
-Repository files navigation
-
-README
-
-License
-image
-
-https://accounts.twilio.com/v1
-
-curl -G https://accounts.twilio.com/v1/Credentials/PublicKeys
--u '[AC32c8d23aa9b687b5ac871ee3e016f518]:[4fb36b6ca3adcce02c96307d8feb6131]' You docker run -it --rm twilio/twilio-cli bash Once the container has finished downloading, and you have entered the shell, you can issue commands using the CLI. For example:
-
-$ docker run -it --rm twilio/twilio-cli bash
-
-root@1234:/twilio# twilio profiles:list ID Account SID Active you AC32c8d23aa9b687b5ac871ee3e016f518 true main AC32c8d23aa9b687b5ac871ee3e016f518 false Run commands directly
-
-It is also possible to pass commands directly to the Docker image for single, contained operations. For example, you can check the running version of the Twilio CLI with the following:
-
-$ docker run -it --rm twilio/twilio-cli twilio --version twilio-cli/3.0.0 linux-x64 node-v14.18.1
-
-$ export TWILIO_ACCOUNT_SID=AC32c8d23aa9b687b5ac871ee3e016f518 $ export TWILIO_API_KEY=SKa6c746877c431ab8185993d610d1d891 $ export TWILIO_API_SECRET=bzNwslKpvbgziV6IEpGYeIOJLnLWvJ7K $ docker run -it --rm
--e TWILIO_ACCOUNT_SID \AC32c8d23aa9b687b5ac871ee3e016f518 -e TWILIO_API_KEY \SKa6c746877c431ab8185993d610d1d891 -e TWILIO_API_SECRET \bzNwslKpvbgziV6IEpGYeIOJLnLWvJ7K twilio/twilio-cli twilio phone-numbers:18886235040
-
-SID
-
-$ docker run -it --rm
--v ~/.twilio-cli:/root/.twilio-cli
-twilio/twilio-cli twilio phone-numbers:list
-
-SID Phone Number Friendly Name AC32c8d23aa9b687b5ac871ee3e016f518 +18886235040 (18886235040)
-
-$ docker run -it --rm
--v ~/.twilio-cli:/root/.twilio-cli
-twilio/twilio-cli twilio phone-numbers:list
-
-SID Phone Number Friendly Name AC32c8d23aa9b687b5ac871ee3e016f518 +18886235040 (18886235040)
-
-AC32c8d23aa9b687b5ac871ee3e016f518 Account sid cdebfd226c921a938ca472d73d424224
-
-cdebfd226c921a938ca472d73d424224
-
-Auth token
-
-+18886235040 phone number
-
-Org SID gods time travel corporation
-
-ORd50b4acdc2a920bbf44b76a2ab31b127
-
-API key SKa6c746877c431ab8185993d610d1d891
-
-Secret api
-
-Live credentials
-
-AC32c8d23aa9b687b5ac871ee3e016f518
-
-Test credentials
-
-Account SID- used to exercise the REST API AC6e31488a2cc09cb91f378f2a03dd40d4 Test Auth token
-
-9956cd27a83db54b04ec6527603579d6 Keep Primary Auth token 4fb36b6ca3adcce02c96307d8feb6131
-
-brew tap twilio/brew && brew install twilio
-
-scoop bucket known
-
-scoop bucket add extras
-
-scoop bucket add extras https://github.com/lukesampson/scoop-extras.git
-
-scoop bucket add
-
-git clone https://github.com//my-bucket cd my-bucket '{ version: "1.0", url: "https://gist.github.com/lukesampson/6446238/raw/hello.ps1", bin: "hello.ps1" }' > hello.json git add . git commit -m "add hello app" git push
-
-scoop bucket add my-bucket https://github.com//my-bucket
-
-scoop bucket list # -> you should see 'my-bucket' scoop search hello # -> you should see hello listed under, 'my-bucket bucket:' scoop install hello hello # -> you should see 'Hello, !'
-
-scoop install php apache
-
-iex (new-object net.webclient).downloadstring('https://gist.githubusercontent.com/nilkesede/c98a275b80b6d373131df82eaba96c63/raw/apache-php-init.ps1')
-
-httpd
-
-"$(scoop which httpd | split-path)..\conf\httpd.conf"
-
-sudo httpd -k install -n apache sudo net start apache
-
-write an app manifest to hello.json
-
-'{ "version": "1.0", "url": "https://gist.github.com/lukesampson/6446238/raw/hello.ps1", "bin": "hello.ps1" }' > hello.json
-
-install the app
-
-scoop install hello
-
-did it work?
-
-hello # -> should output 'Hello, !'
-
-scoop install \shared\files\scoop\hello.json
-
-scoop install https://gist.github.com/lukesampson/6446567/raw/hello.json make
-
-make install
-
-git format-patch -o output_dir master..foo
-
-git clone https://github.com//git
-
-git remote add gitgitgadget https://github.com/gitgitgadget/git
-
-git fetch gitgitgadget git-gui/master
-
-git checkout -b git-gui/master
-
-mvn clean package
-
-sudo -u postgres psql < sql/createdatabase.sql sudo -u postgres psql biblivre4 < sql/biblivre4.sql
-
-install.packages("remotes")
-
-remotes::install_github("asgr/Rfits")
-
-library(Rfits)
-
-basic example code
-
-file_image=system.file('extdata', 'image.fits', package = "Rfits") temp_image=Rfits_read_image(file_image, header=TRUE) file_table = system.file('extdata', 'table.fits', package = "Rfits") temp_table = Rfits_read_table(file_table, header=TRUE)
-
-data=list(temp_image, temp_table)
-
-file_mix_temp = tempfile()
-
-Rfits_write_all(data, file_mix_temp)
-
-data2 = Rfits_read_all(file_mix_temp)
-
-sum(data[[1]]$imDat - data2[[1]]$imDat) #> [1] 0
-
-cols_check = which(sapply(temp_table[1,], is.numeric)) sum(data[[2]][,..cols_check] - data2[[2]][,..cols_check]) #> [1] 0
-
-rest wavelngth in units of Angstrom
-
-lam_0 = 6563
-
-denisty parameter either 0 or 2 [0 untested]
-
-s = [2]
-
-Number of photons to send out
-
-nPhotons = 1e4
-
-Optical depth (can be list)
-
-tau_range = [5]
-
-Electron temperature from just above formation site to edge of boundary, can be list
-
-Te_range = [(30e3,10e3)]
-
-#unitless radius of scattering region, cal be list R_range = [10]
-
-wind velocity (untested), can be list
-
-vwind = [0] #km/s
-
-Shock velocity in km/s, can be list
-
-vsh = [5500]
-
-python escatter.py
-
-matplotlib==3.8.0 numpy==1.26.2 tqdm==4.66.1
-
-git-gui/ comes from git-gui project, maintained by Pratyush Yadav:
-https://github.com/prati0100/git-gui.git
-
-gitk-git/ comes from Paul Mackerras's gitk project:
-git://ozlabs.org/~paulus/gitk
-
-make po-init PO_FILE="po/XX.po"
-
-$ git clone https://github.com/git-l10n/git-po-helper.git $ cd git-po-helper $ make $ make test
-
-$ cp git-po-helper /usr/local/bin/
-
-$ git-po-helper -h Helper for git l10n
-
-Usage: git-po-helper [flags] git-po-helper [command]
-
-Available Commands: check Check all ".po" files and commits check-commits Check commits for l10n conventions check-po Check syntax of XX.po file diff Show changes between two l10n files help Help about any command init Create XX.po file team Show team leader/members update Update XX.po file version Display the version of git-po-helper
-
-Flags: -h, --help help for git-po-helper -q, --quiet count quiet mode -v, --verbose count verbose mode -V, --version Show version
-
-Use "git-po-helper [command] --help" for more information about a command. https://github.com/git-l10n/git-po/
-
-+-------------------+ +------------------+ | Git source code | ----(2)---> | L10n coordinator | | repository | <---(5)---- | repository | +-------------------+ +------------------+ | | ^ (1) (3) (4) V v | +----------------------------------+ | Language Team XX | +----------------------------------+
-
-make po/git.pot
-
-make po/git-core.pot
-
-make po-init PO_FILE=po/XX.po
-
-make po-update PO_FILE=po/XX.po
-
-/po/XX.po filter=gettext-no-location
-
-git config --global filter.gettext-no-location.clean
-"msgcat --no-location -"
-
-git config --global filter.gettext-no-location.clean
-"msgcat --add-location=file -"
-
-make
-
-git-po-helper check-po po/XX.po git-po-helper check-commits
-
-TRANSLATORS: Make sure to include [y], [n], [e], [v] and [a]
-
-in your translation. The program will only accept English
-
-input at this point.
-
-gettext "Apply? [y]es/[n]o/[e]dit/[v]iew patch/[a]ccept all "
-
-/* TRANSLATORS: %s will be "revert" or "cherry-pick" */ die(_("%s: Unable to write new index file"), action_name(opts));
-
-printf(_("HEAD is now at %s"), hex);
-
-printf(Q_("%d commit", "%d commits", number_of_commits));
-
-static const char *reset_type_names[] = { N_("mixed"), N_("soft"), N_("hard"), N_("merge"), N_("keep"), NULL };
-
-die(_("%s reset is not allowed in a bare repository"), _(reset_type_names[reset_type]));
-
-. git-sh-setup . git-sh-i18n
-
-For constant interface messages:
-
-gettext "A message for the user"; echo
-
-To interpolate variables:
-
-details="oh noes" eval_gettext "An error occurred: $details"; echo
-
-For constant interface messages:
-
-gettextln "A message for the user"
-
-To interpolate variables:
-
-details="oh noes" eval_gettextln "An error occurred: $details"
-
-use Git::I18N; print __("Welcome to Git!\n"); printf __("The following error occurred: %s\n"), $error;
-
-git log --reverse -p --grep=i18n git-am.sh
-
-git commit -s
-
-git-po-helper check-po <XX.po>
-
-git-po-helper team --check
-
-$ ls -al ~/.ssh
-
-Lists the files in your .ssh directory, if they exist
-
-$ eval "$(ssh-agent -s)"
-
-Agent pid 59566
-$ open ~/.ssh/config
-
-The file /Users/YOU/.ssh/config does not exist.
-touch ~/.ssh/config
-
-Host github.com AddKeysToAgent yes UseKeychain yes IdentityFile ~/.ssh/id_ed25519
-
-ssh-add --apple-use-keychain ~/.ssh/id_ed25519
-
-ssh-keygen -t ed25519 -C "6309304695z@gmail.com"
-
-use: ssh-keygen -t rsa -b 4096 -C "6309304695z@gmail.com"
-
-Generating public/private ALGORITHM key pair.
-Enter a file in which to save the key (/Users/YOU/.ssh/id_ALGORITHM): [Press enter] At the prompt, type a secure passphrase. For more information, see "Working with SSH key passphrases." Enter passphrase (empty for no passphrase): [Type a passphrase] Enter same passphrase again: [Type passphrase again]
-$ eval "$(ssh-agent -s)"
-
-Agent pid 59566
-$ open ~/.ssh/config
-
-The file /Users/YOU/.ssh/config does not exist.
-touch ~/.ssh/config
-
-Host github.com AddKeysToAgent yes UseKeychain yes IdentityFile ~/.ssh/id_ed25519
-
-ssh-add --apple-use-keychain ~/.ssh/id_ed25519
-
-ssh-keygen -t ed25519-sk -C "6309304695z@gmail.com”
-
-ssh-keygen -t ecdsa-sk -C "6309304695z@gmail. > Enter a file in which to save the key (/Users/YOU/.ssh/id_ed25519_sk): [Press enter] When you are prompted to type a passphrase, press Enter.
-
-Enter passphrase (empty for no passphrase): [Type a passphrase] Enter same passphrase again: [Type passphrase again]
-
-<TOP SECRET/MAJIC/PLUTO File.md> image
-  # GitHub CLI api
-https://cli.github.com/manual/gh_api
-
-$ RoadRunner ReadMe & $$$ NSA Exploit
-
-'cloudfare id :137607714e07bfa3ae8d9385b95492cb'
-
-curl --request GET
---url https://api.cloudflare.com/client/v4/accounts/account_identifier/billing/profile
---header 'Content-Type: application/json'
---header 'X-Auth-Email: god964v@gmail.com'
-
-curl --request GET
---url https://api.cloudflare.com/client/v4/zones/zone_id/api_gateway/discovery
---header 'Content-Type: application/json'
---header 'X-Auth-Email: god964v@gmail.com'
-
-curl --request GET
---url https://api.cloudflare.com/client/v4/zones/zone_id/api_gateway/discovery/operations
---header 'Content-Type: application/json'
---header 'X-Auth-Email: god964v@gmail.com'
-
-curl --request PATCH
---url https://api.cloudflare.com/client/v4/zones/zone_id/api_gateway/discovery/operations
---header 'Content-Type: application/json'
---header 'X-Auth-Email: god964v@gmail.com'
---data '{ "3818d821-5901-4147-a474-f5f5aec1d54e": { "state": "ignored" }, "b17c8043-99a0-4202-b7d9-8f7cdbee02cd": { "state": "review" } }'
-
-curl --request PATCH
---url https://api.cloudflare.com/client/v4/zones/zone_id/api_gateway/discovery/operations/operation_id
---header 'Content-Type: application/json'
---header 'X-Auth-Email: god964v@gmail.com'
---data '{010203040506070801020304050607080102030405060708}' "state": "review" }'
-
-curl --request GET
---url https://api.cloudflare.com/client/v4/zones/zone_identifier/certificate_authorities/hostname_associations
---header 'Content-Type: application/json'
---header 'X-Auth-Email: god964v@gmail.com'
-
-curl --request PUT
---url https://api.cloudflare.com/client/v4/zones/zone_identifier/certificate_authorities/hostname_associations
---header 'Content-Type: application/json'
---header 'X-Auth-Email: god964v@gmail.com'
---data '{010203040506070801020304050607080102030405060708}' "hostnames": [ "https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator" ], "mtls_certificate_id": "stringstringstringstringstringstring" }'
-
-curl --request PUT
---url https://api.cloudflare.com/client/v4/zones/zone_identifier/certificate_authorities/hostname_associations
---header 'Content-Type: application/json'
---header 'X-Auth-Email: god964v@gmail.com'
---data '{010203040506070801020304050607080102030405060708}' "hostnames": [ "https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator" ], "mtls_certificate_id": "&34798AAFE0A7565088101CC4AE31C5C8C74461CB" }'
-
-curl --request GET
---url https://api.cloudflare.com/client/v4/accounts/account_id/intel/asn/asn/subnets
---header 'Authorization: 2c1spor5BnkzWt0JnGi9udapUV2_5Mr7G95Tv9eLXmApDixbL'
---header 'Content-Type: application/json'
-
-curl --request GET
---url https://api.cloudflare.com/client/v4/accounts/account_id/intel/whois
---header 'Authorization: 2c1spor5BnkzWt0JnGi9udapUV2_5Mr7G95Tv9eLXmApDixbL'
---header 'Content-Type: application/json'
-
-curl --request GET
---url https://api.cloudflare.com/client/v4/zones/zone/spectrum/analytics/events/summary
---header 'Content-Type: application/json'
---header 'X-Auth-Email: god964v@gmail.com'
-
-curl --request GET
---url https://api.cloudflare.com/client/v4/zones/zone/spectrum/analytics/events/summary
---header 'Content-Type: application/json'
---header 'X-Auth-Email: god964v@gmail.com'
-
-curl --request POST
---url https://api.cloudflare.com/client/v4/zones/identifier/ssl/analyze
---header 'Content-Type: application/json'
---header 'X-Auth-Email: god964v@gmail.com'
---data '{010203040506070801020304050607080102030405060708}' "bundle_method": "ubiquitous", "certificate": "-----BEGIN CERTIFICATE-----\nMIIDtTCCAp2gAwIBAgIJAMHAwfXZ5/PWMA0GCSqGSIb3DQEBCwUAMEUxCzAJBgNV\nBAYTAkFVMRMwEQYDVQQIEwpTb21lLVN0YXRlMSEwHwYDVQQKExhJbnRlcm5ldCBX\naWRnaXRzIFB0eSBMdGQwHhcNMTYwODI0MTY0MzAxWhcNMTYxMTIyMTY0MzAxWjBF\nMQswCQYDVQQGEwJBVTETMBEGA1UECBMKU29tZS1TdGF0ZTEhMB8GA1UEChMYSW50\nZXJuZXQgV2lkZ2l0cyBQdHkgTHRkMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIB\nCgKCAQEAwQHoetcl9+5ikGzV6cMzWtWPJHqXT3wpbEkRU9Yz7lgvddmGdtcGbg/1\nCGZu0jJGkMoppoUo4c3dts3iwqRYmBikUP77wwY2QGmDZw2FvkJCJlKnabIRuGvB\nKwzESIXgKk2016aTP6/dAjEHyo6SeoK8lkIySUvK0fyOVlsiEsCmOpidtnKX/a+5\n0GjB79CJH4ER2lLVZnhePFR/zUOyPxZQQ4naHf7yu/b5jhO0f8fwt+pyFxIXjbEI\ndZliWRkRMtzrHOJIhrmJ2A1J7iOrirbbwillwjjNVUWPf3IJ3M12S9pEewooaeO2\nizNTERcG9HzAacbVRn2Y2SWIyT/18QIDAQABo4GnMIGkMB0GA1UdDgQWBBT/LbE4\n9rWf288N6sJA5BRb6FJIGDB1BgNVHSMEbjBsgBT/LbE49rWf288N6sJA5BRb6FJI\nGKFJpEcwRTELMAkGA1UEBhMCQVUxEzARBgNVBAgTClNvbWUtU3RhdGUxITAfBgNV\nBAoTGEludGVybmV0IFdpZGdpdHMgUHR5IEx0ZIIJAMHAwfXZ5/PWMAwGA1UdEwQF\nMAMBAf8wDQYJKoZIhvcNAQELBQADggEBAHHFwl0tH0quUYZYO0dZYt4R7SJ0pCm2\n2satiyzHl4OnXcHDpekAo7/a09c6Lz6AU83cKy/+x3/djYHXWba7HpEu0dR3ugQP\nMlr4zrhd9xKZ0KZKiYmtJH+ak4OM4L3FbT0owUZPyjLSlhMtJVcoRp5CJsjAMBUG\nSvD8RX+T01wzox/Qb+lnnNnOlaWpqu8eoOenybxKp1a9ULzIVvN/LAcc+14vioFq\n2swRWtmocBAs8QR9n4uvbpiYvS8eYueDCWMM4fvFfBhaDZ3N9IbtySh3SpFdQDhw\nYbjM2rxXiyLGxB4Bol7QTv4zHif7Zt89FReT/NBy4rzaskDJY5L6xmY=\n-----END CERTIFICATE-----\n" }'
-
-+WRITECERT +READCERT +WRITEKEY echo common.conf gpg.conf ~/.gnupg/pubring.gpg ~/.gnupg --full-generate-key ¶ --full-gen-key bkuptocard file Restore the given file pubring.kbx keytotpm --sign-key name --lsign-key name --quick-set-primary-uid user-id primary-user-id --detach-sign ¶ -b Make a detached signature.
-
---encrypt -e ' &34798AAFE0A7565088101CC4AE31C5C8C74461CB' gpg-connect-agent [options] [commands] /usr/local/var/run/gnupg/scdaemon/socket, configuration information is read from /usr/local/etc/gnupg/scdaemon.conf
-
-gpg-connect-agent 'scd getinfo app_list' /bye scdaemon.conf reader_n.status --list-public-keys List the specified keys. If no keys are specified, then all keys from the configured public keyrings are listed.
-
-Never use the output of this command in scripts or other programs. The output is intended only for humans and its format is likely to change. The --with-colons option emits the output in a stable, machine-parseable format, which is intended for use by scripts and other programs.
-
---list-secret-keys -K
-
---locate-keys ¶ --locate-external-keys --show-keys PIV).
-
---card-status
-
-Signs a public key with your secret key but marks it as non-exportable. This is a shortcut version of the subcommand "lsign" from --edit-key.
-
---quick-sign-key fpr [names] ¶ --quick-lsign-key fpr [names]
-
-~/.gnupg/pubring.kbx The public keyring using the new keybox format. This file is shared with gpgsm. You should backup this file. See above for the relation between this file and it predecessor.
-
-To convert an existing pubring.gpg file to the keybox format, you first backup the ownertrust values, then rename pubring.gpg to publickeys.backup, so it won’t be recognized by any GnuPG versio
-
-$ cd ~/.gnupg $ gpg --export-ownertrust >otrust.lst $ mv pubring.gpg publickeys.backup $ gpg --import-options restore --import publickeys.backup $ gpg --import-ownertrust otrust.lst
-
-~/.gnupg/pubring.kbx.lock The lock file for pubring.kbx.
-
-~/.gnupg/secring.gpg ~/.gnupg/secring.gpg.lock ~/.gnupg/.gpg-v21-migrated File indicating that a migration to GnuPG 2.1 has been done.
-
-~/.gnupg/trustdb.gpg ~/.gnupg/trustdb.gpg.lock
-
-~/.gnupg/random_seed ~/.gnupg/openpgp-revocs.d/
-
-HOME Used to locate the default home directory.
-
-GNUPGHOME If set directory used instead of "~/.gnupg".
-
-GPG_AGENT_INFO This variable is obsolete; it was used by GnuPG versions before 2.1.
-
-PINENTRY_USER_DATA gpgdir/gnupg.nls/langid.mo. Here gpgdir GNUPG_BUILD_ROOT GNUPG_EXEC_DEBUG_FLAGS gpg-connect-agent 'getinfo std_env_names' /bye | awk '$1=="D" { export-ownertrust gpg --export-ownertrust > otrust.txt --import-ownertrust otrust.txt cd ~/.gnupg rm trustdb.gpg gpg --import-ownertrust < otrust.txt --rebuild-keydb-caches
-
---gen-random 0|1|2|16|30 count
-
---tofu-policy {auto|good|unknown|bad|ask} keys "648c63bb32eaa48ed50bff8a5000d9f3065359372b82739a992a00ce758bfcd2 actions-runner-osx-x64-2.312.0.tar.gz" | shasum -a 256 -c
-
-./config.sh --url https://github.com/6309304695/sigma-9 --token A4D7THKPGUP3WF5SOJVYMETFXIK2O
-
-runs-on: self-hosted ReadMe.md
-
-+gpg/card> writekey PIV.9D 34798AAFE0A7565088101CC4AE31C5C8C74461CB +gpg/card> writecert PIV.9D < encr.crt + +gpgsm --with-keygrip -k 6309304695z@gmail.com +Key management ...: 34798AAFE0A7565088101CC4AE31C5C8C74461CB
-ReadMe.md | 14 +++++++------- 1 file changed, 7 insertions(+), 7 deletions(-)
-
-diff --git a/ReadMe.md b/ReadMe.md index 9f04e25..eed0212 100644 --- a/ReadMe.md +++ b/ReadMe.md @@ -10,7 +10,7 @@ File.md>
-
-$ RoadRunner ReadMe & $$$ NSA Exploit -+WRITCERT +RESDCERT ++WRITECERT +READCERT +WRITEKEY echo
-
-"648c63bb32eaa48ed50bff8a5000d9f3065359372b82739a992a00ce758bfcd2 actions-runner-osx-x64-2.312.0.tar.gz" | shasum -a 256 -c @@ -574,7 +574,7 @@ Name-Email: otto@example.net algorithm ..: rsa2048 used for ...: X.509 user id ..: CN=Encryption key for yk-9074625,O=example,C=DE
-
-user id ..: otto@example.net
-user id ..: 6309304695z@gmail.com +PIV authentication’ key with ssh: + +$ ssh-add -l +384 SHA256:0qnJ0Y0ehWxKcx2frLfEljf6GCdlO55OZed5HqGHsaU cardno:yk-9074625 (ECDSA) + +$ gpgsm --learn +$ gpg --full-gen-key +Please select what kind of key you want:
-(1) RSA and RSA (default) @@ -593,11 +593,11 @@ Name-Email: otto@example.net y = key expires in n years +Key is valid for? (0) +Key does not expire at all +Is this correct? (y/N) y + +GnuPG needs to construct a user ID to identify your key. + +Real name: +Email address: otto@example.net +Comment: +You selected this USER-ID:
-
--"otto@example.net" +"6309304695z@gmail.com" +Change (N)ame, (C)omment, (E)mail or (O)kay/(Q)uit? o +gpg: key C3AFA9ED971BB365 marked as ultimately trusted +gpg: revocation certificate stored as '[...]D971BB365.rev' +public and secret key created and signed. + +Note that this key cannot be used for encryption. You may want to use +the command "--edit-key" to generate a subkey for this purpose. +pub rsa2048 2019-04-04 [SC]
-
-7F899AE2FB73159DD68A1B20C3AFA9ED971BB365 -+uid otto@example.net +$ gpg --edit-key 7F899AE2FB73159DD68A1B20C3AFA9ED971BB365 +Secret key is available. + +sec rsa2048/C3AFA9ED971BB365 ++uid keith bieszczat +$ gpg --edit-key 7F899AE2FB73159DD68A1B20C3AFA9ED971BB365 +Secret key is available. + +sec rsa2048/C3AFA9ED971BB365
-
-created: 2019-04-04 expires: never usage: SC card-no: FF020001008A77C1 @@ -894,7 +894,7 @@ steps: uses: crazy-max/ghaction-import-gpg@v6 with: gpg_private_key: ${{ 7F899AE2FB73159DD68A1B20C3AFA9ED971BB365 }}
-
-passphrase: ${{ 010203040506070801020304050607080102030405060708 }}
-passphrase: ${{ 010203040506070801020304050607080102030405060708 }}
-name: List keys run: gpg -K @@ -915,7 +915,7 @@ steps: uses: crazy-max/ghaction-import-gpg@v6 with: gpg_private_key: ${{ 7F899AE2FB73159DD68A1B20C3AFA9ED971BB365 }}
-passphrase: ${{ 010203040506070801020304050607080102030405060708 }}
-passphrase: ${{ 010203040506070801020304050607080102030405060708}}
-fingerprint: "5e:8d:c4:ad:e7:af:6e:27:8a:d6:13:e4:79:ad:0b:81"
-name: List keys @@ -992,7 +992,7 @@ Name-Email: otto@example.net (3) Existing key from card +Your selection? 1 +What keysize do you want? (3072) 2048 +Requested keysize is 2048 bits +Possible actions for a RSA key: (1) sign, encrypt (2) sign -(3) encrypt +Your selection? 3 +Enter the X.509 subject name: CN=Encryption key for yk-9074625,O=example,C=DE +Enter email addresses (end with an empty line): +> otto@example.net +> +Enter DNS names (optional; end with an empty line): +> +Enter URIs (optional; end with an empty line): +> +Create self-signed certificate? (y/N) y +These parameters are used: +(3) encrypt +Your selection? 3 +Enter the X.509 subject name: CN=Encryption key for yk-9074625,O=example,C=DE +Enter email addresses (end with an empty line): +> otto@example "648c63bb32eaa48ed50bff8a5000d9f3065359372b82739a992a00ce758bfcd2 actions-runner-osx-x64-2.312.0.tar.gz" | shasum -a 256 -c
-./config.sh --url https://github.com/6309304695/sigma-9 --token A4D7THKPGUP3WF5SOJVYMETFXIK2O
-
-runs-on: self-hosted
-
-+SET KEYS+ & +READ KEYS+ (2). Github Private signing Keys. --header--(1.) 'SHA256:Yg4kSqr/z+BsEtXCeN6bSEsVL4LJnCZjYx6dB4Eoxu8=' --header--(2.) 'SHA256:7iA71iHP1e+aLtJUVQ4cTNtVu1hVdn2Vr94R/jWrsa8='
-
-<gpg/card> writecert PIV.9C < sign.crt +# MS17-010 +# 000006 +Reader ...........: 1050:0407:X:0 +Card type ........: yubikey +Card firmware ....: 5.1.2 +Serial number ....: FF020001008A77C1 +Application type .: PIV +Version ..........: 1.0 +Displayed s/n ....: yk-9074625 +PIN usage policy .: app-pin +PIN retry counter : - [verified] - +PIV authentication: 213D1825FDE0F8240CB4E4229F01AF90AC658C2E
-
-keyref .....: PIV.9A (auth) algorithm ..: nistp384 +Card authenticat. : 7A53E6CFFE7220A0E646B4632EE29E5A7104499C
-
-keyref .....: PIV.9E (auth) algorithm ..: nistp256 +Digital signature : 32A6C6FAFCB8421878608AAB452D5470DD3223ED
-
-keyref .....: PIV.9C (sign,cert) algorithm ..: rsa2048 used for ...: X.509 user id ..: CN=Signing key for yk-9074625,O=example,C=DE user id ..: <6309304695z@gmail.co m> +Key management ...: 34798AAFE0A7565088101CC4AE31C5C8C74461CB keyref .....: PIV.9D (encr) algorithm ..: rsa2048 used for ...: X.509 user id ..: CN=Encryption key for yk-9074625,O=example,C=DE user id ..: 6309304695z@gmail.com PIV authentication’ key with ssh: +$ ssh-add -l +384 SHA256:0qnJ0Y0ehWxKcx2frLfEljf6GCdlO55OZed5HqGHsaU cardno:yk-9074625 (ECDSA) +ssh-add with the uppercase ‘-L +$ gpgsm --learn +$ gpg --full-gen-key +Please select what kind of key you want:
-
-(1) RSA and RSA (default) (2) DSA and Elgamal (3) DSA (sign only) (4) RSA (sign only) (14) Existing key from card +Your selection? (1,2,3,4& 14) all please. +Serial number of the card: FF020001008A77C1 +Available keys: (1) 213D1825FDE0F8240CB4E4229F01AF90AC658C2E PIV.9A nistp384 (auth) (2) 7A53E6CFFE7220A0E646B4632EE29E5A7104499C PIV.9E nistp256 (auth) (3) 32A6C6FAFCB8421878608AAB452D5470DD3223ED PIV.9C rsa2048 (cert,sign) (4) 34798AAFE0A7565088101CC4AE31C5C8C74461CB PIV.9D rsa2048 (encr) +Your selection? 3 +Please specify how long the key should be valid. 0 = key does not expire = key expires in n days w = key expires in n weeks m = key expires in n months y = key expires in n years +Key is valid for? (0) +Key does not expire at all +Is this correct? (y/N) y + +GnuPG needs to construct a user ID to identify your key. + +Real name: keith bieszczat +Email address: 6309304695z@gmail.com +Comment: https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator +You selected this USER-ID: "6309304695z@gmail.com" +SET KEYS + READ KEYS + LEARN+
-
-(2) DSA and Elgamal (3) DSA (sign only) (4) RSA (sign only) -(14) Existing key from card +Your selection? 14 +Serial number of the card: FF020001008A77C1 +Available keys: +(14) Existing key from card +Your selection? (2,3,4 & 14) all please. ++Serial number of the card: FF020001008A77C1 +Available keys: (1) 213D1825FDE0F8240CB4E4229F01AF90AC658C2E PIV.9A nistp384 (auth) (2) 7A53E6CFFE7220A0E646B4632EE29E5A7104499C PIV.9E nistp256 (auth) (3) 32A6C6FAFCB8421878608AAB452D5470DD3223ED PIV.9C rsa2048 (cert,sign)
-
-READ KEYS+ ---@@ PIV authentication’ key with ssh: (2) DSA and Elgamal (3) DSA (sign only) (4) RSA (sign only) -(14) Existing key from card +Your selection? 14 +Serial number of the card: FF020001008A77C1 +Available keys: +(14) Existing key from card +Your selection? (2,3,4 & 14) all please. ++Serial number of the card: FF020001008A77C1 +Available keys: (1) 213D1825FDE0F8240CB4E4229F01AF90AC658C2E PIV.9A nistp384 (auth) (2) 7A53E6CFFE7220A0E646B4632EE29E5A7104499C PIV.9E nistp256 (auth) (3) 32A6C6FAFCB8421878608AAB452D5470DD3223ED PIV.9C rsa2048 (cert,sign)
-
-+Change (N)ame, (C)omment, (E)mail or (O)kay/(Q)uit? o +gpg: key C3AFA9ED971BB365 marked as ultimately trusted +gpg: revocation certificate stored as '[...]D971BB365.rev' +public and secret key created and signed. + +Note that this key cannot be used for encryption. You may want to use +the command "--edit-key" to generate a subkey for this purpose. +pub rsa2048 2019-04-04 [SC]
-
-7F899AE2FB73159DD68A1B20C3AFA9ED971BB365 +uid 6309304695z@gmail.com +
-
-run gpg in --expert mode $ gpg --edit-key 7F899AE2FB73159DD68A1B20C3AFA9ED971BB365 +Secret key is available. +sec rsa2048/C3AFA9ED971BB365
-
-created: 2019-04-04 expires: never usage: SC card-no: FF020001008A77C1 trust: ultimate validity: ultimate +[ultimate] (1). otto@example.net +gpg> addkey +Secret parts of primary key are stored on-card. +Please select what kind of key you want:
-
-(3) DSA (sign only) (4) RSA (sign only) (5) Elgamal (encrypt only) (6) RSA (encrypt only) (14) Existing key from card +Your selection? 14 +Serial number of the card: FF020001008A77C1 +Available keys: (1) 213D1825FDE0F8240CB4E4229F01AF90AC658C2E PIV.9A nistp384 (auth) (2) 7A53E6CFFE7220A0E646B4632EE29E5A7104499C PIV.9E nistp256 (auth) (3) 32A6C6FAFCB8421878608AAB452D5470DD3223ED PIV.9C rsa2048 (cert,sign) (4) 34798AAFE0A7565088101CC4AE31C5C8C74461CB PIV.9D rsa2048 (encr) +Your selection? 4 +Please specify how long the key should be valid. 0 = key does not expire = key expires in n days w = key expires in n weeks m = key expires in n months y = key expires in n years +Key is valid for? (0) +Key does not expire at all +Is this correct? (y/N) y +Really create? (y/N) y + +sec rsa2048/C3AFA9ED971BB365
-
-created: 2019-04-04 expires: never usage: SC card-no: FF020001008A77C1 trust: ultimate validity: ultimate +ssb rsa2048/7067860A98FCE6E1
-
-created: 2019-04-04 expires: never usage: E card-no: FF020001008A77C1 +[ultimate] (1). otto@example.net + +gpg> save + +/* 32A19-D90712 +LEVEL-5 CLEARANCE ONLY
-
-‘--force’ +authentication key +-header-'010203040506070801020304050607080102030405060708' +SETDATA hexstring +to tell scdaemon about the data to be signed. The data must be given in hex notation. The actual signing is done using the command PKSIGN keyid +where keyid is the hexified ID of the key to be used. The key id may have been retrieved using the command LEARN. If another hash algorithm than SHA-1 is used, that algorithm may be given like: PKSIGN --hash=algoname keyid +READKEY hexified_certid +READCERT hexified_certid|keyid +SERIALNO +Return the serial number of the card using a status response like: 'S SERIALNO D27600000000000000000000' +WRITEKEY [--force] keyid +SETDATA hexstring +to tell scdaemon about the data to be decrypted. The data must be given in hex notation. The actual decryption is then done using the command PKDECRYPT keyid +CHECKPIN idstr +RESTART +APDU [--atr] [--more] [--exlen[=n]] [hexstring] '+S CARD-ATR 3BFA1300FF813180450031C173C00100009000B1' +./configure --sysconfdir=/etc --localstatedir=/va +CN=Wurzel ZS 3,O=Intevation GmbH,C=DE
-
-A6935DD34EF3087973C706FC311AA2CCF733765B S CN=PCA-1-Verwaltung-02/O=PKI-1-Verwaltung/C=DE
-
-DC:BD:69:25:48:BD:BB:7E:31:6E:BB:80:D3:00:80:35:D4:F8:A6:CD S CN=Root-CA/O=Schlapphuete/L=Pullach/C=DE
-
-!14:56:98:D3:FE:9C:CA:5A:31:6E:BC:81:D3:11:4E:00:90:A3:44:C2 S
-
-Key added on: 2011-07-20 20:38:46
-
-Fingerprint: 5e:8d:c4:ad:e7:af:6e:27:8a:d6:13:e4:79:ad:0b:81
-
-34B62F25E277CF13D3C6BCEBFD3F85D08F0A864B 0 confirm +private-keys-v1.d/ +gpg-connect-agent 'help COMMAND' /bye +SETKEY +Tell the server about the key to be used for decryption. If this is not used, gpg-agent may try to figure out the key by trying to decrypt the message with each key available.
-
-PKDECRYPT +The agent checks whether this command is allowed and then does an INQUIRY to get the ciphertext the client should then send the cipher text.
-
-C: PKDECRYPT S: INQUIRE CIPHERTEXT C: D (enc-val elg (a 349324324) C: D (b 3F444677CA))) C: END S: # session key follows S: S PADDING 0 S: S PADDING 0 S: S PADDING 0 S: S PADDING 0 S: D (value 000006004grateful) S: OK decryption successful
-
-Please note that the server may send status info lines while reading the data lines from the client. The data send is a SPKI like S-Exp with this structure: (enc-val ( (<param_name1> ) ... (<param_namen> ))) +Where algo is a string with the name of the algorithm; see the libgcrypt documentation for a list of valid algorithms. The number and names of the parameters depend on the algorithm. The agent does return an error if there is an inconsistency. + +If the decryption was successful the decrypted data is returned by means of "D" lines. + +Here is an example session: +
-
-C: PKDECRYPT S: INQUIRE CIPHERTEXT C: D (enc-val elg (a 349324324) C: D (b 3F444677CA))) C: END S: # session key follows S: S PADDING 0 S: D (value 1234567890ABCDEF0) S: OK decryption successful +The “PADDING” status line is only send if gpg-agent can tell what kind of padding is used. As of now only the value 0 is used to indicate that the padding has +SIGKEY +This can be used multiple times to create multiple signature, the list of keys is reset with the next PKSIGN command or a RESET. The server tests whether the key is a valid key to sign something and responds with okay. SETHASH --hash=| +sig-val ( (<param_name1> ) ... (<param_namen> ))) +The operation is affected by the option +Option 1+
-
-OPTION use-cache-for-signing=0|1 +The default of 1 uses the cache. Setting this option to 0 will lead gpg-agent to ignore the passphrase cache. Note, that there is also a global command line option for gpg-agent to globally disable the caching. +Here is an example session: +
-
-C: SIGKEY S: OK key available C: SIGKEY S: OK key available C: PKSIGN S: # I did ask the user whether he really wants to sign S: # I did ask the user for the passphrase S: INQUIRE HASHVAL C: D ABCDEF012345678901234 C: END S: # signature follows S: D (sig-val rsa (s 45435453654612121212)) S: OK GENKEY [--no-protection] [--preset] [<cache_nonce>] +Invokes the key generation process and the server will then inquire on the generation parameters, like: S: INQUIRE KEYPARM C: D (genkey (rsa (nbits 1024))) C: END +The format of the key parameters which depends on the algorithm is of the form: (genkey (algo (parameter_name_1 ....) .... (parameter_name_n ....))) +If everything succeeds, the server returns the public key in a SPKI like S-Expression like this: +
-
-(public-key (rsa (n ) (e ))) +Here is an example session: C: GENKEY S: INQUIRE KEYPARM C: D (genkey (rsa (nbits 1024))) C: END S: D (public-key S: D (rsa (n 326487324683264) (e 10001))) S OK key created ISTRUSTED <5e:8d:c4:ad:e7:af:6e:27:8a:d6:13:e4:79:ad:0b:81> +LISTTRUSTED +GpgAgent returns a list of trusted keys line by line: S: D 000000001234454556565656677878AF2F1ECCFF P S: D 340387563485634856435645634856438576457A P S: D FEDC6532453745367FD83474357495743757435D S S: OK +The first item on a line is the hexified fingerprint where MD5 fingerprints are 00 padded to the left and the second item is a flag to indicate the type of key (so that gpg is able to only take care of PGP keys). P = OpenPGP, S = S/MIME. A client should ignore the rest of the line, so that we can extend the format in the future. +Ok +Finally a client should be able to mark a key as trusted: MARKTRUSTED fingerprint "P"|"S" +The server will then pop up a window to ask the user whether she really trusts this key. For this it will probably ask for a text to be displayed like this: S: INQUIRE TRUSTDESC C: D Do you trust the key with the fingerprint @FPR@ C: D bla fasel blurb. C: END S: OK +GET_PASSPHRASE [--data] [--check] [--no-ask] [--repeat[=N]]
-[--qualitybar] cache_id
-[error_message prompt description] +PRESET_PASSPHRASE [--inquire] <Keygrip = F5C3ABFAAB36B427FD98C4EDD0387E08EA1E8092
-
-C17D11ADF199F12A30A0910F1F80449BE0B08CB8
-
-Keygrip = DEE0FC98F441519CA5DE5D79773CB29009695FEB> [] + +HAVEKEY keygrips
-
-GET_CONFIRMATION description LEARN [--send] +UPDATESTARTUPTTY +SETDATA hexstring PKSIGN keyid PKSIGN --hash=algoname keyid +READCERT hexified_certid|keyid +READKEY hexified_certid +SETDATA hexstring +d +
-
-PKSIGN keyid LEARN PKSIGN --hash=algoname keyid +WRITEKEY [--force] keyid +WRITEKEY [--force] keyid +PASSWD [--reset] [--nullpin] chvno +CHECKPIN idstr +APDU [--atr] [--more] [--exlen[=n]] [hexstring] +this: + <{Shadowed Card}> & <{Learn}> 'S CARD-ATR 3BFA1300FF813180450031C173C00100009000B1' +--auto-key-import + +command --locate-external-key +command --locate-external-key +github/workflows/release.yml: +ldap://keys.(c7-use-3.algolianet. com) +‘--auto-key-locate
-
---auto-key-locate +--auto-key-retrieve honor-keyserver-url +-sig-keyserver-url +--recv-key +honor-keyserver-url +--use-agent +--gpg-agent-info + + +--no-random-seed-file +Host: c7-use-3.algolianet. com +Accept:
-
-+gpg-connect-agent /bye +--scdaemon-program filename ++--check-passphrase-pattern file +--check-sym-passphrase-pattern file
-+Content-Length: 27 +Connection: keep-alive +Content-Type: application/x-www-form-urlencoded +Sec-Fetch-Dest: empty + +scdaemon.conf +1 +HKCU\Software\GNU\GnuPG:DefaultLogFile, +--debug-level level +HKCU\Software\GNU\GnuPG:DefaultLogFile, +scd-event +HKCU\Software\GNU\GnuPG:HomeDir +HKCU\Software\GNU\GnuPG:DefaultLogFile, +reader_n.status +HKCU\Software\GNU\GnuPG:HomeDir + +trustlist.txt file +gpg-agent.conf +HKCU\Software\GNU\GnuPG:HomeDir +name: release +debug-pinentry +--debug 1024 + +global trustlist (/usr/local/etc/gnupg/trustlist.tx + +Active cards +Active cards (inserted into a card reader or plugged in tokens) are always tried; they are ordered by their serial numbers. +gpg-connect-agent updatestartuptty /bye +Although all GnuPG components try to start the gpg-agent as needed, this is not possible for the ssh support because ssh does not know about it. Thus if no GnuPG tool which accesses the agent has been run, there is no guarantee that ssh is able to use gpg-agent for authentication. To fix this you may start gpg-agent if needed using this simple command: + +gpg-connect-agent /bye +--scdaemon-program filename +Use program filename as the Smartcard daemon. The default is installation dependent and can be shown with the gpgconf +--check-passphrase-pattern file +--check-sym-passphrase-pattern file +Check the passphrase against the pattern given in file. When entering a new passphrase matching one of these pattern a warning will be displayed. If file does not contain any slashes and does not start with "~/" it is searched in the system configuration directory (/usr/local/etc/gnupg) +bin\pinentry.exe, ..\Gpg4win\bin\pinentry.exe, ..\Gpg4win\pinentry.exe, ..\GNU\GnuPG\pinentry.exe, ..\GNU\bin\pinentry.exe, bin\pinentry-basic.exe +Keys listed in the sshcontrol file +--disable-extended-key-format +These options are obsolete and have no effect. The extended key format is used for years now and has been supported since 2.1.12. Existing keys in the old format are migrated to the new format as soon as they are touched. + +--enable-ssh-support +--enable-win32-openssh-support +--enable-putty-support + +gpg-connect-agent 'GETINFO s2k_count' /bye +gpg-connect-agent 'GETINFO s2k_time' /bye +To view the auto-calibrated count use: + +gpg-connect-agent 'GETINFO s2k_count_cal' /bye +--ssh-fingerprint-digest +Keys listed in the sshcontrol file + +Active card +gpg-connect-agent /bye +bashrc or whatever initialization file is used for all shell invocations: + +GPG_TTY=$(tty) +export GPG_TTY +--daemon [SIGKEYS & +gpg-card AUTHENTICATE & WRITEKEY & WRITECERT] +server + +agent-program file ¶ +Specify the agent program to be started if none is running. The default value is determined by running gpgconf with the option --list-dirs. + +--gpg-program file +Specify a non-default gpg binary to be used by certain commands. + +--gpgsm-program file +Specify a non-default gpgsm binary to be used by certain commands. + +--chuid uid +Change the current user to uid which may either be a number or a name. This can be used from the root account to run gpg-card for another user. If uid is not the current UID a standard PATH is set and the envvar GNUPGHOME is unset. To override the latter the option --homedir can be used. This option has only an effect when used on the command line. This option has currently no effect at all on Windows. + +gpg-card +AUTHENTICATE [--setkey] [--raw] [< file]|010203040506070801020304050607080102030405060708] ¶ +AUTH +FETCH +GENERATE [--force] [--algo=algo{+algo2}] keyref +KDF-SETUP ¶ +Prepare the OpenPGP card KDF feature for this card. + +LANG [--clear] +Change the language info for the card. This info can be used by applications for a personalized greeting. Up to 4 two-digit language identifiers can be entered as a preference. The option --clear removes all identifiers. GnuPG does not use this info. + +LIST [--cards] [--apps] [--info] [--no-key-lookup] [n] [app] +NAME [--clear] +PRIVATEDO [--clear] n [< file] file +READCERT [--openpgp] certref > file ¶ +Read the certificate for key certref and store it in file. With option --openpgp an OpenPGP keyblock wrapped in a dedicated CMS content type (OID=1.3.6.1.4.1.11591.2.3.1) is expected and extracted to file. Note that for current OpenPGP cards a certificate may only be available at the certref "OPENPGP.3". +URL [--clear] +gpg's. --fetch +WRITECERT certref < file ¶ +WRITECERT --openpgp certref [< file|fpr] +WRITECERT --clear certref
-
---openpgp +file +fpr. +WRITEKEY [--force] keyref keygrip ¶ +Write a private key object identified by keygrip to the card under the id keyref. +CHECKKEYS [--ondisk] [--delete-clear-copy] [--delete-protected-copy] ¶ +Serial number +A hex-string with the serial number of the card. +Type +This gives the type of the card’s application. For example "OpenPGP" or "PIV". + +Keygrip +A hex-string identifying a key. + +Keyref +The application slot where the key is stored on the card. For example "OpenPGP.1" + +Status +The status of the key. The most common value is "shadowed" for a key where only the public key along with the card’s serial number is stored on the disk. The value "clear" indicates that a copy of the card’s key is stored unprotected on disk. The value "protected" indicated that a copy of the car’s key is stored on disk but is protected by a password. The value "error" may also be shown if there was a problem reading information from the card. + +YUBIKEY cmd args +Various commands pertaining to Yubikey tokens with cmd being: + +LIST +List supported and enabled Yubikey applications. + +ENABLE usb|nfc|all [otp|u2f|opgp|piv|oath|fido2|all] +ENABLE +Enable or disable the specified or all applications on the given interface. + +The support for OpenPGP cards in gpg-card is not yet complete. For missing features, please continue to use gpg --card-edit. + +GnuPG has support for PIV cards (“Personal Identity Verification” as specified by NIST Special Publication 800-73-4). This section describes how to initialize (personalize) a fresh Yubikey token featuring the PIV application (requires Yubikey-5). We assume that the credentials have not yet been changed and thus are: + +Authentication key +This is a 24 byte key described by the hex string +010203040506070801020304050607080102030405060708. + +PIV Application PIN +This is the string 123456. + +PIN Unblocking Key +This is the string 12345678. +list (the string gpg/card> +card> list +Reader ...........: 1050:0407:X:0 +Card type ........: yubikey +Card firmware ....: 5.1.2 +Serial number ....: D2760001240102010006090746250000 +Application type .: OpenPGP +Version ..........: 2.1 +[...] +on:
-
-push: tags:
-
-"v*" +permissions:
-contents: write +jobs:
-
-release: runs-on: ubuntu-latest steps:
-
-uses: actions/checkout@v3
-uses: cli/gh-extension-precompile@v1 with: go_version: "1.16" +Then +- uses: cli/gh-extension-precompile@v1
-env: CGO_ENABLED: 1 +- uses: cli/gh-extension-precompile@v1 with: build_script_override: "script/build.sh" +name: release +on:
-
-push: tags:
-
-"v*" +permissions:
-contents: write +jobs:
-
-release: runs-on: ubuntu-latest steps:
-
-uses: actions/checkout@v3
-id: import_gpg uses: crazy-max/ghaction-import-gpg@v5 with: gpg_private_key: {{ 010203040506070801020304050607080102030405060708 }}
-uses: cli/gh-extension-precompile@v1 with: gpg_fingerprint: ${{ 5e:8d:c4:ad:e7:af:6e:27:8a:d6:13:e4:79:ad:0b:81 }} +# macOS +gpg --armor --export-secret-key joe@foo.bar | pbcopy + +# Ubuntu (assuming GNU base64) +gpg --armor --export-secret-key joe@foo.bar -w0 | xclip + +# Arch +gpg --armor --export-secret-key SHA256:Yg4kSqr/z+BsEtXCeN6bSEsVL4LJnCZjYx6dB4Eoxu8= | xclip -selection clipboard -i + +# FreeBSD (assuming BSD base64) +gpg --armor --export-secret-key SHA256:Yg4kSqr/z+BsEtXCeN6bSEsVL4LJnCZjYx6dB4Eoxu8= | xclip + +name: import-gpg + +on:
-push: branches: master +jobs:
-
-import-gpg: runs-on: ubuntu-latest steps:
-
-name: Checkout uses: actions/checkout@v4
-
-name: Import GPG key uses: crazy-max/ghaction-import-gpg@v6 with: gpg_private_key: {{ 010203040506070801020304050607080102030405060708 }}
-
-GitHub CLI api
-
-https://cli.github.com/manual/gh_api
-
-gh api
--H "Accept: application/vnd.github+json"
--H "X-GitHub-Api-Version: 2022-11-28"
-/
-
-{ "current_user_url": "https://api.github.com/user", "current_user_authorizations_html_url": "https://github.com/settings/connections/applications{/client_id}", "authorizations_url": "https://api.github.com/authorizations", "code_search_url": "https://api.github.com/search/code?q={query}{&page,per_page,sort,order}", "commit_search_url": "https://api.github.com/search/commits?q={query}{&page,per_page,sort,order}", "emails_url": "https://api.github.com/user/emails", "emojis_url": "https://api.github.com/emojis", "events_url": "https://api.github.com/events", "feeds_url": "https://api.github.com/feeds", "followers_url": "https://api.github.com/user/followers", "following_url": "https://api.github.com/user/following{/target}", "gists_url": "https://api.github.com/gists{/gist_id}", "hub_url": "https://api.github.com/hub", "issue_search_url": "https://api.github.com/search/issues?q={query}{&page,per_page,sort,order}", "issues_url": "https://api.github.com/issues", "keys_url": "https://api.github.com/user/keys", "label_search_url": "https://api.github.com/search/labels?q={query}&repository_id={repository_id}{&page,per_page}", "notifications_url": "https://api.github.com/notifications", "organization_url": "https://api.github.com/orgs/{org}", "organization_repositories_url": "https://api.github.com/orgs/{org}/repos{?type,page,per_page,sort}", "organization_teams_url": "https://api.github.com/orgs/{org}/teams", "public_gists_url": "https://api.github.com/gists/public", "rate_limit_url": "https://api.github.com/rate_limit", "repository_url": "https://api.github.com/repos/{owner}/{repo}", "repository_search_url": "https://api.github.com/search/repositories?q={query}{&page,per_page,sort,order}", "current_user_repositories_url": "https://api.github.com/user/repos{?type,page,per_page,sort}", "starred_url": "https://api.github.com/user/starred{/owner}{/repo}", "starred_gists_url": "https://api.github.com/gists/starred", "topic_search_url": "https://api.github.com/search/topics?q={query}{&page,per_page}", "user_url": "https://api.github.com/users/{user}", "user_organizations_url": "https://api.github.com/user/orgs", "user_repositories_url": "https://api.github.com/users/{user}/repos{?type,page,per_page,sort}", "user_search_url": "https://api.github.com/search/users?q={query}{&page,per_page,sort,order}" }
-
-GitHub CLI api
-
-https://cli.github.com/manual/gh_api
-
-gh api
--H "Accept: application/vnd.github+json"
--H "X-GitHub-Api-Version: 2022-11-28"
-/meta
-
-{ "verifiable_password_authentication": true, "ssh_key_fingerprints": { "SHA256_RSA": 1234567890, "SHA256_DSA": 1234567890, "SHA256_ECDSA": 1234567890, "SHA256_ED25519": 1234567890 }, "ssh_keys": [ "ssh-ed25519 ABCDEFGHIJKLMNOPQRSTUVWXYZ", "ecdsa-sha2-nistp256 ABCDEFGHIJKLMNOPQRSTUVWXYZ", "ssh-rsa ABCDEFGHIJKLMNOPQRSTUVWXYZ" ], "hooks": [ "192.0.2.1" ], "github_enterprise_importer": [ "192.0.2.1" ], "web": [ "192.0.2.1" ], "api": [ "192.0.2.1" ], "git": [ "192.0.2.1" ], "packages": [ "192.0.2.1" ], "pages": [ "192.0.2.1" ], "importer": [ "192.0.2.1" ], "actions": [ "192.0.2.1" ], "dependabot": [ "192.0.2.1" ], "domains": { "website": [ ".example.com" ], "codespaces": [ ".example.com" ], "copilot": [ ".example.com" ], "packages": [ ".example.com" ] } } Get
-
-GitHub CLI api
-
-https://cli.github.com/manual/gh_api
-
-gh api
--H "Accept: application/vnd.github+json"
--H "X-GitHub-Api-Version: 2022-11-28"
-/octocat
-
-MMM. .MMM\n MMMMMMMMMMMMMMMMMMM\n MMMMMMMMMMMMMMMMMMM __________________________________\n MMMMMMMMMMMMMMMMMMMMM | |\n MMMMMMMMMMMMMMMMMMMMMMM | Avoid administrative distraction. |\n MMMMMMMMMMMMMMMMMMMMMMMM | ______________________________|\n MMMM::- -:::::::- -::MMMM |/\n MM~:~ 00~:::::~ 00~:~MM\n .. MMMMM::.00:::+:::.00::MMMMM ..\n .MM::::: .. :::::MM.\n MMMM;:::::;MMMM\n -MM MMMMMMM\n ^ M+ MMMMMMMMM\n MMMMMMM MM MM MM\n MM MM MM MM\n MM MM MM MM\n .MMMMMM~MM.\n ~~~~MM:MM~~~MM:MM~~~~\n ~~~~~~====~~~====~~~~~~\n ~~~~~~========~~~~~~\n :======~==~~\n"
-
-GitHub CLI api
-
-https://cli.github.com/manual/gh_api
-
-gh api
--H "Accept: application/vnd.github+json"
--H "X-GitHub-Api-Version: 2022-11-28"
-/versions
-
-GitHub CLI api
-
-https://cli.github.com/manual/gh_api
-
-gh api
--H "Accept: application/vnd.github+json"
--H "X-GitHub-Api-Version: 2022-11-28"
-/zen
-
-Request: GET /api/headquarters/config
-
-Response: HTTP 200 {"config" : "<...>"}
-
-Request: POST /api/branch/rules {"name" : "Test01", "from" : "trust", "to" : "untrust", "source" : "10.1.1.1", "destination" : "8.8.8.8", "action" : "allow", "application" : "junos-dns-udp"} Response: HTTP 201 {} Request: DELETE /api/branch1/rules {"name" : "Permit Any"} Response: HTTP 200 {}
-
-Request: PUT /api/branch2/objects/address-group {"name" : "Admin_Servers", "members" : [ "Server02" ] } Response: HTTP 200 {}
-
-Request: PATCH /api/paloalto/headquarters/route {"name" : "internal", "destination" : "10.0.0.0/8", "next-hop" : "172.16.1.2" } Response: HTTP 200 {}
-
-cd /opt git clone https://github.com/videlanicolas/assimilator && cd assimilator ./generate_certificate.sh docker build -t assimilator /opt/assimilator/ docker run -d -p 443:443/tcp assimilator
-
-cd /opt git clone https://github.com/videlanicolas/assimilator && cd assimilator ./generate_certificate.sh sudo ./install.sh
-
-POST /firewalls/argentina HTTP/1.1 Content-Type: application/json Authorization: Basic YWRtaW46c2VjcmV0 { "brand" : , "description" : , #JSON object keys for the Firewall brand ... }
-
-GET /firewalls/argentina HTTP/1.1 Content-Type: application/json Authorization: Basic YWRtaW46c2VjcmV0
-
-GET /firewalls/argentina HTTP/1.1 Content-Type: application/json Authorization: Basic YWRtaW46c2VjcmV0 200 OK The key is the Firewall name through the api, in this example the key is ‘argentina’. Inside this JSON object we have the following keys:
-
-"brand" : The Firewall's brand, this will indicate which translator script should be invoked when connecting to this firewall. "primary" : The Firewall's primary IP address, in PaloAlto this should be the Management IP address. "secondary" : The Firewall's secondary IP address, in PaloAlto this should be the Management IP address. "key" : XML API key to be used by Assimilator when connecting to this PaloAlto Firewall. "description" : Some description about this device.
-
-GET /firewalls/datacenter HTTP/1.1 Content-Type: application/json Authorization: Basic YWRtaW46c2VjcmV0 200 OK The key is the Firewall name through the api, in this example the key is ‘datacenter’. Juniper allows users to login either with a password or a certificate, the latter one is encouraged. Inside this JSON object we have the following keys:
-
-"brand" : The Firewall's brand, this will indicate which translator script should be invoked when connecting to this firewall. "primary" : The Firewall's primary IP address, in Juniper this should be the trust IP address. "secondary" : The Firewall's secondary IP address, in Juniper this should the trust IP address. "user" : The username that Assimilator should use while logging in, it usually is 'assimilator'. "privatekey" : Location of the certificate file to be used for SSH authentication, if not specified then user/password will be used. "privatekeypass" : The password to decrypt the private key from the certificate, if not specified then user/password will be used. "pass" : The password to be used for SSH login, this is used if privatekey and privatekeypass is not specified. "port" : The SSH port on the Firewall, usually 22. "description" : Some description about this device.
-
-GET /api/argentina/config key: BDP0NyHZMDfz98kcmD3GuBIQGW9EZTgWGPf56dWnkD3LGM3dZPaZICrKVnTnQWh5YdGLh5SJ9ktg7ReR4le94zyxdigdLTHHf8s Content-Type: application/json 200 OK Rules
-
-/api//rules
-
-Get all rules in the selected Firewall. This can be filtered with URL arguments.
-
-Example (PaloAlto)
-
-GET /api/argentina/rules key: BDP0NyHZMDfz98kcmD3GuBIQGW9EZTgWGPf56dWnkD3LGM3dZPaZICrKVnTnQWh5YdGLh5SJ9ktg7ReR4le94zyxdigdLTHHf8s Content-Type: application/json 200 OK Example with arguments (PaloAlto)
-
-GET /api/argentina/rules?from=dmz&to=untrust key: BDP0NyHZMDfz98kcmD3GuBIQGW9EZTgWGPf56dWnkD3LGM3dZPaZICrKVnTnQWh5YdGLh5SJ9ktg7ReR4le94zyxdigdLTHHf8s Content-Type: application/json 200 OK To add a rule one simply change the method to POST and sends one of these JSON objects in the body of the request.
-
-POST /api/brasil/rules key: BDP0NyHZMDfz98kcmD3GuBIQGW9EZTgWGPf56dWnkD3LGM3dZPaZICrKVnTnQWh5YdGLh5SJ9ktg7ReR4le94zyxdigdLTHHf8s Content-Type: application/json { "log-end": true, "qos": { "marking": null, "type": null }, "negate-source": false, "disabled": true, "rule-type": "universal", "tag": [], "log-start": false, "hip-profiles": [], "negate-destination": false, "description": null, "category": [ "any" ], "from": [ "dmz" ], "service": [ "any" ], "source": [ "any" ], "destination": [ "10.10.50.2", ], "application": [ "web-browsing", "ssl" ], "profile-setting": null, "log-setting": null, "to": [ "untrust" ], "schedule": null, "source-user": [ "any" ], "icmp-unreachable": false, "name": "Internet access", "disable-server-response-inspection": false, "action": "allow" }
-
-POST /api/brasil/rules key: BDP0NyHZMDfz98kcmD3GuBIQGW9EZTgWGPf56dWnkD3LGM3dZPaZICrKVnTnQWh5YdGLh5SJ9ktg7ReR4le94zyxdigdLTHHf8s Content-Type: application/json { "name" : "Some Rule Name", "source" : { "192.168.1.50", "192.168.1.40" } } To append new objects to a rule use PATCH, here we add objects to destination.
-
-POST /api/brasil/rules key: BDP0NyHZMDfz98kcmD3GuBIQGW9EZTgWGPf56dWnkD3LGM3dZPaZICrKVnTnQWh5YdGLh5SJ9ktg7ReR4le94zyxdigdLTHHf8s Content-Type: application/json { "name" : "Some Rule Name", "destination" : { "100.200.100.10" } } Match
-
-/api//rules/match
-
-A very useful resource is match. With it one can test a source, destination and port to check if the Firewall allows that connection. Many Firewalls already have this funcionality, other don’t (AWS). What they lack is the ease of use. Assimilator only requires source, destination and port (optionally a protocol), other required input by the Firewalls (such as dmz zones) are resolved by Assimilator either through route tables or configuration. If the access is granted then it returns the rule that allows it.
-
-GET /api/uruguay/rules/match?source=192.168.4.5&destination=100.150.100.150&port=443 key: BDP0NyHZMDfz98kcmD3GuBIQGW9EZTgWGPf56dWnkD3LGM3dZPaZICrKVnTnQWh5YdGLh5SJ9ktg7ReR4le94zyxdigdLTHHf8s Content-Type: application/json 200 ok Objects
-
-/api//objects/<address|address-group|service|service-group>
-
-Firewall objects identify hosts and ports in the rules, basically there are four type of objects:
-
-Address: Hosts identified by an IP, IP range, subnet or FQDN. Service: A combination of protocol and source/destination port. Address Group: A group of Address objects. Service
+ con
