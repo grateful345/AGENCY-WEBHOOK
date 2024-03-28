@@ -2,6 +2,235 @@
 61-enterprise
 git fetch origin
 git checkout 61-enterprise
+runnergroup.
+
+./config.sh --url $org_or_enterprise_url --token $token --runnergroup rg-runnergroup
+The command will fail if the runner group doesn't exist:
+
+Could not find any self-hosted runner group named "rg-runnergroup".
+
+app.kubernetes.io/component=controller-manager
+app.kubernetes.io/instance=<controller installation name>
+app.kubernetes.io/name=gha-runner-scale-set-controller
+app.kubernetes.io/part-of=gha-runner-scale-set-controller
+app.kubernetes.io/version=<chart version>
+Listener pod
+
+The following labels are applied to listener pods.
+
+actions.github.com/enterprise= # Will be populated if githubConfigUrl is an enterprise URL
+actions.github.com/organization= # Will be populated if githubConfigUrl is an organization URL
+actions.github.com/repository= # Will be populated if githubConfigUrl is a repository URL
+actions.github.com/scale-set-name= # Runners scale set name
+actions.github.com/scale-set-namespace= # Runners namespace
+app.kubernetes.io/component=runner-scale-set-listener
+app.kubernetes.io/part-of=gha-runner-scale-set
+app.kubernetes.io/version= # Chart version
+Runner pod
+
+The following labels are applied to runner pods.
+
+actions-ephemeral-runner= # True | False
+actions.github.com/organization= # Will be populated if githubConfigUrl is an organization URL
+actions.github.com/scale-set-name= # Runners scale set name
+actions.github.com/scale-set-namespace= # Runners namespace
+app.kubernetes.io/component=runner
+app.kubernetes.io/part-of=gha-runner-scale-set
+app.kubernetes.io/version= # Chart version
+Checking the logs of the controller and runner set listener
+
+To check the logs of the controller pod, you can use the following command.
+
+Bash
+kubectl logs -n <CONTROLLER_NAMESPACE> -l app.kubernetes.io/name=gha-runner-scale-set-controller
+To check the logs of the runner set listener, you can use the following command.
+
+Bash
+kubectl logs -n <CONTROLLER_NAMESPACE> -l auto-scaling-runner-set-namespace=arc-systems -l auto-scaling-runner-set-name=arc-runner-set
+Using the charts from the master branch
+
+We recommend you use the charts from the latest release instead of the master branch. The master branch is highly unstable, and we cannot guarantee that the charts in the master branch will work at any given time.
+
+Troubleshooting the listener pod
+
+If the controller pod is running, but the listener pod is not, inspect the logs of the controller first and see if there are any errors. If there are no errors and the runner set listener pod is still not running, ensure the controller pod has access to the Kubernetes API server in your cluster.
+
+If you have a proxy configured or you're using a sidecar proxy that's automatically injected, such as Istio, ensure it's configured to allow traffic from the controller container (manager) to the Kubernetes API server.
+
+If you have installed the autoscaling runner set, but the listener pod is not created, verify that the githubConfigSecret you provided is correct and that the githubConfigUrl you provided is accurate. See "Authenticating to the GitHub API" and "Deploying runner scale sets with Actions Runner Controller" for more information.
+
+Runner pods are recreated after a canceled workflow run
+
+Once a workflow run is canceled, the following events happen.
+
+The cancellation signal is sent to the runners directly.
+The runner application terminates, which also terminates the runner pods.
+On the next poll, the cancellation signal is received by the listener.
+There might be a slight delay between when the runners receive the signal and when the listener receives the signal. When runner pods start terminating, the listener tries to bring up new runners to match the desired number of runners according to the state it's in. However, when the listener receives the cancellation signal, it will act to reduce the number of runners. Eventually the listener will scale back down to the desired number of runners. In the meantime, you may see extra runners.
+
+Error: Name must have up to n characters
+
+ARC uses the generated names of certain resources as labels for other resources. Because of this requirement, ARC limits resource names to 63 characters.
+
+Because part of the resource name is defined by you, ARC imposes a limit on the number of characters you can use for the installation name and namespace.
+
+Error: INSTALLATION FAILED: execution error at (gha-runner-scale-set/templates/autoscalingrunnerset.yaml:5:5): Name must have up to 45 characters
+
+Error: INSTALLATION FAILED: execution error at (gha-runner-scale-set/templates/autoscalingrunnerset.yaml:8:5): Namespace must have up to 63 characters
+Error: Access to the path /home/runner/_work/_tool is denied
+
+You may see this error if you're using Kubernetes mode with persistent volumes. This error occurs if the runner container is running with a non-root user and is causing a permissions mismatch with the mounted volume.
+
+To fix this, you can do one of the following things.
+
+Use a volume type that supports securityContext.fsGroup. hostPath volumes do not support this property, whereas local volumes and other types of volumes do support it. Update the fsGroup of your runner pod to match the GID of the runner. You can do this by updating the gha-runner-scale-set helm chart values to include the following. Replace VERSION with the version of the actions-runner container image you want to use.
+
+YAML
+spec:
+    securityContext:
+        fsGroup: 123
+    containers:
+    - name: runner
+    image: ghcr.io/actions/actions-runner:latest
+    command: ["/home/runner/run.sh"]
+If updating the securityContext of your runner pod is not a viable solution, you can work around the issue by using initContainers to change the mounted volume's ownership, as follows.
+
+YAML
+template:
+spec:
+    initContainers:
+    - name: kube-init
+    image: ghcr.io/actions/actions-runner:latest
+    command: ["sudo", "chown", "-R", "1001:123", "/home/runner/_work"]
+    volumeMounts:
+        - name: work
+        mountPath: /home/runner/_work
+    containers:
+    - name: runner
+    image: ghcr.io/actions/actions-runner:latest
+    command: ["/home/runner/run.sh"]
+Legal notice
+
+Portions have been adapted from https://github.com/actions/actions-runner-controller/ under the Apache-2.0 license:
+
+Copyright 2019 Moto Ishizawa
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+https_proxy=http://proxy.local:8080
+no_proxy=example.com,myserver.local:443
+
+{
+  "proxies": {
+    "http-proxy": "http://proxy.example.com:3128",
+    "https-proxy": "https://proxy.example.com:3129",
+    "no-proxy": "*.test.example.com,.example.org,127.0.0.0/8"
+  }
+}
+mkdir -p ~/.config/systemd/user/docker.service.d
+
+[Service]
+Environment="HTTP_PROXY=http://proxy.example.com:3128"
+
+[Service]
+Environment="HTTPS_PROXY=https://proxy.example.com:3129"
+[Service]
+Environment="HTTP_PROXY=http://proxy.example.com:3128"
+Environment="HTTPS_PROXY=https://proxy.example.com:3129"
+
+[Service]
+Environment="HTTP_PROXY=http://domain%%5Cuser:complex%%23pass@proxy.example.com:3128/"
+[Service]
+Environment="HTTP_PROXY=http://proxy.example.com:3128"
+Environment="HTTPS_PROXY=https://proxy.example.com:3129"
+Environment="NO_PROXY=localhost,127.0.0.1,docker-registry.example.com,.corp"
+systemctl --user daemon-reload
+systemctl --user restart docker
+systemctl --user show --property=Environment docker
+
+Environment=HTTP_PROXY=http://proxy.example.com:3128 HTTPS_PROXY=https://proxy.example.com:3129 NO_PROXY=localhost,127.0.0.1,docker-registry.example.com,.corp
+
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/code
+  redis:
+    image: redis
+
+$ docker network create datakit-net # create a private network
+$ docker run -it --net datakit-net --name datakit -v <path/to/git/repo>:/data datakit/db
+
+# In an other terminal
+$ docker run -it --privileged --net datakit-net datakit/client
+$ ls /db
+branch     remotes    snapshots  trees
+
+docker build -t datakit/db -f Dockerfile .
+docker run -p 5640:5640 -it --rm datakit/db --listen-9p=tcp://0.0.0.0:5640
+docker build -t datakit/db -f Dockerfile .
+docker run -p 5640:5640 -it --rm datakit/db --listen-9p=tcp://0.0.0.0:5640
+These commands will expose the database's 9p endpoint on port 5640.
+
+If you want to build the project from source without Docker, you will need to install ocaml and opam. Then write:
+
+$ make depends
+$ make && make test
+For information about command-line options:
+
+$ datakit --help
+Prometheus metric reporting
+
+Run with --listen-prometheus 9090 to expose metrics at http://*:9090/metrics.
+
+Note: there is no encryption and no access control. You are expected to run the database in a container and to not export this port to the outside world. You can either collect the metrics by running a Prometheus service in a container on the same Docker network, or front the service with nginx or similar if you want to collect metrics remotely.
+
+Language bindings
+
+Go bindings are in the api/go directory.
+
+#!/usr/bin/env sh
+
+set -exu
+
+REPO_ROOT=$(git rev-parse --show-toplevel)
+DOCKERFILE=Dockerfile
+NAME=datakit
+DATA=/tmp/datakit
+ARGS="--url=tcp://0.0.0.0:5640 --git=/data -vv"
+
+docker build -t ${NAME} -f ${DOCKERFILE} ${REPO_ROOT}
+
+docker rm -f ${NAME} || echo skip
+docker run --name=${NAME} -v ${DATA}:/data -p 5640:5640 --rm  ${NAME} ${ARGS}
+
+#!/usr/bin/env sh
+
+set -exu
+
+REPO_ROOT=$(git rev-parse --show-toplevel)
+DOCKERFILE=Dockerfile
+NAME=datakit
+DATA=/tmp/datakit
+ARGS="--url=tcp://0.0.0.0:5640 --git=/data -vv"
+
+docker build -t ${NAME} -f ${DOCKERFILE} ${REPO_ROOT}
+
+docker rm -f ${NAME} || echo skip
+docker run --name=${NAME} -v ${DATA}:/data -p 5640:5640 --rm  ${NAME} ${ARGS}
+
+
 
 $ make input-filter-bpf
 $ sudo ~/go/bin/fwtk-input-filter-bpf -chain=filter -table=bpf -filter="host 198.51.100.1"
@@ -25588,4 +25817,4 @@ Keygrip = DEE0FC98F441519CA5DE5D79773CB29009695FEB> [] + +HAVEKEY keygrips
 
 GET_CONFIRMATION description LEARN [--send] +UPDATESTARTUPTTY +SETDATA hexstring PKSIGN keyid PKSIGN --hash=algoname keyid +READCERT hexified_certid|keyid +READKEY hexified_certid +SETDATA hexstring +d +
 
-PKSIGN keyid LEARN PKSIGN --hash=algoname keyid +WRITEKEY [--force] keyid +WRITEKEY [--force] keyid +PASSWD [--reset] [--nullpin] chvno +CHECKPIN idstr +APDU [--atr] [--more] [--exlen[=n]] [hexstring] +this: + <{Shadowed Card}> & <{Learn}> 'S CARD-ATR 3BFA1300FF813180450031C173C00100009000B1' +--auto-key-import + +command --locate-external-key +command --locate-external-key +github/workflows/release.yml: +ldap://keys.
+PKSIGN keyid LEARN PKSIGN --hash=algoname keyid +WRITEKEY [--force] keyid +WRITEKEY [--force] keyid +PASSWD [--reset] [--nullpin] chvno +CHECKPIN idstr +APDU [--atr] [--more] [--exlen[=n]] [hexstring] +this: + <{Shadowed Card}> & <{Learn}> 'S CARD-ATR 3BFA1300FF813180450031C173C00100009000B1' +--auto-key-import + +command --locate-external-key +command --locat
