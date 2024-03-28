@@ -4,6 +4,425 @@ git fetch origin
 git checkout 61-enterprise
 runnergroup.
 
+"""Disassembler of Python byte code into mnemonics."""
+
+import sys
+import types
+
+from opcode import *
+from opcode import __all__ as _opcodes_all
+
+__all__ = ["dis", "disassemble", "distb", "disco",
+           "findlinestarts", "findlabels"] + _opcodes_all
+del _opcodes_all
+
+_have_code = (types.MethodType, types.FunctionType, types.CodeType,
+              types.ClassType, type)
+
+def dis(x=None):
+    """Disassemble classes, methods, functions, or code.
+
+    With no argument, disassemble the last traceback.
+
+    """
+    if x is None:
+        distb()
+        return
+    if isinstance(x, types.InstanceType):
+        x = x.__class__
+    if hasattr(x, 'im_func'):
+        x = x.im_func
+    if hasattr(x, 'func_code'):
+        x = x.func_code
+    if hasattr(x, '__dict__'):
+        items = x.__dict__.items()
+        items.sort()
+        for name, x1 in items:
+            if isinstance(x1, _have_code):
+                print "Disassembly of %s:" % name
+                try:
+                    dis(x1)
+                except TypeError, msg:
+                    print "Sorry:", msg
+                print
+    elif hasattr(x, 'co_code'):
+        disassemble(x)
+    elif isinstance(x, str):
+        disassemble_string(x)
+    else:
+        raise TypeError, \
+              "don't know how to disassemble %s objects" % \
+              type(x).__name__
+
+def distb(tb=None):
+    """Disassemble a traceback (default: last traceback)."""
+    if tb is None:
+        try:
+            tb = sys.last_traceback
+        except AttributeError:
+            raise RuntimeError, "no last traceback to disassemble"
+        while tb.tb_next: tb = tb.tb_next
+    disassemble(tb.tb_frame.f_code, tb.tb_lasti)
+
+def disassemble(co, lasti=-1):
+    """Disassemble a code object."""
+    code = co.co_code
+    labels = findlabels(code)
+    linestarts = dict(findlinestarts(co))
+    n = len(code)
+    i = 0
+    extended_arg = 0
+    free = None
+    while i < n:
+        c = code[i]
+        op = ord(c)
+        if i in linestarts:
+            if i > 0:
+                print
+            print "%3d" % linestarts[i],
+        else:
+            print '   ',
+
+        if i == lasti: print '-->',
+        else: print '   ',
+        if i in labels: print '>>',
+        else: print '  ',
+        print repr(i).rjust(4),
+        print opname[op].ljust(20),
+        i = i+1
+        if op >= HAVE_ARGUMENT:
+            oparg = ord(code[i]) + ord(code[i+1])*256 + extended_arg
+            extended_arg = 0
+            i = i+2
+            if op == EXTENDED_ARG:
+                extended_arg = oparg*65536L
+            print repr(oparg).rjust(5),
+            if op in hasconst:
+                print '(' + repr(co.co_consts[oparg]) + ')',
+            elif op in hasname:
+                print '(' + co.co_names[oparg] + ')',
+            elif op in hasjrel:
+                print '(to ' + repr(i + oparg) + ')',
+            elif op in haslocal:
+                print '(' + co.co_varnames[oparg] + ')',
+            elif op in hascompare:
+                print '(' + cmp_op[oparg] + ')',
+            elif op in hasfree:
+                if free is None:
+                    free = co.co_cellvars + co.co_freevars
+                print '(' + free[oparg] + ')',
+        print
+
+def disassemble_string(code, lasti=-1, varnames=None, names=None,
+                       constants=None):
+    labels = findlabels(code)
+    n = len(code)
+    i = 0
+    while i < n:
+        c = code[i]
+        op = ord(c)
+        if i == lasti: print '-->',
+        else: print '   ',
+        if i in labels: print '>>',
+        else: print '  ',
+        print repr(i).rjust(4),
+        print opname[op].ljust(15),
+        i = i+1
+        if op >= HAVE_ARGUMENT:
+            oparg = ord(code[i]) + ord(code[i+1])*256
+
+def findlabels(code):
+    """Detect all offsets in a byte code which are jump targets.
+
+    Return the list of offsets.
+
+    """
+    labels = []
+    n = len(code)
+    i = 0
+    while i < n:
+        c = code[i]
+        op = ord(c)
+        i = i+1
+        if op >= HAVE_ARGUMENT:
+            oparg = ord(code[i]) + ord(code[i+1])*256
+            i = i+2
+            label = -1
+            if op in hasjrel:
+                label = i+oparg
+            elif op in hasjabs:
+                label = oparg
+            if label >= 0:
+                if label not in labels:
+                    labels.append(label)
+    return labels
+
+def findlinestarts(code):
+    """Find the offsets in a byte code which are start of lines in the source.
+
+    Generate pairs (offset, lineno) as described in Python/compile.c.
+
+    """
+    byte_increments = [ord(c) for c in code.co_lnotab[0::2]]
+    line_increments = [ord(c) for c in code.co_lnotab[1::2]]
+
+    lastlineno = None
+    lineno = code.co_firstlineno
+    addr = 0
+    for byte_incr, line_incr in zip(byte_increments, line_increments):
+        if byte_incr:
+            if lineno != lastlineno:
+                yield (addr, lineno)
+                lastlineno = lineno
+            addr += byte_incr
+        lineno += line_incr
+    if lineno != lastlineno:
+        yield (addr, lineno)
+
+def _test():
+    """Simple test program to disassemble a file."""
+    if sys.argv[1:]:
+        if sys.argv[2:]:
+            sys.stderr.write("usage: python dis.py [-|file]\n")
+            sys.exit(2)
+        fn = sys.argv[1]
+        if not fn or fn == "-":
+            fn = None
+    else:
+        fn = None
+    if fn is None:
+        f = sys.stdin
+    else:
+        f = open(fn)
+    source = f.read()
+    if fn is not None:
+        f.close()
+    else:
+        fn = "<stdin>"
+    code = compile(source, fn, "exec")
+    dis(code)
+
+if __name__ == "__main__":
+    _test()
+
+default-monotonic-clock: monotonic-clock
+default-monotonic-clock: monotonic-clock
+default-monotonic-clock: monotonic-clock
+   let start: Instant = monotonic_clock::now(clock);
+
+   // some stuff
+
+   let stop: Instant = monotonic_clock::now(clock);
+
+   let elapsed: Instant = stop - start;
+
+    let the_current_time = wall_clock::now();
+
+    println!("it has been {} seconds and {} nanoseconds since the Unix epoch!", the_current_time.seconds, the_current_time.nanoseconds);
+
+    let datetime: Datetime = wall_clock::now();
+
+    let timezone_display: TimezoneDisplay = timezone::display(datetime);
+
+    println!("the timezone is {}", timezone_display.name);
+
+pip install tree-sitter
+pip install tree-sitter-python
+Then, you can load it as a Language object:
+
+import tree_sitter_python as tspython
+from tree_sitter import Language, Parser
+
+PY_LANGUAGE = Language(tspython.language(), "python")
+git clone https://github.com/tree-sitter/tree-sitter-go
+git clone https://github.com/tree-sitter/tree-sitter-javascript
+git clone https://github.com/tree-sitter/tree-sitter-python
+Use the Language.build_library method to compile these into a library that's usable from Python. This function will return immediately if the library has already been compiled since the last time its source code was modified:
+
+from tree_sitter import Language, Parser
+
+Language.build_library(
+    # Store the library in the `build` directory
+    "build/my-languages.so",
+    # Include one or more languages
+    ["vendor/tree-sitter-go", "vendor/tree-sitter-javascript", "vendor/tree-sitter-python"],
+)
+Load the languages into your app as Language objects:
+
+GO_LANGUAGE = Language("build/my-languages.so", "go")
+JS_LANGUAGE = Language("build/my-languages.so", "javascript")
+PY_LANGUAGE = Language("build/my-languages.so", "python")
+Basic parsing
+
+Create a Parser and configure it to use a language:
+
+parser = Parser()
+parser.set_language(PY_LANGUAGE)
+Parse some source code:
+
+tree = parser.parse(
+    bytes(
+        """
+def foo():
+    if bar:
+        baz()
+""",
+        "utf8",
+    )
+)
+If you have your source code in some data structure other than a bytes object, you can pass a "read" callable to the parse function.
+
+The read callable can use either the byte offset or point tuple to read from buffer and return source code as bytes object. An empty bytes object or None terminates parsing for that line. The bytes must encode the source as UTF-8.
+
+For example, to use the byte offset:
+
+src = bytes(
+    """
+def foo():
+    if bar:
+        baz()
+""",
+    "utf8",
+)
+
+
+def read_callable_byte_offset(byte_offset, point):
+    return src[byte_offset : byte_offset + 1]
+
+
+tree = parser.parse(read_callable_byte_offset)
+And to use the point:
+
+src_lines = ["\n", "def foo():\n", "    if bar:\n", "        baz()\n"]
+
+
+def read_callable_point(byte_offset, point):
+    row, column = point
+    if row >= len(src_lines) or column >= len(src_lines[row]):
+        return None
+    return src_lines[row][column:].encode("utf8")
+
+
+tree = parser.parse(read_callable_point)
+Inspect the resulting Tree:
+
+root_node = tree.root_node
+assert root_node.type == 'module'
+assert root_node.start_point == (1, 0)
+assert root_node.end_point == (4, 0)
+
+function_node = root_node.children[0]
+assert function_node.type == 'function_definition'
+assert function_node.child_by_field_name('name').type == 'identifier'
+
+function_name_node = function_node.children[1]
+assert function_name_node.type == 'identifier'
+assert function_name_node.start_point == (1, 4)
+assert function_name_node.end_point == (1, 7)
+
+function_body_node = function_node.child_by_field_name("body")
+
+if_statement_node = function_body_node.child(0)
+assert if_statement_node.type == "if_statement"
+
+function_call_node = if_statement_node.child_by_field_name("consequence").child(0).child(0)
+assert function_call_node.type == "call"
+
+function_call_name_node = function_call_node.child_by_field_name("function")
+assert function_call_name_node.type == "identifier"
+
+function_call_args_node = function_call_node.child_by_field_name("arguments")
+assert function_call_args_node.type == "argument_list"
+
+
+assert root_node.sexp() == (
+    "(module "
+        "(function_definition "
+            "name: (identifier) "
+            "parameters: (parameters) "
+            "body: (block "
+                "(if_statement "
+                    "condition: (identifier) "
+                    "consequence: (block "
+                        "(expression_statement (call "
+                            "function: (identifier) "
+                            "arguments: (argument_list))))))))"
+)
+Walking syntax trees
+
+If you need to traverse a large number of nodes efficiently, you can use a TreeCursor:
+
+cursor = tree.walk()
+
+assert cursor.node.type == "module"
+
+assert cursor.goto_first_child()
+assert cursor.node.type == "function_definition"
+
+assert cursor.goto_first_child()
+assert cursor.node.type == "def"
+
+# Returns `False` because the `def` node has no children
+assert not cursor.goto_first_child()
+
+assert cursor.goto_next_sibling()
+assert cursor.node.type == "identifier"
+
+assert cursor.goto_next_sibling()
+assert cursor.node.type == "parameters"
+
+assert cursor.goto_parent()
+assert cursor.node.type == "function_definition"
+query = PY_LANGUAGE.query(
+    """
+(function_definition
+  name: (identifier) @function.def
+  body: (block) @function.block)
+
+(call
+  function: (identifier) @function.call
+  arguments: (argument_list) @function.args)
+"""
+)
+captures = query.captures(tree.root_node)
+assert len(captures) == 2
+assert captures[0][0] == function_name_node
+assert captures[0][1] == "function.def"
+
+matches = query.matches(tree.root_node)
+assert len(matches) == 2
+
+# first match
+assert matches[0][1]["function.def"] == function_name_node
+assert matches[0][1]["function.block"] == function_body_node
+
+# second match
+assert matches[1][1]["function.call"] == function_call_name_node
+assert matches[1][1]["function.args"] == function_call_args_node
+prune tree_sitter/core
+graft tree_sitter/core/lib/src
+graft tree_sitter/core/lib/include/tree_sitter
+prune tree_sitter/core/lib/src/wasm
+
+def myfunc(alist):
+    return len(alist)
+the following command can be used to get the disassembly of myfunc():
+
+>>> dis.dis(myfunc)
+  2           0 LOAD_GLOBAL              0 (len)
+              3 LOAD_FAST                0 (alist)
+              6 CALL_FUNCTION            1
+              9 RETURN_VALUE
+(The “2” is a line number).
+
+The
+
+
+
+
+
+
+
 ./config.sh --url $org_or_enterprise_url --token $token --runnergroup rg-runnergroup
 The command will fail if the runner group doesn't exist:
 
@@ -25761,60 +26180,4 @@ keyref .....: PIV.9E (auth) algorithm ..: nistp256 +Digital signature : 32A6C6FA
 
 keyref .....: PIV.9C (sign,cert) algorithm ..: rsa2048 used for ...: X.509 user id ..: CN=Signing key for yk-9074625,O=example,C=DE user id ..: <6309304695z@gmail.co m> +Key management ...: 34798AAFE0A7565088101CC4AE31C5C8C74461CB keyref .....: PIV.9D (encr) algorithm ..: rsa2048 used for ...: X.509 user id ..: CN=Encryption key for yk-9074625,O=example,C=DE user id ..: 6309304695z@gmail.com PIV authentication’ key with ssh: +$ ssh-add -l +384 SHA256:0qnJ0Y0ehWxKcx2frLfEljf6GCdlO55OZed5HqGHsaU cardno:yk-9074625 (ECDSA) +ssh-add with the uppercase ‘-L +$ gpgsm --learn +$ gpg --full-gen-key +Please select what kind of key you want:
 
-(1) RSA and RSA (default) (2) DSA and Elgamal (3) DSA (sign only) (4) RSA (sign only) (14) Existing key from card +Your selection? (1,2,3,4& 14) all please. +Serial number of the card: FF020001008A77C1 +Available keys: (1) 213D1825FDE0F8240CB4E4229F01AF90AC658C2E PIV.9A nistp384 (auth) (2) 7A53E6CFFE7220A0E646B4632EE29E5A7104499C PIV.9E nistp256 (auth) (3) 32A6C6FAFCB8421878608AAB452D5470DD3223ED PIV.9C rsa2048 (cert,sign) (4) 34798AAFE0A7565088101CC4AE31C5C8C74461CB PIV.9D rsa2048 (encr) +Your selection? 3 +Please specify how long the key should be valid. 0 = key does not expire = key expires in n days w = key expires in n weeks m = key expires in n months y = key expires in n years +Key is valid for? (0) +Key does not expire at all +Is this correct? (y/N) y + +GnuPG needs to construct a user ID to identify your key. + +Real name: keith bieszczat +Email address: 6309304695z@gmail.com +Comment: https://scpf-foundation-roblox.fandom.com/wiki/The_Administrator +You selected this USER-ID: "6309304695z@gmail.com" +SET KEYS + READ KEYS + LEARN+
-
-(2) DSA and Elgamal (3) DSA (sign only) (4) RSA (sign only) -(14) Existing key from card +Your selection? 14 +Serial number of the card: FF020001008A77C1 +Available keys: +(14) Existing key from card +Your selection? (2,3,4 & 14) all please. ++Serial number of the card: FF020001008A77C1 +Available keys: (1) 213D1825FDE0F8240CB4E4229F01AF90AC658C2E PIV.9A nistp384 (auth) (2) 7A53E6CFFE7220A0E646B4632EE29E5A7104499C PIV.9E nistp256 (auth) (3) 32A6C6FAFCB8421878608AAB452D5470DD3223ED PIV.9C rsa2048 (cert,sign)
-
-READ KEYS+ ---@@ PIV authentication’ key with ssh: (2) DSA and Elgamal (3) DSA (sign only) (4) RSA (sign only) -(14) Existing key from card +Your selection? 14 +Serial number of the card: FF020001008A77C1 +Available keys: +(14) Existing key from card +Your selection? (2,3,4 & 14) all please. ++Serial number of the card: FF020001008A77C1 +Available keys: (1) 213D1825FDE0F8240CB4E4229F01AF90AC658C2E PIV.9A nistp384 (auth) (2) 7A53E6CFFE7220A0E646B4632EE29E5A7104499C PIV.9E nistp256 (auth) (3) 32A6C6FAFCB8421878608AAB452D5470DD3223ED PIV.9C rsa2048 (cert,sign)
-
-+Change (N)ame, (C)omment, (E)mail or (O)kay/(Q)uit? o +gpg: key C3AFA9ED971BB365 marked as ultimately trusted +gpg: revocation certificate stored as '[...]D971BB365.rev' +public and secret key created and signed. + +Note that this key cannot be used for encryption. You may want to use +the command "--edit-key" to generate a subkey for this purpose. +pub rsa2048 2019-04-04 [SC]
-
-7F899AE2FB73159DD68A1B20C3AFA9ED971BB365 +uid 6309304695z@gmail.com +
-
-run gpg in --expert mode $ gpg --edit-key 7F899AE2FB73159DD68A1B20C3AFA9ED971BB365 +Secret key is available. +sec rsa2048/C3AFA9ED971BB365
-
-created: 2019-04-04 expires: never usage: SC card-no: FF020001008A77C1 trust: ultimate validity: ultimate +[ultimate] (1). otto@example.net +gpg> addkey +Secret parts of primary key are stored on-card. +Please select what kind of key you want:
-
-(3) DSA (sign only) (4) RSA (sign only) (5) Elgamal (encrypt only) (6) RSA (encrypt only) (14) Existing key from card +Your selection? 14 +Serial number of the card: FF020001008A77C1 +Available keys: (1) 213D1825FDE0F8240CB4E4229F01AF90AC658C2E PIV.9A nistp384 (auth) (2) 7A53E6CFFE7220A0E646B4632EE29E5A7104499C PIV.9E nistp256 (auth) (3) 32A6C6FAFCB8421878608AAB452D5470DD3223ED PIV.9C rsa2048 (cert,sign) (4) 34798AAFE0A7565088101CC4AE31C5C8C74461CB PIV.9D rsa2048 (encr) +Your selection? 4 +Please specify how long the key should be valid. 0 = key does not expire = key expires in n days w = key expires in n weeks m = key expires in n months y = key expires in n years +Key is valid for? (0) +Key does not expire at all +Is this correct? (y/N) y +Really create? (y/N) y + +sec rsa2048/C3AFA9ED971BB365
-
-created: 2019-04-04 expires: never usage: SC card-no: FF020001008A77C1 trust: ultimate validity: ultimate +ssb rsa2048/7067860A98FCE6E1
-
-created: 2019-04-04 expires: never usage: E card-no: FF020001008A77C1 +[ultimate] (1). otto@example.net + +gpg> save + +/* 32A19-D90712 +LEVEL-5 CLEARANCE ONLY
-
-‘--force’ +authentication key +-header-'010203040506070801020304050607080102030405060708' +SETDATA hexstring +to tell scdaemon about the data to be signed. The data must be given in hex notation. The actual signing is done using the command PKSIGN keyid +where keyid is the hexified ID of the key to be used. The key id may have been retrieved using the command LEARN. If another hash algorithm than SHA-1 is used, that algorithm may be given like: PKSIGN --hash=algoname keyid +READKEY hexified_certid +READCERT hexified_certid|keyid +SERIALNO +Return the serial number of the card using a status response like: 'S SERIALNO D27600000000000000000000' +WRITEKEY [--force] keyid +SETDATA hexstring +to tell scdaemon about the data to be decrypted. The data must be given in hex notation. The actual decryption is then done using the command PKDECRYPT keyid +CHECKPIN idstr +RESTART +APDU [--atr] [--more] [--exlen[=n]] [hexstring] '+S CARD-ATR 3BFA1300FF813180450031C173C00100009000B1' +./configure --sysconfdir=/etc --localstatedir=/va +CN=Wurzel ZS 3,O=Intevation GmbH,C=DE
-
-A6935DD34EF3087973C706FC311AA2CCF733765B S CN=PCA-1-Verwaltung-02/O=PKI-1-Verwaltung/C=DE
-
-DC:BD:69:25:48:BD:BB:7E:31:6E:BB:80:D3:00:80:35:D4:F8:A6:CD S CN=Root-CA/O=Schlapphuete/L=Pullach/C=DE
-
-!14:56:98:D3:FE:9C:CA:5A:31:6E:BC:81:D3:11:4E:00:90:A3:44:C2 S
-
-Key added on: 2011-07-20 20:38:46
-
-Fingerprint: 5e:8d:c4:ad:e7:af:6e:27:8a:d6:13:e4:79:ad:0b:81
-
-34B62F25E277CF13D3C6BCEBFD3F85D08F0A864B 0 confirm +private-keys-v1.d/ +gpg-connect-agent 'help COMMAND' /bye +SETKEY +Tell the server about the key to be used for decryption. If this is not used, gpg-agent may try to figure out the key by trying to decrypt the message with each key available.
-
-PKDECRYPT +The agent checks whether this command is allowed and then does an INQUIRY to get the ciphertext the client should then send the cipher text.
-
-C: PKDECRYPT S: INQUIRE CIPHERTEXT C: D (enc-val elg (a 349324324) C: D (b 3F444677CA))) C: END S: # session key follows S: S PADDING 0 S: S PADDING 0 S: S PADDING 0 S: S PADDING 0 S: D (value 000006004grateful) S: OK decryption successful
-
-Please note that the server may send status info lines while reading the data lines from the client. The data send is a SPKI like S-Exp with this structure: (enc-val ( (<param_name1> ) ... (<param_namen> ))) +Where algo is a string with the name of the algorithm; see the libgcrypt documentation for a list of valid algorithms. The number and names of the parameters depend on the algorithm. The agent does return an error if there is an inconsistency. + +If the decryption was successful the decrypted data is returned by means of "D" lines. + +Here is an example session: +
-
-C: PKDECRYPT S: INQUIRE CIPHERTEXT C: D (enc-val elg (a 349324324) C: D (b 3F444677CA))) C: END S: # session key follows S: S PADDING 0 S: D (value 1234567890ABCDEF0) S: OK decryption successful +The “PADDING” status line is only send if gpg-agent can tell what kind of padding is used. As of now only the value 0 is used to indicate that the padding has +SIGKEY +This can be used multiple times to create multiple signature, the list of keys is reset with the next PKSIGN command or a RESET. The server tests whether the key is a valid key to sign something and responds with okay. SETHASH --hash=| +sig-val ( (<param_name1> ) ... (<param_namen> ))) +The operation is affected by the option +Option 1+
-
-OPTION use-cache-for-signing=0|1 +The default of 1 uses the cache. Setting this option to 0 will lead gpg-agent to ignore the passphrase cache. Note, that there is also a global command line option for gpg-agent to globally disable the caching. +Here is an example session: +
-
-C: SIGKEY S: OK key available C: SIGKEY S: OK key available C: PKSIGN S: # I did ask the user whether he really wants to sign S: # I did ask the user for the passphrase S: INQUIRE HASHVAL C: D ABCDEF012345678901234 C: END S: # signature follows S: D (sig-val rsa (s 45435453654612121212)) S: OK GENKEY [--no-protection] [--preset] [<cache_nonce>] +Invokes the key generation process and the server will then inquire on the generation parameters, like: S: INQUIRE KEYPARM C: D (genkey (rsa (nbits 1024))) C: END +The format of the key parameters which depends on the algorithm is of the form: (genkey (algo (parameter_name_1 ....) .... (parameter_name_n ....))) +If everything succeeds, the server returns the public key in a SPKI like S-Expression like this: +
-
-(public-key (rsa (n ) (e ))) +Here is an example session: C: GENKEY S: INQUIRE KEYPARM C: D (genkey (rsa (nbits 1024))) C: END S: D (public-key S: D (rsa (n 326487324683264) (e 10001))) S OK key created ISTRUSTED <5e:8d:c4:ad:e7:af:6e:27:8a:d6:13:e4:79:ad:0b:81> +LISTTRUSTED +GpgAgent returns a list of trusted keys line by line: S: D 000000001234454556565656677878AF2F1ECCFF P S: D 340387563485634856435645634856438576457A P S: D FEDC6532453745367FD83474357495743757435D S S: OK +The first item on a line is the hexified fingerprint where MD5 fingerprints are 00 padded to the left and the second item is a flag to indicate the type of key (so that gpg is able to only take care of PGP keys). P = OpenPGP, S = S/MIME. A client should ignore the rest of the line, so that we can extend the format in the future. +Ok +Finally a client should be able to mark a key as trusted: MARKTRUSTED fingerprint "P"|"S" +The server will then pop up a window to ask the user whether she really trusts this key. For this it will probably ask for a text to be displayed like this: S: INQUIRE TRUSTDESC C: D Do you trust the key with the fingerprint @FPR@ C: D bla fasel blurb. C: END S: OK +GET_PASSPHRASE [--data] [--check] [--no-ask] [--repeat[=N]]
-[--qualitybar] cache_id
-[error_message prompt description] +PRESET_PASSPHRASE [--inquire] <Keygrip = F5C3ABFAAB36B427FD98C4EDD0387E08EA1E8092
-
-C17D11ADF199F12A30A0910F1F80449BE0B08CB8
-
-Keygrip = DEE0FC98F441519CA5DE5D79773CB29009695FEB> [] + +HAVEKEY keygrips
-
-GET_CONFIRMATION description LEARN [--send] +UPDATESTARTUPTTY +SETDATA hexstring PKSIGN keyid PKSIGN --hash=algoname keyid +READCERT hexified_certid|keyid +READKEY hexified_certid +SETDATA hexstring +d +
-
-PKSIGN keyid LEARN PKSIGN --hash=algoname keyid +WRITEKEY [--force] keyid +WRITEKEY [--force] keyid +PASSWD [--reset] [--nullpin] chvno +CHECKPIN idstr +APDU [--atr] [--more] [--exlen[=n]] [hexstring] +this: + <{Shadowed Card}> & <{Learn}> 'S CARD-ATR 3BFA1300FF813180450031C173C00100009000B1' +--auto-key-import + +command --locate-external-key +command --locat
+(1) RSA and RSA (default) (2) DSA and Elgamal (3) DSA (sign only) (4) RSA (sign only) (14) Existing key from card +Your selection? (1,2,3,4& 14) all please. +Serial number of the card: FF020001008A77C1 +Available keys: (1) 213D1825FDE0F8240CB4E4229F01AF90AC658C2E PIV.9A nistp384 (auth) (2) 7A53E6CFFE7220A0E646B4632EE29E5A7104499C PIV.9E nistp256 (auth) (3) 32A6C6FAFCB8421878608AAB452D5470DD3223ED PIV.9C rsa2048 (cert,sign) (4) 34798AAFE0A7565088101CC4AE31C5C8C74461CB PIV.9D rsa2048 (encr) +Your selection? 3 +Please specify how long th
